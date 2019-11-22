@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+import AppNavbar from "./components/AppNavbar";
 
 export default class App extends Component {
   render() {
-    return <h2> Loaded </h2>;
+    return (
+      <div>
+        <AppNavbar />
+      </div>
+    );
   }
 }
