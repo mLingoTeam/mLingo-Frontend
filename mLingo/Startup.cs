@@ -70,7 +70,7 @@ namespace mLingo
             });
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -105,6 +105,9 @@ namespace mLingo
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+
+            // Make sure we have the database
+            serviceProvider.GetService<AppDbContext>().Database.EnsureCreated();
         }
     }
 }
