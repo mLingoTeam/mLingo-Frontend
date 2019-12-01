@@ -1,9 +1,26 @@
-.brand-icon {
-  max-width: 100px;
-  max-height: 100px;
+@media (max-width: 767px) {
+  .brand-icon {
+    max-width: 40px;
+    max-height: 40px;
+  }
+  .brand-text {
+    color: #222;
+    font-weight: bold;
+    font-size: 12px;
+  }
 }
-.brand-text {
-  color: #222;
-  font-weight: bold;
-  font-size: 28px;
+@media (min-width: 768px) {
+  .brand-icon {
+    max-width: 100px;
+    max-height: 100px;
+  }
+  .brand-text {
+    color: #222;
+    font-weight: bold;
+    font-size: 28px;
+  }
+}
+.navbar-brand {
+  height: auto !important;
+  padding: 0 10px !important;
 }

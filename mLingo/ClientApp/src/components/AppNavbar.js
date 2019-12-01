@@ -30,14 +30,6 @@ const AppNavbar = props => {
           <img alt="brand-icon" src={brandIcon} className="brand-icon" />
           <p className="brand-text">mLingo</p>
         </NavbarBrand>
-        <NavbarToggler onClick={toggleNavbar} className="mr-2" />
-        <Collapse isOpen={!collapsed} navbar>
-          <Nav navbar>
-            <NavItem>
-              <NavLink href="#">Idea</NavLink>
-            </NavItem>
-          </Nav>
-        </Collapse>
       </Navbar>
     </div>
   );
