@@ -7,10 +7,25 @@
 .carousel-item {
   background: linear-gradient(#432552, #243553);
   border-radius: 15px;
-  padding: 50px;
+  padding: 10vh 5vw;
 }
+.carousel-item img {
+  object-fit: cover;
+}
+
 .carousel-indicators .active {
   width: 45px !important;
-  height: 6px !important;
+  height: 3px !important;
   transition: 0.7s;
+}
+
+.carousel-indicators li {
+  background-clip: unset !important;
+  border: 0px !important;
+}
+
+.carousel-indicators {
+  width: auto !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
