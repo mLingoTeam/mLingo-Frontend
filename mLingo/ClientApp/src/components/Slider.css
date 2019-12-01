@@ -1,4 +1,16 @@
 .slider {
-  background: #222;
-  padding: 40px 0;
+  background: linear-gradient(#111, #222);
+  padding: 10vh 0;
+  object-fit: cover;
+  box-sizing: border-box;
+}
+.carousel-item {
+  background: linear-gradient(#432552, #243553);
+  border-radius: 15px;
+  padding: 50px;
+}
+.carousel-indicators .active {
+  width: 45px !important;
+  height: 6px !important;
+  transition: 0.7s;
 }

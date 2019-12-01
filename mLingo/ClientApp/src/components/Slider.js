@@ -66,7 +66,12 @@ const Slider = props => {
 
   return (
     <div className="slider">
-      <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+      <Carousel
+        activeIndex={activeIndex}
+        next={next}
+        previous={previous}
+        className="offset-1 col-10 slider-carousel"
+      >
         <CarouselIndicators
           items={items}
           activeIndex={activeIndex}
