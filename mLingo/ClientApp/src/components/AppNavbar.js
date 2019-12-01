@@ -1,25 +1,13 @@
-import React, { useState } from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink
-} from "reactstrap";
+import React from "react";
+import { Navbar, NavbarBrand } from "reactstrap";
 import { Link } from "react-router-dom";
 import brandIcon from "../img/monkey.png";
+import Formular from "./Formular";
 import "./AppNavbar.css";
 
 const AppNavbar = props => {
-  // Hooks
-  const [collapsed, setCollapsed] = useState(true);
-
-  const toggleNavbar = () => setCollapsed(!collapsed);
-
   return (
-    <div>
+    <div className="navbar-dark">
       <Navbar
         color="faded"
         light
@@ -30,6 +18,7 @@ const AppNavbar = props => {
           <img alt="brand-icon" src={brandIcon} className="brand-icon" />
           <p className="brand-text">mLingo</p>
         </NavbarBrand>
+        <Formular />
       </Navbar>
     </div>
   );
