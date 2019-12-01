@@ -7,7 +7,9 @@ const UserPromo = props => {
       <div className="help-others"></div>
       <div className="help-others-text">
         <h1>Help us develop the world!</h1>
-        <h3>Join us! Learn new things and share your knowledge with others!</h3>
+        <h3>
+          Join us now! Learn new things and share your knowledge with others!
+        </h3>
       </div>
     </div>
   );
