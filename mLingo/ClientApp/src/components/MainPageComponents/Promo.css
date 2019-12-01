@@ -1,0 +1,19 @@
+.img-media {
+  max-width: 128px;
+}
+.Promo {
+  padding: 5vh 0;
+}
+.Promo h1 {
+  font-size: 48px;
+  text-align: center;
+}
+
+li.media {
+  padding: 3vh 0;
+  border-bottom: 1px solid gray;
+  font-size: 16px;
+}
+li.media h4 {
+  font-size: 32px;
+}
