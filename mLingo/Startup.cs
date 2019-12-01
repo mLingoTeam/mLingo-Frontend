@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using mLingoCore.Models.Authentication;
 namespace mLingo
 {
     public class Startup
@@ -25,6 +26,8 @@ namespace mLingo
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddIdentity<mLingoUser, mLingoRole>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -41,6 +44,7 @@ namespace mLingo
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            app.UseAuthentication();
 
             app.UseRouting();
 
