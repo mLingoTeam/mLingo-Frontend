@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import AppNavbar from "./components/AppNavbar";
-import Slider from "./components/Slider";
+import MainPage from "./components/MainPage";
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        <AppNavbar />
-        <Slider />
+        <MainPage />
       </div>
     );
   }

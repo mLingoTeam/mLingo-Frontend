@@ -6,9 +6,9 @@ import {
   CarouselIndicators,
   CarouselCaption
 } from "reactstrap";
-import img1 from "../img/books.png";
-import img2 from "../img/speak.png";
-import img3 from "../img/edit.png";
+import img1 from "../../img/books.png";
+import img2 from "../../img/speak.png";
+import img3 from "../../img/edit.png";
 import "./Slider.css";
 
 const items = [
