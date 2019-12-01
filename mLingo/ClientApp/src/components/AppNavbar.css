@@ -20,8 +20,14 @@
     font-size: 24px;
   }
 }
+.navbar {
+  margin: 0 !important;
+  border: 0 !important;
+}
+
 .navbar-dark {
   background: linear-gradient(#243553, #432552);
+  margin: 0 !important;
 }
 .navbar-brand {
   height: auto !important;
