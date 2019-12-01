@@ -11,7 +11,7 @@ const AppNavbar = props => {
       <Navbar
         color="faded"
         light
-        className="navbar navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow"
+        className="navbar navbar-expand-sm navbar-toggleable-sm ng-white box-shadow"
       >
         <NavbarBrand tag={Link} to="/">
           {" "}
