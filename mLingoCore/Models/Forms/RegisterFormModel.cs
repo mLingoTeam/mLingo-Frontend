@@ -1,6 +1,6 @@
 ﻿namespace mLingoCore.Models.Forms
 {
-    class RegisterFormModel
+    public class RegisterFormModel
     {
         public string Username { get; set; }
 
