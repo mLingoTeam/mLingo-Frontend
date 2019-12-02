@@ -50,6 +50,10 @@
   opacity: 1;
 }
 
+.modal-dialog {
+  max-width: 60vw;
+}
+
 @media (max-width: 991px) {
   .brand-icon {
     max-width: 40px;

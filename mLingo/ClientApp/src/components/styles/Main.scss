@@ -16,6 +16,9 @@
 .show {
   opacity: 1;
 }
+.modal-dialog {
+  max-width: 60vw;
+}
 
 @media (max-width: $mobile-res) {
   .brand-icon {
