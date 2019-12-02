@@ -9,22 +9,30 @@
 
 .slider {
   padding: 0px !important;
-  object-fit: cover;
-  box-sizing: border-box;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
+
 .carousel-item {
-  background: linear-gradient(hsl(280, 38%, 23%), #243553);
+  background: -webkit-gradient(linear, left top, left bottom, from(#422451), to(#243553));
+  background: linear-gradient(#422451, #243553);
 }
+
 .carousel-item img {
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 100%;
   height: 80vh;
-  filter: brightness(0.5);
+  -webkit-filter: brightness(0.5);
+          filter: brightness(0.5);
 }
 
 .carousel-indicators .active {
   width: 45px !important;
   height: 3px !important;
+  -webkit-transition: 0.7s;
   transition: 0.7s;
 }
 
@@ -38,3 +46,4 @@
   margin-left: 0px !important;
   margin-right: 0px !important;
 }
+/*# sourceMappingURL=Slider.css.map */

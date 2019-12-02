@@ -1,0 +1,38 @@
+.blue-button {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  width: 10vw;
+  outline: none !important;
+  background: #4a69bd;
+  height: 60px;
+  border-radius: 5px;
+}
+
+.blue-button:hover {
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
+}
+
+.in-button {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  width: 10vw;
+  outline: none !important;
+  background: inherit;
+  height: 60px;
+  border-radius: 5px;
+}
+
+.in-button:hover {
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
+}
+/*# sourceMappingURL=variables.css.map */

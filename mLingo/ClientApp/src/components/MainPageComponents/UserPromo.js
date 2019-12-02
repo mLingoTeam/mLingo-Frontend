@@ -1,5 +1,4 @@
 import React from "react";
-import "./Promo.css";
 
 const UserPromo = props => {
   return (

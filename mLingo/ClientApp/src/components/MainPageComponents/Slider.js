@@ -8,7 +8,6 @@ import {
 } from "reactstrap";
 import img1 from "../../img/slid1.png";
 import img2 from "../../img/l_people.jpg";
-import "./Slider.css";
 
 const items = [
   {

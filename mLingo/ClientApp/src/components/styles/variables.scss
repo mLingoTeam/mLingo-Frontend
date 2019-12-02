@@ -1,0 +1,47 @@
+$dark-color: #0c2461;
+$light-color: #1e3799;
+$light-blue: #4a69bd;
+$mobile-res: 991px;
+$desktop-res: 992px;
+
+@mixin mobile {
+  @media (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin inbutton($color) {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  width: 10vw;
+  outline: none !important;
+  background: $color;
+  height: 60px;
+  border-radius: 5px;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+}
+
+@mixin bluebutton {
+  @include inbutton($light-blue);
+}
+
+.blue-button {
+  @include bluebutton;
+}
+
+.in-button {
+  @include inbutton(inherit);
+}
