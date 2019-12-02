@@ -116,7 +116,7 @@ namespace mLingo
             {
                 endpoints.MapControllerRoute(
                     name: "api",
-                    pattern: "{controller=Api}/{action}");
+                    pattern: "{controller=Account}/{action}");
             });
 
             app.UseSpa(spa =>

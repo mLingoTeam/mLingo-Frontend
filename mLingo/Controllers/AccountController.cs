@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 
 namespace mLingo.Controllers
 {
-    public class ApiController : Controller
+    public class AccountController : Controller
     {
         #region PrivateFields
 
@@ -33,8 +33,8 @@ namespace mLingo.Controllers
 
         #region Constructor
 
-        public ApiController(
-            ILogger<ApiController> logger, 
+        public AccountController(
+            ILogger<AccountController> logger, 
             UserManager<AppUser> userManager, 
             AppDbContext dbContext, 
             SignInManager<AppUser> signInManager,
