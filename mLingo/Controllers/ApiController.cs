@@ -1,26 +1,33 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using mLingoCore.Models.Forms;
+using Newtonsoft.Json;
 
 namespace mLingo.Controllers
 {
     public class ApiController : Controller
     {
-        [HttpPost]
-        [Route("api/register")]
-        public async Task<IActionResult> RegisterAsync([FromBody]RegisterFormModel registrationData)
+        private readonly ILogger apiLogger;
+        public ApiController(ILogger<ApiController> logger)
         {
-            await Task.Delay(0);
-            return Ok();
+            apiLogger = logger;
+        }
+
+        [HttpPost]
+        public IActionResult Register([FromBody]RegisterFormModel registerForm)
+        {
+            apiLogger.LogInformation($"User {registerForm.Username} registered");
+            return Ok(registerForm);
         }
 
 
         [HttpPost]
-        [Route("api/login")]
-        public async Task<IActionResult> LoginAsync([FromBody]LoginFormModel loginData)
+        public IActionResult Login([FromBody]LoginFormModel loginForm)
         {
-            await Task.Delay(0);
-            return Ok();
+            apiLogger.LogInformation($"User {loginForm.Username} logged in");
+            return Ok(loginForm);
         }
     }
 }
