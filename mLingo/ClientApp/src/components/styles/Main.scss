@@ -12,6 +12,11 @@
 
 /* 1. AppNavbar.js */
 
+/* MODAL */
+.show {
+  opacity: 1;
+}
+
 @media (max-width: $mobile-res) {
   .brand-icon {
     max-width: 40px;
@@ -57,9 +62,12 @@
   }
 
   &-buttons {
-    display: flex;
+    display: flex !important;
     position: absolute;
     right: 5vw;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
   }
 }
 

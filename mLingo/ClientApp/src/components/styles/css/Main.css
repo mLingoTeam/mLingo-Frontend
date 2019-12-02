@@ -45,6 +45,11 @@
 /* 5. Register.js */
 /* 6. Footer.js */
 /* 1. AppNavbar.js */
+/* MODAL */
+.show {
+  opacity: 1;
+}
+
 @media (max-width: 991px) {
   .brand-icon {
     max-width: 40px;
@@ -98,11 +103,18 @@
 }
 
 .navbar-buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
   position: absolute;
   right: 5vw;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
 }
 
 .register-button {
