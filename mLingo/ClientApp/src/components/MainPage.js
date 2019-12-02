@@ -5,6 +5,7 @@ import Promo from "./MainPageComponents/Promo";
 import UserPromo from "./MainPageComponents/UserPromo";
 import Register from "./MainPageComponents/Register";
 import Footer from "./MainPageComponents/Footer";
+import "./styles/css/Main.css";
 
 export default class MainPage extends Component {
   render() {

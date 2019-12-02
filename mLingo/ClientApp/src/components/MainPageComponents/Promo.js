@@ -4,7 +4,6 @@ import img1 from "../../img/books.png";
 import img2 from "../../img/edit.png";
 import img3 from "../../img/speak.png";
 import img4 from "../../img/monkey.png";
-import "../styles/css/Promo.css";
 
 const Promo = props => {
   return (

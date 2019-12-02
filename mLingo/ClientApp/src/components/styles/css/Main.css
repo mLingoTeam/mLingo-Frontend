@@ -134,6 +134,140 @@
           filter: brightness(0.8);
 }
 
+/* 2. Slider */
+@media (min-width: 967px) {
+  .carousel-caption h3 {
+    font-size: 32px;
+  }
+  .carousel-caption p {
+    font-size: 18px;
+  }
+}
+
+.slider {
+  padding: 0px !important;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.carousel-item {
+  background: -webkit-gradient(linear, left top, left bottom, from(#0c2461), to(#1e3799));
+  background: linear-gradient(#0c2461, #1e3799);
+}
+
+.carousel-item img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 80vh;
+  -webkit-filter: brightness(0.5);
+          filter: brightness(0.5);
+}
+
+.carousel-indicators .active {
+  width: 45px !important;
+  height: 3px !important;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+}
+
+.carousel-indicators li {
+  background-clip: unset !important;
+  border: 0px !important;
+}
+
+.carousel-indicators {
+  width: auto !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+/* 3. Promo */
+.help-others {
+  margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: url("../../../img/slid3.jpg") fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-filter: brightness(0.5);
+          filter: brightness(0.5);
+  position: relative;
+  z-index: -1;
+}
+
+.img-media {
+  max-width: 128px;
+}
+
+.Promo {
+  padding: 5vh 0;
+}
+
+@media (min-width: 968px) {
+  .Promo h1 {
+    font-size: 48px;
+  }
+  .help-others-text h1 {
+    font-size: 52px;
+  }
+  .help-others-text h3 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 967px) {
+  .Promo h1 {
+    margin-bottom: 20px;
+  }
+}
+
+.Promo h1 {
+  text-align: center;
+  font-size: 28px;
+}
+
+li.media {
+  padding: 3vh 0;
+  border-bottom: 1px solid gray;
+  font-size: 16px;
+}
+
+li.media h4 {
+  font-size: 32px;
+}
+
+.help-others-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: white;
+  text-shadow: 0.1em 0.1em 0.2em black;
+}
+
+.help-others-text h1 {
+  text-align: center;
+}
+
+.help-others-text h3 {
+  line-height: 1.6;
+  text-align: center;
+}
+
 /* 4. UserPromo */
 .registerForm2 input {
   height: 40px;
@@ -165,5 +299,36 @@
 .registerForm2 button {
   height: 60px !important;
   border-radius: 5px;
+}
+
+/* 5. Footer */
+.footer {
+  background: -webkit-gradient(linear, left top, left bottom, from(#1e3799), to(#0c2461));
+  background: linear-gradient(#1e3799, #0c2461);
+  margin: 0 !important;
+  width: 100%;
+  height: 20vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.footer-end-text {
+  color: white;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.social {
+  color: white;
 }
 /*# sourceMappingURL=Main.css.map */
