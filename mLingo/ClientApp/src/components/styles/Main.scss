@@ -7,7 +7,8 @@
 /* 2. Slider.js */
 /* 3. Promo.js */
 /* 4. UserPromo.js */
-/* 5. Footer.js */
+/* 5. Register.js */
+/* 6. Footer.js */
 
 /* 1. AppNavbar.js */
 
@@ -70,7 +71,7 @@
   @include inbutton("inherit");
 }
 
-/* 2. Slider */
+/* 2. Slider.js */
 @media (min-width: $desktop-res) {
   .carousel-caption {
     p {
@@ -114,7 +115,7 @@
   }
 }
 
-/* 3. Promo */
+/* 3. Promo.js */
 .help-others {
   margin: 0 auto;
   width: 100%;
@@ -174,6 +175,8 @@ li.media h4 {
   font-size: 32px;
 }
 
+/* 4. UserPromo.js */
+
 .help-others-text {
   position: absolute;
   left: 50%;
@@ -193,7 +196,7 @@ li.media h4 {
   }
 }
 
-/* 4. UserPromo */
+/* 5. Register.js */
 
 .registerForm2 input {
   height: 40px;
@@ -217,13 +220,9 @@ li.media h4 {
     display: flex;
     flex-wrap: wrap;
   }
-  button {
-    height: 60px !important;
-    border-radius: 5px;
-  }
 }
 
-/* 5. Footer */
+/* 6. Footer.js */
 
 .footer {
   background: linear-gradient($light-color, $dark-color);

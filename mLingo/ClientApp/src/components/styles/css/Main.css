@@ -8,6 +8,8 @@
   width: 10vw;
   outline: none !important;
   background: #4a69bd;
+  height: 60px;
+  border-radius: 5px;
 }
 
 .blue-button:hover {
@@ -25,6 +27,8 @@
   width: 10vw;
   outline: none !important;
   background: inherit;
+  height: 60px;
+  border-radius: 5px;
 }
 
 .in-button:hover {
@@ -38,7 +42,8 @@
 /* 2. Slider.js */
 /* 3. Promo.js */
 /* 4. UserPromo.js */
-/* 5. Footer.js */
+/* 5. Register.js */
+/* 6. Footer.js */
 /* 1. AppNavbar.js */
 @media (max-width: 991px) {
   .brand-icon {
@@ -110,6 +115,8 @@
   width: 10vw;
   outline: none !important;
   background: #4a69bd;
+  height: 60px;
+  border-radius: 5px;
 }
 
 .register-button:hover {
@@ -127,6 +134,8 @@
   width: 10vw;
   outline: none !important;
   background: "inherit";
+  height: 60px;
+  border-radius: 5px;
 }
 
 .sign-in-button:hover {
@@ -134,7 +143,7 @@
           filter: brightness(0.8);
 }
 
-/* 2. Slider */
+/* 2. Slider.js */
 @media (min-width: 992px) {
   .carousel-caption p {
     font-size: 18px;
@@ -184,7 +193,7 @@
   border: 0px !important;
 }
 
-/* 3. Promo */
+/* 3. Promo.js */
 .help-others {
   margin: 0 auto;
   width: 100%;
@@ -249,6 +258,7 @@ li.media h4 {
   font-size: 32px;
 }
 
+/* 4. UserPromo.js */
 .help-others-text {
   position: absolute;
   left: 50%;
@@ -268,7 +278,7 @@ li.media h4 {
   text-align: center;
 }
 
-/* 4. UserPromo */
+/* 5. Register.js */
 .registerForm2 input {
   height: 40px;
   font-size: 18px;
@@ -296,12 +306,7 @@ li.media h4 {
       flex-wrap: wrap;
 }
 
-.registerForm2 button {
-  height: 60px !important;
-  border-radius: 5px;
-}
-
-/* 5. Footer */
+/* 6. Footer.js */
 .footer {
   background: -webkit-gradient(linear, left top, left bottom, from(#1e3799), to(#0c2461));
   background: linear-gradient(#1e3799, #0c2461);

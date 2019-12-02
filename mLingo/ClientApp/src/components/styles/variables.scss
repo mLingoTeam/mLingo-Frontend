@@ -26,6 +26,8 @@ $desktop-res: 992px;
   width: 10vw;
   outline: none !important;
   background: $color;
+  height: 60px;
+  border-radius: 5px;
 
   &:hover {
     filter: brightness(0.8);

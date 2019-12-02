@@ -8,6 +8,8 @@
   width: 10vw;
   outline: none !important;
   background: #4a69bd;
+  height: 60px;
+  border-radius: 5px;
 }
 
 .blue-button:hover {
@@ -25,6 +27,8 @@
   width: 10vw;
   outline: none !important;
   background: inherit;
+  height: 60px;
+  border-radius: 5px;
 }
 
 .in-button:hover {
