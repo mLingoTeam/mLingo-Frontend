@@ -26,6 +26,10 @@ $desktop-res: 992px;
   width: 10vw;
   outline: none !important;
   background: $color;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
 }
 
 @mixin bluebutton {

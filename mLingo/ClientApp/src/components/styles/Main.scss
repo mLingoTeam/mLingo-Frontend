@@ -1,0 +1,101 @@
+@import "./variables.scss";
+
+/* MENU */
+
+/* MainPageComponents */
+/* 1. AppNavbar.js */
+/* 2. Slider.js */
+/* 3. Promo.js */
+/* 4. UserPromo.js */
+/* 5. Footer.js */
+
+/* 1. AppNavbar.js */
+
+@media (max-width: $mobile-res) {
+  .brand-icon {
+    max-width: 40px;
+    max-height: 40px;
+  }
+  .brand-text {
+    font-size: 12px;
+  }
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (min-width: $desktop-res) {
+  .brand-icon {
+    max-width: 80px;
+    max-height: 80px;
+  }
+  .brand-text {
+    font-size: 24px;
+  }
+}
+
+.brand-text {
+  color: #ddd;
+  font-weight: bold;
+}
+
+.navbar {
+  margin: 0 !important;
+  border: 0 !important;
+
+  &-dark {
+    background: linear-gradient($light-color, $dark-color);
+    margin: 0 !important;
+  }
+
+  &-brand {
+    height: auto !important;
+    padding: 0 10px !important;
+  }
+
+  &-buttons {
+    display: flex;
+    position: absolute;
+    right: 5vw;
+  }
+}
+
+.register-button {
+  @include bluebutton;
+}
+
+.sign-in-button {
+  @include inbutton("inherit");
+}
+
+/* 4. UserPromo */
+
+.registerForm2 input {
+  height: 40px;
+  font-size: 18px;
+}
+
+.registerForm2 input:focus {
+  outline: none;
+  border: 0;
+}
+
+.registerForm2 {
+  padding: 10vh 0;
+
+  h1 {
+    font-size: 38px;
+    font-weight: 100;
+  }
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  button {
+    height: 60px !important;
+    border-radius: 5px;
+  }
+}

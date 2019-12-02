@@ -10,6 +10,11 @@
   background: #4a69bd;
 }
 
+.blue-button:hover {
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
+}
+
 .in-button {
   font-size: 22px;
   font-weight: bold;
@@ -20,5 +25,10 @@
   width: 10vw;
   outline: none !important;
   background: inherit;
+}
+
+.in-button:hover {
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
 }
 /*# sourceMappingURL=variables.css.map */

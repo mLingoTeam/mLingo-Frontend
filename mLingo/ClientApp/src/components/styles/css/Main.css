@@ -1,0 +1,169 @@
+.blue-button {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  width: 10vw;
+  outline: none !important;
+  background: #4a69bd;
+}
+
+.blue-button:hover {
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
+}
+
+.in-button {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  width: 10vw;
+  outline: none !important;
+  background: inherit;
+}
+
+.in-button:hover {
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
+}
+
+/* MENU */
+/* MainPageComponents */
+/* 1. AppNavbar.js */
+/* 2. Slider.js */
+/* 3. Promo.js */
+/* 4. UserPromo.js */
+/* 5. Footer.js */
+/* 1. AppNavbar.js */
+@media (max-width: 991px) {
+  .brand-icon {
+    max-width: 40px;
+    max-height: 40px;
+  }
+  .brand-text {
+    font-size: 12px;
+  }
+  .navbar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+@media (min-width: 992px) {
+  .brand-icon {
+    max-width: 80px;
+    max-height: 80px;
+  }
+  .brand-text {
+    font-size: 24px;
+  }
+}
+
+.brand-text {
+  color: #ddd;
+  font-weight: bold;
+}
+
+.navbar {
+  margin: 0 !important;
+  border: 0 !important;
+}
+
+.navbar-dark {
+  background: -webkit-gradient(linear, left top, left bottom, from(#1e3799), to(#0c2461));
+  background: linear-gradient(#1e3799, #0c2461);
+  margin: 0 !important;
+}
+
+.navbar-brand {
+  height: auto !important;
+  padding: 0 10px !important;
+}
+
+.navbar-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  right: 5vw;
+}
+
+.register-button {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  width: 10vw;
+  outline: none !important;
+  background: #4a69bd;
+}
+
+.register-button:hover {
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
+}
+
+.sign-in-button {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  width: 10vw;
+  outline: none !important;
+  background: "inherit";
+}
+
+.sign-in-button:hover {
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
+}
+
+/* 4. UserPromo */
+.registerForm2 input {
+  height: 40px;
+  font-size: 18px;
+}
+
+.registerForm2 input:focus {
+  outline: none;
+  border: 0;
+}
+
+.registerForm2 {
+  padding: 10vh 0;
+}
+
+.registerForm2 h1 {
+  font-size: 38px;
+  font-weight: 100;
+}
+
+.registerForm2 form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.registerForm2 button {
+  height: 60px !important;
+  border-radius: 5px;
+}
+/*# sourceMappingURL=Main.css.map */
