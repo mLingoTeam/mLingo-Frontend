@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, NavbarBrand } from "reactstrap";
 import { Link } from "react-router-dom";
+import SignInModal from "./SignInModal";
 import brandIcon from "../../img/monkey.png";
 
 const AppNavbar = props => {
@@ -17,10 +18,12 @@ const AppNavbar = props => {
           <p className="brand-text">mLingo</p>
         </NavbarBrand>
         <div className="d-none d-lg-block navbar-buttons">
-          <button className="sign-in-button">Sign in</button>
-          <a href="#Username2">
-            <button className="register-button">Register</button>
-          </a>
+          <SignInModal />
+          <div>
+            <a href="#Username2">
+              <button className="register-button">Register</button>
+            </a>
+          </div>
         </div>
       </Navbar>
     </div>
