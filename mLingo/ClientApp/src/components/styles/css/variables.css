@@ -1,0 +1,12 @@
+.blue-button {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  width: 10vw;
+  color: white;
+  background: #4a69bd;
+  border: 0;
+  border-radius: 5px;
+  height: 3vw;
+}
+/*# sourceMappingURL=variables.css.map */

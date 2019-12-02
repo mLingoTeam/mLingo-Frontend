@@ -39,8 +39,8 @@
 }
 
 .navbar-dark {
-  background: -webkit-gradient(linear, left top, left bottom, from(#243553), to(#0c2461));
-  background: linear-gradient(#243553, #0c2461);
+  background: -webkit-gradient(linear, left top, left bottom, from(#1e3799), to(#0c2461));
+  background: linear-gradient(#1e3799, #0c2461);
   margin: 0 !important;
 }
 
@@ -78,7 +78,7 @@
 .register-button {
   width: 10vw;
   color: white;
-  background: #243553;
+  background: #4a69bd;
   border: 0;
   border-radius: 5px;
   height: 3vw;

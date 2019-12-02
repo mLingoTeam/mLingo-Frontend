@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Form, FormGroup, Label, Input } from "reactstrap";
 import img1 from "../../img/monkey.png";
 
 const Register = props => {
@@ -49,9 +49,9 @@ const Register = props => {
               required
             />
           </FormGroup>
-          <Button className="col-12 offset-lg-2 col-lg-4 btn-success">
+          <button className="col-12 offset-lg-2 col-lg-4 btn blue-button">
             JOIN
-          </Button>
+          </button>
         </Form>
       </div>
     </div>

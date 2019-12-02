@@ -13,7 +13,7 @@
   box-sizing: border-box;
 }
 .carousel-item {
-  background: linear-gradient(hsl(280, 38%, 23%), #243553);
+  background: linear-gradient($dark-color, $light-color);
 }
 .carousel-item img {
   object-fit: cover;

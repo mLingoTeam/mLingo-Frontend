@@ -1,1 +1,31 @@
 $dark-color: #0c2461;
+$light-color: #1e3799;
+$light-blue: #4a69bd;
+
+@mixin blueButton {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+
+  width: 10vw;
+  color: white;
+  background: $light-blue;
+  border: 0;
+  border-radius: 5px;
+  height: 3vw;
+}
+
+@mixin in-button {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  width: 10vw;
+  outline: none !important;
+}
+
+.blue-button {
+  @include blueButton;
+}

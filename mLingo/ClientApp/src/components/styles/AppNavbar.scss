@@ -33,7 +33,7 @@
 }
 
 .navbar-dark {
-  background: linear-gradient(#243553, $dark-color);
+  background: linear-gradient($light-color, $dark-color);
   margin: 0 !important;
 }
 .navbar-brand {
@@ -41,18 +41,18 @@
   padding: 0 10px !important;
 }
 
-.registerForm form {
-  display: flex;
-  justify-content: flex-end;
-  font-size: 16px;
+.registerForm {
+  form {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 16px;
+  }
 }
 
 .registerForm button,
 .register-button,
 .sign-in-button {
-  font-size: 22px;
-  font-weight: bold;
-  text-shadow: 0.1em 0.1em 0.2em black;
+  @include button;
 }
 .navbar-buttons {
   display: flex;
@@ -61,21 +61,11 @@
 }
 
 .register-button {
-  width: 10vw;
-  color: white;
-  background: #243553;
-  border: 0;
-  border-radius: 5px;
-  height: 3vw;
+  @include blueButton;
 }
 
 .sign-in-button {
-  background-color: inherit;
-  border: 0;
-  color: white;
-  width: 10vw;
-
-  outline: none !important;
+  @include in-button;
 }
 .navbar-buttons button:hover,
 .navbar-buttons button:focus,
@@ -102,21 +92,21 @@
 
 .registerForm2 {
   padding: 10vh 0;
-}
 
-.registerForm2 h1 {
-  font-size: 38px;
-  font-weight: 100;
-}
+  h1 {
+    font-size: 38px;
+    font-weight: 100;
+  }
 
-.registerForm2 form {
-  display: flex;
-  flex-wrap: wrap;
-}
-.registerForm2 button {
-  font-size: 22px;
-  font-weight: bold;
-  text-shadow: 0.1em 0.1em 0.2em black;
-  height: 60px !important;
-  border-radius: 5px;
+  form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  button {
+    font-size: 22px;
+    font-weight: bold;
+    text-shadow: 0.1em 0.1em 0.2em black;
+    height: 60px !important;
+    border-radius: 5px;
+  }
 }

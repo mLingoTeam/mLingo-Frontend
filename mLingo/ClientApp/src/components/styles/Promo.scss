@@ -1,9 +1,31 @@
+@import "./variables.scss";
+
+.help-others {
+  margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../../../img/slid3.jpg") fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: brightness(0.5);
+  position: relative;
+  z-index: -1;
+}
+
 .img-media {
   max-width: 128px;
 }
+
 .Promo {
   padding: 5vh 0;
 }
+
 @media (min-width: 968px) {
   .Promo h1 {
     font-size: 48px;
@@ -15,6 +37,7 @@
     font-size: 24px;
   }
 }
+
 @media (max-width: 967px) {
   .Promo h1 {
     margin-bottom: 20px;
@@ -31,29 +54,16 @@ li.media {
   border-bottom: 1px solid gray;
   font-size: 16px;
 }
+
 li.media h4 {
   font-size: 32px;
 }
 
-.help-others {
-  margin: 0 auto;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: url("../../img/slid3.jpg") fixed;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  filter: brightness(0.5);
-  position: relative;
-  z-index: -1;
-}
 .help-others-text {
   position: absolute;
   left: 50%;
   top: 50%;
+  -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   color: white;
   text-shadow: 0.1em 0.1em 0.2em black;
@@ -62,6 +72,7 @@ li.media h4 {
 .help-others-text h1 {
   text-align: center;
 }
+
 .help-others-text h3 {
   line-height: 1.6;
   text-align: center;
