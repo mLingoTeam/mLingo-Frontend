@@ -2,6 +2,9 @@
 
 namespace mLingoCore.Models.Forms
 {
+    /// <summary>
+    /// Model that holds data that user submits during registration for an account.
+    /// </summary>
     public class RegisterFormModel
     {
         public string Username { get; set; }
@@ -19,6 +22,11 @@ namespace mLingoCore.Models.Forms
         public string PhoneNo { get; set; }
 
 
+        /// <summary>
+        /// Validates if data inside any registration form is valid
+        /// </summary>
+        /// <param name="form">Form submitted by user</param>
+        /// <returns>If user form is valid</returns>
         public static bool ValidateForm(RegisterFormModel form)
         {
             if (string.IsNullOrEmpty(form.Username) ||
