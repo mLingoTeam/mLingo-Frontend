@@ -43,6 +43,12 @@
   .brand-text {
     font-size: 24px;
   }
+  .navbar-buttons {
+    display: flex !important;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
 }
 
 .brand-text {
@@ -65,12 +71,8 @@
   }
 
   &-buttons {
-    display: flex !important;
     position: absolute;
     right: 5vw;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: nowrap;
   }
 }
 

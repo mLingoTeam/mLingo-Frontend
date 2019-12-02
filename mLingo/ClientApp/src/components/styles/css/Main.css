@@ -83,6 +83,18 @@
   .brand-text {
     font-size: 24px;
   }
+  .navbar-buttons {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+  }
 }
 
 .brand-text {
@@ -107,18 +119,8 @@
 }
 
 .navbar-buttons {
-  display: -webkit-box !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
   position: absolute;
   right: 5vw;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
 }
 
 .register-button {
