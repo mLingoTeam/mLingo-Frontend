@@ -71,12 +71,14 @@
 }
 
 /* 2. Slider */
-@media (min-width: 967px) {
-  .carousel-caption h3 {
-    font-size: 32px;
-  }
-  .carousel-caption p {
-    font-size: 18px;
+@media (min-width: $desktop-res) {
+  .carousel-caption {
+    p {
+      font-size: 18px;
+    }
+    h3 {
+      font-size: 32px;
+    }
   }
 }
 
@@ -87,29 +89,29 @@
 }
 .carousel-item {
   background: linear-gradient($dark-color, $light-color);
-}
-.carousel-item img {
-  object-fit: cover;
-  width: 100%;
-  height: 80vh;
-  filter: brightness(0.5);
-}
 
-.carousel-indicators .active {
-  width: 45px !important;
-  height: 3px !important;
-  transition: 0.7s;
-}
-
-.carousel-indicators li {
-  background-clip: unset !important;
-  border: 0px !important;
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 80vh;
+    filter: brightness(0.5);
+  }
 }
 
 .carousel-indicators {
   width: auto !important;
   margin-left: 0px !important;
   margin-right: 0px !important;
+
+  .active {
+    width: 45px !important;
+    height: 3px !important;
+    transition: 0.7s;
+  }
+  li {
+    background-clip: unset !important;
+    border: 0px !important;
+  }
 }
 
 /* 3. Promo */
@@ -139,7 +141,7 @@
   padding: 5vh 0;
 }
 
-@media (min-width: 968px) {
+@media (min-width: $desktop-res) {
   .Promo h1 {
     font-size: 48px;
   }
@@ -151,7 +153,7 @@
   }
 }
 
-@media (max-width: 967px) {
+@media (max-width: $mobile-res) {
   .Promo h1 {
     margin-bottom: 20px;
   }
@@ -180,15 +182,15 @@ li.media h4 {
   transform: translate(-50%, -50%);
   color: white;
   text-shadow: 0.1em 0.1em 0.2em black;
-}
 
-.help-others-text h1 {
-  text-align: center;
-}
+  h1 {
+    text-align: center;
+  }
 
-.help-others-text h3 {
-  line-height: 1.6;
-  text-align: center;
+  h3 {
+    line-height: 1.6;
+    text-align: center;
+  }
 }
 
 /* 4. UserPromo */
