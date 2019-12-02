@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -55,7 +54,7 @@ namespace mLingo.Controllers
         public async Task<IActionResult> Register([FromBody]RegisterFormModel registerForm)
         {
             if (registerForm == null || RegisterFormModel.ValidateForm(registerForm) == false)
-                return BadRequest(new ApiResponse<RegisterResponse>
+                return BadRequest(new ApiResponse
                 {
                     ErrorMessage = ErrorMessages.InvalidRegistration
                 });
@@ -80,9 +79,9 @@ namespace mLingo.Controllers
             {
                 var userIdentity = await apiUserManager.FindByNameAsync(user.UserName);
 
-                var res = JsonConvert.SerializeObject(new ApiResponse<RegisterResponse>
+                var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
                 {
-                    Response = new RegisterResponse
+                    Response = new CredentialsResponse
                     {
                         Id = user.UserInfo.Id,
                         FirstName = user.UserInfo.FirstName,
@@ -96,7 +95,7 @@ namespace mLingo.Controllers
                 return Ok(res);
             }
 
-            return BadRequest(new ApiResponse<RegisterResponse>
+            return BadRequest(new ApiResponse<CredentialsResponse>
             {
                 ErrorMessage = ErrorMessages.InvalidRegistration
             });
@@ -104,10 +103,50 @@ namespace mLingo.Controllers
 
 
         [HttpPost]
-        public IActionResult Login([FromBody]LoginFormModel loginForm)
+        public async Task<IActionResult> Login([FromBody]LoginFormModel loginForm)
         {
-            apiLogger.LogInformation($"User {loginForm.Username} logged in");
-            return Ok(loginForm);
+            if (loginForm == null || LoginFormModel.ValidateForm(loginForm) == false)
+                return BadRequest(new ApiResponse
+                {
+                    ErrorMessage = ErrorMessages.InvalidLogin
+                });
+
+            var isEmail = loginForm.UserId.Contains("@");
+
+            var user = isEmail
+                ? await apiUserManager.FindByEmailAsync(loginForm.UserId)
+                : await apiUserManager.FindByNameAsync(loginForm.UserId);
+
+            if(user == null)
+                return BadRequest(new ApiResponse
+                {
+                    ErrorMessage = isEmail ? ErrorMessages.UserEmailNotFound : ErrorMessages.UsernameNotFound
+                });
+
+            var isPasswordOk = await apiUserManager.CheckPasswordAsync(user, loginForm.Password);
+
+            if (isPasswordOk)
+            {
+                var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
+                {
+                    Response = new CredentialsResponse
+                    {
+                        Id = user.UserInfo.Id,
+                        FirstName = user.UserInfo.FirstName,
+                        LastName = user.UserInfo.LastName,
+                        DateOfBirth = user.UserInfo.LastName,
+                        Age = user.UserInfo.Age,
+                        Token = user.GenerateJwtToken(apiConfiguration)
+                    }
+                });
+
+                return Ok(res);
+            }
+
+            return BadRequest(new ApiResponse
+            {
+                ErrorMessage = ErrorMessages.InvalidLogin
+            });
         }
     }
 }

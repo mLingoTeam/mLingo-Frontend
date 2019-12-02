@@ -2,7 +2,7 @@
 
 namespace mLingoCore.Models.Api
 {
-    public class RegisterResponse : UserInformation
+    public class CredentialsResponse : UserInformation
     {
         public string Token { get; set; }
     }
