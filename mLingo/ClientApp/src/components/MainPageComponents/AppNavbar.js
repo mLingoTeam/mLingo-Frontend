@@ -1,9 +1,8 @@
 import React from "react";
-import { Navbar, NavbarBrand, Button } from "reactstrap";
+import { Navbar, NavbarBrand } from "reactstrap";
 import { Link } from "react-router-dom";
 import brandIcon from "../../img/monkey.png";
-import Formular from "./Formular";
-import "./AppNavbar.css";
+import "../styles/css/AppNavbar.css";
 
 const AppNavbar = props => {
   return (
@@ -18,11 +17,12 @@ const AppNavbar = props => {
           <img alt="brand-icon" src={brandIcon} className="brand-icon" />
           <p className="brand-text">mLingo</p>
         </NavbarBrand>
-        <a href="#Username2">
-          <Button className="d-none d-lg-block register-button">
-            Register
-          </Button>
-        </a>
+        <div className="d-none d-lg-block navbar-buttons">
+          <button className="sign-in-button">Sign in</button>
+          <a href="#Username2">
+            <button className="register-button">Register</button>
+          </a>
+        </div>
       </Navbar>
     </div>
   );

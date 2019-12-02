@@ -1,5 +1,5 @@
 import React from "react";
-import "./Promo.css";
+import "../styles/css/Promo.css";
 
 const UserPromo = props => {
   return (

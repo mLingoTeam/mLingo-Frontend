@@ -4,7 +4,8 @@ import img1 from "../../img/books.png";
 import img2 from "../../img/edit.png";
 import img3 from "../../img/speak.png";
 import img4 from "../../img/monkey.png";
-import "./Promo.css";
+import "../styles/css/Promo.css";
+
 const Promo = props => {
   return (
     <div className="offset-1 col-10 Promo">

@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 @media (max-width: 966px) {
   .brand-icon {
     max-width: 40px;
@@ -31,7 +33,7 @@
 }
 
 .navbar-dark {
-  background: linear-gradient(#243553, #432552);
+  background: linear-gradient(#243553, $dark-color);
   margin: 0 !important;
 }
 .navbar-brand {
@@ -46,18 +48,44 @@
 }
 
 .registerForm button,
-.register-button {
+.register-button,
+.sign-in-button {
   font-size: 22px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
 }
+.navbar-buttons {
+  display: flex;
+  position: absolute;
+  right: 5vw;
+}
 
 .register-button {
   width: 10vw;
-  position: absolute;
-  right: 5vh;
-  top: 50%;
-  transform: translateY(-50%);
+  color: white;
+  background: #243553;
+  border: 0;
+  border-radius: 5px;
+  height: 3vw;
+}
+
+.sign-in-button {
+  background-color: inherit;
+  border: 0;
+  color: white;
+  width: 10vw;
+
+  outline: none !important;
+}
+.navbar-buttons button:hover,
+.navbar-buttons button:focus,
+.navbar-buttons button:target {
+  border: 0;
+  color: white;
+  width: 10vw;
+  outline: none;
+  box-shadow: 0 !important;
+  filter: brightness(0.8);
 }
 
 .registerForm input,

@@ -1,0 +1,144 @@
+@media (max-width: 966px) {
+  .brand-icon {
+    max-width: 40px;
+    max-height: 40px;
+  }
+  .brand-text {
+    color: #ddd;
+    font-weight: bold;
+    font-size: 12px;
+  }
+  .navbar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+@media (min-width: 967px) {
+  .brand-icon {
+    max-width: 80px;
+    max-height: 80px;
+  }
+  .brand-text {
+    color: #ddd;
+    font-weight: bold;
+    font-size: 24px;
+  }
+}
+
+.navbar {
+  margin: 0 !important;
+  border: 0 !important;
+}
+
+.navbar-dark {
+  background: -webkit-gradient(linear, left top, left bottom, from(#243553), to(#0c2461));
+  background: linear-gradient(#243553, #0c2461);
+  margin: 0 !important;
+}
+
+.navbar-brand {
+  height: auto !important;
+  padding: 0 10px !important;
+}
+
+.registerForm form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  font-size: 16px;
+}
+
+.registerForm button,
+.register-button,
+.sign-in-button {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+}
+
+.navbar-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  right: 5vw;
+}
+
+.register-button {
+  width: 10vw;
+  color: white;
+  background: #243553;
+  border: 0;
+  border-radius: 5px;
+  height: 3vw;
+}
+
+.sign-in-button {
+  background-color: inherit;
+  border: 0;
+  color: white;
+  width: 10vw;
+  outline: none !important;
+}
+
+.navbar-buttons button:hover,
+.navbar-buttons button:focus,
+.navbar-buttons button:target {
+  border: 0;
+  color: white;
+  width: 10vw;
+  outline: none;
+  -webkit-box-shadow: 0 !important;
+          box-shadow: 0 !important;
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
+}
+
+.registerForm input,
+.registerForm2 input {
+  height: 40px;
+  font-size: 18px;
+}
+
+.registerForm input:focus,
+.registerForm2 input:focus {
+  outline: none;
+  border: 0;
+}
+
+.registerForm2 {
+  padding: 10vh 0;
+}
+
+.registerForm2 h1 {
+  font-size: 38px;
+  font-weight: 100;
+}
+
+.registerForm2 form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.registerForm2 button {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  height: 60px !important;
+  border-radius: 5px;
+}
+/*# sourceMappingURL=AppNavbar.css.map */
