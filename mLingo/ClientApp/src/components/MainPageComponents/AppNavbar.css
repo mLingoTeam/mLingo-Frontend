@@ -40,10 +40,19 @@
   font-size: 16px;
 }
 
-.registerForm button {
+.registerForm button,
+.register-button {
   font-size: 22px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
+}
+
+.register-button {
+  width: 10vw;
+  position: absolute;
+  right: 5vh;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .registerForm input,
