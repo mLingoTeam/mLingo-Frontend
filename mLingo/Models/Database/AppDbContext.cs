@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace mLingo.Models.Database
 {
-    public class AppDbContext : IdentityDbContext<AppDbUser>
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         #region MyRegion
         /// <summary>

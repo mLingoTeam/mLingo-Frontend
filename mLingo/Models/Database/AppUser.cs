@@ -5,7 +5,7 @@ using mLingoCore.Models.UserData;
 
 namespace mLingo.Models.Database
 {
-    public class AppDbUser : IdentityUser
+    public class AppUser : IdentityUser
     {
         
         public Guid UserInfoFk { get; set; }
