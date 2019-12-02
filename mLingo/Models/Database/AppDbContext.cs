@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using mLingoCore.Models.UserData;
 
 namespace mLingo.Models.Database
 {
-    public class AppDbContext : IdentityDbContext<AppDbUser>
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         #region MyRegion
         /// <summary>
@@ -18,6 +15,12 @@ namespace mLingo.Models.Database
         {
 
         }
+
+        #endregion
+
+        #region DbSets
+
+        public DbSet<UserInformation> UserInformation { get; set; }
 
         #endregion
     }

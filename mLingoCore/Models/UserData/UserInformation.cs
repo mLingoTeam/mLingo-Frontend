@@ -3,6 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace mLingoCore.Models.UserData
 {
+    /// <summary>
+    /// Data class that holds all information about specific user.
+    /// <remarks>
+    /// Is foreign key in AppUser model.
+    /// </remarks>
+    /// </summary>
     public class UserInformation
     {
         [Key]

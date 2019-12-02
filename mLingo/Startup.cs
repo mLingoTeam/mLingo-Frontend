@@ -40,7 +40,7 @@ namespace mLingo
             services.AddDbContext<AppDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<AppDbUser, IdentityRole>()
+            services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -115,8 +115,8 @@ namespace mLingo
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name: "api",
-                    pattern: "{controller=Api}/{action}");
+                    name: "account_api",
+                    pattern: "{directory=Api}/{controller=Account}/{action}");
             });
 
             app.UseSpa(spa =>

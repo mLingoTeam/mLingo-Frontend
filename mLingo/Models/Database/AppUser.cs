@@ -5,12 +5,15 @@ using mLingoCore.Models.UserData;
 
 namespace mLingo.Models.Database
 {
-    public class AppDbUser : IdentityUser
+    /// <summary>
+    /// Identity model of a user.
+    /// </summary>
+    public class AppUser : IdentityUser
     {
         
         public Guid UserInfoFk { get; set; }
 
         [ForeignKey("UserInfoFk")]
-        public UserInformation UserInfo { get; set; }
+        public UserInformation UserInformation { get; set; }
     }
 }
