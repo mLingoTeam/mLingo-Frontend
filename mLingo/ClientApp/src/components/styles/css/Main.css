@@ -50,10 +50,6 @@
   opacity: 1;
 }
 
-.modal-dialog {
-  max-width: 60vw;
-}
-
 @media (max-width: 991px) {
   .brand-icon {
     max-width: 40px;
@@ -76,12 +72,27 @@
 }
 
 @media (min-width: 992px) {
+  .modal-dialog {
+    max-width: 60vw;
+  }
   .brand-icon {
     max-width: 80px;
     max-height: 80px;
   }
   .brand-text {
     font-size: 24px;
+  }
+  .navbar-buttons {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
   }
 }
 
@@ -107,18 +118,8 @@
 }
 
 .navbar-buttons {
-  display: -webkit-box !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
   position: absolute;
   right: 5vw;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
 }
 
 .register-button {
@@ -160,6 +161,20 @@
 }
 
 /* 2. Slider.js */
+.carousel-sign-in {
+  position: absolute;
+  width: 30vw;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.carousel-sign-in .sign-in-button {
+  width: 100%;
+  background: #4a69bd;
+}
+
 @media (min-width: 992px) {
   .carousel-caption p {
     font-size: 18px;
@@ -175,6 +190,7 @@
      object-fit: cover;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  position: relative;
 }
 
 .carousel-item {

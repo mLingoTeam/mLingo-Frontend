@@ -16,9 +16,6 @@
 .show {
   opacity: 1;
 }
-.modal-dialog {
-  max-width: 60vw;
-}
 
 @media (max-width: $mobile-res) {
   .brand-icon {
@@ -36,12 +33,21 @@
 }
 
 @media (min-width: $desktop-res) {
+  .modal-dialog {
+    max-width: 60vw;
+  }
   .brand-icon {
     max-width: 80px;
     max-height: 80px;
   }
   .brand-text {
     font-size: 24px;
+  }
+  .navbar-buttons {
+    display: flex !important;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
   }
 }
 
@@ -65,12 +71,8 @@
   }
 
   &-buttons {
-    display: flex !important;
     position: absolute;
     right: 5vw;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: nowrap;
   }
 }
 
@@ -83,6 +85,20 @@
 }
 
 /* 2. Slider.js */
+
+.carousel-sign-in {
+  position: absolute;
+  width: 30vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .sign-in-button {
+    width: 100%;
+    background: $light-blue;
+  }
+}
+
 @media (min-width: $desktop-res) {
   .carousel-caption {
     p {
@@ -98,6 +114,7 @@
   padding: 0px !important;
   object-fit: cover;
   box-sizing: border-box;
+  position: relative;
 }
 .carousel-item {
   background: linear-gradient($dark-color, $light-color);
