@@ -4,9 +4,26 @@
 .Promo {
   padding: 5vh 0;
 }
+@media (min-width: 968px) {
+  .Promo h1 {
+    font-size: 48px;
+  }
+  .help-others-text h1 {
+    font-size: 52px;
+  }
+  .help-others-text h3 {
+    font-size: 24px;
+  }
+}
+@media (max-width: 967px) {
+  .Promo h1 {
+    margin-bottom: 20px;
+  }
+}
+
 .Promo h1 {
-  font-size: 48px;
   text-align: center;
+  font-size: 28px;
 }
 
 li.media {
@@ -41,10 +58,11 @@ li.media h4 {
   color: white;
   text-shadow: 0.1em 0.1em 0.2em black;
 }
+
 .help-others-text h1 {
-  font-size: 52px;
   text-align: center;
 }
 .help-others-text h3 {
-  font-size: 24px;
+  line-height: 1.6;
+  text-align: center;
 }

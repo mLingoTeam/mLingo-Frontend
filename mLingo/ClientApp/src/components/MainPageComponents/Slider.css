@@ -1,16 +1,25 @@
+@media (min-width: 967px) {
+  .carousel-caption h3 {
+    font-size: 32px;
+  }
+  .carousel-caption p {
+    font-size: 18px;
+  }
+}
+
 .slider {
-  background: linear-gradient(#111, #222);
-  padding: 10vh 0;
+  padding: 0px !important;
   object-fit: cover;
   box-sizing: border-box;
 }
 .carousel-item {
-  background: linear-gradient(#432552, #243553);
-  border-radius: 15px;
-  padding: 10vh 5vw;
+  background: linear-gradient(hsl(280, 38%, 23%), #243553);
 }
 .carousel-item img {
   object-fit: cover;
+  width: 100%;
+  height: 80vh;
+  filter: brightness(0.5);
 }
 
 .carousel-indicators .active {
