@@ -15,6 +15,9 @@ using Newtonsoft.Json;
 
 namespace mLingo.Controllers
 {
+    /// <summary>
+    /// Controller that handles any action connected with user account
+    /// </summary>
     public class AccountController : Controller
     {
         #region PrivateFields
@@ -50,7 +53,11 @@ namespace mLingo.Controllers
         #endregion
 
 
-
+        /// <summary>
+        /// Registers new user account.
+        /// </summary>
+        /// <param name="registerForm">User information passed through request body</param>
+        /// <returns>returns appropriate <see cref="ApiResponse{T}"/></returns>
         [HttpPost]
         public async Task<IActionResult> Register([FromBody]RegisterFormModel registerForm)
         {
@@ -103,6 +110,11 @@ namespace mLingo.Controllers
         }
 
 
+        /// <summary>
+        /// Logs user in.
+        /// </summary>
+        /// <param name="loginForm">User information passed through request body</param>
+        /// <returns>returns appropriate <see cref="ApiResponse{T}"/></returns>
         [HttpPost]
         public async Task<IActionResult> Login([FromBody]LoginFormModel loginForm)
         {
