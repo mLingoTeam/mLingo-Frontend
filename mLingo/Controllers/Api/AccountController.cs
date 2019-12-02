@@ -13,7 +13,7 @@ using mLingoCore.Models.Forms;
 using mLingoCore.Models.UserData;
 using Newtonsoft.Json;
 
-namespace mLingo.Controllers
+namespace mLingo.Controllers.Api
 {
     /// <summary>
     /// Controller that handles any action connected with user account
