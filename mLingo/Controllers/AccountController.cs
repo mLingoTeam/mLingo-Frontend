@@ -71,6 +71,7 @@ namespace mLingo.Controllers
             {
                 UserName = registerForm.Username,
                 Email = registerForm.Email,
+                PhoneNumber = registerForm.PhoneNo,
                 UserInformation = new UserInformation
                 {
                     FirstName = registerForm.FirstName,
