@@ -16,6 +16,10 @@ const Promo = props => {
           </Media>
           <Media body>
             <Media heading>Reading</Media>
+            <p className="d-block d-md-none">
+              Cras sit amet nibh libero, in gravida nulla, tempus viverra
+              turpis.
+            </p>
             <p className="d-none d-md-block">
               Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
               scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum
@@ -28,6 +32,10 @@ const Promo = props => {
         <Media tag="li">
           <Media body>
             <Media heading>Writing</Media>
+            <p className="d-block d-md-none">
+              Cras sit amet nibh libero, in gravida nulla, tempus viverra
+              turpis.
+            </p>
             <p className="d-none d-md-block">
               Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
               scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum
@@ -45,6 +53,10 @@ const Promo = props => {
           </Media>
           <Media body>
             <Media heading>Speaking</Media>
+            <p className="d-block d-md-none">
+              Cras sit amet nibh libero, in gravida nulla, tempus viverra
+              turpis.
+            </p>
             <p className="d-none d-md-block">
               Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
               scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum
@@ -57,6 +69,10 @@ const Promo = props => {
         <Media tag="li">
           <Media body>
             <Media heading>Listening</Media>
+            <p className="d-block d-md-none">
+              Cras sit amet nibh libero, in gravida nulla, tempus viverra
+              turpis.
+            </p>
             <p className="d-none d-md-block">
               Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
               scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum
