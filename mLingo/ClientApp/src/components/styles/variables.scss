@@ -1,21 +1,22 @@
 $dark-color: #0c2461;
 $light-color: #1e3799;
 $light-blue: #4a69bd;
+$mobile-res: 991px;
+$desktop-res: 992px;
 
-@mixin blueButton {
-  font-size: 22px;
-  font-weight: bold;
-  text-shadow: 0.1em 0.1em 0.2em black;
-
-  width: 10vw;
-  color: white;
-  background: $light-blue;
-  border: 0;
-  border-radius: 5px;
-  height: 3vw;
+@mixin mobile {
+  @media (max-width: 991px) {
+    @content;
+  }
 }
 
-@mixin in-button {
+@mixin desktop {
+  @media (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin inbutton($color) {
   font-size: 22px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
@@ -24,8 +25,17 @@ $light-blue: #4a69bd;
   color: white;
   width: 10vw;
   outline: none !important;
+  background: $color;
+}
+
+@mixin bluebutton {
+  @include inbutton($light-blue);
 }
 
 .blue-button {
-  @include blueButton;
+  @include bluebutton;
+}
+
+.in-button {
+  @include inbutton(inherit);
 }

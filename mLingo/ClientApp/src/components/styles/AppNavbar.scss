@@ -1,44 +1,63 @@
 @import "./variables.scss";
 
-@media (max-width: 966px) {
+@media (max-width: $mobile-res) {
   .brand-icon {
     max-width: 40px;
     max-height: 40px;
   }
-  .brand-text {
-    color: #ddd;
-    font-weight: bold;
-    font-size: 12px;
-  }
-  .navbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 }
-@media (min-width: 967px) {
+
+@media (min-width: $desktop-res) {
   .brand-icon {
     max-width: 80px;
     max-height: 80px;
   }
-  .brand-text {
-    color: #ddd;
-    font-weight: bold;
+}
+
+.brand-icon {
+  @include mobile {
+    max-width: 40px;
+    max-height: 40px;
+  }
+  @include desktop {
+  }
+}
+
+.brand-text {
+  color: #ddd;
+  font-weight: bold;
+  @include mobile {
+    font-size: 12px;
+  }
+  @include desktop {
     font-size: 24px;
   }
 }
+
 .navbar {
   margin: 0 !important;
   border: 0 !important;
-}
+  @include mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.navbar-dark {
-  background: linear-gradient($light-color, $dark-color);
-  margin: 0 !important;
-}
-.navbar-brand {
-  height: auto !important;
-  padding: 0 10px !important;
+  &-dark {
+    background: linear-gradient($light-color, $dark-color);
+    margin: 0 !important;
+  }
+
+  &-brand {
+    height: auto !important;
+    padding: 0 10px !important;
+  }
+
+  &-buttons {
+    display: flex;
+    position: absolute;
+    right: 5vw;
+  }
 }
 
 .registerForm {
@@ -49,23 +68,12 @@
   }
 }
 
-.registerForm button,
-.register-button,
-.sign-in-button {
-  @include button;
-}
-.navbar-buttons {
-  display: flex;
-  position: absolute;
-  right: 5vw;
-}
-
 .register-button {
-  @include blueButton;
+  @include bluebutton;
 }
 
 .sign-in-button {
-  @include in-button;
+  @include inbutton("inherit");
 }
 .navbar-buttons button:hover,
 .navbar-buttons button:focus,
@@ -103,9 +111,6 @@
     flex-wrap: wrap;
   }
   button {
-    font-size: 22px;
-    font-weight: bold;
-    text-shadow: 0.1em 0.1em 0.2em black;
     height: 60px !important;
     border-radius: 5px;
   }

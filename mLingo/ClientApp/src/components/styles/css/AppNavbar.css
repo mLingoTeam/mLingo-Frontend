@@ -1,13 +1,71 @@
-@media (max-width: 966px) {
+.blue-button {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  width: 10vw;
+  outline: none !important;
+  background: #4a69bd;
+}
+
+.in-button {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  width: 10vw;
+  outline: none !important;
+  background: inherit;
+}
+
+@media (max-width: 991px) {
   .brand-icon {
     max-width: 40px;
     max-height: 40px;
   }
+}
+
+@media (min-width: 992px) {
+  .brand-icon {
+    max-width: 80px;
+    max-height: 80px;
+  }
+}
+
+@media (max-width: 991px) {
+  .brand-icon {
+    max-width: 40px;
+    max-height: 40px;
+  }
+}
+
+.brand-text {
+  color: #ddd;
+  font-weight: bold;
+}
+
+@media (max-width: 991px) {
   .brand-text {
-    color: #ddd;
-    font-weight: bold;
     font-size: 12px;
   }
+}
+
+@media (max-width: 992px) {
+  .brand-text {
+    font-size: 24px;
+  }
+}
+
+.navbar {
+  margin: 0 !important;
+  border: 0 !important;
+}
+
+@media (max-width: 991px) {
   .navbar {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -21,23 +79,6 @@
   }
 }
 
-@media (min-width: 967px) {
-  .brand-icon {
-    max-width: 80px;
-    max-height: 80px;
-  }
-  .brand-text {
-    color: #ddd;
-    font-weight: bold;
-    font-size: 24px;
-  }
-}
-
-.navbar {
-  margin: 0 !important;
-  border: 0 !important;
-}
-
 .navbar-dark {
   background: -webkit-gradient(linear, left top, left bottom, from(#1e3799), to(#0c2461));
   background: linear-gradient(#1e3799, #0c2461);
@@ -47,6 +88,14 @@
 .navbar-brand {
   height: auto !important;
   padding: 0 10px !important;
+}
+
+.navbar-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  right: 5vw;
 }
 
 .registerForm form {
@@ -59,37 +108,28 @@
   font-size: 16px;
 }
 
-.registerForm button,
-.register-button,
-.sign-in-button {
+.register-button {
   font-size: 22px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
-}
-
-.navbar-buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  position: absolute;
-  right: 5vw;
-}
-
-.register-button {
-  width: 10vw;
-  color: white;
-  background: #4a69bd;
-  border: 0;
-  border-radius: 5px;
-  height: 3vw;
-}
-
-.sign-in-button {
   background-color: inherit;
   border: 0;
   color: white;
   width: 10vw;
   outline: none !important;
+  background: #4a69bd;
+}
+
+.sign-in-button {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  width: 10vw;
+  outline: none !important;
+  background: "inherit";
 }
 
 .navbar-buttons button:hover,
@@ -135,9 +175,6 @@
 }
 
 .registerForm2 button {
-  font-size: 22px;
-  font-weight: bold;
-  text-shadow: 0.1em 0.1em 0.2em black;
   height: 60px !important;
   border-radius: 5px;
 }
