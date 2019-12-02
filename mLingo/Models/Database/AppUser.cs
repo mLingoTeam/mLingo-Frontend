@@ -5,6 +5,9 @@ using mLingoCore.Models.UserData;
 
 namespace mLingo.Models.Database
 {
+    /// <summary>
+    /// Identity model of a user.
+    /// </summary>
     public class AppUser : IdentityUser
     {
         
