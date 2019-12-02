@@ -11,6 +11,6 @@ namespace mLingo.Models.Database
         public Guid UserInfoFk { get; set; }
 
         [ForeignKey("UserInfoFk")]
-        public UserInformation UserInfo { get; set; }
+        public UserInformation UserInformation { get; set; }
     }
 }

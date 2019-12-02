@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using mLingoCore.Models.UserData;
 
 namespace mLingo.Models.Database
 {
@@ -18,6 +19,12 @@ namespace mLingo.Models.Database
         {
 
         }
+
+        #endregion
+
+        #region DbSets
+
+        public DbSet<UserInformation> UserInformation { get; set; }
 
         #endregion
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -63,7 +64,7 @@ namespace mLingo.Controllers
             {
                 UserName = registerForm.Username,
                 Email = registerForm.Email,
-                UserInfo = new UserInformation
+                UserInformation = new UserInformation
                 {
                     FirstName = registerForm.FirstName,
                     LastName = registerForm.LastName,
@@ -83,11 +84,11 @@ namespace mLingo.Controllers
                 {
                     Response = new CredentialsResponse
                     {
-                        Id = user.UserInfo.Id,
-                        FirstName = user.UserInfo.FirstName,
-                        LastName = user.UserInfo.LastName,
-                        DateOfBirth = user.UserInfo.LastName,
-                        Age = user.UserInfo.Age,
+                        Id = user.UserInformation.Id,
+                        FirstName = user.UserInformation.FirstName,
+                        LastName = user.UserInformation.LastName,
+                        DateOfBirth = user.UserInformation.LastName,
+                        Age = user.UserInformation.Age,
                         Token = user.GenerateJwtToken(apiConfiguration)
                     }
                 });
@@ -125,17 +126,19 @@ namespace mLingo.Controllers
 
             var isPasswordOk = await apiUserManager.CheckPasswordAsync(user, loginForm.Password);
 
+            user.UserInformation = apiDbContext.UserInformation.FirstOrDefault(e => e.Id.Equals(user.UserInfoFk));
+
             if (isPasswordOk)
             {
                 var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
                 {
                     Response = new CredentialsResponse
                     {
-                        Id = user.UserInfo.Id,
-                        FirstName = user.UserInfo.FirstName,
-                        LastName = user.UserInfo.LastName,
-                        DateOfBirth = user.UserInfo.LastName,
-                        Age = user.UserInfo.Age,
+                        Id = user.UserInformation.Id,
+                        FirstName = user.UserInformation.FirstName,
+                        LastName = user.UserInformation.LastName,
+                        DateOfBirth = user.UserInformation.LastName,
+                        Age = user.UserInformation.Age,
                         Token = user.GenerateJwtToken(apiConfiguration)
                     }
                 });
