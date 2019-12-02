@@ -22,7 +22,7 @@ namespace mLingo
 
         public IConfiguration Configuration { get; }
 
-        public void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        public void ConfigureServices(IServiceCollection services)
         {
 
             services.AddControllersWithViews();
@@ -49,9 +49,9 @@ namespace mLingo
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = configuration["Jwt:JwtIssuer"],
-                        ValidAudience = configuration["Jwt:ValidAudience"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:SecretKey"]))
+                        ValidIssuer = Configuration["Jwt:JwtIssuer"],
+                        ValidAudience = Configuration["Jwt:ValidAudience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:SecretKey"]))
                     };
                 });
 
