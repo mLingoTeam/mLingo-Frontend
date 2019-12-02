@@ -1,4 +1,4 @@
-@media (max-width: 767px) {
+@media (max-width: 966px) {
   .brand-icon {
     max-width: 40px;
     max-height: 40px;
@@ -9,7 +9,7 @@
     font-size: 12px;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 967px) {
   .brand-icon {
     max-width: 80px;
     max-height: 80px;

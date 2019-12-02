@@ -7,11 +7,12 @@ import {
   CarouselCaption
 } from "reactstrap";
 import img1 from "../../img/slid1.png";
+import img2 from "../../img/l_people.jpg";
 import "./Slider.css";
 
 const items = [
   {
-    src: img1,
+    src: img2,
     altText: "You create us!",
     caption: "Everything in this app is made by community! Thank you!"
   },
@@ -21,7 +22,7 @@ const items = [
     caption: "You create mLingo!"
   },
   {
-    src: img1,
+    src: img2,
     altText: "Explore new communities!",
     caption: "Join us and create mLingo by your own idea!"
   }
@@ -59,6 +60,7 @@ const Slider = props => {
         <CarouselCaption
           captionText={item.altText}
           captionHeader={item.caption}
+          className="d-block"
         />
       </CarouselItem>
     );
