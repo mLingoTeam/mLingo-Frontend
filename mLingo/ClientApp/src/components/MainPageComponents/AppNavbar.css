@@ -8,6 +8,11 @@
     font-weight: bold;
     font-size: 12px;
   }
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 @media (min-width: 967px) {
   .brand-icon {
