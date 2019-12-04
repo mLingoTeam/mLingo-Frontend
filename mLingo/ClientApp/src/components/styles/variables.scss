@@ -46,20 +46,20 @@ $desktop-res: 992px;
   @include inbutton(inherit);
 }
 
-@keyframes bounce {
+@keyframes navbar-monkey-bounce {
   0% {
-    bottom: 5%;
+    bottom: 10%;
   }
   25% {
-    bottom: 2%;
+    bottom: 7%;
   }
   50% {
-    bottom: 15%;
+    bottom: 16%;
   }
   75% {
-    bottom: 2%;
+    bottom: 7%;
   }
   100% {
-    bottom: 5%;
+    bottom: 10%;
   }
 }

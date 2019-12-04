@@ -41,14 +41,19 @@
   }
   .brand-icon {
     position: absolute;
-    left: 10%;
+    left: 4%;
 
     max-width: 80px;
     max-height: 80px;
-    animation: bounce 1s infinite ease-in-out;
+    animation: navbar-monkey-bounce 1.2s infinite ease-in-out;
   }
   .brand-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     font-size: 24px;
+    text-shadow: 0.1em 0.1em 0.2em black;
   }
   .navbar-buttons {
     display: flex !important;
