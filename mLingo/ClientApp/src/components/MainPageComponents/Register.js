@@ -6,9 +6,16 @@ const Register = props => {
   return (
     <div>
       <div className="registerForm2 col-12 d-flex jusify-content-center flex-wrap">
-        <img src={img1} className="img-fluid offset-5 col-2" alt="logo" />
-        <h1 className="text-center col-12 mb-5">Join us now!</h1>
-        <Form className="col-12 offset-lg-4 col-lg-6">
+        <img
+          src={img1}
+          className="img-fluid offset-5 col-2"
+          alt="logo"
+          data-aos="fade-up"
+        />
+        <h1 data-aos="fade-up" className="text-center col-12 mb-5">
+          Join us now!
+        </h1>
+        <Form data-aos="fade-up" className="col-12 offset-lg-4 col-lg-6">
           <FormGroup className="col-12 mb-5">
             <Label for="Username2" className="col-2">
               Username

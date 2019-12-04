@@ -75,6 +75,9 @@ const Slider = props => {
         activeIndex={activeIndex}
         next={next}
         previous={previous}
+        ride={"carousel"}
+        pause={false}
+        interval={[2500]}
         className="col-12 slider-carousel slider"
       >
         <CarouselIndicators
