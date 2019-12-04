@@ -35,4 +35,40 @@
   -webkit-filter: brightness(0.8);
           filter: brightness(0.8);
 }
+
+@-webkit-keyframes bounce {
+  0% {
+    bottom: 5%;
+  }
+  25% {
+    bottom: 2%;
+  }
+  50% {
+    bottom: 15%;
+  }
+  75% {
+    bottom: 2%;
+  }
+  100% {
+    bottom: 5%;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    bottom: 5%;
+  }
+  25% {
+    bottom: 2%;
+  }
+  50% {
+    bottom: 15%;
+  }
+  75% {
+    bottom: 2%;
+  }
+  100% {
+    bottom: 5%;
+  }
+}
 /*# sourceMappingURL=variables.css.map */

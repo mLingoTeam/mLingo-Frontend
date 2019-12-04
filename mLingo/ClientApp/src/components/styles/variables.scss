@@ -45,3 +45,21 @@ $desktop-res: 992px;
 .in-button {
   @include inbutton(inherit);
 }
+
+@keyframes bounce {
+  0% {
+    bottom: 5%;
+  }
+  25% {
+    bottom: 2%;
+  }
+  50% {
+    bottom: 15%;
+  }
+  75% {
+    bottom: 2%;
+  }
+  100% {
+    bottom: 5%;
+  }
+}

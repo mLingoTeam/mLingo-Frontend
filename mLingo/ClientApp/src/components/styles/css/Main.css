@@ -36,6 +36,42 @@
           filter: brightness(0.8);
 }
 
+@-webkit-keyframes bounce {
+  0% {
+    bottom: 5%;
+  }
+  25% {
+    bottom: 2%;
+  }
+  50% {
+    bottom: 15%;
+  }
+  75% {
+    bottom: 2%;
+  }
+  100% {
+    bottom: 5%;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    bottom: 5%;
+  }
+  25% {
+    bottom: 2%;
+  }
+  50% {
+    bottom: 15%;
+  }
+  75% {
+    bottom: 2%;
+  }
+  100% {
+    bottom: 5%;
+  }
+}
+
 /* MENU */
 /* MainPageComponents */
 /* 1. AppNavbar.js */
@@ -72,12 +108,19 @@
 }
 
 @media (min-width: 992px) {
+  .navbar {
+    height: 100px;
+  }
   .modal-dialog {
     max-width: 60vw;
   }
   .brand-icon {
+    position: absolute;
+    left: 10%;
     max-width: 80px;
     max-height: 80px;
+    -webkit-animation: bounce 1s infinite ease-in-out;
+            animation: bounce 1s infinite ease-in-out;
   }
   .brand-text {
     font-size: 24px;
