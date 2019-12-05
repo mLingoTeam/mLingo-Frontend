@@ -2,6 +2,7 @@ using System;
 using System.Text;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
@@ -27,9 +28,16 @@ namespace mLingo
         {
             services.AddRouting(options => options.LowercaseUrls = true);
 
-            services.AddControllersWithViews();
-
             services.AddLogging(options => { options.AddConsole(); });
+
+            // Add proper cookie request to follow GDPR 
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for 
+                // non-essential cookies is needed for a given request
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -55,8 +63,8 @@ namespace mLingo
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
                         ValidIssuer = Configuration["Jwt:JwtIssuer"],
-                        ValidAudience = Configuration["Jwt:ValidAudience"],
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:SecretKey"]))
+                        ValidAudience = Configuration["Jwt:JwtAudience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:JwtSecretKey"]))
                     };
                 });
 
@@ -91,11 +99,14 @@ namespace mLingo
                 options.AccessDeniedPath = "/access_denied";
                 options.SlidingExpiration = true;
             });
+
+            services.AddControllersWithViews();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             app.UseAuthentication();
+            app.UseAuthorization();
 
             if (env.IsDevelopment())
             {
@@ -109,6 +120,8 @@ namespace mLingo
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            app.UseCookiePolicy();
 
             app.UseRouting();
 
