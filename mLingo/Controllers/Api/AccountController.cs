@@ -93,6 +93,7 @@ namespace mLingo.Controllers.Api
                     Response = new CredentialsResponse
                     {
                         Id = user.UserInformation.Id,
+                        Username = userIdentity.UserName,
                         FirstName = user.UserInformation.FirstName,
                         LastName = user.UserInformation.LastName,
                         DateOfBirth = user.UserInformation.LastName,

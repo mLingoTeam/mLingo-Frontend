@@ -14,5 +14,7 @@ namespace mLingoCore.Models.Api
         /// Jwt token for further authorization
         /// </summary>
         public string Token { get; set; }
+
+        public string Username { get; set; }
     }
 }
