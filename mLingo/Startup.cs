@@ -66,7 +66,7 @@ namespace mLingo
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireNonAlphanumeric = true;
-                options.Password.RequireUppercase = true;
+                options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 8;
                 options.Password.RequiredUniqueChars = 1;
 
@@ -77,8 +77,8 @@ namespace mLingo
 
                 // User settings.
                 options.User.AllowedUserNameCharacters =
-                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-                options.User.RequireUniqueEmail = false;
+                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_";
+                options.User.RequireUniqueEmail = true;
             });
 
             services.ConfigureApplicationCookie(options =>
@@ -87,14 +87,16 @@ namespace mLingo
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
 
-                options.LoginPath = "/Identity/Account/Login";
-                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.LoginPath = "/login";
+                options.AccessDeniedPath = "/access_denied";
                 options.SlidingExpiration = true;
             });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -107,8 +109,6 @@ namespace mLingo
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
-            app.UseAuthentication();
 
             app.UseRouting();
 
