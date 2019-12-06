@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -41,9 +39,9 @@ namespace mLingo.Controllers.Api
         #region Constructor
 
         public AccountController(
-            ILogger<AccountController> logger, 
-            UserManager<AppUser> userManager, 
-            AppDbContext dbContext, 
+            ILogger<AccountController> logger,
+            UserManager<AppUser> userManager,
+            AppDbContext dbContext,
             SignInManager<AppUser> signInManager,
             IConfiguration configuration)
         {
@@ -65,7 +63,7 @@ namespace mLingo.Controllers.Api
         /// <returns>returns appropriate <see cref="ApiResponse{T}"/></returns>
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Register([FromBody]RegisterFormModel registerForm)
+        public async Task<IActionResult> Register([FromBody] RegisterFormModel registerForm)
         {
             if (registerForm == null || RegisterFormModel.ValidateForm(registerForm) == false)
                 return BadRequest(new ApiResponse
@@ -116,7 +114,7 @@ namespace mLingo.Controllers.Api
         /// <returns>returns appropriate <see cref="ApiResponse{T}"/></returns>
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login([FromBody]LoginFormModel loginForm)
+        public async Task<IActionResult> Login([FromBody] LoginFormModel loginForm)
         {
             if (loginForm == null || LoginFormModel.ValidateForm(loginForm) == false)
                 return BadRequest(new ApiResponse
@@ -159,6 +157,7 @@ namespace mLingo.Controllers.Api
         #endregion
 
         #region AccountInformation
+
         /// <summary>
         /// Returns all the account details based on current user context
         /// </summary>
@@ -184,6 +183,24 @@ namespace mLingo.Controllers.Api
             });
 
             return Ok(res);
+        }
+
+        #endregion
+
+        #region ForTesting
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> DetailsTesting([FromBody] LoginFormModel login)
+        {
+            var user = await apiUserManager.FindByNameAsync(login.UserId);
+            user.UserInformation = apiDbContext.UserInformation.FirstOrDefault(e => e.Id.Equals(user.UserInfoFk));
+
+             var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
+             {
+                 Response = user.Credentials("")
+             });
+             return Ok(res);
         }
 
         #endregion
