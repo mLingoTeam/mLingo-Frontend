@@ -28,6 +28,7 @@ namespace mLingo.Extensions.Authentication
             {
                 // Unique ID for this token
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
+                new Claim(JwtRegisteredClaimNames.Sub, user.UserName), 
 
                 // The username using the Identity name so it fills out the HttpContext.User.Identity.Name value
                 new Claim(ClaimsIdentity.DefaultNameClaimType, user.UserName),
