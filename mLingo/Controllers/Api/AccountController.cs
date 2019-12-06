@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,7 @@ namespace mLingo.Controllers.Api
     /// <summary>
     /// Controller that handles any action connected with user account
     /// </summary>
+    [AuthorizeToken]
     public class AccountController : Controller
     {
         #region PrivateFields
@@ -94,16 +96,7 @@ namespace mLingo.Controllers.Api
 
                 var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
                 {
-                    Response = new CredentialsResponse
-                    {
-                        Id = user.UserInformation.Id,
-                        Username = userIdentity.UserName,
-                        FirstName = user.UserInformation.FirstName,
-                        LastName = user.UserInformation.LastName,
-                        DateOfBirth = user.UserInformation.LastName,
-                        Age = user.UserInformation.Age,
-                        Token = user.GenerateJwtToken(apiConfiguration)
-                    }
+                    Response = userIdentity.Credentials(userIdentity.GenerateJwtToken(apiConfiguration))
                 });
 
                 return Ok(res);
@@ -144,7 +137,6 @@ namespace mLingo.Controllers.Api
                 });
 
             var isPasswordOk = await apiUserManager.CheckPasswordAsync(user, loginForm.Password);
-            await apiSignInManager.PasswordSignInAsync(user.UserName, loginForm.Password, false, true);
 
             user.UserInformation = apiDbContext.UserInformation.FirstOrDefault(e => e.Id.Equals(user.UserInfoFk));
 
@@ -152,16 +144,7 @@ namespace mLingo.Controllers.Api
             {
                 var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
                 {
-                    Response = new CredentialsResponse
-                    {
-                        Id = user.UserInformation.Id,
-                        Username = user.UserName,
-                        FirstName = user.UserInformation.FirstName,
-                        LastName = user.UserInformation.LastName,
-                        DateOfBirth = user.UserInformation.LastName,
-                        Age = user.UserInformation.Age,
-                        Token = user.GenerateJwtToken(apiConfiguration)
-                    }
+                    Response = user.Credentials(user.GenerateJwtToken(apiConfiguration))
                 });
 
                 return Ok(res);
@@ -180,9 +163,10 @@ namespace mLingo.Controllers.Api
         /// Returns all the account details based on current user context
         /// </summary>
         /// <returns>returns approperiate <see cref="ApiResponse{T}"/></returns>
-        public async Task<IActionResult> Details([FromBody]string userName)
+        public async Task<IActionResult> Details()
         {
-            var user = await apiUserManager.FindByNameAsync(userName);
+
+            var user = await apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
 
             if (user == null)
             {
@@ -196,16 +180,7 @@ namespace mLingo.Controllers.Api
 
             var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
             {
-                Response = new CredentialsResponse
-                {
-                    Id = user.UserInformation.Id,
-                    Username = user.UserName,
-                    FirstName = user.UserInformation.FirstName,
-                    LastName = user.UserInformation.LastName,
-                    DateOfBirth = user.UserInformation.LastName,
-                    Age = user.UserInformation.Age,
-                    Token = user.GenerateJwtToken(apiConfiguration)
-                }
+                Response = user.Credentials(user.GenerateJwtToken(apiConfiguration))
             });
 
             return Ok(res);
