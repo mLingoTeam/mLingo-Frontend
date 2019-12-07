@@ -26,6 +26,8 @@ function register(username, email, password) {
   return fetch(`/api/account/register`, requestOptions)
     .then(handleResponse)
     .then(user => {
+      console.log(user);
+
       // store user details and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem("currentUser", JSON.stringify(user));
       currentUserSubject.next(user);
