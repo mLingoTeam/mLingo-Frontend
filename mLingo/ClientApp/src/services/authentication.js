@@ -17,23 +17,27 @@ export const authenticationService = {
 };
 
 function register(username, email, password) {
+  console.log(JSON.stringify({ username, email, password }));
+
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, email, password })
   };
 
-  fetch(`http://localhost:5000/api/account/register`, requestOptions)
-    .then(user => {
+  fetch(`http://localhost:5000/api/account/register`, requestOptions).then(
+    user => {
       localStorage.setItem("currentUser", JSON.stringify(user));
+      console.log(user);
       return user;
-    })
-    .then(handleResponse)
-    .then(user => {
+    }
+  );
+  //.then(handleResponse)
+  /*.then(user => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem("currentUser", JSON.stringify(user));
       currentUserSubject.next(user);
-    });
+    });*/
 }
 
 function login(username, password) {
