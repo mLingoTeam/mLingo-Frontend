@@ -21,6 +21,14 @@ class Register extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  sendRequest() {
+    authenticationService.register(
+      this.state.username,
+      this.state.email,
+      this.state.password
+    );
+  }
+
   render() {
     return (
       <div>
@@ -30,12 +38,8 @@ class Register extends React.Component {
           <Form
             className="col-12 offset-lg-4 col-lg-6"
             onSubmit={e => {
-              //localStorage.setItem("currentUser", this.state.username);
-              authenticationService.register(
-                this.state.username,
-                this.state.email,
-                this.state.password
-              );
+              this.sendRequest();
+              // when this is here page doesnt have new useless url
               e.preventDefault();
             }}
           >
