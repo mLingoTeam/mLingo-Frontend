@@ -7,8 +7,6 @@ import Register from "./MainPageComponents/Register";
 import Footer from "./MainPageComponents/Footer";
 import "./styles/css/Main.css";
 
-//import { authenticationService } from "../services/authentication";
-
 export default class MainPage extends Component {
   constructor(props) {
     super(props);
