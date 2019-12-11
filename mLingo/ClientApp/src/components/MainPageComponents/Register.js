@@ -30,7 +30,7 @@ class Register extends React.Component {
           <Form
             className="col-12 offset-lg-4 col-lg-6"
             onSubmit={e => {
-              localStorage.setItem("currentUser", this.state.username);
+              //localStorage.setItem("currentUser", this.state.username);
               authenticationService.register(
                 this.state.username,
                 this.state.email,
