@@ -31,11 +31,7 @@ namespace mLingoCore.Models.Forms
         {
             if (string.IsNullOrEmpty(form.Username) ||
                 string.IsNullOrEmpty(form.Password) ||
-                string.IsNullOrEmpty(form.Email) ||
-                string.IsNullOrEmpty(form.FirstName) ||
-                string.IsNullOrEmpty(form.LastName) ||
-                string.IsNullOrEmpty(form.PhoneNo) ||
-                string.IsNullOrEmpty(form.DateOfBirth)) return false;
+                string.IsNullOrEmpty(form.Email)) return false;
             return true;
         }
     }
