@@ -11,12 +11,12 @@ class UserPanel extends React.Component {
     };
 
     if (!localStorage.getItem("currentUser")) {
-      this.props.history.push("/login");
+      this.props.history.push("/");
     }
   }
 
   render() {
-    const { currentUser } = this.state;
+    console.log(localStorage.getItem("currentUser"));
     return (
       <div>
         <h1>Hi {localStorage.getItem("currentUser")}!</h1>

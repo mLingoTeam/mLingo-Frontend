@@ -19,7 +19,6 @@ export default class MainPage extends Component {
   }
 
   render() {
-    console.log(localStorage.getItem("currentUser"));
     return (
       <div>
         <AppNavbar />
