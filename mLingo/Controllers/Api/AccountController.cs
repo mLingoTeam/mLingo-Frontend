@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +19,7 @@ namespace mLingo.Controllers.Api
     /// <summary>
     /// Controller that handles any action connected with user account
     /// </summary>
+    [AuthorizeToken]
     public class AccountController : Controller
     {
         #region PrivateFields
@@ -37,9 +39,9 @@ namespace mLingo.Controllers.Api
         #region Constructor
 
         public AccountController(
-            ILogger<AccountController> logger, 
-            UserManager<AppUser> userManager, 
-            AppDbContext dbContext, 
+            ILogger<AccountController> logger,
+            UserManager<AppUser> userManager,
+            AppDbContext dbContext,
             SignInManager<AppUser> signInManager,
             IConfiguration configuration)
         {
@@ -52,6 +54,7 @@ namespace mLingo.Controllers.Api
 
         #endregion
 
+        #region LoginAndRegister
 
         /// <summary>
         /// Registers new user account.
@@ -59,7 +62,8 @@ namespace mLingo.Controllers.Api
         /// <param name="registerForm">User information passed through request body</param>
         /// <returns>returns appropriate <see cref="ApiResponse{T}"/></returns>
         [HttpPost]
-        public async Task<IActionResult> Register([FromBody]RegisterFormModel registerForm)
+        [AllowAnonymous]
+        public async Task<IActionResult> Register([FromBody] RegisterFormModel registerForm)
         {
             if (registerForm == null || RegisterFormModel.ValidateForm(registerForm) == false)
                 return BadRequest(new ApiResponse
@@ -90,15 +94,7 @@ namespace mLingo.Controllers.Api
 
                 var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
                 {
-                    Response = new CredentialsResponse
-                    {
-                        Id = user.UserInformation.Id,
-                        FirstName = user.UserInformation.FirstName,
-                        LastName = user.UserInformation.LastName,
-                        DateOfBirth = user.UserInformation.LastName,
-                        Age = user.UserInformation.Age,
-                        Token = user.GenerateJwtToken(apiConfiguration)
-                    }
+                    Response = userIdentity.Credentials(userIdentity.GenerateJwtToken(apiConfiguration))
                 });
 
                 return Ok(res);
@@ -117,7 +113,8 @@ namespace mLingo.Controllers.Api
         /// <param name="loginForm">User information passed through request body</param>
         /// <returns>returns appropriate <see cref="ApiResponse{T}"/></returns>
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody]LoginFormModel loginForm)
+        [AllowAnonymous]
+        public async Task<IActionResult> Login([FromBody] LoginFormModel loginForm)
         {
             if (loginForm == null || LoginFormModel.ValidateForm(loginForm) == false)
                 return BadRequest(new ApiResponse
@@ -131,7 +128,7 @@ namespace mLingo.Controllers.Api
                 ? await apiUserManager.FindByEmailAsync(loginForm.UserId)
                 : await apiUserManager.FindByNameAsync(loginForm.UserId);
 
-            if(user == null)
+            if (user == null)
                 return BadRequest(new ApiResponse
                 {
                     ErrorMessage = isEmail ? ErrorMessages.UserEmailNotFound : ErrorMessages.UsernameNotFound
@@ -145,15 +142,7 @@ namespace mLingo.Controllers.Api
             {
                 var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
                 {
-                    Response = new CredentialsResponse
-                    {
-                        Id = user.UserInformation.Id,
-                        FirstName = user.UserInformation.FirstName,
-                        LastName = user.UserInformation.LastName,
-                        DateOfBirth = user.UserInformation.LastName,
-                        Age = user.UserInformation.Age,
-                        Token = user.GenerateJwtToken(apiConfiguration)
-                    }
+                    Response = user.Credentials(user.GenerateJwtToken(apiConfiguration))
                 });
 
                 return Ok(res);
@@ -164,5 +153,56 @@ namespace mLingo.Controllers.Api
                 ErrorMessage = ErrorMessages.InvalidLogin
             });
         }
+
+        #endregion
+
+        #region AccountInformation
+
+        /// <summary>
+        /// Returns all the account details based on current user context
+        /// </summary>
+        /// <returns>returns approperiate <see cref="ApiResponse{T}"/></returns>
+        public async Task<IActionResult> Details()
+        {
+
+            var user = await apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
+
+            if (user == null)
+            {
+                return BadRequest(new ApiResponse
+                {
+                    ErrorMessage = ErrorMessages.UsernameNotFound
+                });
+            }
+
+            user.UserInformation = apiDbContext.UserInformation.First(e => e.Id.Equals(user.UserInfoFk));
+
+            var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
+            {
+                Response = user.Credentials(user.GenerateJwtToken(apiConfiguration))
+            });
+
+            return Ok(res);
+        }
+
+        #endregion
+
+        #region ForTesting
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> DetailsTesting([FromBody] LoginFormModel login)
+        {
+            var user = await apiUserManager.FindByNameAsync(login.UserId);
+            user.UserInformation = apiDbContext.UserInformation.FirstOrDefault(e => e.Id.Equals(user.UserInfoFk));
+
+             var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
+             {
+                 Response = user.Credentials("")
+             });
+             return Ok(res);
+        }
+
+        #endregion
     }
 }
