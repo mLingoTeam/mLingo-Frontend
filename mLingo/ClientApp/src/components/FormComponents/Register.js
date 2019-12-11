@@ -16,10 +16,28 @@ class Register extends React.Component {
     };
 
     this.fields = [
-      {type:"text", name:"username", function: this.handleChange, placeholder: 'Jake the dog', id:"Username3"},
-      {type:"text", name:"username", function: this.handleChange, placeholder: 'Jake the dog', id:"Username3"},
-      {type:"text", name:"username", function: this.handleChange, placeholder: 'Jake the dog', id:"Username3"},
-    ]
+      {
+        type: "text",
+        name: "username",
+        function: this.handleChange.bind(this),
+        placeholder: "Jake the dog",
+        id: "Username"
+      },
+      {
+        type: "email",
+        name: "email",
+        function: this.handleChange.bind(this),
+        placeholder: "Jake@dogmail.com",
+        id: "Email"
+      },
+      {
+        type: "password",
+        name: "password",
+        function: this.handleChange.bind(this),
+        placeholder: "admin",
+        id: "Password"
+      }
+    ];
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -36,12 +54,7 @@ class Register extends React.Component {
     );
   }
 
-  
-
   render() {
-    
-   
-
     return (
       <div>
         <div className="registerForm2 col-12 d-flex jusify-content-center flex-wrap">
@@ -49,16 +62,17 @@ class Register extends React.Component {
           <h1 className="text-center col-12 mb-5">Join us now!</h1>
           <Form
             className="col-12 offset-lg-3 col-lg-6"
-            onSubmit={ e => {
+            onSubmit={e => {
               this.sendRequest();
 
               // when this is here page doesnt have new useless url
               e.preventDefault();
             }}
           >
-            
-            {this.fields.map( element => <FormField set={element}/>)}
-            
+            {this.fields.map(element => (
+              <FormField set={element} />
+            ))}
+
             <button className="col-12 offset-lg-4 col-lg-4 btn blue-button">
               JOIN
             </button>
