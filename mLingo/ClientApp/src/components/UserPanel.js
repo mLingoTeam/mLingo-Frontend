@@ -1,13 +1,13 @@
 import React from "react";
 
-import { authenticationService } from "../services/authentication";
+//import { authenticationService } from "../services/authentication";
 
 class UserPanel extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentUser: authenticationService.currentUserValue
+      //currentUser: authenticationService.currentUserValue
     };
   }
 
@@ -15,11 +15,11 @@ class UserPanel extends React.Component {
     const { currentUser } = this.state;
     return (
       <div>
-        <h1>Hi {currentUser.firstName}!</h1>
+        <h1>Hi {localStorage.getItem("currentUser")}!</h1>
         <p>You're logged in with React & JWT!!</p>
       </div>
     );
   }
 }
 
-export default { UserPanel };
+export default UserPanel;

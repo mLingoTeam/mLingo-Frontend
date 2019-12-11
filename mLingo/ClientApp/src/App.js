@@ -9,12 +9,15 @@ import UserPanel from "./components/UserPanel";
 export const history = createBrowserHistory();
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <Router history={history}>
         <div>
           <Route exact path="/" component={MainPage} />
-          <PrivateRoute exact path="/login" component={UserPanel} />
+          <Route exact path="/login" component={UserPanel} />
         </div>
       </Router>
     );

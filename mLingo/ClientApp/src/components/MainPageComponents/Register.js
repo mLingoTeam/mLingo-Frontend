@@ -29,19 +29,14 @@ class Register extends React.Component {
           <h1 className="text-center col-12 mb-5">Join us now!</h1>
           <Form
             className="col-12 offset-lg-4 col-lg-6"
-            onSubmit={() => {
-              authenticationService
-                .login(
-                  this.state.username,
-                  this.state.email,
-                  this.state.password
-                )
-                .then(user => {
-                  const { from } = this.props.location.state || {
-                    from: { pathname: "/" }
-                  };
-                  this.props.history.push(from);
-                });
+            onSubmit={e => {
+              localStorage.setItem("currentUser", this.state.username);
+              authenticationService.register(
+                this.state.username,
+                this.state.email,
+                this.state.password
+              );
+              e.preventDefault();
             }}
           >
             <FormGroup className="col-12 mb-5">
