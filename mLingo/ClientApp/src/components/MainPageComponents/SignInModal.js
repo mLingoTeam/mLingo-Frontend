@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import Register from "./Register";
+import Register from "../FormComponents/Register";
 
 const SignInModal = props => {
   const [modal, setModal] = useState(false);
