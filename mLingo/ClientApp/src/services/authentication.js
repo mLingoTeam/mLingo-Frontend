@@ -2,18 +2,18 @@ import { BehaviorSubject } from "rxjs";
 
 import { handleResponse } from "../helpers/handleResponse";
 
-const currentUserSubject = new BehaviorSubject(
+/*const currentUserSubject = new BehaviorSubject(
   JSON.parse(localStorage.getItem("currentUser"))
-);
+);*/
 
 export const authenticationService = {
   register,
   //login,
-  logout,
-  currentUser: currentUserSubject.asObservable(),
-  get currentUserValue() {
-    return currentUserSubject.value;
-  }
+  logout
+  //currentUser: currentUserSubject.asObservable(),
+  //get currentUserValue() {
+  //return currentUserSubject.value;
+  //}
 };
 
 function register(username, email, password) {
@@ -62,5 +62,5 @@ function login(username, password) {
 function logout() {
   // remove user from local storage to log user out
   localStorage.removeItem("currentUser");
-  currentUserSubject.next(null);
+  //currentUserSubject.next(null);
 }
