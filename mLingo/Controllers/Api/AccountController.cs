@@ -82,7 +82,7 @@ namespace mLingo.Controllers.Api
                     LastName = registerForm.LastName,
                     Id = new Guid(),
                     DateOfBirth = registerForm.DateOfBirth,
-                    Age = DateTime.Today.Year - DateTime.Parse(registerForm.DateOfBirth).Year
+                    Age = registerForm.DateOfBirth != null ? (DateTime.Today.Year - DateTime.Parse(registerForm.DateOfBirth).Year) : 0
                 }
             };
 
