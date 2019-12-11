@@ -1,6 +1,6 @@
 import React from "react";
 
-//import { authenticationService } from "../services/authentication";
+import { authenticationService } from "../services/authentication";
 
 class UserPanel extends React.Component {
   constructor(props) {
@@ -9,6 +9,10 @@ class UserPanel extends React.Component {
     this.state = {
       //currentUser: authenticationService.currentUserValue
     };
+
+    if (!localStorage.getItem("currentUser")) {
+      this.props.history.push("/login");
+    }
   }
 
   render() {
@@ -17,6 +21,7 @@ class UserPanel extends React.Component {
       <div>
         <h1>Hi {localStorage.getItem("currentUser")}!</h1>
         <p>You're logged in with React & JWT!!</p>
+        <button onClick={authenticationService.logout}>Logout</button>
       </div>
     );
   }

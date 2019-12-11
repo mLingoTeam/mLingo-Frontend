@@ -2,17 +2,17 @@ import { BehaviorSubject } from "rxjs";
 
 import { handleResponse } from "../helpers/handleResponse";
 
-/*const currentUserSubject = new BehaviorSubject(
+const currentUserSubject = new BehaviorSubject(
   JSON.parse(localStorage.getItem("currentUser"))
-);*/
+);
 
 export const authenticationService = {
   register,
   //login,
-  //logout,
-  //currentUser: currentUserSubject.asObservable(),
+  logout,
+  currentUser: currentUserSubject.asObservable(),
   get currentUserValue() {
-    return null; //currentUserSubject.value;
+    return currentUserSubject.value;
   }
 };
 
@@ -28,13 +28,12 @@ function register(username, email, password) {
       localStorage.setItem("currentUser", JSON.stringify(user));
       return user;
     })
-    .then(data => console.log(data));
-  //.then(handleResponse)
-  /*.then(user => {
+    .then(handleResponse)
+    .then(user => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
       localStorage.setItem("currentUser", JSON.stringify(user));
       currentUserSubject.next(user);
-    });*/
+    });
 }
 
 function login(username, password) {
@@ -59,5 +58,5 @@ function login(username, password) {
 function logout() {
   // remove user from local storage to log user out
   localStorage.removeItem("currentUser");
-  //currentUserSubject.next(null);
+  currentUserSubject.next(null);
 }
