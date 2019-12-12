@@ -5,7 +5,7 @@ import img1 from "../../img/monkey.png";
 
 import { authenticationService } from "../../services/authentication";
 
-class Register extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props);
 
@@ -19,18 +19,10 @@ class Register extends React.Component {
       {
         type: "text",
         name: "username",
-        label: "Username",
+        label: "Username or email",
         function: this.handleChange.bind(this),
         placeholder: "Jake the dog",
         id: "Username"
-      },
-      {
-        type: "email",
-        name: "email",
-        label: "Email",
-        function: this.handleChange.bind(this),
-        placeholder: "Jake@dogmail.com",
-        id: "Email"
       },
       {
         type: "password",
@@ -50,11 +42,7 @@ class Register extends React.Component {
   }
 
   sendRequest() {
-    authenticationService.register(
-      this.state.username,
-      this.state.email,
-      this.state.password
-    );
+    authenticationService.login(this.state.username, this.state.password);
   }
 
   render() {
@@ -86,4 +74,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+export default Login;

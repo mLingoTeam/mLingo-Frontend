@@ -5,7 +5,7 @@ const FormField = ({ set }) => {
   return (
     <FormGroup className="col-12 mb-3">
       <Label for={set.id} className="col-2">
-        {set.name}
+        {set.label}
       </Label>
       <Input
         className="col-12 col-lg-12"
@@ -14,6 +14,7 @@ const FormField = ({ set }) => {
         id={set.id}
         placeholder={set.placeholder}
         onChange={set.function}
+        key={set.name}
         required
       />
     </FormGroup>

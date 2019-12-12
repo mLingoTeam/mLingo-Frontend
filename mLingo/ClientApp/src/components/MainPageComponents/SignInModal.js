@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import Register from "../FormComponents/Register";
+import Login from "../FormComponents/Login";
 
 const SignInModal = props => {
   const [modal, setModal] = useState(false);
@@ -15,7 +15,7 @@ const SignInModal = props => {
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>SIGN IN</ModalHeader>
         <ModalBody>
-          <Register />
+          <Login />
         </ModalBody>
         <ModalFooter>
           <Button color="danger" onClick={toggle}>
