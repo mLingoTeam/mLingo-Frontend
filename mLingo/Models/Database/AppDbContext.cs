@@ -22,6 +22,8 @@ namespace mLingo.Models.Database
 
         public DbSet<UserInformation> UserInformation { get; set; }
 
+        public DbSet<> Cards { get; set; }
+
         #endregion
     }
 }
