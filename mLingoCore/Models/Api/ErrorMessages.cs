@@ -10,5 +10,6 @@
         public static string UsernameNotFound = "User with entered name does not exist!";
         public static string UserEmailNotFound = "User with entered e-mail does not exist!";
         public static string NoSuchCollection = "Collection of given ID does not exist!";
+        public static string InvalidQuery = "Invalid query parameters";
     }
 }

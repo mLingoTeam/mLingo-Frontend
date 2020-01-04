@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IvanAkcheurov.Commons;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -40,19 +42,46 @@ namespace mLingo.Controllers.Api
 
 
         [HttpGet]
-        public IActionResult GetCollection([FromQuery] string id)
+        public IActionResult GetCollection(string id=null, string name=null)
         {
-            var collection = _apiDbContext.Collections.First(c => c.Id.ToString().Equals(id));
-            if (collection == null) return BadRequest(new ApiResponse
+            if (!id.IsNullOrEmpty())
             {
-                ErrorMessage = ErrorMessages.NoSuchCollection
-            });
+                var collection = _apiDbContext.Collections.First(c => c.Id.ToString().Equals(id));
+                if (collection == null) return BadRequest(new ApiResponse
+                {
+                    ErrorMessage = ErrorMessages.NoSuchCollection
+                });
 
-            return Ok(new ApiResponse<CollectionData>
+                return Ok(new ApiResponse<CollectionData>
+                {
+                    Response = collection.Data(_apiDbContext)
+                });
+            }
+            
+            if (!name.IsNullOrEmpty())
             {
-                Response = collection.Data(_apiDbContext)
+                List<Collection> collections;
+                try
+                { 
+                    collections = _apiDbContext.Collections.Where(c => c.Name.Equals(name)).ToList();
+                }
+                catch(ArgumentNullException)
+                {
+                    collections = new List<Collection>();
+                }
+
+                return Ok(new ApiResponse<List<Collection>>
+                {
+                    Response = collections
+                });
+            }
+
+            return BadRequest(new ApiResponse
+            {
+                ErrorMessage = ErrorMessages.InvalidQuery
             });
         }
+
 
         [HttpGet]
         public Task<IActionResult> GetUserCollections([FromQuery] string username)

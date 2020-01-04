@@ -27,5 +27,12 @@ namespace mLingo.Extensions.Collections
                 Cards = cards
             };
         }
+
+        public static List<CollectionData> Data(this List<Collection> collections, AppDbContext context)
+        {
+            var data = new List<CollectionData>();
+            foreach(var col in collections) data.Add(col.Data(context));
+            return data;
+        }
     }
 }
