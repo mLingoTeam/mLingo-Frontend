@@ -84,13 +84,31 @@ namespace mLingo.Controllers.Api
 
 
         [HttpGet]
-        public Task<IActionResult> GetUserCollections([FromQuery] string username)
+        public IActionResult GetUserCollections([FromQuery] string username)
         {
-            return null;
+            var user = _apiDbContext.Users.First(u => u.UserName.Equals(username));
+            if(user == null) return BadRequest( new ApiResponse{
+                ErrorMessage = ErrorMessages.UsernameNotFound
+            });
+
+            List<Collection> collections;
+            try
+            {
+                collections = _apiDbContext.Collections.Where(c => c.OwnerFk.Equals(user.UserInfoFk)).ToList();
+            }
+            catch (ArgumentNullException)
+            {
+                collections = new List<Collection>();
+            }
+
+            return Ok(new ApiResponse<List<CollectionData>>
+            {
+                Response = collections.Data(_apiDbContext)
+            });
         }
 
         [HttpPost]
-        public Task<IActionResult> CreateCollection([FromBody] object newCollectionData)
+        public Task<IActionResult> CreateCollection([FromBody] CollectionData newCollectionData)
         {
             return null;
         }
