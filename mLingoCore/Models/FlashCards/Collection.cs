@@ -5,7 +5,7 @@ using mLingoCore.Models.UserData;
 
 namespace mLingoCore.Models.FlashCards
 {
-    class Collection
+    public class Collection
     {
         [Key]
         public Guid Id { get; set; }

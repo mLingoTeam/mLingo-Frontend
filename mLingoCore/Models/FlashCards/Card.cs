@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace mLingoCore.Models.FlashCards
 {
-    class Card
+    public class Card
     {
         [Key]
         public Guid Id { get; set; }
