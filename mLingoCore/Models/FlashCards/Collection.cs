@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using mLingoCore.Models.UserData;
 
 namespace mLingoCore.Models.FlashCards
 {
@@ -10,6 +12,9 @@ namespace mLingoCore.Models.FlashCards
 
         public string Name { get; set; }
 
-        public string Owner { get; set; }
+        [ForeignKey("OwnerFk")]
+        public UserInformation UserInformation;
+
+        public Guid OwnerFk { get; set; }
     }
 }

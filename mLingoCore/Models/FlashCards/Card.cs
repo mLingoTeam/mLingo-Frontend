@@ -13,10 +13,10 @@ namespace mLingoCore.Models.FlashCards
         
         public string Definition { get; set; }
 
-        public Guid Collection { get; set; }
+        public Guid CollectionFk { get; set; }
 
-        [ForeignKey("Collection")]
-        public Collection CollectionFk { get; set; }
+        [ForeignKey("CollectionFk")]
+        public Collection Collection { get; set; }
 
     }
 }
