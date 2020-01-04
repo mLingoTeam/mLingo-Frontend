@@ -1,9 +1,15 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using mLingo.Extensions.Authentication;
+using mLingo.Extensions.Collections;
 using mLingo.Models.Database;
+using mLingoCore.Models.Api;
+using mLingoCore.Models.Api.Base;
+using mLingoCore.Models.FlashCards;
 
 namespace mLingo.Controllers.Api
 {
@@ -34,9 +40,18 @@ namespace mLingo.Controllers.Api
 
 
         [HttpGet]
-        public Task<IActionResult> GetCollection([FromQuery] string id)
+        public IActionResult GetCollection([FromQuery] string id)
         {
-            
+            var collection = _apiDbContext.Collections.First(c => c.Id.ToString().Equals(id));
+            if (collection == null) return BadRequest(new ApiResponse
+            {
+                ErrorMessage = ErrorMessages.NoSuchCollection
+            });
+
+            return Ok(new ApiResponse<CollectionData>
+            {
+                Response = collection.Data(_apiDbContext)
+            });
         }
 
         [HttpGet]
