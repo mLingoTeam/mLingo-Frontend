@@ -11,12 +11,12 @@ export default class MainPage extends Component {
 
   render() {
     if (localStorage.getItem("currentUser")) {
-      this.props.history.push("/login");
+      this.props.history.push('/login');
     }
     return (
       <div>
-        <AppNavbar history={this.props.history} />
-        <Slider />
+        <AppNavbar />
+
         <Promo />
         <UserPromo />
         <Register />

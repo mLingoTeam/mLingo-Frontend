@@ -8,7 +8,6 @@ import { authenticationService } from "../../services/authentication";
 class Register extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
 
     this.state = {
       username: "",
@@ -69,8 +68,6 @@ class Register extends React.Component {
             className="col-12 offset-lg-3 col-lg-6"
             onSubmit={e => {
               this.sendRequest();
-
-              // when this is here page doesnt have new useless url
               e.preventDefault();
             }}
           >

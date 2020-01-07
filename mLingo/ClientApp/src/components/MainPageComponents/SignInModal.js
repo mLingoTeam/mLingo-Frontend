@@ -8,6 +8,8 @@ const SignInModal = props => {
 
   const toggle = () => setModal(!modal);
 
+
+
   return (
     <div>
       <button className="sign-in-button" onClick={toggle}>
@@ -16,7 +18,7 @@ const SignInModal = props => {
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>SIGN IN</ModalHeader>
         <ModalBody>
-          <Login history={props.history} />
+          <Login />
         </ModalBody>
         <ModalFooter>
           <Button color="danger" onClick={toggle}>

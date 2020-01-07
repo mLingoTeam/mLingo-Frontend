@@ -2,8 +2,9 @@ import React from "react";
 import { Form } from "reactstrap";
 import FormField from "./FormField";
 import img1 from "../../img/monkey.png";
+import { withRouter } from 'react-router-dom';
 
-import { authenticationService } from "../../services/authentication";
+import { authenticationService, setIntoLocalStorage } from "../../services/authentication";
 
 class Login extends React.Component {
   constructor(props) {
@@ -46,13 +47,16 @@ class Login extends React.Component {
 
   async sendRequest() {
     const resolved = await authenticationService.login(this.state.username, this.state.password);
-
-    localStorage.setItem("currentUser", resolved.Response.Username);
+    console.log(resolved.Response);
+    console.log(resolved);
+    console.log(resolved.Response.Username);
+    authenticationService.setIntoLocalStorage(resolved.Response.Username);
   }
 
   render() {
+
     if (localStorage.getItem("currentUser")) {
-      this.props.history.push("/login");
+      this.props.history.push('/login');
     }
     return (
       <div>
@@ -64,8 +68,6 @@ class Login extends React.Component {
             onSubmit={e => {
               e.preventDefault();
               this.sendRequest();
-
-              // when this is here page doesnt have new useless url
             }}
           >
             {this.fields.map(element => (
@@ -83,4 +85,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
