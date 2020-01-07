@@ -16,7 +16,7 @@ export default class MainPage extends Component {
     return (
       <div>
         <AppNavbar />
-
+        <Slider />
         <Promo />
         <UserPromo />
         <Register />
