@@ -12,7 +12,8 @@ class Login extends React.Component {
     this.state = {
       username: "",
       email: "",
-      password: ""
+      password: "",
+      isLoading: false
     };
 
     this.fields = [
@@ -34,18 +35,25 @@ class Login extends React.Component {
       }
     ];
 
+
     this.handleChange = this.handleChange.bind(this);
   }
+
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  sendRequest() {
-    authenticationService.login(this.state.username, this.state.password);
+  async sendRequest() {
+    const resolved = await authenticationService.login(this.state.username, this.state.password);
+
+    localStorage.setItem("currentUser", resolved.Response.Username);
   }
 
   render() {
+    if (localStorage.getItem("currentUser")) {
+      this.props.history.push("/login");
+    }
     return (
       <div>
         <div className="registerForm2 col-12 d-flex jusify-content-center flex-wrap">
@@ -54,10 +62,10 @@ class Login extends React.Component {
           <Form
             className="col-12 offset-lg-3 col-lg-6"
             onSubmit={e => {
+              e.preventDefault();
               this.sendRequest();
 
               // when this is here page doesnt have new useless url
-              e.preventDefault();
             }}
           >
             {this.fields.map(element => (
@@ -71,6 +79,7 @@ class Login extends React.Component {
         </div>
       </div>
     );
+
   }
 }
 

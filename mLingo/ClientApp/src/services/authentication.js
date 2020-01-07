@@ -17,22 +17,22 @@ function register(username, email, password) {
       localStorage.setItem("currentUser", user.Response.Username);
       return user;
     });
+
+  return false;
 }
 
 function login(userid, password) {
+
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ userid, password })
   };
 
-  fetch(`http://localhost:5000/api/account/login`, requestOptions)
+
+  return fetch(`http://localhost:5000/api/account/login`, requestOptions)
     .then(result => result.json())
-    .then(user => {
-      console.log(user.Response);
-      //localStorage.setItem("currentUser", user.Response.Username);
-      return user;
-    });
+
 }
 
 function logout() {

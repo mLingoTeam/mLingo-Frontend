@@ -8,18 +8,14 @@ import Footer from "./MainPageComponents/Footer";
 import "./styles/css/Main.css";
 
 export default class MainPage extends Component {
-  constructor(props) {
-    super(props);
 
+  render() {
     if (localStorage.getItem("currentUser")) {
       this.props.history.push("/login");
     }
-  }
-
-  render() {
     return (
       <div>
-        <AppNavbar />
+        <AppNavbar history={this.props.history} />
         <Slider />
         <Promo />
         <UserPromo />

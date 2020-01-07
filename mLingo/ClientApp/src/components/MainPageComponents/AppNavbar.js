@@ -18,7 +18,7 @@ const AppNavbar = props => {
           <p className="brand-text">mLingo</p>
         </NavbarBrand>
         <div className="d-none d-lg-block navbar-buttons">
-          <SignInModal />
+          <SignInModal history={props.history} />
           <div>
             <a href="#Username">
               <button className="register-button">Register</button>

@@ -8,6 +8,7 @@ import { authenticationService } from "../../services/authentication";
 class Register extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
 
     this.state = {
       username: "",
@@ -58,6 +59,7 @@ class Register extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         <div className="registerForm2 col-12 d-flex jusify-content-center flex-wrap">
