@@ -49,12 +49,25 @@ class Register extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  sendRequest() {
+  async sendRequest() {
     authenticationService.register(
       this.state.username,
       this.state.email,
       this.state.password
     );
+    authenticationService.setIntoLocalStorage({ name: "currentUser", value: this.state.username });
+
+
+    this.setState({
+      ...this.state,
+      isLoading: true
+    })
+    setTimeout(() => {
+      this.setState({
+        ...this.state,
+        isLoading: false
+      })
+    }, 1000);
   }
 
   render() {

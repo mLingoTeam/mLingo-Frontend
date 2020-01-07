@@ -1,7 +1,8 @@
 export const authenticationService = {
   register,
   login,
-  logout
+  logout,
+  setIntoLocalStorage
 };
 
 function register(username, email, password) {
@@ -11,14 +12,8 @@ function register(username, email, password) {
     body: JSON.stringify({ username, email, password })
   };
 
-  fetch(`http://localhost:5000/api/account/register`, requestOptions)
+  return fetch(`http://localhost:5000/api/account/register`, requestOptions)
     .then(result => result.json())
-    .then(user => {
-      localStorage.setItem("currentUser", user.Response.Username);
-      return user;
-    });
-
-  return false;
 }
 
 function login(userid, password) {
@@ -37,4 +32,8 @@ function login(userid, password) {
 
 function logout() {
   localStorage.removeItem("currentUser");
+}
+
+function setIntoLocalStorage({ name = "null", value = "null" }) {
+  localStorage.setItem(`${name}`, value);
 }
