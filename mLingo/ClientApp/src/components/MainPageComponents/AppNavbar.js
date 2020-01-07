@@ -20,7 +20,7 @@ const AppNavbar = props => {
         <div className="d-none d-lg-block navbar-buttons">
           <SignInModal />
           <div>
-            <a href="#Username2">
+            <a href="#Username">
               <button className="register-button">Register</button>
             </a>
           </div>
