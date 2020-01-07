@@ -4,7 +4,7 @@ import FormField from "./FormField";
 import img1 from "../../img/monkey.png";
 import { withRouter } from 'react-router-dom';
 
-import { authenticationService, setIntoLocalStorage } from "../../services/authentication";
+import { authenticationService } from "../../services/authentication";
 
 class Login extends React.Component {
   constructor(props) {
@@ -47,10 +47,20 @@ class Login extends React.Component {
 
   async sendRequest() {
     const resolved = await authenticationService.login(this.state.username, this.state.password);
-    console.log(resolved.Response);
-    console.log(resolved);
-    console.log(resolved.Response.Username);
-    authenticationService.setIntoLocalStorage(resolved.Response.Username);
+    localStorage.setItem("currentUser", resolved.Response.Username);
+
+    // TO RERENDER WHEN THE ITEM IS SET IN THE LOCALSTORAGE
+    this.setState({
+      ...this.state,
+      isLoading: true
+    })
+    setTimeout(() => {
+      this.setState({
+        ...this.state,
+        isLoading: false
+      })
+    }, 1000);
+
   }
 
   render() {

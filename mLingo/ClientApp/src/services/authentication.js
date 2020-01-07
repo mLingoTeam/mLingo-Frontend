@@ -1,8 +1,7 @@
 export const authenticationService = {
   register,
   login,
-  logout,
-  setIntoLocalStorage
+  logout
 };
 
 function register(username, email, password) {
@@ -38,8 +37,4 @@ function login(userid, password) {
 
 function logout() {
   localStorage.removeItem("currentUser");
-}
-
-function setIntoLocalStorage(resolved) {
-  localStorage.setItem("currentUser", resolved);
 }
