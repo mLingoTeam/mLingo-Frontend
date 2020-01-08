@@ -64,7 +64,6 @@ class Login extends React.Component {
   }
 
   render() {
-
     if (localStorage.getItem("currentUser")) {
       this.props.history.push('/login');
     }
