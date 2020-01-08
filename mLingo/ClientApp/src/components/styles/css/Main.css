@@ -86,6 +86,8 @@
 /* 4. UserPromo.js */
 /* 5. Register.js */
 /* 6. Footer.js */
+/* Login Panel */
+/* 7. Main Panel */
 /* 1. AppNavbar.js */
 /* MODAL */
 .show {
@@ -93,13 +95,6 @@
 }
 
 @media (max-width: 991px) {
-  .brand-icon {
-    max-width: 40px;
-    max-height: 40px;
-  }
-  .brand-text {
-    font-size: 12px;
-  }
   .navbar {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -111,16 +106,20 @@
         -ms-flex-align: center;
             align-items: center;
   }
+  .navbar__brand--icon {
+    max-width: 40px;
+    max-height: 40px;
+  }
+  .navbar__brand--text {
+    font-size: 12px;
+  }
 }
 
 @media (min-width: 992px) {
   .navbar {
     height: 100px;
   }
-  .modal-dialog {
-    max-width: 60vw;
-  }
-  .brand-icon {
+  .navbar__brand--icon {
     position: absolute;
     left: 4%;
     max-width: 80px;
@@ -128,7 +127,7 @@
     -webkit-animation: navbar-monkey-bounce 1.2s infinite ease-in-out;
             animation: navbar-monkey-bounce 1.2s infinite ease-in-out;
   }
-  .brand-text {
+  .navbar__brand--text {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -137,7 +136,10 @@
     font-size: 24px;
     text-shadow: 0.1em 0.1em 0.2em black;
   }
-  .navbar-buttons {
+  .modal-dialog {
+    max-width: 60vw;
+  }
+  .navbar__buttons {
     display: -webkit-box !important;
     display: -ms-flexbox !important;
     display: flex !important;
@@ -151,7 +153,7 @@
   }
 }
 
-.brand-text {
+.navbar__brand--text {
   color: #ddd;
   font-weight: bold;
 }
@@ -161,23 +163,23 @@
   border: 0 !important;
 }
 
-.navbar-dark {
+.navbar--dark {
   background: -webkit-gradient(linear, left top, left bottom, from(#1e3799), to(#0c2461));
   background: linear-gradient(#1e3799, #0c2461);
   margin: 0 !important;
 }
 
-.navbar-brand {
+.navbar--brand {
   height: auto !important;
   padding: 0 10px !important;
 }
 
-.navbar-buttons {
+.navbar__buttons {
   position: absolute;
   right: 5vw;
 }
 
-.register-button {
+.navbar__registerbutton {
   font-size: 22px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
@@ -191,12 +193,12 @@
   border-radius: 5px;
 }
 
-.register-button:hover {
+.navbar__registerbutton:hover {
   -webkit-filter: brightness(0.8);
           filter: brightness(0.8);
 }
 
-.sign-in-button {
+.signinbutton {
   font-size: 22px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
@@ -210,7 +212,7 @@
   border-radius: 5px;
 }
 
-.sign-in-button:hover {
+.signinbutton:hover {
   -webkit-filter: brightness(0.8);
           filter: brightness(0.8);
 }
@@ -225,7 +227,7 @@
           transform: translate(-50%, -50%);
 }
 
-.carousel-sign-in .sign-in-button {
+.carousel-sign-in .signinbutton {
   width: 100%;
   background: #4a69bd;
 }
@@ -422,5 +424,90 @@ li.media h4 {
 
 .social {
   color: white;
+}
+
+/* Login Panel */
+/* Main Panel */
+@media (max-width: 991px) {
+  .mainpanel {
+    width: 100vw;
+    height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .mainpanel__userbase {
+    border: 1px solid black;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    padding: 50px;
+    width: 300px;
+  }
+}
+
+@media (min-width: 992px) {
+  .mainpanel {
+    width: 100vw;
+    height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .mainpanel__userbase {
+    border: 1px solid black;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    padding: 50px;
+    width: 300px;
+  }
+}
+
+.mainpanel__userbase button {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  width: 10vw;
+  outline: none !important;
+  background: #4a69bd;
+  height: 60px;
+  border-radius: 5px;
+}
+
+.mainpanel__userbase button:hover {
+  -webkit-filter: brightness(0.8);
+          filter: brightness(0.8);
 }
 /*# sourceMappingURL=Main.css.map */
