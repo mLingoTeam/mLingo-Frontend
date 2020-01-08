@@ -13,7 +13,7 @@ namespace mLingoCore.Models.FlashCards
         public string Name { get; set; }
 
         [ForeignKey("OwnerFk")]
-        public UserInformation UserInformation { get; set; };
+        public UserInformation UserInformation { get; set; }
 
         public Guid OwnerFk { get; set; }
     }

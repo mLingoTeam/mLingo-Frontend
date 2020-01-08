@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using IvanAkcheurov.Commons;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -41,7 +42,8 @@ namespace mLingo.Controllers.Api
 
 
         [HttpGet]
-        public IActionResult GetCollection(string id=null, string name=null)
+        [AllowAnonymous]
+        public IActionResult Find(string id=null, string name=null)
         {
             if (!id.IsNullOrEmpty())
             {
@@ -83,7 +85,8 @@ namespace mLingo.Controllers.Api
 
 
         [HttpGet]
-        public IActionResult GetUserCollections([FromQuery] string username)
+        [AllowAnonymous]
+        public IActionResult UserCollections([FromQuery] string username)
         {
             var user = _apiDbContext.Users.First(u => u.UserName.Equals(username));
             if(user == null) return BadRequest( new ApiResponse{
@@ -107,13 +110,13 @@ namespace mLingo.Controllers.Api
         }
 
         [HttpPost]
-        public IActionResult CreateCollection([FromBody] CollectionData newCollectionData)
+        public IActionResult Create([FromBody] CollectionData newCollectionData)
         {
             // TODO: Think about cases when collection should be rejected
             try
             {
                 _apiDbContext.Cards.AddRange(newCollectionData.Cards);
-                _apiDbContext.Collections.AddRange(newCollectionData.Collection);
+                _apiDbContext.Collections.Add(newCollectionData.Collection);
                 _apiDbContext.SaveChanges();
             }
             catch
@@ -128,7 +131,7 @@ namespace mLingo.Controllers.Api
         }
 
         [HttpPut]
-        public IActionResult UpdateCollection([FromQuery] string id, [FromBody] CollectionData updatedCollection)
+        public IActionResult Update([FromQuery] string id, [FromBody] CollectionData updatedCollection)
         {
             var collectionToUpdate = _apiDbContext.Collections.First(c => c.Id.ToString().Equals(id));
             if (collectionToUpdate == null)
@@ -160,7 +163,7 @@ namespace mLingo.Controllers.Api
         }
 
         [HttpDelete]
-        public IActionResult DeleteCollection([FromQuery] string id)
+        public IActionResult Delete([FromQuery] string id)
         {
             var guid = new Guid(id);
             try
