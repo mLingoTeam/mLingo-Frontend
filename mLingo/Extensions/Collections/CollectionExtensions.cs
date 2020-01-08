@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using mLingo.Models.Database;
 using mLingoCore.Models.FlashCards;
 
@@ -33,6 +32,11 @@ namespace mLingo.Extensions.Collections
             var data = new List<CollectionData>();
             foreach(var col in collections) data.Add(col.Data(context));
             return data;
+        }
+
+        public static List<Card> UpdateCollection(this List<Card> collection, List<Card> newCollection)
+        {
+            return collection.Union(newCollection).ToList();
         }
     }
 }

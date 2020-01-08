@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using IvanAkcheurov.Commons;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -108,21 +107,76 @@ namespace mLingo.Controllers.Api
         }
 
         [HttpPost]
-        public Task<IActionResult> CreateCollection([FromBody] CollectionData newCollectionData)
+        public IActionResult CreateCollection([FromBody] CollectionData newCollectionData)
         {
-            return null;
+            // TODO: Think about cases when collection should be rejected
+            try
+            {
+                _apiDbContext.Cards.AddRange(newCollectionData.Cards);
+                _apiDbContext.Collections.AddRange(newCollectionData.Collection);
+                _apiDbContext.SaveChanges();
+            }
+            catch
+            {
+                return BadRequest(new ApiResponse
+                {
+                    ErrorMessage = ""
+                });
+            }
+
+            return Accepted();
         }
 
         [HttpPut]
-        public Task<IActionResult> UpdateCollection([FromQuery] string id)
+        public IActionResult UpdateCollection([FromQuery] string id, [FromBody] CollectionData updatedCollection)
         {
-            return null;
+            var collectionToUpdate = _apiDbContext.Collections.First(c => c.Id.ToString().Equals(id));
+            if (collectionToUpdate == null)
+                return BadRequest(new ApiResponse
+                {
+                    ErrorMessage = ""
+                });
+
+            collectionToUpdate.Name = updatedCollection.Collection.Name;
+
+            try
+            {
+                _apiDbContext.Cards.RemoveRange(
+                    _apiDbContext.Cards.Where(c => !updatedCollection.Cards.Any(cc => cc.Id.Equals(c.Id)))
+                );
+
+                _apiDbContext.Cards.AddRange(
+                    updatedCollection.Cards.Where(c => !_apiDbContext.Cards.Any(cc => cc.Id.Equals(c.Id)))
+                );
+
+                _apiDbContext.SaveChanges();
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+
+            return Accepted();
         }
 
         [HttpDelete]
-        public Task<IActionResult> DeleteCollection([FromQuery] string id)
+        public IActionResult DeleteCollection([FromQuery] string id)
         {
-            return null;
+            var guid = new Guid(id);
+            try
+            {
+                _apiDbContext.Collections.Remove(_apiDbContext.Collections.First(c => c.Id.Equals(guid)));
+                _apiDbContext.Cards.RemoveRange(_apiDbContext.Cards.Where(c => c.CollectionFk.Equals(guid)));
+            }
+            catch
+            {
+                return BadRequest(new ApiResponse
+                {
+                    ErrorMessage = ""
+                });
+            }
+
+            return Ok();
         }
     }
 }
