@@ -14,11 +14,11 @@ const AppNavbar = props => {
           <img alt="brand--icon" src={brandIcon} className="navbar__brand--icon" />
           <p className="navbar__brand--text">mLingo</p>
         </a>
-        <div className="d-none d-lg-block navbar__buttons">
+        <div className="navbar__buttons">
           <SignInModal />
           <div>
             <a href="#Username">
-              <button className="navbar__registerbutton">Register</button>
+              <button className="navbar__registerbutton">Sign up</button>
             </a>
           </div>
         </div>

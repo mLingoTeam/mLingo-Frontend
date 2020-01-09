@@ -22,11 +22,6 @@
 }
 
 @media (max-width: $mobile-res) {
-  .navbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 
   .navbar__brand--icon {
     max-width: 40px;
@@ -35,6 +30,7 @@
     .navbar__brand--text {
     font-size: 12px;
   }
+
 
 }
 
@@ -45,16 +41,15 @@
   .navbar__brand--icon {
     position: absolute;
     left: 4%;
-
     max-width: 80px;
     max-height: 80px;
     animation: navbar-monkey-bounce 1.2s infinite ease-in-out;
   }
   .navbar__brand--text {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    left: 100%;
+    top: 100%;
+    transform: translateY( -100%);
     font-size: 24px;
     text-shadow: 0.1em 0.1em 0.2em black;
   }
@@ -68,6 +63,12 @@
     align-items: center;
     flex-wrap: nowrap;
   }
+}
+
+
+.navbar__brand{
+  position: relative;
+  height: 100%;
 }
 
 .navbar__brand--text {
@@ -111,11 +112,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  .signinbutton {
-    width: 100%;
-    background: $light-blue;
-  }
 }
 
 @media (min-width: $desktop-res) {

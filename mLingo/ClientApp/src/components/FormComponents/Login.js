@@ -84,7 +84,7 @@ class Login extends React.Component {
             ))}
 
             <button className="col-12 offset-lg-4 col-lg-4 btn blue-button">
-              JOIN
+              LOGIN
             </button>
           </Form>
         </div>
