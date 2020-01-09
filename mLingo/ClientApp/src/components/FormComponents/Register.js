@@ -2,7 +2,7 @@ import React from "react";
 import { Form } from "reactstrap";
 import FormField from "./FormField";
 import img1 from "../../img/monkey.png";
-
+import { withRouter } from 'react-router-dom';
 import { authenticationService } from "../../services/authentication";
 
 class Register extends React.Component {
@@ -12,7 +12,8 @@ class Register extends React.Component {
     this.state = {
       username: "",
       email: "",
-      password: ""
+      password: "",
+      isLoading: false
     };
 
     this.fields = [
@@ -71,6 +72,9 @@ class Register extends React.Component {
   }
 
   render() {
+    if (localStorage.getItem("currentUser")) {
+      this.props.history.push('/login');
+    }
 
     return (
       <div>
@@ -98,4 +102,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+export default withRouter(Register);

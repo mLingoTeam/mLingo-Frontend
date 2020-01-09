@@ -64,7 +64,6 @@ class Login extends React.Component {
   }
 
   render() {
-
     if (localStorage.getItem("currentUser")) {
       this.props.history.push('/login');
     }
@@ -85,7 +84,7 @@ class Login extends React.Component {
             ))}
 
             <button className="col-12 offset-lg-4 col-lg-4 btn blue-button">
-              JOIN
+              LOGIN
             </button>
           </Form>
         </div>
