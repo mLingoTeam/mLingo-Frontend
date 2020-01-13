@@ -10,6 +10,10 @@
 /* 5. Register.js */
 /* 6. Footer.js */
 
+
+/* Login Panel */
+/* 7. Main Panel */
+
 /* 1. AppNavbar.js */
 
 /* MODAL */
@@ -18,44 +22,42 @@
 }
 
 @media (max-width: $mobile-res) {
-  .brand-icon {
+
+  .navbar__brand--icon {
     max-width: 40px;
     max-height: 40px;
   }
-  .brand-text {
+    .navbar__brand--text {
     font-size: 12px;
   }
-  .navbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+
+
 }
 
 @media (min-width: $desktop-res) {
   .navbar {
     height: 100px;
   }
-  .modal-dialog {
-    max-width: 60vw;
-  }
-  .brand-icon {
+  .navbar__brand--icon {
     position: absolute;
     left: 4%;
-
     max-width: 80px;
     max-height: 80px;
     animation: navbar-monkey-bounce 1.2s infinite ease-in-out;
   }
-  .brand-text {
+  .navbar__brand--text {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    left: 100%;
+    top: 100%;
+    transform: translateY( -100%);
     font-size: 24px;
     text-shadow: 0.1em 0.1em 0.2em black;
   }
-  .navbar-buttons {
+  .modal-dialog {
+    max-width: 60vw;
+  }
+
+  .navbar__buttons {
     display: flex !important;
     justify-content: space-around;
     align-items: center;
@@ -63,7 +65,13 @@
   }
 }
 
-.brand-text {
+
+.navbar__brand{
+  position: relative;
+  height: 100%;
+}
+
+.navbar__brand--text {
   color: #ddd;
   font-weight: bold;
 }
@@ -71,28 +79,28 @@
 .navbar {
   margin: 0 !important;
   border: 0 !important;
-
-  &-dark {
-    background: linear-gradient($light-color, $dark-color);
-    margin: 0 !important;
-  }
-
-  &-brand {
-    height: auto !important;
-    padding: 0 10px !important;
-  }
-
-  &-buttons {
-    position: absolute;
-    right: 5vw;
-  }
 }
 
-.register-button {
+.navbar--dark {
+  background: linear-gradient($light-color, $dark-color);
+  margin: 0 !important;
+}
+
+.navbar--brand {
+  height: auto !important;
+  padding: 0 10px !important;
+}
+
+.navbar__buttons {
+  position: absolute;
+  right: 5vw;
+}
+
+.navbar__registerbutton {
   @include bluebutton;
 }
 
-.sign-in-button {
+.signinbutton {
   @include inbutton("inherit");
 }
 
@@ -104,11 +112,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  .sign-in-button {
-    width: 100%;
-    background: $light-blue;
-  }
 }
 
 @media (min-width: $desktop-res) {
@@ -285,4 +288,49 @@ li.media h4 {
 
 .social {
   color: white;
+}
+
+
+/* Login Panel */
+
+/* Main Panel */
+@media (max-width: $mobile-res) {
+  .mainpanel{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .mainpanel__userbase{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 50px;
+    width: 300px;
+  }
+}
+
+@media (min-width: $desktop-res) {
+  .mainpanel{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .mainpanel__userbase{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 50px;
+    width: 300px;
+  }
+}
+.mainpanel__userbase button{
+  @include bluebutton;
 }

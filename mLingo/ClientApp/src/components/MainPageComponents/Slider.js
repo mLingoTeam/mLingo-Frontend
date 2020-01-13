@@ -57,9 +57,6 @@ const Slider = props => {
         key={item.altText}
       >
         <img src={item.src} alt={item.altText} />
-        <div className="d-block d-lg-none carousel-sign-in">
-          <SignInModal />
-        </div>
         <CarouselCaption
           captionText={item.altText}
           captionHeader={item.caption}
