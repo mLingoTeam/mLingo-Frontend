@@ -26,13 +26,13 @@ namespace mLingo.Controllers.Api
 
         private readonly ILogger apiLogger;
 
-        private readonly UserManager<AppUser> apiUserManager;
+        private readonly IConfiguration apiConfiguration;
 
         private readonly AppDbContext apiDbContext;
 
-        private readonly SignInManager<AppUser> apiSignInManager;
+        private readonly UserManager<AppUser> apiUserManager;
 
-        private readonly IConfiguration apiConfiguration;
+        private readonly SignInManager<AppUser> apiSignInManager;
 
         #endregion
 

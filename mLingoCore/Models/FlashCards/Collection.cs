@@ -5,16 +5,16 @@ using mLingoCore.Models.UserData;
 
 namespace mLingoCore.Models.FlashCards
 {
-    class Collection
+    public class Collection
     {
         [Key]
         public Guid Id { get; set; }
 
         public string Name { get; set; }
 
-        [ForeignKey("OwnerFk")]
-        public UserInformation UserInformation;
+        [ForeignKey("OwnerId")]
+        public UserInformation UserInformation { get; set; }
 
-        public Guid OwnerFk { get; set; }
+        public Guid OwnerId { get; set; }
     }
-}
+}                                                                                                                                                                                                                                                                                                               
