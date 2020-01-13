@@ -13,7 +13,8 @@ namespace mLingo.Extensions.Collections
             List<Card> cards;
             try
             {
-                cards = context.Cards.Where(c => c.CollectionFk.Equals(collection.Id)).ToList();
+                cards = context.Cards.Where(c => c.CollectionId.Equals(collection.Id)).ToList();
+                for (var i = 0; i < cards.Count; i++) cards[i] = cards[i].AsResponse();
             }
             catch(ArgumentNullException)
             {
@@ -34,9 +35,27 @@ namespace mLingo.Extensions.Collections
             return data;
         }
 
-        public static List<Card> UpdateCollection(this List<Card> collection, List<Card> newCollection)
+        public static Card AsResponse(this Card card)
         {
-            return collection.Union(newCollection).ToList();
+            return new Card
+            {
+                Id = card.Id,
+                Term = card.Term,
+                Definition = card.Definition,
+                CollectionId = card.CollectionId,
+                Collection = null
+            };
+        }
+
+        public static Collection AsResponse(this Collection collection)
+        {
+            return new Collection
+            {
+                Id = collection.Id,
+                Name = collection.Name,
+                OwnerId =  collection.OwnerId,
+                UserInformation = null
+            };
         }
     }
 }

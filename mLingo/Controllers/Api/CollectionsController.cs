@@ -55,7 +55,7 @@ namespace mLingo.Controllers.Api
 
                 return Ok(new ApiResponse<CollectionData>
                 {
-                    Response = collection.Data(_apiDbContext)
+                    Response = collection.AsResponse().Data(_apiDbContext)
                 });
             }
             
@@ -96,7 +96,8 @@ namespace mLingo.Controllers.Api
             List<Collection> collections;
             try
             {
-                collections = _apiDbContext.Collections.Where(c => c.OwnerFk.Equals(user.UserInfoFk)).ToList();
+                collections = _apiDbContext.Collections.Where(c => c.OwnerId.Equals(user.UserInfoFk)).ToList();
+                for (var i = 0; i < collections.Count; i++) collections[i] = collections[i].AsResponse();
             }
             catch (ArgumentNullException)
             {
@@ -169,7 +170,7 @@ namespace mLingo.Controllers.Api
             try
             {
                 _apiDbContext.Collections.Remove(_apiDbContext.Collections.First(c => c.Id.Equals(guid)));
-                _apiDbContext.Cards.RemoveRange(_apiDbContext.Cards.Where(c => c.CollectionFk.Equals(guid)));
+                _apiDbContext.Cards.RemoveRange(_apiDbContext.Cards.Where(c => c.CollectionId.Equals(guid)));
             }
             catch
             {

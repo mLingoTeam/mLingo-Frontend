@@ -18,5 +18,19 @@ namespace mLingo.Extensions.Authentication
                 Token = token
             };
         }
+
+        public static CredentialsResponse CredentialsNoToken(this CredentialsResponse user)
+        {
+            return new CredentialsResponse
+            {
+                Id = user.Id,
+                Username = user.Username,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                DateOfBirth = user.LastName,
+                Age = user.Age,
+                Token = null
+            };
+        }
     }
 }
