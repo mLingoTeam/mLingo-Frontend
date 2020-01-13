@@ -179,7 +179,7 @@ namespace mLingo.Controllers.Api
 
             var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
             {
-                Response = user.Credentials(user.GenerateJwtToken(apiConfiguration))
+                Response = user.CredentialsNoToken()
             });
 
             return Ok(res);
