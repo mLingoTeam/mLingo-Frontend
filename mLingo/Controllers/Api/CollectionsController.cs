@@ -11,7 +11,10 @@ using mLingo.Extensions.Collections;
 using mLingo.Models.Database;
 using mLingoCore.Models.Api;
 using mLingoCore.Models.Api.Base;
+using mLingoCore.Models.Api.ResponseModels;
+using mLingoCore.Models.Api.ResponseModels.Collections;
 using mLingoCore.Models.FlashCards;
+using mLingoCore.Models.Forms.Collections;
 
 namespace mLingo.Controllers.Api
 {
@@ -53,9 +56,9 @@ namespace mLingo.Controllers.Api
                     ErrorMessage = ErrorMessages.NoSuchCollection
                 });
 
-                return Ok(new ApiResponse<CollectionData>
+                return Ok(new ApiResponse<CollectionFullResponse>
                 {
-                    Response = null
+                    Response = new CollectionFullResponse(collection.Data(_apiDbContext))
                 });
             }
             
@@ -71,9 +74,12 @@ namespace mLingo.Controllers.Api
                     collections = new List<Collection>();
                 }
 
-                return Ok(new ApiResponse<List<Collection>>
+                var res = new List<CollectionOverviewResponse>();
+                foreach(var c in collections) res.Add(new CollectionOverviewResponse(c));
+
+                return Ok(new ApiResponse<List<CollectionOverviewResponse>>
                 {
-                    Response = null
+                    Response = res
                 });
             }
 
@@ -97,36 +103,48 @@ namespace mLingo.Controllers.Api
             try
             {
                 collections = _apiDbContext.Collections.Where(c => c.OwnerId.Equals(user.UserInfoFk)).ToList();
-                for (var i = 0; i < collections.Count; i++) collections[i] = collections[i].AsResponse();
             }
             catch (ArgumentNullException)
             {
                 collections = new List<Collection>();
             }
 
-            return Ok(new ApiResponse<List<CollectionData>>
+            var res = new List<CollectionOverviewResponse>();
+            foreach (var c in collections) res.Add(new CollectionOverviewResponse(c));
+
+            return Ok(new ApiResponse<List<CollectionOverviewResponse>>
             {
-                Response = null
+                Response = res
             });
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] dynamic newCollectionData)
+        public IActionResult Create([FromBody] CreateCollectionFormModel newCollectionData)
         {
             // TODO: Think about cases when collection should be rejected
 
             var colId = Guid.NewGuid();
-            newCollectionData.Collection.Id = colId;
-            foreach (var card in newCollectionData.Cards)
+            var collection = new Collection
             {
-                card.Id = Guid.NewGuid();
-                card.CollectionId = colId;
-            }
+                Id = colId,
+                Name = newCollectionData.Name,
+                OwnerId = newCollectionData.Owner
+            };
+
+            var cards = new List<Card>();
+            foreach(var c in newCollectionData.Cards) cards.Add(new Card
+            {
+                Id = Guid.NewGuid(),
+                Collection = collection,
+                CollectionId = collection.Id,
+                Term = c.Term,
+                Definition = c.Definition
+            });
 
             try
             {
-                _apiDbContext.Cards.AddRange(newCollectionData.Cards);
-                _apiDbContext.Collections.Add(newCollectionData.Collection);
+                _apiDbContext.Cards.AddRange(cards);
+                _apiDbContext.Collections.Add(collection);
                 _apiDbContext.SaveChanges();
             }
             catch
@@ -141,26 +159,38 @@ namespace mLingo.Controllers.Api
         }
 
         [HttpPut]
-        public IActionResult Update([FromQuery] string id, [FromBody] CollectionData updatedCollection)
+        public IActionResult Update([FromQuery] string id, [FromBody] UpdateCollectionFormModel updatedCollection)
         {
-            var collectionToUpdate = _apiDbContext.Collections.First(c => c.Id.ToString().Equals(id));
+            var collectionToUpdate = _apiDbContext.Collections.First(c => c.Id.Equals(new Guid(id)));
             if (collectionToUpdate == null)
                 return BadRequest(new ApiResponse
                 {
                     ErrorMessage = ""
                 });
 
-            collectionToUpdate.Name = updatedCollection.Collection.Name;
+            collectionToUpdate.Name = updatedCollection.Name;
+
+            var cardsToAdd = new List<Card>();
+            foreach (var card in updatedCollection.Cards)
+            {
+                if (!_apiDbContext.Cards.Any(c => c.Id.Equals(card.Id)))
+                    cardsToAdd.Add(new Card
+                    {
+                        Collection = collectionToUpdate,
+                        CollectionId = collectionToUpdate.Id,
+                        Term = card.Term,
+                        Definition = card.Definition,
+                        Id = Guid.NewGuid()
+                    });
+            }
 
             try
             {
                 _apiDbContext.Cards.RemoveRange(
+                    //remove cards
                     _apiDbContext.Cards.Where(c => !updatedCollection.Cards.Any(cc => cc.Id.Equals(c.Id)))
                 );
-
-                _apiDbContext.Cards.AddRange(
-                    updatedCollection.Cards.Where(c => !_apiDbContext.Cards.Any(cc => cc.Id.Equals(c.Id)))
-                );
+                _apiDbContext.Cards.AddRange(cardsToAdd);
 
                 _apiDbContext.SaveChanges();
             }

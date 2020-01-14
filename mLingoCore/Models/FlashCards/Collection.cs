@@ -10,9 +10,5 @@ namespace mLingoCore.Models.FlashCards
     {
         [Key]
         public Guid Id { get; set; }
-
-        [ForeignKey("OwnerId")]
-        public UserInformation UserInformation { get; set; }
-
     }
 }                                                                                                                                                                                                                                                                                                               

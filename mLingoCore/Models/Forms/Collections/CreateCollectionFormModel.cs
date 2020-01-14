@@ -4,7 +4,7 @@ using mLingoCore.Models.FlashCards.Base;
 
 namespace mLingoCore.Models.Forms.Collections
 {
-    class CreateCollectionFormModel
+    public class CreateCollectionFormModel
     {
         public string Name { get; set; }
 
