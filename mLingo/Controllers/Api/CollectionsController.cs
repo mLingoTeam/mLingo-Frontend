@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using IvanAkcheurov.Commons;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -114,6 +115,15 @@ namespace mLingo.Controllers.Api
         public IActionResult Create([FromBody] CollectionData newCollectionData)
         {
             // TODO: Think about cases when collection should be rejected
+
+            var colId = Guid.NewGuid();
+            newCollectionData.Collection.Id = colId;
+            foreach (var card in newCollectionData.Cards)
+            {
+                card.Id = Guid.NewGuid();
+                card.CollectionId = colId;
+            }
+
             try
             {
                 _apiDbContext.Cards.AddRange(newCollectionData.Cards);
