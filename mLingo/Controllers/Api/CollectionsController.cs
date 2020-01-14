@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using IvanAkcheurov.Commons;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,7 +31,7 @@ namespace mLingo.Controllers.Api
 
         #region Constructor
 
-        public CollectionsController(ILogger logger, IConfiguration configuration, AppDbContext appDbContext)
+        public CollectionsController(ILogger<CollectionsController> logger, IConfiguration configuration, AppDbContext appDbContext)
         {
             _apiLogger = logger;
             _apiConfiguration = configuration;
@@ -56,7 +55,7 @@ namespace mLingo.Controllers.Api
 
                 return Ok(new ApiResponse<CollectionData>
                 {
-                    Response = collection.AsResponse().Data(_apiDbContext)
+                    Response = null
                 });
             }
             
@@ -74,7 +73,7 @@ namespace mLingo.Controllers.Api
 
                 return Ok(new ApiResponse<List<Collection>>
                 {
-                    Response = collections
+                    Response = null
                 });
             }
 
@@ -107,12 +106,12 @@ namespace mLingo.Controllers.Api
 
             return Ok(new ApiResponse<List<CollectionData>>
             {
-                Response = collections.Data(_apiDbContext)
+                Response = null
             });
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] CollectionData newCollectionData)
+        public IActionResult Create([FromBody] dynamic newCollectionData)
         {
             // TODO: Think about cases when collection should be rejected
 
