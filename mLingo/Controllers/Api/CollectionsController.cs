@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using IvanAkcheurov.Commons;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -15,6 +18,7 @@ using mLingoCore.Models.Api.ResponseModels;
 using mLingoCore.Models.Api.ResponseModels.Collections;
 using mLingoCore.Models.FlashCards;
 using mLingoCore.Models.Forms.Collections;
+using Newtonsoft.Json;
 
 namespace mLingo.Controllers.Api
 {
@@ -29,16 +33,19 @@ namespace mLingo.Controllers.Api
 
         private readonly AppDbContext _apiDbContext;
 
+        private readonly UserManager<AppUser> _apiUserManager;
+
         #endregion
 
 
         #region Constructor
 
-        public CollectionsController(ILogger<CollectionsController> logger, IConfiguration configuration, AppDbContext appDbContext)
+        public CollectionsController(ILogger<CollectionsController> logger, IConfiguration configuration, AppDbContext appDbContext, UserManager<AppUser> userManager)
         {
             _apiLogger = logger;
             _apiConfiguration = configuration;
             _apiDbContext = appDbContext;
+            _apiUserManager = userManager;
         }
 
         #endregion
@@ -56,10 +63,11 @@ namespace mLingo.Controllers.Api
                     ErrorMessage = ErrorMessages.NoSuchCollection
                 });
 
-                return Ok(new ApiResponse<CollectionFullResponse>
+                var res = JsonConvert.SerializeObject(new ApiResponse<CollectionFullResponse>
                 {
                     Response = new CollectionFullResponse(collection.Data(_apiDbContext))
                 });
+                return Ok(res);
             }
             
             if (!name.IsNullOrEmpty())
@@ -74,13 +82,15 @@ namespace mLingo.Controllers.Api
                     collections = new List<Collection>();
                 }
 
-                var res = new List<CollectionOverviewResponse>();
-                foreach(var c in collections) res.Add(new CollectionOverviewResponse(c));
+                var colls = new List<CollectionOverviewResponse>();
+                foreach(var c in collections) colls.Add(new CollectionOverviewResponse(c));
 
-                return Ok(new ApiResponse<List<CollectionOverviewResponse>>
+                var res = JsonConvert.SerializeObject(new ApiResponse<List<CollectionOverviewResponse>>
                 {
-                    Response = res
+                    Response = colls
                 });
+
+                return Ok(res);
             }
 
             return BadRequest(new ApiResponse
@@ -119,16 +129,19 @@ namespace mLingo.Controllers.Api
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] CreateCollectionFormModel newCollectionData)
+        public async Task<IActionResult> Create([FromBody] CreateCollectionFormModel newCollectionData)
         {
             // TODO: Think about cases when collection should be rejected
+
+            var user = await _apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
+            var uid = new Guid(user.Id);
 
             var colId = Guid.NewGuid();
             var collection = new Collection
             {
                 Id = colId,
                 Name = newCollectionData.Name,
-                OwnerId = newCollectionData.Owner
+                OwnerId = uid
             };
 
             var cards = new List<Card>();
@@ -143,8 +156,8 @@ namespace mLingo.Controllers.Api
 
             try
             {
-                _apiDbContext.Cards.AddRange(cards);
                 _apiDbContext.Collections.Add(collection);
+                _apiDbContext.Cards.AddRange(cards);
                 _apiDbContext.SaveChanges();
             }
             catch
@@ -210,6 +223,7 @@ namespace mLingo.Controllers.Api
             {
                 _apiDbContext.Collections.Remove(_apiDbContext.Collections.First(c => c.Id.Equals(guid)));
                 _apiDbContext.Cards.RemoveRange(_apiDbContext.Cards.Where(c => c.CollectionId.Equals(guid)));
+                _apiDbContext.SaveChanges();
             }
             catch
             {

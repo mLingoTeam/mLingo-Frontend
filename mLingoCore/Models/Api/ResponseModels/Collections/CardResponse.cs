@@ -6,6 +6,10 @@ namespace mLingoCore.Models.Api.ResponseModels.Collections
 {
     public class CardResponse : CardBase
     {
+        public CardResponse()
+        {
+            
+        }
         public CardResponse(Card card) : base(card)
         {
             Id = card.Id;

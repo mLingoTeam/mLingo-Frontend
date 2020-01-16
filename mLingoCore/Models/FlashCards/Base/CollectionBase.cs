@@ -12,7 +12,7 @@ namespace mLingoCore.Models.FlashCards.Base
         public CollectionBase(Collection collection)
         {
             Name = collection.Name;
-            Owner = collection.OwnerId;
+            OwnerId = collection.OwnerId;
         }
         public string Name { get; set; }
 

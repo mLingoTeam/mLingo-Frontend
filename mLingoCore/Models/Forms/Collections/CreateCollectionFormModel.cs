@@ -8,8 +8,6 @@ namespace mLingoCore.Models.Forms.Collections
     {
         public string Name { get; set; }
 
-        public Guid Owner { get; set; }
-
         public List<CardBase> Cards { get; set; }
     }
 }

@@ -7,14 +7,15 @@ namespace mLingoCore.Models.Api.ResponseModels.Collections
     {
         public CollectionFullResponse(CollectionData collection) : base(collection.Collection)
         {
-            var l = new List<CardResponse>();
-            foreach (var c in collection.Cards) l.Add(new CardResponse
+            Cards = new List<CardResponse>();
+            foreach (var c in collection.Cards) Cards.Add(new CardResponse
             {
                 CollectionId = c.CollectionId,
                 Definition = c.Definition,
                 Term = c.Term,
                 Id = c.Id
             });
+
         }
 
         public List<CardResponse> Cards { get; set; }

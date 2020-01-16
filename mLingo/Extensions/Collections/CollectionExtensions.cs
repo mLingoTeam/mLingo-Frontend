@@ -46,16 +46,5 @@ namespace mLingo.Extensions.Collections
                 Collection = null
             };
         }
-
-        public static Collection AsResponse(this Collection collection)
-        {
-            return new Collection
-            {
-                Id = collection.Id,
-                Name = collection.Name,
-                OwnerId =  collection.OwnerId,
-                UserInformation = null
-            };
-        }
     }
 }
