@@ -10,7 +10,6 @@ namespace mLingo.Models.Database
     /// </summary>
     public class AppUser : IdentityUser
     {
-        
         public Guid UserInfoFk { get; set; }
 
         [ForeignKey("UserInfoFk")]

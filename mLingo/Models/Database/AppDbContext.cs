@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using mLingoCore.Models.FlashCards;
 using mLingoCore.Models.UserData;
 
 namespace mLingo.Models.Database
 {
     public class AppDbContext : IdentityDbContext<AppUser>
     {
-        #region MyRegion
+        #region Constructor
         /// <summary>
         /// Default constructor, expecting database options passed in
         /// </summary>
@@ -21,6 +22,10 @@ namespace mLingo.Models.Database
         #region DbSets
 
         public DbSet<UserInformation> UserInformation { get; set; }
+
+        public DbSet<Card> Cards { get; set; }
+
+        public DbSet<Collection> Collections { get; set; }
 
         #endregion
     }
