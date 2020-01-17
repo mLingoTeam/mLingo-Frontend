@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using IvanAkcheurov.Commons;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -11,7 +14,11 @@ using mLingo.Extensions.Collections;
 using mLingo.Models.Database;
 using mLingoCore.Models.Api;
 using mLingoCore.Models.Api.Base;
+using mLingoCore.Models.Api.ResponseModels;
+using mLingoCore.Models.Api.ResponseModels.Collections;
 using mLingoCore.Models.FlashCards;
+using mLingoCore.Models.Forms.Collections;
+using Newtonsoft.Json;
 
 namespace mLingo.Controllers.Api
 {
@@ -26,16 +33,19 @@ namespace mLingo.Controllers.Api
 
         private readonly AppDbContext _apiDbContext;
 
+        private readonly UserManager<AppUser> _apiUserManager;
+
         #endregion
 
 
         #region Constructor
 
-        public CollectionsController(ILogger logger, IConfiguration configuration, AppDbContext appDbContext)
+        public CollectionsController(ILogger<CollectionsController> logger, IConfiguration configuration, AppDbContext appDbContext, UserManager<AppUser> userManager)
         {
             _apiLogger = logger;
             _apiConfiguration = configuration;
             _apiDbContext = appDbContext;
+            _apiUserManager = userManager;
         }
 
         #endregion
@@ -53,10 +63,11 @@ namespace mLingo.Controllers.Api
                     ErrorMessage = ErrorMessages.NoSuchCollection
                 });
 
-                return Ok(new ApiResponse<CollectionData>
+                var res = JsonConvert.SerializeObject(new ApiResponse<CollectionFullResponse>
                 {
-                    Response = collection.AsResponse().Data(_apiDbContext)
+                    Response = new CollectionFullResponse(collection.Data(_apiDbContext))
                 });
+                return Ok(res);
             }
             
             if (!name.IsNullOrEmpty())
@@ -71,10 +82,15 @@ namespace mLingo.Controllers.Api
                     collections = new List<Collection>();
                 }
 
-                return Ok(new ApiResponse<List<Collection>>
+                var colls = new List<CollectionOverviewResponse>();
+                foreach(var c in collections) colls.Add(new CollectionOverviewResponse(c));
+
+                var res = JsonConvert.SerializeObject(new ApiResponse<List<CollectionOverviewResponse>>
                 {
-                    Response = collections
+                    Response = colls
                 });
+
+                return Ok(res);
             }
 
             return BadRequest(new ApiResponse
@@ -97,27 +113,51 @@ namespace mLingo.Controllers.Api
             try
             {
                 collections = _apiDbContext.Collections.Where(c => c.OwnerId.Equals(user.UserInfoFk)).ToList();
-                for (var i = 0; i < collections.Count; i++) collections[i] = collections[i].AsResponse();
             }
             catch (ArgumentNullException)
             {
                 collections = new List<Collection>();
             }
 
-            return Ok(new ApiResponse<List<CollectionData>>
+            var res = new List<CollectionOverviewResponse>();
+            foreach (var c in collections) res.Add(new CollectionOverviewResponse(c));
+
+            return Ok(new ApiResponse<List<CollectionOverviewResponse>>
             {
-                Response = collections.Data(_apiDbContext)
+                Response = res
             });
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] CollectionData newCollectionData)
+        public async Task<IActionResult> Create([FromBody] CreateCollectionFormModel newCollectionData)
         {
             // TODO: Think about cases when collection should be rejected
+
+            var user = await _apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
+            var uid = new Guid(user.Id);
+
+            var colId = Guid.NewGuid();
+            var collection = new Collection
+            {
+                Id = colId,
+                Name = newCollectionData.Name,
+                OwnerId = uid
+            };
+
+            var cards = new List<Card>();
+            foreach(var c in newCollectionData.Cards) cards.Add(new Card
+            {
+                Id = Guid.NewGuid(),
+                Collection = collection,
+                CollectionId = collection.Id,
+                Term = c.Term,
+                Definition = c.Definition
+            });
+
             try
             {
-                _apiDbContext.Cards.AddRange(newCollectionData.Cards);
-                _apiDbContext.Collections.Add(newCollectionData.Collection);
+                _apiDbContext.Collections.Add(collection);
+                _apiDbContext.Cards.AddRange(cards);
                 _apiDbContext.SaveChanges();
             }
             catch
@@ -132,26 +172,38 @@ namespace mLingo.Controllers.Api
         }
 
         [HttpPut]
-        public IActionResult Update([FromQuery] string id, [FromBody] CollectionData updatedCollection)
+        public IActionResult Update([FromQuery] string id, [FromBody] UpdateCollectionFormModel updatedCollection)
         {
-            var collectionToUpdate = _apiDbContext.Collections.First(c => c.Id.ToString().Equals(id));
+            var collectionToUpdate = _apiDbContext.Collections.First(c => c.Id.Equals(new Guid(id)));
             if (collectionToUpdate == null)
                 return BadRequest(new ApiResponse
                 {
                     ErrorMessage = ""
                 });
 
-            collectionToUpdate.Name = updatedCollection.Collection.Name;
+            collectionToUpdate.Name = updatedCollection.Name;
+
+            var cardsToAdd = new List<Card>();
+            foreach (var card in updatedCollection.Cards)
+            {
+                if (!_apiDbContext.Cards.Any(c => c.Id.Equals(card.Id)))
+                    cardsToAdd.Add(new Card
+                    {
+                        Collection = collectionToUpdate,
+                        CollectionId = collectionToUpdate.Id,
+                        Term = card.Term,
+                        Definition = card.Definition,
+                        Id = Guid.NewGuid()
+                    });
+            }
 
             try
             {
                 _apiDbContext.Cards.RemoveRange(
+                    //remove cards
                     _apiDbContext.Cards.Where(c => !updatedCollection.Cards.Any(cc => cc.Id.Equals(c.Id)))
                 );
-
-                _apiDbContext.Cards.AddRange(
-                    updatedCollection.Cards.Where(c => !_apiDbContext.Cards.Any(cc => cc.Id.Equals(c.Id)))
-                );
+                _apiDbContext.Cards.AddRange(cardsToAdd);
 
                 _apiDbContext.SaveChanges();
             }
@@ -171,6 +223,7 @@ namespace mLingo.Controllers.Api
             {
                 _apiDbContext.Collections.Remove(_apiDbContext.Collections.First(c => c.Id.Equals(guid)));
                 _apiDbContext.Cards.RemoveRange(_apiDbContext.Cards.Where(c => c.CollectionId.Equals(guid)));
+                _apiDbContext.SaveChanges();
             }
             catch
             {
