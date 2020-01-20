@@ -119,13 +119,15 @@ namespace mLingo.Controllers.Api
                 collections = new List<Collection>();
             }
 
-            var res = new List<CollectionOverviewResponse>();
-            foreach (var c in collections) res.Add(new CollectionOverviewResponse(c));
+            var collectionsNormalized = new List<CollectionOverviewResponse>();
+            foreach (var c in collections) collectionsNormalized.Add(new CollectionOverviewResponse(c));
 
-            return Ok(new ApiResponse<List<CollectionOverviewResponse>>
+            var res = JsonConvert.SerializeObject(new ApiResponse<List<CollectionOverviewResponse>>
             {
-                Response = res
+                Response = collectionsNormalized
             });
+
+            return Ok(res);
         }
 
         [HttpPost]
