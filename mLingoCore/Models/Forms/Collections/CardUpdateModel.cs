@@ -5,6 +5,6 @@ namespace mLingoCore.Models.Forms.Collections
 {
     public class CardUpdateModel : CardBase
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 }

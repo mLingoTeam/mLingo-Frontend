@@ -119,13 +119,15 @@ namespace mLingo.Controllers.Api
                 collections = new List<Collection>();
             }
 
-            var res = new List<CollectionOverviewResponse>();
-            foreach (var c in collections) res.Add(new CollectionOverviewResponse(c));
+            var collectionsNormalized = new List<CollectionOverviewResponse>();
+            foreach (var c in collections) collectionsNormalized.Add(new CollectionOverviewResponse(c));
 
-            return Ok(new ApiResponse<List<CollectionOverviewResponse>>
+            var res = JsonConvert.SerializeObject(new ApiResponse<List<CollectionOverviewResponse>>
             {
-                Response = res
+                Response = collectionsNormalized
             });
+
+            return Ok(res);
         }
 
         [HttpPost]
@@ -172,8 +174,9 @@ namespace mLingo.Controllers.Api
         }
 
         [HttpPut]
-        public IActionResult Update([FromQuery] string id, [FromBody] UpdateCollectionFormModel updatedCollection)
+        public async Task<IActionResult> Update([FromQuery] string id, [FromBody] UpdateCollectionFormModel updatedCollection)
         {
+            // find collection to update
             var collectionToUpdate = _apiDbContext.Collections.First(c => c.Id.Equals(new Guid(id)));
             if (collectionToUpdate == null)
                 return BadRequest(new ApiResponse
@@ -181,29 +184,53 @@ namespace mLingo.Controllers.Api
                     ErrorMessage = ""
                 });
 
+            // check if user trying to update collection is its owner
+            var user = await _apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
+            var uid = new Guid(user.Id);
+            if (!uid.Equals(collectionToUpdate.OwnerId)) return Unauthorized();
+
+            // update name
             collectionToUpdate.Name = updatedCollection.Name;
 
+            // convert new and updated cards to database models
             var cardsToAdd = new List<Card>();
+            var cardsToUpdate = new List<Card>();
+
             foreach (var card in updatedCollection.Cards)
             {
-                if (!_apiDbContext.Cards.Any(c => c.Id.Equals(card.Id)))
-                    cardsToAdd.Add(new Card
-                    {
-                        Collection = collectionToUpdate,
-                        CollectionId = collectionToUpdate.Id,
-                        Term = card.Term,
-                        Definition = card.Definition,
-                        Id = Guid.NewGuid()
-                    });
+                var normalizedCard = new Card(card, collectionToUpdate);
+                //if (!_apiDbContext.Cards.Any(c => c.Id.Equals(card.Id)))
+                
+                    
+                if(_apiDbContext.Cards.Contains(normalizedCard))
+                {
+                    if(_apiDbContext.Cards.First(c => c.Id.Equals(normalizedCard.Id)).IsUpdateNeeded(normalizedCard))
+                        cardsToUpdate.Add(normalizedCard);
+                }
+                else
+                {
+                    cardsToAdd.Add(normalizedCard);
+                }
             }
 
+            var cardsToRemove = _apiDbContext.Cards
+                .Where(c => c.CollectionId.Equals(collectionToUpdate.Id)).ToList()
+                .Where(card => !cardsToAdd.Any(cc => cc.Id.Equals(card.Id)) && !cardsToUpdate.Any(cc => cc.Id.Equals(card.Id)))
+                .ToList();
+
+            // add, update and remove cards
             try
             {
-                _apiDbContext.Cards.RemoveRange(
-                    //remove cards
-                    _apiDbContext.Cards.Where(c => !updatedCollection.Cards.Any(cc => cc.Id.Equals(c.Id)))
-                );
+                _apiDbContext.Cards.RemoveRange(cardsToRemove);
+
                 _apiDbContext.Cards.AddRange(cardsToAdd);
+
+                foreach (var updated in cardsToUpdate)
+                {
+                    var card = _apiDbContext.Cards.First(c => c.Id.Equals(updated.Id));
+                    card.Term = updated.Term;
+                    card.Definition = updated.Definition;
+                }
 
                 _apiDbContext.SaveChanges();
             }
