@@ -41,20 +41,11 @@ function setIntoLocalStorage({ name = "null", value = "null" }) {
 
 function requestCollection() {
 
-  let data = null;
-
   const requestOptions = {
     method: "GET",
     headers: { "Content-Type": "application/json" }
   };
 
-  fetch(`http://localhost:5000/api/collections/usercollections?username=example1`, requestOptions)
-
-    .then(result => { console.log(result); result.json() })
-    .then(user => {
-      data = user;
-      console.log(user);
-      return user;
-    });
-  return data;
+  return fetch(`http://localhost:5000/api/collections/usercollections?username=example1`, requestOptions)
+    .then(result => result.json())
 }

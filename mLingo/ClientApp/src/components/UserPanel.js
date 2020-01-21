@@ -11,9 +11,10 @@ class UserPanel extends React.Component {
     }
   }
 
-  findcollection = () => {
-    const collectiondata = authenticationService.requestCollection();
+  async findcollection() {
+    const collectiondata = await authenticationService.requestCollection();
     console.log(collectiondata);
+    console.log(collectiondata.Response[0]);
   }
 
   logout = () => {
