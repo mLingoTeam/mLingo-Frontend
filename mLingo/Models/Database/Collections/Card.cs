@@ -1,16 +1,19 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using mLingoCore.Models.FlashCards.Base;
 using mLingoCore.Models.Forms.Collections;
 
-namespace mLingoCore.Models.FlashCards
+namespace mLingo.Models.Database.Collections
 {
+    /// <summary>
+    /// Database model representing single learning card stored in any <see cref="Collection"/>
+    /// </summary>
     public class Card : CardBase
     {
+        #region Constructors
+
         public Card()
         {
-            
+
         }
 
         public Card(CardUpdateModel card, Collection collectionToUpdate)
@@ -22,16 +25,22 @@ namespace mLingoCore.Models.FlashCards
             Id = card.Id == null ? Guid.NewGuid() : new Guid(card.Id);
         }
 
-        [Key]
+        #endregion
+
+        #region PublicFields
+
         public Guid Id { get; set; }
+        public virtual Collection Collection { get; set; }
 
-        [ForeignKey("CollectionId")]
-        public Collection Collection { get; set; }
+        #endregion
 
+        #region Methods
 
         public bool IsUpdateNeeded(Card otherCard)
         {
             return !(Term == otherCard.Term && Definition == otherCard.Definition);
         }
+
+        #endregion
     }
 }

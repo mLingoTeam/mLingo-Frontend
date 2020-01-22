@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using mLingoCore.Models.FlashCards;
-using mLingoCore.Models.UserData;
+using mLingo.Models.Database.Collections;
+using mLingo.Models.Database.User;
 
 namespace mLingo.Models.Database
 {
@@ -21,12 +21,18 @@ namespace mLingo.Models.Database
 
         #region DbSets
 
-        public DbSet<UserInformation> UserInformation { get; set; }
+        public virtual DbSet<UserInformation> UserInformation { get; set; }
 
-        public DbSet<Card> Cards { get; set; }
+        public virtual DbSet<Card> Cards { get; set; }
 
-        public DbSet<Collection> Collections { get; set; }
+        public virtual DbSet<Collection> Collections { get; set; }
 
         #endregion
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            
+        }
     }
 }

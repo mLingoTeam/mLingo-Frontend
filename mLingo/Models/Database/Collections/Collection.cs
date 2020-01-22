@@ -1,14 +1,16 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 using mLingoCore.Models.FlashCards.Base;
-using mLingoCore.Models.UserData;
 
-namespace mLingoCore.Models.FlashCards
+namespace mLingo.Models.Database.Collections
 {
+    /// <summary>
+    /// Database model representing collection of learning cards
+    /// </summary>
     public class Collection : CollectionBase
     {
-        [Key]
         public Guid Id { get; set; }
+
+        public virtual ICollection<Card> Cards { get; set; }
     }
 }                                                                                                                                                                                                                                                                                                               

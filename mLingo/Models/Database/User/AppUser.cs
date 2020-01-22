@@ -1,7 +1,6 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
-using mLingoCore.Models.UserData;
+using mLingo.Models.Database.User;
 
 namespace mLingo.Models.Database
 {
@@ -12,7 +11,6 @@ namespace mLingo.Models.Database
     {
         public Guid UserInfoFk { get; set; }
 
-        [ForeignKey("UserInfoFk")]
-        public UserInformation UserInformation { get; set; }
+        public virtual UserInformation UserInformation { get; set; }
     }
 }

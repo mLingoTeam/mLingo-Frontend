@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using IvanAkcheurov.Commons;
 using Microsoft.AspNetCore.Authorization;
@@ -10,13 +9,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using mLingo.Extensions.Authentication;
-using mLingo.Extensions.Collections;
 using mLingo.Models.Database;
 using mLingoCore.Models.Api;
 using mLingoCore.Models.Api.Base;
-using mLingoCore.Models.Api.ResponseModels;
 using mLingoCore.Models.Api.ResponseModels.Collections;
-using mLingoCore.Models.FlashCards;
+using mLingo.Models.Database.Collections;
 using mLingoCore.Models.Forms.Collections;
 using Newtonsoft.Json;
 
@@ -65,7 +62,7 @@ namespace mLingo.Controllers.Api
 
                 var res = JsonConvert.SerializeObject(new ApiResponse<CollectionFullResponse>
                 {
-                    Response = new CollectionFullResponse(collection.Data(_apiDbContext))
+                    Response = new CollectionFullResponse()
                 });
                 return Ok(res);
             }
@@ -83,7 +80,7 @@ namespace mLingo.Controllers.Api
                 }
 
                 var colls = new List<CollectionOverviewResponse>();
-                foreach(var c in collections) colls.Add(new CollectionOverviewResponse(c));
+                foreach(var c in collections) colls.Add(new CollectionOverviewResponse());
 
                 var res = JsonConvert.SerializeObject(new ApiResponse<List<CollectionOverviewResponse>>
                 {
@@ -120,7 +117,7 @@ namespace mLingo.Controllers.Api
             }
 
             var collectionsNormalized = new List<CollectionOverviewResponse>();
-            foreach (var c in collections) collectionsNormalized.Add(new CollectionOverviewResponse(c));
+            foreach (var c in collections) collectionsNormalized.Add(new CollectionOverviewResponse());
 
             var res = JsonConvert.SerializeObject(new ApiResponse<List<CollectionOverviewResponse>>
             {

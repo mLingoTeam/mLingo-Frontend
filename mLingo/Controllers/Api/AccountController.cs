@@ -11,7 +11,8 @@ using mLingo.Models.Database;
 using mLingoCore.Models.Api;
 using mLingoCore.Models.Api.Base;
 using mLingoCore.Models.Forms;
-using mLingoCore.Models.UserData;
+using mLingo.Models.Database.User;
+using mLingoCore.Models.Api.ResponseModels;
 using Newtonsoft.Json;
 
 namespace mLingo.Controllers.Api
