@@ -1,4 +1,5 @@
 import React from "react";
+import CardComponent from './UserPanelComponents/CardComponent'
 
 import { authenticationService } from "../services/authentication";
 
@@ -9,12 +10,20 @@ class UserPanel extends React.Component {
     if (!localStorage.getItem("currentUser")) {
       this.props.history.push("/");
     }
+
+    this.state = { fields: [], exist: null }
+
+    this.findcollection = this.findcollection.bind(this);
   }
 
   async findcollection() {
     const collectiondata = await authenticationService.requestCollection();
-    console.log(collectiondata);
-    console.log(collectiondata.Response[0]);
+    if (collectiondata.Successful === true) {
+      this.setState({ "fields": collectiondata.Response, "exist": true });
+    }
+    else {
+      this.setState({ "fields": [], "exist": false });
+    }
   }
 
   logout = () => {
@@ -25,13 +34,22 @@ class UserPanel extends React.Component {
 
   render() {
     return (
-      <div className="mainpanel">
-        <div className="mainpanel__userbase">
-          <h1>Hi {localStorage.getItem("currentUser")}!</h1>
-          <p>You're logged in with React & JWT!!</p>
-          <button onClick={this.findcollection}>Find</button>
-          <button onClick={this.logout}>Logout</button>
+      <div>
+        <div className="mainpanel">
+          <div className="mainpanel__userbase">
+            <h1>Hi {localStorage.getItem("currentUser")}!</h1>
+            <h3>Welcome in MLingo!</h3>
+            <p>Search collection by user or by name!</p>
+            <button onClick={this.findcollection}>Find</button>
+            <button onClick={this.logout}>Logout</button>
+
+          </div>
         </div>
+        {
+          this.state.exist ? this.state.fields.map(element => (
+            <CardComponent set={element} />
+          )) : this.state.exist === false ? <h2> No collection found </h2> : <span>Search cards</span>
+        }
       </div>
     );
   }

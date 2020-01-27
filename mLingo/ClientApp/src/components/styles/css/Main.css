@@ -420,7 +420,6 @@ li.media h4 {
 @media (max-width: 991px) {
   .mainpanel {
     width: 100vw;
-    height: 100vh;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -452,7 +451,6 @@ li.media h4 {
 @media (min-width: 992px) {
   .mainpanel {
     width: 100vw;
-    height: 100vh;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
