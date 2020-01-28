@@ -497,4 +497,8 @@ li.media h4 {
   -webkit-filter: brightness(0.8);
           filter: brightness(0.8);
 }
+
+.searchcollectioninput {
+  margin: 20px;
+}
 /*# sourceMappingURL=Main.css.map */

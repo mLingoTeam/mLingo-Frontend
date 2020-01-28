@@ -47,7 +47,7 @@ class UserPanel extends React.Component {
             <h1>Hi {localStorage.getItem("currentUser")}!</h1>
             <h3>Welcome in MLingo!</h3>
             <p>Search collection by user or by name!</p>
-            <input type="text" onChange={this.changeRequest} />
+            <input className="searchcollectioninput" type="text" onChange={this.changeRequest} />
             <button onClick={this.findcollection}>Find</button>
             <button onClick={this.logout}>Logout</button>
 
@@ -56,7 +56,7 @@ class UserPanel extends React.Component {
         {
           this.state.exist ? this.state.fields.map(element => (
             <CardComponent set={element} />
-          )) : this.state.exist === false ? <h2> No collection found </h2> : <span>Search cards</span>
+          )) : this.state.exist === false ? <div className="container text-center"><h2> No collection found </h2></div> : <div className="container text-center"><h2> No collection found </h2></div>
         }
       </div>
     );
