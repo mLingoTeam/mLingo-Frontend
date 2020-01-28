@@ -104,7 +104,7 @@ namespace mLingo.Controllers.Api
         [AllowAnonymous]
         public IActionResult UserCollections([FromQuery] string username)
         {
-            var user = _apiDbContext.Users.First(u => u.UserName.Equals(username));
+            var user = _apiDbContext.Users.FirstOrDefault(u => u.UserName.Equals(username));
             if(user == null) return BadRequest( new ApiResponse{
                 ErrorMessage = ErrorMessages.UsernameNotFound
             });
@@ -118,6 +118,11 @@ namespace mLingo.Controllers.Api
             {
                 collections = new List<Collection>();
             }
+
+            if (collections.Count == 0) return NotFound(new ApiResponse
+            {
+                ErrorMessage = ErrorMessages.NoSuchCollection
+            });
 
             var collectionsNormalized = new List<CollectionOverviewResponse>();
             foreach (var c in collections) collectionsNormalized.Add(new CollectionOverviewResponse(c));
