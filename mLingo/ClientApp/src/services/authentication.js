@@ -2,7 +2,8 @@ export const authenticationService = {
   register,
   login,
   logout,
-  setIntoLocalStorage
+  setIntoLocalStorage,
+  requestCollection
 };
 
 function register(username, email, password) {
@@ -36,4 +37,16 @@ function logout() {
 
 function setIntoLocalStorage({ name = "null", value = "null" }) {
   localStorage.setItem(`${name}`, value);
+}
+
+function requestCollection(username) {
+
+  const requestOptions = {
+    method: "GET",
+    headers: { "Content-Type": "application/json" }
+  };
+
+  return fetch(`http://localhost:5000/api/collections/usercollections?username=${username}`, requestOptions)
+    .then(result => { console.log(result); return result })
+    .then(result => result.json())
 }
