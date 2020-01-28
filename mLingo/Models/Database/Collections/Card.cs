@@ -29,7 +29,7 @@ namespace mLingo.Models.Database.Collections
 
         #region PublicFields
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public virtual Collection Collection { get; set; }
 
         #endregion

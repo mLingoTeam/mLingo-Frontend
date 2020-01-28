@@ -11,7 +11,7 @@ namespace mLingo.Models.Database.User
     /// </summary>
     public class UserInformation : UserInformationBase
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public AppUser User { get; set; }
     }
