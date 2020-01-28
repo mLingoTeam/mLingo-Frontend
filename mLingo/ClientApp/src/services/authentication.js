@@ -47,5 +47,6 @@ function requestCollection(username) {
   };
 
   return fetch(`http://localhost:5000/api/collections/usercollections?username=${username}`, requestOptions)
+    .then(result => { console.log(result); return result })
     .then(result => result.json())
 }
