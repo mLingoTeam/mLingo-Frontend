@@ -28,7 +28,7 @@ namespace mLingo.Models.Database.Collections
         #region PublicFields
 
         public string Id { get; set; }
-        public virtual Collection Collection { get; set; }
+        public Collection Collection { get; set; }
 
         #endregion
 

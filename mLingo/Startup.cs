@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using mLingo.Models.Database;
+using mLingo.Models.Database.User;
 
 namespace mLingo
 {

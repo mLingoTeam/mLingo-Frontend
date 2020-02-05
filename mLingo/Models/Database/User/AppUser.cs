@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using mLingo.Models.Database.Collections;
 
 namespace mLingo.Models.Database.User
 {
@@ -7,8 +10,15 @@ namespace mLingo.Models.Database.User
     /// </summary>
     public class AppUser : IdentityUser
     {
-        public string UserInformationId { get; set; }
+        public AppUser()
+        {
+            Collections = new List<Collection>();
+        }
 
-        public virtual UserInformation UserInformation { get; set; }
+        public string? UserInformationId { get; set; }
+
+        public UserInformation UserInformation { get; set; }
+
+        public List<Collection> Collections { get; set; }
     }
 }

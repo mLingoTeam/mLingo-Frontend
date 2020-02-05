@@ -13,7 +13,7 @@ namespace mLingoCore.Models.FlashCards.Base
 
         public string Definition { get; set; }
 
-        public string CollectionId { get; set; }
+        public string? CollectionId { get; set; }
 
         #endregion
     }
