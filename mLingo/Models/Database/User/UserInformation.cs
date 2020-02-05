@@ -11,8 +11,8 @@ namespace mLingo.Models.Database.User
     /// </summary>
     public class UserInformation : UserInformationBase
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
-        public AppUser User { get; set; }
+        public virtual AppUser User { get; set; }
     }
 }

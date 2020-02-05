@@ -16,20 +16,18 @@ namespace mLingo.Models.Database.Collections
 
         }
 
-        public Card(CardUpdateModel card, Collection collectionToUpdate)
+        public Card(CardUpdateModel card)
         {
-            Collection = collectionToUpdate;
-            CollectionId = collectionToUpdate.Id;
             Term = card.Term;
             Definition = card.Definition;
-            Id = card.Id == null ? Guid.NewGuid() : new Guid(card.Id);
+            Id = card.Id ?? Guid.NewGuid().ToString();
         }
 
         #endregion
 
         #region PublicFields
 
-        public int Id { get; set; }
+        public string Id { get; set; }
         public virtual Collection Collection { get; set; }
 
         #endregion

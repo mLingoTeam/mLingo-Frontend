@@ -14,6 +14,7 @@ using mLingoCore.Models.Api;
 using mLingoCore.Models.Api.Base;
 using mLingoCore.Models.Api.ResponseModels.Collections;
 using mLingo.Models.Database.Collections;
+using mLingo.Models.Database.User;
 using mLingoCore.Models.Forms.Collections;
 using Newtonsoft.Json;
 
@@ -133,20 +134,20 @@ namespace mLingo.Controllers.Api
             // TODO: Think about cases when collection should be rejected
 
             var user = await _apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
-            var uid = new Guid(user.Id);
+            if (user == null) return Unauthorized();
 
-            var colId = Guid.NewGuid();
+            var colId = Guid.NewGuid().ToString();
             var collection = new Collection
             {
                 Id = colId,
                 Name = newCollectionData.Name,
-                OwnerId = uid
+                OwnerId = user.Id
             };
 
             var cards = new List<Card>();
             foreach(var c in newCollectionData.Cards) cards.Add(new Card
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.NewGuid().ToString(),
                 Collection = collection,
                 CollectionId = collection.Id,
                 Term = c.Term,
@@ -174,7 +175,7 @@ namespace mLingo.Controllers.Api
         public async Task<IActionResult> Update([FromQuery] string id, [FromBody] UpdateCollectionFormModel updatedCollection)
         {
             // find collection to update
-            var collectionToUpdate = _apiDbContext.Collections.First(c => c.Id.Equals(new Guid(id)));
+            var collectionToUpdate = _apiDbContext.Collections.First(c => c.Id.Equals(id));
             if (collectionToUpdate == null)
                 return BadRequest(new ApiResponse
                 {
@@ -183,7 +184,7 @@ namespace mLingo.Controllers.Api
 
             // check if user trying to update collection is its owner
             var user = await _apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
-            var uid = new Guid(user.Id);
+            var uid = user.Id;
             if (!uid.Equals(collectionToUpdate.OwnerId)) return Unauthorized();
 
             // update name
@@ -195,9 +196,12 @@ namespace mLingo.Controllers.Api
 
             foreach (var card in updatedCollection.Cards)
             {
-                var normalizedCard = new Card(card, collectionToUpdate);
-                //if (!_apiDbContext.Cards.Any(c => c.Id.Equals(card.Id)))
-                
+                var normalizedCard = new Card(card)
+                {
+                    Collection = collectionToUpdate,
+                    CollectionId = collectionToUpdate.Id
+                };
+
                     
                 if(_apiDbContext.Cards.Contains(normalizedCard))
                 {
@@ -242,11 +246,10 @@ namespace mLingo.Controllers.Api
         [HttpDelete]
         public IActionResult Delete([FromQuery] string id)
         {
-            var guid = new Guid(id);
             try
             {
-                _apiDbContext.Collections.Remove(_apiDbContext.Collections.First(c => c.Id.Equals(guid)));
-                _apiDbContext.Cards.RemoveRange(_apiDbContext.Cards.Where(c => c.CollectionId.Equals(guid)));
+                _apiDbContext.Collections.Remove(_apiDbContext.Collections.First(c => c.Id.Equals(id)));
+                _apiDbContext.Cards.RemoveRange(_apiDbContext.Cards.Where(c => c.CollectionId.Equals(id)));
                 _apiDbContext.SaveChanges();
             }
             catch

@@ -32,7 +32,9 @@ namespace mLingo.Models.Database
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            
+            builder.HasDefaultSchema("public");
+
+
         }
     }
 }

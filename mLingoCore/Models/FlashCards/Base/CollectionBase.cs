@@ -11,7 +11,7 @@ namespace mLingoCore.Models.FlashCards.Base
 
         public string Name { get; set; }
 
-        public Guid OwnerId { get; set; }
+        public string OwnerId { get; set; }
 
         #endregion
     }
