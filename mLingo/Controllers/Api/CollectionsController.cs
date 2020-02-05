@@ -143,7 +143,7 @@ namespace mLingo.Controllers.Api
             var user = await _apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
             var uid = new Guid(user.Id);
 
-            var colId = Guid.NewGuid();
+            var colId = Guid.NewGuid().ToString();
             var collection = new Collection
             {
                 Id = colId,
@@ -154,7 +154,7 @@ namespace mLingo.Controllers.Api
             var cards = new List<Card>();
             foreach(var c in newCollectionData.Cards) cards.Add(new Card
             {
-                Id = Guid.NewGuid(),
+                Id = Guid.NewGuid().ToString(),
                 Collection = collection,
                 CollectionId = collection.Id,
                 Term = c.Term,
