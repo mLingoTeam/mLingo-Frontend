@@ -110,7 +110,7 @@ namespace mLingo.Controllers.Api
             List<Collection> collections;
             try
             {
-                collections = _apiDbContext.Collections.Where(c => c.OwnerId.Equals(user.UserInfoFk)).ToList();
+                collections = _apiDbContext.Collections.Where(c => c.OwnerId.Equals(user.UserInformationId)).ToList();
             }
             catch (ArgumentNullException)
             {

@@ -1,5 +1,4 @@
-﻿using mLingo.Models.Database;
-using mLingoCore.Models.Api;
+﻿using mLingo.Models.Database.User;
 using mLingoCore.Models.Api.ResponseModels;
 
 namespace mLingo.Extensions.Authentication

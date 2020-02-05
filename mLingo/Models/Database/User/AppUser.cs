@@ -7,7 +7,7 @@ namespace mLingo.Models.Database.User
     /// </summary>
     public class AppUser : IdentityUser
     {
-        public string UserInfoFk { get; set; }
+        public string UserInformationId { get; set; }
 
         public virtual UserInformation UserInformation { get; set; }
     }
