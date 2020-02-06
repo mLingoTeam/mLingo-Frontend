@@ -174,8 +174,6 @@ namespace mLingo.Controllers.Api
                 });
             }
 
-            user.UserInformation = apiDbContext.UserInformation.First(e => e.Id.Equals(user.UserInformationId));
-
             var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
             {
                 Response = user.CredentialsNoToken()
