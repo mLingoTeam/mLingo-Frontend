@@ -13,6 +13,6 @@ namespace mLingo.Models.Database.User
     {
         public string Id { get; set; }
 
-        public AppUser User { get; set; }
+        public virtual AppUser User { get; set; }
     }
 }

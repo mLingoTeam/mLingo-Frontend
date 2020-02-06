@@ -137,8 +137,6 @@ namespace mLingo.Controllers.Api
 
             var isPasswordOk = await apiUserManager.CheckPasswordAsync(user, loginForm.Password);
 
-            user.UserInformation = apiDbContext.UserInformation.FirstOrDefault(e => e.Id.Equals(user.UserInformationId));
-
             if (isPasswordOk)
             {
                 var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>

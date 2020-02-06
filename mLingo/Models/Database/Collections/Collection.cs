@@ -17,8 +17,8 @@ namespace mLingo.Models.Database.Collections
 
         public string Id { get; set; }
 
-        public List<Card> Cards { get; set; }
+        public virtual ICollection<Card> Cards { get; set; }
 
-        public AppUser Owner { get; set; }
+        public virtual AppUser Owner { get; set; }
     }
 }                                                                                                                                                                                                                                                                                                               

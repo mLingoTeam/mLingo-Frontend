@@ -17,8 +17,8 @@ namespace mLingo.Models.Database.User
 
         public string? UserInformationId { get; set; }
 
-        public UserInformation UserInformation { get; set; }
+        public virtual UserInformation UserInformation { get; set; }
 
-        public List<Collection> Collections { get; set; }
+        public virtual ICollection<Collection> Collections { get; set; }
     }
 }
