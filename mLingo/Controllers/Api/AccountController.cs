@@ -11,7 +11,8 @@ using mLingo.Models.Database;
 using mLingoCore.Models.Api;
 using mLingoCore.Models.Api.Base;
 using mLingoCore.Models.Forms;
-using mLingoCore.Models.UserData;
+using mLingo.Models.Database.User;
+using mLingoCore.Models.Api.ResponseModels;
 using Newtonsoft.Json;
 
 namespace mLingo.Controllers.Api
@@ -80,7 +81,7 @@ namespace mLingo.Controllers.Api
                 {
                     FirstName = registerForm.FirstName,
                     LastName = registerForm.LastName,
-                    Id = new Guid(),
+                    Id = Guid.NewGuid().ToString(),
                     DateOfBirth = registerForm.DateOfBirth,
                     Age = registerForm.DateOfBirth != null ? (DateTime.Today.Year - DateTime.Parse(registerForm.DateOfBirth).Year) : 0
                 }
@@ -136,8 +137,6 @@ namespace mLingo.Controllers.Api
 
             var isPasswordOk = await apiUserManager.CheckPasswordAsync(user, loginForm.Password);
 
-            user.UserInformation = apiDbContext.UserInformation.FirstOrDefault(e => e.Id.Equals(user.UserInfoFk));
-
             if (isPasswordOk)
             {
                 var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
@@ -175,8 +174,6 @@ namespace mLingo.Controllers.Api
                 });
             }
 
-            user.UserInformation = apiDbContext.UserInformation.First(e => e.Id.Equals(user.UserInfoFk));
-
             var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
             {
                 Response = user.CredentialsNoToken()
@@ -194,7 +191,7 @@ namespace mLingo.Controllers.Api
         public async Task<IActionResult> DetailsTesting([FromBody] LoginFormModel login)
         {
             var user = await apiUserManager.FindByNameAsync(login.UserId);
-            user.UserInformation = apiDbContext.UserInformation.FirstOrDefault(e => e.Id.Equals(user.UserInfoFk));
+            user.UserInformation = apiDbContext.UserInformation.FirstOrDefault(e => e.Id.Equals(user.UserInformationId));
 
              var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
              {
