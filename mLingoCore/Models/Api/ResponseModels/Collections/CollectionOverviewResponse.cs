@@ -6,6 +6,6 @@ namespace mLingoCore.Models.Api.ResponseModels.Collections
     public class CollectionOverviewResponse : CollectionBase
     {
 
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 }

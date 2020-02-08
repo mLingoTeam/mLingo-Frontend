@@ -55,15 +55,25 @@ namespace mLingo.Controllers.Api
         {
             if (!id.IsNullOrEmpty())
             {
-                var collection = _apiDbContext.Collections.First(c => c.Id.ToString().Equals(id));
+                var collection = _apiDbContext.Collections.First(c => c.Id.Equals(id));
                 if (collection == null) return BadRequest(new ApiResponse
                 {
                     ErrorMessage = ErrorMessages.NoSuchCollection
                 });
 
+                var cards = collection.Cards
+                    .Select(card => new CardResponse {CollectionId = card.CollectionId, Definition = card.Definition, Term = card.Term, Id = card.Id})
+                    .ToList();
+
                 var res = JsonConvert.SerializeObject(new ApiResponse<CollectionFullResponse>
                 {
-                    Response = new CollectionFullResponse()
+                    Response = new CollectionFullResponse
+                    {
+                        Id = collection.Id,
+                        Name = collection.Name,
+                        OwnerId = collection.OwnerId,
+                        Cards = cards
+                    }
                 });
                 return Ok(res);
             }
@@ -80,8 +90,9 @@ namespace mLingo.Controllers.Api
                     collections = new List<Collection>();
                 }
 
-                var colls = new List<CollectionOverviewResponse>();
-                foreach(var c in collections) colls.Add(new CollectionOverviewResponse());
+                var colls = collections
+                    .Select(c => new CollectionOverviewResponse {Id = c.Id, Name = c.Name, OwnerId = c.OwnerId})
+                    .ToList();
 
                 var res = JsonConvert.SerializeObject(new ApiResponse<List<CollectionOverviewResponse>>
                 {
@@ -110,7 +121,7 @@ namespace mLingo.Controllers.Api
             List<Collection> collections;
             try
             {
-                collections = _apiDbContext.Collections.Where(c => c.OwnerId.Equals(user.UserInformationId)).ToList();
+                collections = _apiDbContext.Collections.Where(c => c.OwnerId.Equals(user.Id)).ToList();
             }
             catch (ArgumentNullException)
             {
@@ -122,8 +133,9 @@ namespace mLingo.Controllers.Api
                 ErrorMessage = ErrorMessages.NoSuchCollection
             });
 
-            var collectionsNormalized = new List<CollectionOverviewResponse>();
-            foreach (var c in collections) collectionsNormalized.Add(new CollectionOverviewResponse());
+            var collectionsNormalized = collections
+                .Select(c => new CollectionOverviewResponse {Id = c.Id, Name = c.Name, OwnerId = c.OwnerId})
+                .ToList();
 
             var res = JsonConvert.SerializeObject(new ApiResponse<List<CollectionOverviewResponse>>
             {
@@ -149,15 +161,15 @@ namespace mLingo.Controllers.Api
                 OwnerId = user.Id
             };
 
-            var cards = new List<Card>();
-            foreach(var c in newCollectionData.Cards) cards.Add(new Card
-            {
-                Id = Guid.NewGuid().ToString(),
-                Collection = collection,
-                CollectionId = collection.Id,
-                Term = c.Term,
-                Definition = c.Definition
-            });
+            var cards = newCollectionData.Cards.Select(c => new Card
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Collection = collection,
+                    CollectionId = collection.Id,
+                    Term = c.Term,
+                    Definition = c.Definition
+                })
+                .ToList();
 
             try
             {
