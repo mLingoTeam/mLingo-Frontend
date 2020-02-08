@@ -5,6 +5,6 @@ namespace mLingoCore.Models.Api.ResponseModels.Collections
 {
     public class CardResponse : CardBase
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 }
