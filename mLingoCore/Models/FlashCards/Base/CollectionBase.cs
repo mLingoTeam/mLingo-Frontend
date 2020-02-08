@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace mLingoCore.Models.FlashCards.Base
+﻿namespace mLingoCore.Models.FlashCards.Base
 {
     /// <summary>
     /// Class holding base properties of any collection

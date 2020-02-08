@@ -1,5 +1,8 @@
 ﻿namespace mLingoCore.Models.UserData
 {
+    /// <summary>
+    /// Base model for user information
+    /// </summary>
     public class UserInformationBase
     {
         public string FirstName { get; set; }

@@ -1,11 +1,13 @@
-﻿using System;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using mLingo.Models.Database.Collections;
 using mLingo.Models.Database.User;
 
 namespace mLingo.Models.Database
 {
+    /// <summary>
+    /// Entity framework core database context for mLingo application
+    /// </summary>
     public class AppDbContext : IdentityDbContext<AppUser>
     {
         #region Constructor
@@ -30,12 +32,26 @@ namespace mLingo.Models.Database
 
         #endregion
 
+        #region Configuration
+
+        /// <summary>
+        /// Context configuration, lazy loader setup
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseLazyLoadingProxies();
         }
 
+        #endregion
+
+        #region ModelCreating
+
+        /// <summary>
+        /// FluentAPI code first database implementation
+        /// </summary>
+        /// <param name="builder"></param>
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -66,5 +82,7 @@ namespace mLingo.Models.Database
             builder.Entity<Collection>().ToTable("Collections");
             builder.Entity<Card>().ToTable("Cards");
         }
+
+        #endregion
     } 
 }

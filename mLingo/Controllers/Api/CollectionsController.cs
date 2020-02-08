@@ -20,6 +20,9 @@ using Newtonsoft.Json;
 
 namespace mLingo.Controllers.Api
 {
+    /// <summary>
+    /// Controller that handle any action related with collections
+    /// </summary>
     [AuthorizeToken]
     public class CollectionsController : Controller
     {
@@ -35,9 +38,14 @@ namespace mLingo.Controllers.Api
 
         #endregion
 
-
         #region Constructor
-
+        /// <summary>
+        /// Default constructor for CollectionsController that injects all required dependencies
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="configuration"></param>
+        /// <param name="appDbContext"></param>
+        /// <param name="userManager"></param>
         public CollectionsController(ILogger<CollectionsController> logger, IConfiguration configuration, AppDbContext appDbContext, UserManager<AppUser> userManager)
         {
             _apiLogger = logger;
@@ -48,10 +56,18 @@ namespace mLingo.Controllers.Api
 
         #endregion
 
-
+        #region Searching
+        /// <summary>
+        /// HTTP GET endpoint that finds collection either by its name or id.
+        /// Id query returns full information about collection, including all the card data
+        /// Name query returns overall collection data without cards about every collection with that name
+        /// </summary>
+        /// <param name="id">Optional id of collection to find</param>
+        /// <param name="name">Optional name of collection to find</param>
+        /// <returns>for id: <see cref="CollectionFullResponse"/> and for name: <see cref="CollectionOverviewResponse"/></returns>
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Find(string id=null, string name=null)
+        public IActionResult Find(string id = null, string name = null)
         {
             if (!id.IsNullOrEmpty())
             {
@@ -62,7 +78,7 @@ namespace mLingo.Controllers.Api
                 });
 
                 var cards = collection.Cards
-                    .Select(card => new CardResponse {CollectionId = card.CollectionId, Definition = card.Definition, Term = card.Term, Id = card.Id})
+                    .Select(card => new CardResponse { CollectionId = card.CollectionId, Definition = card.Definition, Term = card.Term, Id = card.Id })
                     .ToList();
 
                 var res = JsonConvert.SerializeObject(new ApiResponse<CollectionFullResponse>
@@ -77,21 +93,21 @@ namespace mLingo.Controllers.Api
                 });
                 return Ok(res);
             }
-            
+
             if (!name.IsNullOrEmpty())
             {
                 List<Collection> collections;
                 try
-                { 
+                {
                     collections = _apiDbContext.Collections.Where(c => c.Name.Equals(name)).ToList();
                 }
-                catch(ArgumentNullException)
+                catch (ArgumentNullException)
                 {
                     collections = new List<Collection>();
                 }
 
                 var colls = collections
-                    .Select(c => new CollectionOverviewResponse {Id = c.Id, Name = c.Name, OwnerId = c.OwnerId})
+                    .Select(c => new CollectionOverviewResponse { Id = c.Id, Name = c.Name, OwnerId = c.OwnerId })
                     .ToList();
 
                 var res = JsonConvert.SerializeObject(new ApiResponse<List<CollectionOverviewResponse>>
@@ -108,13 +124,18 @@ namespace mLingo.Controllers.Api
             });
         }
 
-
+        /// <summary>
+        /// HTTP GET endpoint that returns information about all collections that specified user owns/>
+        /// </summary>
+        /// <param name="username">Username of user whose collections we want to fetch</param>
+        /// <returns>List of <see cref="CollectionOverviewResponse"/></returns>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult UserCollections([FromQuery] string username)
         {
             var user = _apiDbContext.Users.FirstOrDefault(u => u.UserName.Equals(username));
-            if(user == null) return BadRequest( new ApiResponse{
+            if (user == null) return BadRequest(new ApiResponse
+            {
                 ErrorMessage = ErrorMessages.UsernameNotFound
             });
 
@@ -134,7 +155,7 @@ namespace mLingo.Controllers.Api
             });
 
             var collectionsNormalized = collections
-                .Select(c => new CollectionOverviewResponse {Id = c.Id, Name = c.Name, OwnerId = c.OwnerId})
+                .Select(c => new CollectionOverviewResponse { Id = c.Id, Name = c.Name, OwnerId = c.OwnerId })
                 .ToList();
 
             var res = JsonConvert.SerializeObject(new ApiResponse<List<CollectionOverviewResponse>>
@@ -145,6 +166,16 @@ namespace mLingo.Controllers.Api
             return Ok(res);
         }
 
+        #endregion
+
+        #region Manipulating
+
+        /// <summary>
+        /// HTTP POST endpoint that creates new collection in the database.
+        /// This method automatically generates all ids and assigns owner id based on user token
+        /// </summary>
+        /// <param name="newCollectionData"><see cref="CreateCollectionFormModel"/></param>
+        /// <returns>Http status code</returns>
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateCollectionFormModel newCollectionData)
         {
@@ -162,13 +193,13 @@ namespace mLingo.Controllers.Api
             };
 
             var cards = newCollectionData.Cards.Select(c => new Card
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Collection = collection,
-                    CollectionId = collection.Id,
-                    Term = c.Term,
-                    Definition = c.Definition
-                })
+            {
+                Id = Guid.NewGuid().ToString(),
+                Collection = collection,
+                CollectionId = collection.Id,
+                Term = c.Term,
+                Definition = c.Definition
+            })
                 .ToList();
 
             try
@@ -188,6 +219,12 @@ namespace mLingo.Controllers.Api
             return Accepted();
         }
 
+        /// <summary>
+        /// HTTP PUT endpoint that updates collection data, add/removes cards etc.
+        /// </summary>
+        /// <param name="id">Id of collection to be updated</param>
+        /// <param name="updatedCollection"><see cref="UpdateCollectionFormModel"/> with new collection data</param>
+        /// <returns>Http response code</returns>
         [HttpPut]
         public async Task<IActionResult> Update([FromQuery] string id, [FromBody] UpdateCollectionFormModel updatedCollection)
         {
@@ -211,6 +248,7 @@ namespace mLingo.Controllers.Api
             var cardsToAdd = new List<Card>();
             var cardsToUpdate = new List<Card>();
 
+            // normalize and sort updated cards
             foreach (var card in updatedCollection.Cards)
             {
                 var normalizedCard = new Card(card)
@@ -219,10 +257,10 @@ namespace mLingo.Controllers.Api
                     CollectionId = collectionToUpdate.Id
                 };
 
-                    
-                if(_apiDbContext.Cards.Contains(normalizedCard))
+
+                if (_apiDbContext.Cards.Contains(normalizedCard))
                 {
-                    if(_apiDbContext.Cards.First(c => c.Id.Equals(normalizedCard.Id)).IsUpdateNeeded(normalizedCard))
+                    if (_apiDbContext.Cards.First(c => c.Id.Equals(normalizedCard.Id)).IsUpdateNeeded(normalizedCard))
                         cardsToUpdate.Add(normalizedCard);
                 }
                 else
@@ -231,6 +269,7 @@ namespace mLingo.Controllers.Api
                 }
             }
 
+            // create list of cards to remove
             var cardsToRemove = _apiDbContext.Cards
                 .Where(c => c.CollectionId.Equals(collectionToUpdate.Id)).ToList()
                 .Where(card => !cardsToAdd.Any(cc => cc.Id.Equals(card.Id)) && !cardsToUpdate.Any(cc => cc.Id.Equals(card.Id)))
@@ -260,6 +299,11 @@ namespace mLingo.Controllers.Api
             return Accepted();
         }
 
+        /// <summary>
+        /// HTTP DELETE endpoint that cascade deletes collection from database
+        /// </summary>
+        /// <param name="id">Id of collection to delete</param>
+        /// <returns>Http response code</returns>
         [HttpDelete]
         public IActionResult Delete([FromQuery] string id)
         {
@@ -279,5 +323,8 @@ namespace mLingo.Controllers.Api
 
             return Ok();
         }
+
+        #endregion
+
     }
 }
