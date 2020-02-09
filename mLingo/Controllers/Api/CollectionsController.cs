@@ -238,6 +238,7 @@ namespace mLingo.Controllers.Api
 
             // check if user trying to update collection is its owner
             var user = await _apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
+            if (user == null) return Unauthorized();
             var uid = user.Id;
             if (!uid.Equals(collectionToUpdate.OwnerId)) return Unauthorized();
 
@@ -325,6 +326,5 @@ namespace mLingo.Controllers.Api
         }
 
         #endregion
-
     }
 }
