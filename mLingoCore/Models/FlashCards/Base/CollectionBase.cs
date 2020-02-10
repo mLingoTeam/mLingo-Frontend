@@ -1,21 +1,16 @@
-﻿using System;
-
-namespace mLingoCore.Models.FlashCards.Base
+﻿namespace mLingoCore.Models.FlashCards.Base
 {
+    /// <summary>
+    /// Class holding base properties of any collection
+    /// </summary>
     public class CollectionBase
     {
-        public CollectionBase()
-        {
-            
-        }
+        #region PublicFields
 
-        public CollectionBase(Collection collection)
-        {
-            Name = collection.Name;
-            OwnerId = collection.OwnerId;
-        }
         public string Name { get; set; }
 
-        public Guid OwnerId { get; set; }
+        public string? OwnerId { get; set; }
+
+        #endregion
     }
 }

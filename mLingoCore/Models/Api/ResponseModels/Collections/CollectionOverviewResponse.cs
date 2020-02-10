@@ -1,16 +1,12 @@
-﻿using System;
-using mLingoCore.Models.FlashCards;
-using mLingoCore.Models.FlashCards.Base;
+﻿using mLingoCore.Models.FlashCards.Base;
 
-namespace mLingoCore.Models.Api.ResponseModels
+namespace mLingoCore.Models.Api.ResponseModels.Collections
 {
+    /// <summary>
+    /// Model used to serialize overview of the collection
+    /// </summary>
     public class CollectionOverviewResponse : CollectionBase
     {
-        public CollectionOverviewResponse(Collection collection) : base(collection)
-        {
-            Id = collection.Id;
-        }
-
-        public Guid Id { get; set; }
+        public string Id { get; set; }
     }
 }

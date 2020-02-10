@@ -1,8 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace mLingoCore.Models.Forms.Collections
 {
+    /// <summary>
+    /// Model used for serialization of updated collection data
+    /// </summary>
     public class UpdateCollectionFormModel
     {
         public string Name { get; set; }

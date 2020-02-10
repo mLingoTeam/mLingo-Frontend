@@ -1,24 +1,18 @@
-﻿using System;
-
-namespace mLingoCore.Models.FlashCards.Base
+﻿namespace mLingoCore.Models.FlashCards.Base
 {
+    /// <summary>
+    /// Class holding base properties of learning card
+    /// </summary>
     public class CardBase
     {
-        public CardBase()
-        {
-            
-        }
+        #region PublicFields
 
-        public CardBase(Card card)
-        {
-            Term = card.Term;
-            Definition = card.Definition;
-            CollectionId = card.CollectionId;
-        }
         public string Term { get; set; }
 
         public string Definition { get; set; }
 
-        public Guid CollectionId { get; set; }
+        public string? CollectionId { get; set; }
+
+        #endregion
     }
 }
