@@ -39,14 +39,20 @@ function setIntoLocalStorage({ name = "null", value = "null" }) {
   localStorage.setItem(`${name}`, value);
 }
 
-function requestCollection(username) {
+function requestCollection(type, name) {
+
+  let rqtype;
+
+  type === 'name' ? rqtype = 'find' : rqtype = "usercollections";
 
   const requestOptions = {
     method: "GET",
     headers: { "Content-Type": "application/json" }
   };
 
-  return fetch(`http://localhost:5000/api/collections/usercollections?username=${username}`, requestOptions)
-    .then(result => { console.log(result); return result })
+  console.log(type);
+  console.log(rqtype);
+
+  return fetch(`http://localhost:5000/api/collections/${rqtype}?${type}=${name}`, requestOptions)
     .then(result => result.json())
 }
