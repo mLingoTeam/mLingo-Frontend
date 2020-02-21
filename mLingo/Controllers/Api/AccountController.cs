@@ -295,6 +295,45 @@ namespace mLingo.Controllers.Api
             return BadRequest();
         }
 
+        /// <summary>
+        /// Resets password for the account
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="token">reset password token generated via <see cref="RequestChangeToken"/></param>
+        /// <param name="newPassword"></param>
+        /// <returns>Http status code</returns>
+        [HttpPut]
+        public async Task<IActionResult> ResetPassword(string userId, string token, [FromBody] string newPassword)
+        {
+            var user = await apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
+            if (user == null) return NotFound();
+            if (user.Id != userId) return Unauthorized();
+
+            var res = await apiUserManager.ResetPasswordAsync(user, token, newPassword);
+            if (res.Succeeded) return Accepted();
+            return BadRequest();
+        }
+
+        /// <summary>
+        /// Changes password for the account
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="resetPasswordForm">Information required to change password <see cref="ResetPasswordForm"/></param>
+        /// <returns>Http status code</returns>
+        [HttpPut]
+        public async Task<IActionResult> ChangePassword(string userId, [FromBody] ResetPasswordForm resetPasswordForm)
+        {
+            var user = await apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
+            if (user == null) return NotFound();
+            if (user.Id != userId) return Unauthorized();
+
+            var res = await apiUserManager.ChangePasswordAsync(user, resetPasswordForm.OldPassword,
+                resetPasswordForm.NewPassword);
+
+            if (res.Succeeded) return Accepted();
+            return BadRequest();
+        }
+
         #endregion
 
         #region ForTesting
