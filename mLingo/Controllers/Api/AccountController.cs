@@ -241,7 +241,7 @@ namespace mLingo.Controllers.Api
         /// <param name="prop">Property user wants to change (email / password)</param>
         /// <param name="newEmail">Parameter required to generate token for email change</param>
         /// <returns><see cref="ApiResponse"/> with token string</returns>
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> RequestChangeToken(string userId, string prop, [FromBody]string newEmail = null)
         {
             var user = await apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
@@ -274,6 +274,25 @@ namespace mLingo.Controllers.Api
                 Response = token
             });
             return Ok(res);
+        }
+
+        /// <summary>
+        /// Changes email of an account
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="token">Email change token generated via <see cref="RequestChangeToken"/></param>
+        /// <param name="newEmail"></param>
+        /// <returns>Http status code</returns>
+        [HttpPut]
+        public async Task<IActionResult> ChangeEmail(string userId, string token, [FromBody]string newEmail)
+        {
+            var user = await apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
+            if (user == null) return NotFound();
+            if (user.Id != userId) return Unauthorized();
+
+            var res = await apiUserManager.ChangeEmailAsync(user, newEmail, token);
+            if (res.Succeeded) return Accepted();
+            return BadRequest();
         }
 
         #endregion
