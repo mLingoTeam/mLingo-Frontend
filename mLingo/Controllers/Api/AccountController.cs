@@ -184,6 +184,31 @@ namespace mLingo.Controllers.Api
 
         #endregion
 
+        #region AccountManagement
+
+        /// <summary>
+        /// Deletes user account
+        /// </summary>
+        /// <param name="userId">Id of account to delete</param>
+        /// <returns>Http status code</returns>
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAccount(string userId)
+        {
+            var user = await apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
+            if (user == null) return NotFound();
+            if (user.Id != userId) return Unauthorized();
+            var res = await apiUserManager.DeleteAsync(user);
+            if(res.Succeeded) return Ok();
+            return NotFound();
+        }
+
+        public async Task<IActionResult> EditAccount(string userId)
+        {
+
+        }
+
+        #endregion
+
         #region ForTesting
 
         [HttpGet]
