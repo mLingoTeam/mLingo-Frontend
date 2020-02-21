@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -13,6 +14,7 @@ using mLingoCore.Models.Api.Base;
 using mLingoCore.Models.Forms;
 using mLingo.Models.Database.User;
 using mLingoCore.Models.Api.ResponseModels;
+using mLingoCore.Models.Forms.Accounts;
 using Newtonsoft.Json;
 
 namespace mLingo.Controllers.Api
@@ -137,20 +139,18 @@ namespace mLingo.Controllers.Api
 
             var isPasswordOk = await apiUserManager.CheckPasswordAsync(user, loginForm.Password);
 
-            if (isPasswordOk)
-            {
-                var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
+            if (!isPasswordOk)
+                return BadRequest(new ApiResponse
                 {
-                    Response = user.Credentials(user.GenerateJwtToken(apiConfiguration))
+                    ErrorMessage = ErrorMessages.InvalidLogin
                 });
-
-                return Ok(res);
-            }
-
-            return BadRequest(new ApiResponse
+            
+            var res = JsonConvert.SerializeObject(new ApiResponse<CredentialsResponse>
             {
-                ErrorMessage = ErrorMessages.InvalidLogin
+                Response = user.Credentials(user.GenerateJwtToken(apiConfiguration))
             });
+
+            return Ok(res);
         }
 
         #endregion
@@ -202,9 +202,78 @@ namespace mLingo.Controllers.Api
             return NotFound();
         }
 
-        public async Task<IActionResult> EditAccount(string userId)
+        /// <summary>
+        /// Edit accounts <see cref="UserInformation"/>
+        /// </summary>
+        /// <param name="userId">id of account</param>
+        /// <param name="newInformation">updated information</param>
+        /// <returns>Http status code</returns>
+        [HttpPut]
+        public async Task<IActionResult> EditAccountInformation(string userId, [FromBody] EditInformationForm newInformation)
         {
+            var user = await apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
+            if (user == null) return NotFound();
+            if (user.Id != userId) return Unauthorized();
 
+            try
+            {
+                if (newInformation.LastName != null) user.UserInformation.LastName = newInformation.LastName;
+                if (newInformation.FirstName != null) user.UserInformation.FirstName = newInformation.FirstName;
+                if (newInformation.DateOfBirth != null)
+                {
+                    user.UserInformation.DateOfBirth = newInformation.DateOfBirth;
+                    user.UserInformation.Age = DateTime.Today.Year - DateTime.Parse(newInformation.DateOfBirth).Year;
+                }
+
+                apiDbContext.SaveChanges();
+                return Ok();
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
+
+        /// <summary>
+        /// Generates token to change email / password
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="prop">Property user wants to change (email / password)</param>
+        /// <param name="newEmail">Parameter required to generate token for email change</param>
+        /// <returns><see cref="ApiResponse"/> with token string</returns>
+        [HttpPost]
+        public async Task<IActionResult> RequestChangeToken(string userId, string prop, [FromBody]string newEmail = null)
+        {
+            var user = await apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
+            if (user == null) return NotFound();
+            if (user.Id != userId) return Unauthorized();
+
+            if (prop == null)
+                return BadRequest(new ApiResponse
+                {
+                    ErrorMessage = "Invalid prop"
+                });
+
+            var token = prop switch
+            {
+                "email" => newEmail != null
+                    ? await apiUserManager.GenerateChangeEmailTokenAsync(user, newEmail)
+                    : "No email",
+                "password" => await apiUserManager.GeneratePasswordResetTokenAsync(user),
+                _ => "Invalid prop"
+            };
+
+            if (token == "Invalid prop" || token == "No email")
+                return BadRequest(new ApiResponse
+                {
+                    ErrorMessage = token
+                });
+
+            var res = JsonConvert.SerializeObject(new ApiResponse
+            {
+                Response = token
+            });
+            return Ok(res);
         }
 
         #endregion

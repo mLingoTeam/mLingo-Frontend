@@ -8,5 +8,7 @@ namespace mLingoCore.Models.Forms.Accounts
         {
             
         }
+
+        public string Email { get; set; }
     }
 }
