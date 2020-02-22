@@ -333,6 +333,7 @@ namespace mLingo.Controllers.Api
 
             var res = await apiUserManager.ChangePasswordAsync(user, resetPasswordForm.OldPassword,
                 resetPasswordForm.NewPassword);
+            apiDbContext.SaveChanges();
 
             if (res.Succeeded) return Accepted();
             return BadRequest();
