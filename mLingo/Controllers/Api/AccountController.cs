@@ -192,7 +192,7 @@ namespace mLingo.Controllers.Api
         /// <param name="userId">Id of account to delete</param>
         /// <returns>Http status code</returns>
         [HttpDelete]
-        public async Task<IActionResult> DeleteAccount(string userId)
+        public async Task<IActionResult> Delete(string userId)
         {
             var user = await apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
             if (user == null) return NotFound();
@@ -209,7 +209,7 @@ namespace mLingo.Controllers.Api
         /// <param name="newInformation">updated information</param>
         /// <returns>Http status code</returns>
         [HttpPut]
-        public async Task<IActionResult> EditAccountInformation(string userId, [FromBody] EditInformationForm newInformation)
+        public async Task<IActionResult> EditInformation(string userId, [FromBody] EditInformationForm newInformation)
         {
             var user = await apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
             if (user == null) return NotFound();
@@ -242,7 +242,7 @@ namespace mLingo.Controllers.Api
         /// <param name="newEmail">Parameter required to generate token for email change</param>
         /// <returns><see cref="ApiResponse"/> with token string</returns>
         [HttpGet]
-        public async Task<IActionResult> RequestChangeToken(string userId, string prop, [FromBody]string newEmail = null)
+        public async Task<IActionResult> RequestChangeToken(string userId, string prop, [FromBody]EditMailForm newEmail = null)
         {
             var user = await apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
             if (user == null) return NotFound();
@@ -257,7 +257,7 @@ namespace mLingo.Controllers.Api
             var token = prop switch
             {
                 "email" => newEmail != null
-                    ? await apiUserManager.GenerateChangeEmailTokenAsync(user, newEmail)
+                    ? await apiUserManager.GenerateChangeEmailTokenAsync(user, newEmail.Email)
                     : "No email",
                 "password" => await apiUserManager.GeneratePasswordResetTokenAsync(user),
                 _ => "Invalid prop"
@@ -284,13 +284,15 @@ namespace mLingo.Controllers.Api
         /// <param name="newEmail"></param>
         /// <returns>Http status code</returns>
         [HttpPut]
-        public async Task<IActionResult> ChangeEmail(string userId, string token, [FromBody]string newEmail)
+        public async Task<IActionResult> ChangeEmail(string userId, string token, [FromBody]EditMailForm newEmail)
         {
             var user = await apiUserManager.FindByNameAsync(HttpContext.User.Identity.Name);
             if (user == null) return NotFound();
             if (user.Id != userId) return Unauthorized();
 
-            var res = await apiUserManager.ChangeEmailAsync(user, newEmail, token);
+            var res = await apiUserManager.ChangeEmailAsync(user, newEmail.Email, token);
+            apiDbContext.SaveChanges();
+            
             if (res.Succeeded) return Accepted();
             return BadRequest();
         }
@@ -310,6 +312,8 @@ namespace mLingo.Controllers.Api
             if (user.Id != userId) return Unauthorized();
 
             var res = await apiUserManager.ResetPasswordAsync(user, token, newPassword);
+            apiDbContext.SaveChanges();
+
             if (res.Succeeded) return Accepted();
             return BadRequest();
         }
