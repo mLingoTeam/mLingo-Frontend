@@ -9,7 +9,7 @@ namespace mLingo.Extensions.Authentication
         {
             return new CredentialsResponse
             {
-                Id = user.UserInformation.Id.ToString(),
+                Id = user.Id,
                 Username = user.UserName,
                 FirstName = user.UserInformation.FirstName,
                 LastName = user.UserInformation.LastName,
@@ -23,7 +23,7 @@ namespace mLingo.Extensions.Authentication
         {
             return new CredentialsResponse
             {
-                Id = user.UserInformation.Id.ToString(),
+                Id = user.Id,
                 Username = user.UserName,
                 FirstName = user.UserInformation.FirstName,
                 LastName = user.UserInformation.LastName,

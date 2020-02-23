@@ -1,7 +1,8 @@
 ﻿using System.Linq;
+using mLingoCore.Services;
 using NTextCat;
 
-namespace mLingoCore.Services
+namespace mLingo.Modules
 {
     /// <summary>
     /// Implementation of Language Detector service, for detecting language in which collection is made

@@ -61,7 +61,8 @@ namespace mLingo.Models.Database
             builder.Entity<AppUser>().HasKey(t => t.Id);
             builder.Entity<AppUser>()
                 .HasOne(t => t.UserInformation)
-                .WithOne(t => t.User);
+                .WithOne(t => t.User)
+                .OnDelete(DeleteBehavior.Cascade);
 
 
             // Collection 1:many relation with AppUser
