@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using mLingo.Extensions.Api;
 using mLingo.Extensions.Authentication;
 using mLingo.Models.Database;
 using mLingoCore.Models.Api.Base;
@@ -49,16 +50,6 @@ namespace mLingo.Controllers.Api
 
         #endregion
 
-        #region Helpers
-
-        private IActionResult HandleManagerResponse(KeyValuePair<ApiResponse, int> res)
-        {
-            if (res.Key == null) return StatusCode(res.Value);
-            return StatusCode(res.Value, res.Key);
-        }
-
-        #endregion
-
         #region LoginAndRegister
 
         /// <summary>
@@ -71,7 +62,7 @@ namespace mLingo.Controllers.Api
         public async Task<IActionResult> Register([FromBody] RegisterFormModel registerForm)
         {
             var res = await accountManager.Register(registerForm);
-            return HandleManagerResponse(res);
+            return this.HandleManagerResponse(res);
         }
 
 
@@ -85,7 +76,7 @@ namespace mLingo.Controllers.Api
         public async Task<IActionResult> Login([FromBody] LoginFormModel loginForm)
         {
             var res = await accountManager.Login(loginForm);
-            return HandleManagerResponse(res);
+            return this.HandleManagerResponse(res);
         }
 
         #endregion
@@ -99,7 +90,7 @@ namespace mLingo.Controllers.Api
         public async Task<IActionResult> Details()
         {
             var res = await accountManager.Details(HttpContext.User.Identity.Name);
-            return HandleManagerResponse(res);
+            return this.HandleManagerResponse(res);
         }
 
         #endregion
@@ -115,7 +106,7 @@ namespace mLingo.Controllers.Api
         public async Task<IActionResult> Delete(string userId)
         {
             var res = await accountManager.Delete(userId, HttpContext.User.Identity.Name);
-            return HandleManagerResponse(res);
+            return this.HandleManagerResponse(res);
         }
 
         /// <summary>
@@ -128,7 +119,7 @@ namespace mLingo.Controllers.Api
         public async Task<IActionResult> EditInformation(string userId, [FromBody] EditInformationForm newInformation)
         {
             var res = await accountManager.EditInformation(userId, HttpContext.User.Identity.Name, newInformation);
-            return HandleManagerResponse(res);
+            return this.HandleManagerResponse(res);
         }
 
         /// <summary>
@@ -142,7 +133,7 @@ namespace mLingo.Controllers.Api
         public async Task<IActionResult> RequestChangeToken(string userId, string prop, [FromBody]EditMailForm newEmail = null)
         {
             var res = await accountManager.RequestChangeToken(userId, HttpContext.User.Identity.Name, prop, newEmail);
-            return HandleManagerResponse(res);
+            return this.HandleManagerResponse(res);
         }
 
         /// <summary>
@@ -156,7 +147,7 @@ namespace mLingo.Controllers.Api
         public async Task<IActionResult> ChangeEmail(string userId, string token, [FromBody]EditMailForm newEmail)
         {
             var res = await accountManager.ChangeEmail(userId, HttpContext.User.Identity.Name, token, newEmail);
-            return HandleManagerResponse(res);
+            return this.HandleManagerResponse(res);
         }
 
         /// <summary>
@@ -170,7 +161,7 @@ namespace mLingo.Controllers.Api
         public async Task<IActionResult> ResetPassword(string userId, string token, [FromBody] ResetPasswordForm newPassword)
         {
             var res = await accountManager.ResetPassword(userId, HttpContext.User.Identity.Name, token, newPassword);
-            return HandleManagerResponse(res);
+            return this.HandleManagerResponse(res);
         }
 
         /// <summary>
@@ -183,7 +174,7 @@ namespace mLingo.Controllers.Api
         public async Task<IActionResult> ChangePassword(string userId, [FromBody] ResetPasswordForm resetPasswordForm)
         {
             var res = await accountManager.ChangePassword(userId, HttpContext.User.Identity.Name, resetPasswordForm);
-            return HandleManagerResponse(res);
+            return this.HandleManagerResponse(res);
         }
 
         #endregion
