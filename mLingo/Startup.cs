@@ -14,6 +14,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using mLingo.Models.Database;
 using mLingo.Models.Database.User;
+using mLingo.Modules;
+using mLingoCore.Services;
 
 namespace mLingo
 {
@@ -100,6 +102,9 @@ namespace mLingo
             });
 
             services.AddControllersWithViews();
+
+            services.AddTransient<IAccountManager, StandardAccountManager>();
+            services.AddTransient<ICollectionManager, StandardCollectionManager>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
