@@ -33,25 +33,26 @@ namespace mLingo.Controllers.Api
         /// Default constructor for CollectionsController that injects all required dependencies
         /// </summary>
         /// <param name="logger"></param>
-        /// <param name="configuration"></param>
+        /// <param name="langDetector"></param>
         /// <param name="appDbContext"></param>
         /// <param name="userManager"></param>
+        /// <param name="cManager"></param>
         public CollectionsController(
             ILogger<CollectionsController> logger,
             AppDbContext appDbContext, 
             UserManager<AppUser> userManager,
-            ICollectionManager cManager)
+            ICollectionManager cManager,
+            ILanguageDetector langDetector)
         {
             var cm = (StandardCollectionManager) cManager;
             cm.DbContext = appDbContext;
             cm.UserManager = userManager;
+            cm.LanguageDetector = langDetector;
             _collectionManager = cm;
             _apiLogger = logger;
         }
 
         #endregion
-
-
 
         #region Searching
         /// <summary>
