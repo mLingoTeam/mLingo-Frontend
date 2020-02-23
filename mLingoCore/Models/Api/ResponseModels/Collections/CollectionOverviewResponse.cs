@@ -8,5 +8,13 @@ namespace mLingoCore.Models.Api.ResponseModels.Collections
     public class CollectionOverviewResponse : CollectionBase
     {
         public string Id { get; set; }
+
+        public string BaseLanguage { get; set; }
+
+        public string SecondLanguage { get; set; }
+
+        public int PlayCount { get; set; }
+
+        public float Rating { get; set; }
     }
 }
