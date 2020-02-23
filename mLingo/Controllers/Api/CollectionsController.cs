@@ -233,7 +233,7 @@ namespace mLingo.Controllers.Api
             if (collectionToUpdate == null)
                 return BadRequest(new ApiResponse
                 {
-                    ErrorMessage = ""
+                    ErrorMessage = "Collection does not exist"
                 });
 
             // check if user trying to update collection is its owner
