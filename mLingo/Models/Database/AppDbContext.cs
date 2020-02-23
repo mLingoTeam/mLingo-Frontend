@@ -30,6 +30,8 @@ namespace mLingo.Models.Database
 
         public virtual DbSet<Collection> Collections { get; set; }
 
+        public virtual DbSet<CollectionDetails> CollectionDetails { get; set; }
+
         #endregion
 
         #region Configuration
@@ -70,18 +72,29 @@ namespace mLingo.Models.Database
             builder.Entity<Collection>()
                 .HasOne(t => t.Owner)
                 .WithMany(t => t.Collections)
-                .HasForeignKey(t => t.OwnerId);
+                .HasForeignKey(t => t.OwnerId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Collection 1:1 relation with CollectionDetails
+            builder.Entity<CollectionDetails>().HasKey(t => t.Id);
+            builder.Entity<Collection>()
+                .HasOne(t => t.Details)
+                .WithOne(t => t.Collection)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // Card 1:many relation with Collection
             builder.Entity<Card>().HasKey(t => t.Id);
             builder.Entity<Card>()
                 .HasOne(t => t.Collection)
                 .WithMany(t => t.Cards)
-                .HasForeignKey(t => t.CollectionId);
+                .HasForeignKey(t => t.CollectionId)
+                .OnDelete(DeleteBehavior.ClientNoAction);
 
+            // Create tables
             builder.Entity<UserInformation>().ToTable("UserInformation");
             builder.Entity<Collection>().ToTable("Collections");
             builder.Entity<Card>().ToTable("Cards");
+            builder.Entity<CollectionDetails>().ToTable("CollectionDetails");
         }
 
         #endregion
