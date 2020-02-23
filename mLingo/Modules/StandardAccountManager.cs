@@ -1,26 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Castle.Core;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using mLingo.Extensions.Authentication;
 using mLingo.Models.Database;
 using mLingo.Models.Database.User;
-using mLingo.Modules.Interfaces;
 using mLingoCore.Models.Api;
 using mLingoCore.Models.Api.Base;
 using mLingoCore.Models.Forms;
 using mLingoCore.Models.Forms.Accounts;
+using mLingoCore.Services;
 
-namespace mLingo.Modules.Implementations
+namespace mLingo.Modules
 {
     public class StandardAccountManager : IAccountManager
     {
         
-        private Pair<ApiResponse, int> _Response(ApiResponse res, int statusCode) => new Pair<ApiResponse, int>(res, statusCode);
-        private Pair<ApiResponse, int> _Response(int statusCode) => new Pair<ApiResponse, int>(null, statusCode);
+        private static KeyValuePair<ApiResponse, int> _Response(ApiResponse res, int statusCode) => new KeyValuePair<ApiResponse, int>(res, statusCode);
+        private static KeyValuePair<ApiResponse, int> _Response(int statusCode) => new KeyValuePair<ApiResponse, int>(null, statusCode);
 
-        public async Task<Pair<ApiResponse, int>> Register(RegisterFormModel form, UserManager<AppUser> userManager, IConfiguration configuration)
+        public AppDbContext DbContext { get; set; }
+
+        public UserManager<AppUser> UserManager { get; set; }
+
+        public IConfiguration Configuration { get; set; }
+
+        public async Task<KeyValuePair<ApiResponse, int>> Register(RegisterFormModel form)
         {
             if (form == null || RegisterFormModel.ValidateForm(form) == false)
                 return _Response(new ApiResponse
@@ -43,7 +49,7 @@ namespace mLingo.Modules.Implementations
                 }
             };
 
-            var result = await userManager.CreateAsync(user, form.Password);
+            var result = await UserManager.CreateAsync(user, form.Password);
 
             if (!result.Succeeded)
                 return _Response(new ApiResponse
@@ -52,16 +58,16 @@ namespace mLingo.Modules.Implementations
                 }, 403);
 
 
-            var userIdentity = await userManager.FindByNameAsync(user.UserName);
+            var userIdentity = await UserManager.FindByNameAsync(user.UserName);
 
             return _Response(new ApiResponse
             {
-                Response = userIdentity.Credentials(userIdentity.GenerateJwtToken(configuration))
+                Response = userIdentity.Credentials(userIdentity.GenerateJwtToken(Configuration))
             }, 200);
 
         }
 
-        public async Task<Pair<ApiResponse, int>> Login(LoginFormModel form, UserManager<AppUser> userManager, IConfiguration configuration)
+        public async Task<KeyValuePair<ApiResponse, int>> Login(LoginFormModel form)
         {
             if (form == null || LoginFormModel.ValidateForm(form) == false)
                 return _Response(new ApiResponse
@@ -72,8 +78,8 @@ namespace mLingo.Modules.Implementations
             var isEmail = form.UserId.Contains("@");
 
             var user = isEmail
-                ? await userManager.FindByEmailAsync(form.UserId)
-                : await userManager.FindByNameAsync(form.UserId);
+                ? await UserManager.FindByEmailAsync(form.UserId)
+                : await UserManager.FindByNameAsync(form.UserId);
 
             if (user == null)
                 return _Response(new ApiResponse
@@ -81,7 +87,7 @@ namespace mLingo.Modules.Implementations
                     ErrorMessage = isEmail ? ErrorMessages.UserEmailNotFound : ErrorMessages.UsernameNotFound
                 }, 404);
 
-            var isPasswordOk = await userManager.CheckPasswordAsync(user, form.Password);
+            var isPasswordOk = await UserManager.CheckPasswordAsync(user, form.Password);
 
             if (!isPasswordOk)
                 return _Response(new ApiResponse
@@ -91,13 +97,13 @@ namespace mLingo.Modules.Implementations
 
             return _Response(new ApiResponse
             {
-                Response = user.Credentials(user.GenerateJwtToken(configuration))
+                Response = user.Credentials(user.GenerateJwtToken(Configuration))
             }, 200);
         }
 
-        public async Task<Pair<ApiResponse, int>> Details(UserManager<AppUser> userManager, string username)
+        public async Task<KeyValuePair<ApiResponse, int>> Details(string username)
         {
-            var user = await userManager.FindByNameAsync(username);
+            var user = await UserManager.FindByNameAsync(username);
 
             if (user == null)
             {
@@ -113,19 +119,18 @@ namespace mLingo.Modules.Implementations
             }, 200);
         }
 
-        public async Task<Pair<ApiResponse, int>> Delete(string userId, string username, UserManager<AppUser> userManager)
+        public async Task<KeyValuePair<ApiResponse, int>> Delete(string userId, string username)
         {
-            var user = await userManager.FindByNameAsync(username);
+            var user = await UserManager.FindByNameAsync(username);
             if (user == null) return _Response(401);
             if (user.Id != userId) return _Response(401);
-            var res = await userManager.DeleteAsync(user);
+            var res = await UserManager.DeleteAsync(user);
             return res.Succeeded ? _Response(200) : _Response(null, 404);
         }
 
-        public async Task<Pair<ApiResponse, int>> EditInformation(string userId, string username, EditInformationForm form, UserManager<AppUser> userManager,
-            AppDbContext dbContext)
+        public async Task<KeyValuePair<ApiResponse, int>> EditInformation(string userId, string username, EditInformationForm form)
         {
-            var user = await userManager.FindByNameAsync(username);
+            var user = await UserManager.FindByNameAsync(username);
             if (user == null) return _Response(404);
             if (user.Id != userId) return _Response(401);
 
@@ -139,7 +144,7 @@ namespace mLingo.Modules.Implementations
                     user.UserInformation.Age = DateTime.Today.Year - DateTime.Parse(form.DateOfBirth).Year;
                 }
 
-                dbContext.SaveChanges();
+                DbContext.SaveChanges();
                 return _Response(200);
             }
             catch
@@ -148,10 +153,9 @@ namespace mLingo.Modules.Implementations
             }
         }
 
-        public async Task<Pair<ApiResponse, int>> RequestChangeToken(string userId, string username, string prop, EditMailForm form,
-            UserManager<AppUser> userManager)
+        public async Task<KeyValuePair<ApiResponse, int>> RequestChangeToken(string userId, string username, string prop, EditMailForm form)
         {
-            var user = await userManager.FindByNameAsync(username);
+            var user = await UserManager.FindByNameAsync(username);
             if (user == null) return _Response(404);
             if (user.Id != userId) return _Response(401);
 
@@ -164,9 +168,9 @@ namespace mLingo.Modules.Implementations
             var token = prop switch
             {
                 "email" => form != null
-                    ? await userManager.GenerateChangeEmailTokenAsync(user, form.Email)
+                    ? await UserManager.GenerateChangeEmailTokenAsync(user, form.Email)
                     : "No email",
-                "password" => await userManager.GeneratePasswordResetTokenAsync(user),
+                "password" => await UserManager.GeneratePasswordResetTokenAsync(user),
                 _ => "Invalid prop"
             };
 
@@ -182,41 +186,38 @@ namespace mLingo.Modules.Implementations
             }, 200);
         }
 
-        public async Task<Pair<ApiResponse, int>> ChangeEmail(string userId, string username, string token, EditMailForm form,
-            UserManager<AppUser> userManager, AppDbContext dbContext)
+        public async Task<KeyValuePair<ApiResponse, int>> ChangeEmail(string userId, string username, string token, EditMailForm form)
         {
-            var user = await userManager.FindByNameAsync(username);
+            var user = await UserManager.FindByNameAsync(username);
             if (user == null) return _Response(404);
             if (user.Id != userId) return _Response(401);
 
-            var res = await userManager.ChangeEmailAsync(user, form.Email, token);
-            dbContext.SaveChanges();
+            var res = await UserManager.ChangeEmailAsync(user, form.Email, token);
+            DbContext.SaveChanges();
 
             return _Response(res.Succeeded ? 202 : 403);
         }
 
-        public async Task<Pair<ApiResponse, int>> ChangePassword(string userId, string username, ResetPasswordForm form, UserManager<AppUser> userManager,
-            AppDbContext dbContext)
+        public async Task<KeyValuePair<ApiResponse, int>> ChangePassword(string userId, string username, ResetPasswordForm form)
         {
-            var user = await userManager.FindByNameAsync(username);
+            var user = await UserManager.FindByNameAsync(username);
             if (user == null) return _Response(404);
             if (user.Id != userId) return _Response(401);
 
-            var res = await userManager.ChangePasswordAsync(user, form.OldPassword, form.NewPassword);
-            dbContext.SaveChanges();
+            var res = await UserManager.ChangePasswordAsync(user, form.OldPassword, form.NewPassword);
+            DbContext.SaveChanges();
 
             return _Response(res.Succeeded ? 202 : 403);
         }
 
-        public async Task<Pair<ApiResponse, int>> ResetPassword(string userId, string username, string token, ResetPasswordForm form,
-            UserManager<AppUser> userManager, AppDbContext dbContext)
+        public async Task<KeyValuePair<ApiResponse, int>> ResetPassword(string userId, string username, string token, ResetPasswordForm form)
         {
-            var user = await userManager.FindByNameAsync(username);
+            var user = await UserManager.FindByNameAsync(username);
             if (user == null) return _Response(404);
             if (user.Id != userId) return _Response(401);
 
             var res = await userManager.ResetPasswordAsync(user, token, form.NewPassword);
-            dbContext.SaveChanges();
+            DbContext.SaveChanges();
 
             return _Response(res.Succeeded ? 202 : 403);
         }
