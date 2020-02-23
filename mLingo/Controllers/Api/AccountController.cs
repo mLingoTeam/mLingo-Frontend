@@ -1,8 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Net;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Castle.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,15 +7,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using mLingo.Extensions.Authentication;
 using mLingo.Models.Database;
-using mLingoCore.Models.Api;
 using mLingoCore.Models.Api.Base;
 using mLingoCore.Models.Forms;
 using mLingo.Models.Database.User;
 using mLingo.Modules;
-using mLingoCore.Models.Api.ResponseModels;
 using mLingoCore.Models.Forms.Accounts;
 using mLingoCore.Services;
-using Newtonsoft.Json;
 
 namespace mLingo.Controllers.Api
 {
@@ -42,27 +36,26 @@ namespace mLingo.Controllers.Api
             ILogger<AccountController> logger,
             UserManager<AppUser> userManager,
             AppDbContext dbContext,
-            SignInManager<AppUser> signInManager,
             IConfiguration configuration,
-            StandardAccountManager accountManager)
+            IAccountManager accountManager)
         {
             apiLogger = logger;
-            accountManager.UserManager = userManager;
-            accountManager.DbContext = dbContext;
-            accountManager.Configuration = configuration;
-            this.accountManager = accountManager;
+            var am = (StandardAccountManager) accountManager;
+            am.UserManager = userManager;
+            am.DbContext = dbContext;
+            am.Configuration = configuration;
+            this.accountManager = am;
         }
 
         #endregion
 
         #region Helpers
 
-        private IActionResult HandleManagerResponse(Pair<ApiResponse, int> res)
+        private IActionResult HandleManagerResponse(KeyValuePair<ApiResponse, int> res)
         {
-            if (res.First == null) return StatusCode(res.Second);
-            return StatusCode(res.Second, res.First);
+            if (res.Key == null) return StatusCode(res.Value);
+            return StatusCode(res.Value, res.Key);
         }
-
 
         #endregion
 
@@ -196,4 +189,3 @@ namespace mLingo.Controllers.Api
         #endregion
     }
 }
- 

@@ -216,7 +216,7 @@ namespace mLingo.Modules
             if (user == null) return _Response(404);
             if (user.Id != userId) return _Response(401);
 
-            var res = await userManager.ResetPasswordAsync(user, token, form.NewPassword);
+            var res = await UserManager.ResetPasswordAsync(user, token, form.NewPassword);
             DbContext.SaveChanges();
 
             return _Response(res.Succeeded ? 202 : 403);
