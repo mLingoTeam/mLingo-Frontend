@@ -136,12 +136,12 @@ namespace mLingo.Modules
             var testSecondLangStr = "";
             newCollectionData.Cards.ForEach(c =>
             {
-                testBaseLangStr += c.Definition;
-                testSecondLangStr += c.Term;
+                testBaseLangStr += $" {c.Definition}";
+                testSecondLangStr += $" {c.Term}";
             });
 
-            var baseLang = LanguageDetector.DetectLanguage(testBaseLangStr);
-            var secondLang = LanguageDetector.DetectLanguage(testSecondLangStr);
+            var baseLang = LanguageDetector.DetectLanguage(testBaseLangStr.Trim());
+            var secondLang = LanguageDetector.DetectLanguage(testSecondLangStr.Trim());
            
 
             var details = new CollectionDetails
