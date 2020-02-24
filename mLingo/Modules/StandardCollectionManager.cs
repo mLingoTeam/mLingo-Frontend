@@ -205,6 +205,7 @@ namespace mLingo.Modules
             // normalize and sort updated cards
             var cardsToAdd = new List<Card>();
             var cardsToUpdate = new List<Card>();
+            var cardsUnchanged = new List<Card>();
 
             foreach (var card in updatedCollection.Cards)
             {
@@ -219,6 +220,7 @@ namespace mLingo.Modules
                 {
                     if (DbContext.Cards.First(c => c.Id.Equals(normalizedCard.Id)).IsUpdateNeeded(normalizedCard))
                         cardsToUpdate.Add(normalizedCard);
+                    else cardsUnchanged.Add(normalizedCard);
                 }
                 else
                 {
@@ -229,7 +231,7 @@ namespace mLingo.Modules
             // create list of cards to remove
             var cardsToRemove = DbContext.Cards
                 .Where(c => c.CollectionId.Equals(collectionToUpdate.Id)).ToList()
-                .Where(card => !cardsToAdd.Any(cc => cc.Id.Equals(card.Id)) && !cardsToUpdate.Any(cc => cc.Id.Equals(card.Id)))
+                .Where(card => !cardsToAdd.Any(cc => cc.Id.Equals(card.Id)) && !cardsToUpdate.Any(cc => cc.Id.Equals(card.Id)) && !cardsUnchanged.Any(cc => cc.Id.Equals(card.Id)))
                 .ToList();
 
             // add, update and remove cards
