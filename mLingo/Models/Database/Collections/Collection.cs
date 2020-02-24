@@ -17,8 +17,12 @@ namespace mLingo.Models.Database.Collections
 
         public string Id { get; set; }
 
+        public string DetailsId { get; set; }
+
         public virtual ICollection<Card> Cards { get; set; }
 
         public virtual AppUser Owner { get; set; }
+
+        public virtual CollectionDetails Details { get; set; }
     }
 }                                                                                                                                                                                                                                                                                                               
