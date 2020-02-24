@@ -9,12 +9,12 @@ namespace mLingo.Modules
     /// </summary>
     class LanguageDetector : ILanguageDetector
     {
-        private readonly RankedLanguageIdentifier mIdentifier;
+        private readonly RankedLanguageIdentifier Identifier;
 
         public LanguageDetector()
         {
             var factory = new RankedLanguageIdentifierFactory();
-            mIdentifier = factory.Load(@".\Assets\LanguageDetectorProfiles\Core14.profile.xml");
+            Identifier = factory.Load(@".\Assets\LanguageDetectorProfiles\Core14.profile.xml");
         }
 
 
@@ -22,12 +22,14 @@ namespace mLingo.Modules
         /// Detects most certain language based on input string. 
         /// </summary>
         /// <param name="input">String, should be at least 5 words</param>
-        /// <returns>ISO639_2T string language code (eg. "EN")</returns>
+        /// <returns>ISO639_2T string language code Iso639_2T standardized (eg. "EN")</returns>
         public string DetectLanguage(string input)
         {
-            var languages = mIdentifier.Identify(input);
+            if (input.Split(' ').Length < 5) return "NA";
+
+            var languages = Identifier.Identify(input);
             var mostCertainLanguage = languages.FirstOrDefault();
-            return mostCertainLanguage != null ? mostCertainLanguage.Item1.Iso639_2T : "unknown";
+            return mostCertainLanguage != null ? mostCertainLanguage.Item1.Iso639_2T : "NA";
         }
     }
 }

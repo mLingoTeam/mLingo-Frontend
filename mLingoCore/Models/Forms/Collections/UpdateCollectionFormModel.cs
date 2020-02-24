@@ -8,6 +8,10 @@ namespace mLingoCore.Models.Forms.Collections
     public class UpdateCollectionFormModel
     {
         public string Name { get; set; }
+
+        public string BaseLanguage { get; set; }
+
+        public string SecondLanguage { get; set; }
         
         public List<CardUpdateModel> Cards { get; set; }
     }
