@@ -126,6 +126,18 @@ namespace mLingo.Controllers.Api
             return this.HandleManagerResponse(res);
         }
 
+        /// <summary>
+        /// HTTP PUT endpoint that detects collection languages with <see cref="ILanguageDetector"/> and updates collection information
+        /// </summary>
+        /// <param name="collectionId"></param>
+        /// <returns>Http response code</returns>
+        [HttpPut]
+        public async Task<IActionResult> DetectLanguage(string collectionId)
+        {
+            var res = await _collectionManager.DetectLanguage(collectionId, HttpContext.User.Identity.Name);
+            return this.HandleManagerResponse(res);
+        }
+
         #endregion
     }
 }
