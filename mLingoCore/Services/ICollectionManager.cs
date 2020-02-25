@@ -15,6 +15,8 @@ namespace mLingoCore.Services
 
         Task<KeyValuePair<ApiResponse, int>> Update(string id, string username, UpdateCollectionFormModel updatedCollection);
 
+        Task<KeyValuePair<ApiResponse, int>> DetectLanguage(string collectionId, string username);
+
         KeyValuePair<ApiResponse, int> Delete(string id);
     }
 }
