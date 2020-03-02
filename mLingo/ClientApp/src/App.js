@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import MainPage from "./components/MainPage";
+import MainPage from "./components/pages/MainPage";
 
 import { Router, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import PrivateRoute from "./components/PrivateRoute";
-import UserPanel from "./components/UserPanel";
+import UserPanel from "./components/pages/UserPanel";
 
 export const history = createBrowserHistory();
 
