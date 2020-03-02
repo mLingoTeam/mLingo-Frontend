@@ -1,6 +1,7 @@
 import React from "react";
 
 import { authenticationService } from "../../services/authentication";
+import UserCreateCard from './UserCreateCard'
 
 class UserCreate extends React.Component {
     constructor(props) {
@@ -13,7 +14,13 @@ class UserCreate extends React.Component {
         this.state = { collectionName: "", cards: [{ Term: "Term", Definition: "Definition" }] }
 
         this.createCollection = this.createCollection.bind(this);
+        this.addCard = this.addCard.bind(this);
     }
+
+    addCard(event) {
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
 
 
     createCollection() {
@@ -34,10 +41,9 @@ class UserCreate extends React.Component {
                         <h1>Hi {localStorage.getItem("currentUser")}!</h1>
                         <h3>Create your own collection here!</h3>
                         <p>Just type here</p>
-                        <input className="searchcollectioninput" type="text" onChange={this.changeRequest} />
-                        <button onClick={this.findcollection}>Find</button>
-                        <button onClick={this.logout}>Logout</button>
+                        <UserCreateCard set={this.state.cards} functioni={this.addCard} />
 
+                        <button onClick={this.logout}>Logout</button>
                     </div>
                 </div>
             </div>

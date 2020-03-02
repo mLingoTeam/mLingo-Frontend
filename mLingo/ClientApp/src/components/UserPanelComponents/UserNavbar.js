@@ -25,7 +25,7 @@ const UserNavbar = (props) => {
                             <Link className="nav-link" to='/create/'>Create Collection</Link>
                         </NavItem>
                         <NavItem>
-                            <Link className="nav-link" to='/search/'>Search Collections</Link>
+                            <Link className="nav-link" to='/login/'>Search Collections</Link>
                         </NavItem>
                     </Nav>
                 </Collapse>
