@@ -47,7 +47,19 @@ class Login extends React.Component {
 
   async sendRequest() {
     const resolved = await authenticationService.login(this.state.username, this.state.password);
-    authenticationService.setIntoLocalStorage({ name: "currentUser", value: resolved.Response.Username });
+
+    //if there is not such an user
+    const resstatus = (JSON.stringify(resolved.successful));
+
+    if (resstatus == 'false') {
+      const err = (JSON.stringify(resolved.errorMessage));
+      alert(err);
+    } // if the user exist save they into the web
+    else {
+      authenticationService.setIntoLocalStorage({ name: "currentUser", value: resolved.Response.Username });
+    }
+
+
 
     // TO RERENDER WHEN THE ITEM IS SET IN THE LOCALSTORAGE
     this.setState({
