@@ -105,6 +105,7 @@ namespace mLingo
 
             services.AddTransient<IAccountManager, StandardAccountManager>();
             services.AddTransient<ICollectionManager, StandardCollectionManager>();
+            services.AddTransient<ILanguageDetector, LanguageDetector>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)

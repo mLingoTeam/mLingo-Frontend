@@ -22,12 +22,14 @@ namespace mLingo.Modules
 
         public AppDbContext DbContext { get; set; }
 
+        public ILanguageDetector LanguageDetector { get; set; }
+
 
         public KeyValuePair<ApiResponse, int> Find(string id, string name)
         {
             if (!id.IsNullOrEmpty())
             {
-                var collection = DbContext.Collections.First(c => c.Id.Equals(id));
+                var collection = DbContext.Collections.Find(id);
                 if (collection == null)
                     return new ApiResponse {ErrorMessage = ErrorMessages.NoSuchCollection}.WithStatusCode(403);
 
@@ -42,7 +44,11 @@ namespace mLingo.Modules
                         Id = collection.Id,
                         Name = collection.Name,
                         OwnerId = collection.OwnerId,
-                        Cards = cards
+                        Cards = cards,
+                        BaseLanguage = collection.Details.BaseLanguage,
+                        SecondLanguage = collection.Details.SecondLanguage,
+                        PlayCount = collection.Details.PlayCount,
+                        Rating = collection.Details.Rating
                     }
                 }.WithStatusCode(200);
             }
@@ -60,7 +66,16 @@ namespace mLingo.Modules
                 }
 
                 var colls = collections
-                    .Select(c => new CollectionOverviewResponse { Id = c.Id, Name = c.Name, OwnerId = c.OwnerId })
+                    .Select(c => new CollectionOverviewResponse
+                    {
+                        Id = c.Id,
+                        Name = c.Name,
+                        OwnerId = c.OwnerId,
+                        BaseLanguage = c.Details.BaseLanguage,
+                        SecondLanguage = c.Details.SecondLanguage,
+                        PlayCount = c.Details.PlayCount,
+                        Rating = c.Details.Rating
+                    })
                     .ToList();
 
                 return new ApiResponse {Response = colls}.WithStatusCode(200);
@@ -87,7 +102,16 @@ namespace mLingo.Modules
             if (collections.Count == 0) return new ApiResponse {ErrorMessage = ErrorMessages.NoSuchCollection}.WithStatusCode(404);
 
             var collectionsNormalized = collections
-                .Select(c => new CollectionOverviewResponse { Id = c.Id, Name = c.Name, OwnerId = c.OwnerId })
+                .Select(c => new CollectionOverviewResponse
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    OwnerId = c.OwnerId,
+                    BaseLanguage = c.Details.BaseLanguage,
+                    SecondLanguage = c.Details.SecondLanguage,
+                    PlayCount = c.Details.PlayCount,
+                    Rating = c.Details.Rating
+                })
                 .ToList();
 
             return new ApiResponse {Response = collectionsNormalized}.WithStatusCode(200);
@@ -99,11 +123,34 @@ namespace mLingo.Modules
             if (user == null) return ApiResponseExtensions.StatusCodeOnly(401);
 
             var colId = Guid.NewGuid().ToString();
+            var detailsId = Guid.NewGuid().ToString();
             var collection = new Collection
             {
                 Id = colId,
                 Name = newCollectionData.Name,
-                OwnerId = user.Id
+                OwnerId = user.Id,
+                DetailsId = detailsId
+            };
+
+            var testBaseLangStr = "";
+            var testSecondLangStr = "";
+            newCollectionData.Cards.ForEach(c =>
+            {
+                testBaseLangStr += $" {c.Definition}";
+                testSecondLangStr += $" {c.Term}";
+            });
+
+            var baseLang = LanguageDetector.DetectLanguage(testBaseLangStr.Trim());
+            var secondLang = LanguageDetector.DetectLanguage(testSecondLangStr.Trim());
+           
+
+            var details = new CollectionDetails
+            {
+                Id = detailsId,
+                PlayCount = 0,
+                Rating = 0,
+                BaseLanguage = baseLang,
+                SecondLanguage = secondLang
             };
 
             var cards = newCollectionData.Cards.Select(c => new Card
@@ -120,6 +167,7 @@ namespace mLingo.Modules
             {
                 DbContext.Collections.Add(collection);
                 DbContext.Cards.AddRange(cards);
+                DbContext.CollectionDetails.Add(details);
                 DbContext.SaveChanges();
             }
             catch
@@ -133,7 +181,7 @@ namespace mLingo.Modules
         public async Task<KeyValuePair<ApiResponse, int>> Update(string id, string username, UpdateCollectionFormModel updatedCollection)
         {
             // find collection to update
-            var collectionToUpdate = DbContext.Collections.First(c => c.Id.Equals(id));
+            var collectionToUpdate = DbContext.Collections.Find(id);
             if (collectionToUpdate == null)
                 return new ApiResponse
                 {
@@ -149,11 +197,16 @@ namespace mLingo.Modules
             // update name
             collectionToUpdate.Name = updatedCollection.Name;
 
-            // convert new and updated cards to database models
-            var cardsToAdd = new List<Card>();
-            var cardsToUpdate = new List<Card>();
+            //updated details
+            var details = DbContext.CollectionDetails.Find(collectionToUpdate.DetailsId);
+            details.BaseLanguage = updatedCollection.BaseLanguage;
+            details.SecondLanguage = updatedCollection.SecondLanguage;
 
             // normalize and sort updated cards
+            var cardsToAdd = new List<Card>();
+            var cardsToUpdate = new List<Card>();
+            var cardsUnchanged = new List<Card>();
+
             foreach (var card in updatedCollection.Cards)
             {
                 var normalizedCard = new Card(card)
@@ -167,6 +220,7 @@ namespace mLingo.Modules
                 {
                     if (DbContext.Cards.First(c => c.Id.Equals(normalizedCard.Id)).IsUpdateNeeded(normalizedCard))
                         cardsToUpdate.Add(normalizedCard);
+                    else cardsUnchanged.Add(normalizedCard);
                 }
                 else
                 {
@@ -177,19 +231,20 @@ namespace mLingo.Modules
             // create list of cards to remove
             var cardsToRemove = DbContext.Cards
                 .Where(c => c.CollectionId.Equals(collectionToUpdate.Id)).ToList()
-                .Where(card => !cardsToAdd.Any(cc => cc.Id.Equals(card.Id)) && !cardsToUpdate.Any(cc => cc.Id.Equals(card.Id)))
+                .Where(card => !cardsToAdd.Any(cc => cc.Id.Equals(card.Id)) && !cardsToUpdate.Any(cc => cc.Id.Equals(card.Id)) && !cardsUnchanged.Any(cc => cc.Id.Equals(card.Id)))
                 .ToList();
 
             // add, update and remove cards
             try
             {
                 DbContext.Cards.RemoveRange(cardsToRemove);
-
                 DbContext.Cards.AddRange(cardsToAdd);
 
                 foreach (var updated in cardsToUpdate)
                 {
-                    var card = DbContext.Cards.First(c => c.Id.Equals(updated.Id));
+                    var card = DbContext.Cards.Find(updated.Id);
+                    if(card == null) continue;
+
                     card.Term = updated.Term;
                     card.Definition = updated.Definition;
                 }
