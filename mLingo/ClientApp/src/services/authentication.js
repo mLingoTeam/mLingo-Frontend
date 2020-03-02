@@ -56,3 +56,14 @@ function requestCollection(type, name) {
   return fetch(`http://localhost:5000/api/collections/${rqtype}?${type}=${name}`, requestOptions)
     .then(result => result.json())
 }
+
+function createCollection(name, cards) {
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, cards })
+  };
+
+  return fetch(`http://localhost:5000/api/account/create`, requestOptions)
+    .then(result => result.json())
+}
