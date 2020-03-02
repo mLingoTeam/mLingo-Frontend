@@ -1,10 +1,11 @@
 import React from 'react';
+import UserNavbar from '../UserPanelComponents/UserNavbar'
 
 const UserPanelLayout = ({ children }) => {
 
     return (
         <div>
-            <header>Hey</header>
+            <UserNavbar />
             <main>{children}</main>
         </div>
     )
