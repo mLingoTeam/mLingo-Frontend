@@ -100,12 +100,11 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Deletes user account
         /// </summary>
-        /// <param name="userId">Id of account to delete</param>
         /// <returns>Http status code</returns>
         [HttpDelete]
-        public async Task<IActionResult> Delete(string userId)
+        public async Task<IActionResult> Delete()
         {
-            var res = await accountManager.Delete(userId, HttpContext.User.Identity.Name);
+            var res = await accountManager.Delete(HttpContext.User.Identity.Name);
             return this.HandleManagerResponse(res);
         }
 
@@ -116,9 +115,9 @@ namespace mLingo.Controllers.Api
         /// <param name="newInformation">updated information</param>
         /// <returns>Http status code</returns>
         [HttpPut]
-        public async Task<IActionResult> EditInformation(string userId, [FromBody] EditInformationForm newInformation)
+        public async Task<IActionResult> EditInformation([FromBody] EditInformationForm newInformation)
         {
-            var res = await accountManager.EditInformation(userId, HttpContext.User.Identity.Name, newInformation);
+            var res = await accountManager.EditInformation(HttpContext.User.Identity.Name, newInformation);
             return this.HandleManagerResponse(res);
         }
 
@@ -130,9 +129,9 @@ namespace mLingo.Controllers.Api
         /// <param name="newEmail">Parameter required to generate token for email change</param>
         /// <returns><see cref="ApiResponse"/> with token string</returns>
         [HttpGet]
-        public async Task<IActionResult> RequestChangeToken(string userId, string prop, [FromBody]EditMailForm newEmail = null)
+        public async Task<IActionResult> RequestChangeToken(string prop, [FromBody]EditMailForm newEmail = null)
         {
-            var res = await accountManager.RequestChangeToken(userId, HttpContext.User.Identity.Name, prop, newEmail);
+            var res = await accountManager.RequestChangeToken(HttpContext.User.Identity.Name, prop, newEmail);
             return this.HandleManagerResponse(res);
         }
 
@@ -144,9 +143,9 @@ namespace mLingo.Controllers.Api
         /// <param name="newEmail"></param>
         /// <returns>Http status code</returns>
         [HttpPut]
-        public async Task<IActionResult> ChangeEmail(string userId, string token, [FromBody]EditMailForm newEmail)
+        public async Task<IActionResult> ChangeEmail(string token, [FromBody]EditMailForm newEmail)
         {
-            var res = await accountManager.ChangeEmail(userId, HttpContext.User.Identity.Name, token, newEmail);
+            var res = await accountManager.ChangeEmail(HttpContext.User.Identity.Name, token, newEmail);
             return this.HandleManagerResponse(res);
         }
 
@@ -158,9 +157,9 @@ namespace mLingo.Controllers.Api
         /// <param name="newPassword"></param>
         /// <returns>Http status code</returns>
         [HttpPut]
-        public async Task<IActionResult> ResetPassword(string userId, string token, [FromBody] ResetPasswordForm newPassword)
+        public async Task<IActionResult> ResetPassword(string token, [FromBody] ResetPasswordForm newPassword)
         {
-            var res = await accountManager.ResetPassword(userId, HttpContext.User.Identity.Name, token, newPassword);
+            var res = await accountManager.ResetPassword(HttpContext.User.Identity.Name, token, newPassword);
             return this.HandleManagerResponse(res);
         }
 
@@ -171,9 +170,9 @@ namespace mLingo.Controllers.Api
         /// <param name="resetPasswordForm">Information required to change password <see cref="ResetPasswordForm"/></param>
         /// <returns>Http status code</returns>
         [HttpPut]
-        public async Task<IActionResult> ChangePassword(string userId, [FromBody] ResetPasswordForm resetPasswordForm)
+        public async Task<IActionResult> ChangePassword([FromBody] ResetPasswordForm resetPasswordForm)
         {
-            var res = await accountManager.ChangePassword(userId, HttpContext.User.Identity.Name, resetPasswordForm);
+            var res = await accountManager.ChangePassword(HttpContext.User.Identity.Name, resetPasswordForm);
             return this.HandleManagerResponse(res);
         }
 

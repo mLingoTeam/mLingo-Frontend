@@ -119,20 +119,18 @@ namespace mLingo.Modules
             }, 200);
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> Delete(string userId, string username)
+        public async Task<KeyValuePair<ApiResponse, int>> Delete(string username)
         {
             var user = await UserManager.FindByNameAsync(username);
             if (user == null) return _Response(401);
-            if (user.Id != userId) return _Response(401);
             var res = await UserManager.DeleteAsync(user);
             return res.Succeeded ? _Response(200) : _Response(null, 404);
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> EditInformation(string userId, string username, EditInformationForm form)
+        public async Task<KeyValuePair<ApiResponse, int>> EditInformation(string username, EditInformationForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
             if (user == null) return _Response(404);
-            if (user.Id != userId) return _Response(401);
 
             try
             {
@@ -153,11 +151,10 @@ namespace mLingo.Modules
             }
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> RequestChangeToken(string userId, string username, string prop, EditMailForm form)
+        public async Task<KeyValuePair<ApiResponse, int>> RequestChangeToken(string username, string prop, EditMailForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
             if (user == null) return _Response(404);
-            if (user.Id != userId) return _Response(401);
 
             if (prop == null)
                 return _Response(new ApiResponse
@@ -186,11 +183,10 @@ namespace mLingo.Modules
             }, 200);
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> ChangeEmail(string userId, string username, string token, EditMailForm form)
+        public async Task<KeyValuePair<ApiResponse, int>> ChangeEmail(string username, string token, EditMailForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
             if (user == null) return _Response(404);
-            if (user.Id != userId) return _Response(401);
 
             var res = await UserManager.ChangeEmailAsync(user, form.Email, token);
             DbContext.SaveChanges();
@@ -198,11 +194,10 @@ namespace mLingo.Modules
             return _Response(res.Succeeded ? 202 : 403);
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> ChangePassword(string userId, string username, ResetPasswordForm form)
+        public async Task<KeyValuePair<ApiResponse, int>> ChangePassword(string username, ResetPasswordForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
             if (user == null) return _Response(404);
-            if (user.Id != userId) return _Response(401);
 
             var res = await UserManager.ChangePasswordAsync(user, form.OldPassword, form.NewPassword);
             DbContext.SaveChanges();
@@ -210,11 +205,10 @@ namespace mLingo.Modules
             return _Response(res.Succeeded ? 202 : 403);
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> ResetPassword(string userId, string username, string token, ResetPasswordForm form)
+        public async Task<KeyValuePair<ApiResponse, int>> ResetPassword(string username, string token, ResetPasswordForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
             if (user == null) return _Response(404);
-            if (user.Id != userId) return _Response(401);
 
             var res = await UserManager.ResetPasswordAsync(user, token, form.NewPassword);
             DbContext.SaveChanges();
