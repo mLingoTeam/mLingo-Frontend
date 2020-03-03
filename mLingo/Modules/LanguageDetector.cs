@@ -14,7 +14,7 @@ namespace mLingo.Modules
         public LanguageDetector()
         {
             var factory = new RankedLanguageIdentifierFactory();
-            Identifier = factory.Load(@".\Assets\LanguageDetectorProfiles\Core14.profile.xml");
+            Identifier = factory.Load(@"./Assets/LanguageDetectorProfiles/Core14.profile.xml");
         }
 
 
