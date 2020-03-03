@@ -28,7 +28,7 @@ class UserHead extends React.Component {
     async findcollection() {
         const collectiondata = await authenticationService.requestCollection(this.state.type, this.state.request);
         console.log(collectiondata);
-        if (collectiondata.Successful === true) {
+        if (collectiondata.successful === true) {
             this.setState({ "fields": collectiondata.Response, "exist": true });
         }
         else {
