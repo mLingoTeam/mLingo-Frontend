@@ -41,6 +41,7 @@ class UserCreate extends React.Component {
 
     createCollection() {
         authenticationService.createCollection(this.state.collectionName, this.state.cards, localStorage.getItem("ID"), localStorage.getItem("Token"));
+        this.setState({ collectionName: "", cards: [], card: { Term: "", Definition: "" } });
     }
 
     logout = () => {
@@ -57,7 +58,7 @@ class UserCreate extends React.Component {
                         <h1>Hi {localStorage.getItem("currentUser")}!</h1>
                         <h3>Create your own collection here!</h3>
                         <p>collection name</p>
-                        <input name="collectionName" type="text" onChange={this.handleChange} />
+                        <input name="collectionName" type="text" onChange={this.handleChange} value={this.state.collectionName} />
                         <UserCreateCard set={this.state} functioni={this.handleCardChange} functionii={this.addCard} />
 
                         <p>Your collection:</p>
