@@ -5,13 +5,14 @@ import {
 } from 'reactstrap';
 
 const CardComponent = ({ set }) => {
+    console.log(set);
     return (
         <div>
             <Card>
                 <CardBody>
-                    <CardTitle>{set.Name}</CardTitle>
-                    <CardSubtitle>{set.OwnerId}</CardSubtitle>
-                    <CardText>{set.Id}</CardText>
+                    <CardTitle>{set.name}</CardTitle>
+                    <CardSubtitle>{set.ownerId}</CardSubtitle>
+                    <CardText>{set.id}</CardText>
                     <Button>Button</Button>
                 </CardBody>
             </Card>
