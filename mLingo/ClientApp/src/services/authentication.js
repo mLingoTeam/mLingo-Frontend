@@ -3,7 +3,8 @@ export const authenticationService = {
   login,
   logout,
   setIntoLocalStorage,
-  requestCollection
+  requestCollection,
+  createCollection
 };
 
 function register(username, email, password) {
@@ -57,13 +58,14 @@ function requestCollection(type, name) {
     .then(result => result.json())
 }
 
-function createCollection(name, cards) {
+function createCollection(name, cards, OwnerId, Token) {
+  console.log(JSON.stringify({ Name: name, Cards: cards, OwnerId: OwnerId }));
   const requestOptions = {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, cards })
+    headers: { "Content-Type": "application/json", "Authorization": `Bearer ${Token}` },
+    body: JSON.stringify({ Name: name, Cards: cards, OwnerId: OwnerId })
   };
 
-  return fetch(`http://localhost:5000/api/account/create`, requestOptions)
+  return fetch(`http://localhost:5000/api/collections/create`, requestOptions)
     .then(result => result.json())
 }

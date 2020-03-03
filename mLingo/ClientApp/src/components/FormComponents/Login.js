@@ -56,7 +56,9 @@ class Login extends React.Component {
       alert(err);
     } // if the user exist save they into the web
     else {
-      authenticationService.setIntoLocalStorage({ name: "currentUser", value: resolved.Response.Username });
+      authenticationService.setIntoLocalStorage({ name: "currentUser", value: resolved.response.username });
+      authenticationService.setIntoLocalStorage({ name: "ID", value: resolved.response.id });
+      authenticationService.setIntoLocalStorage({ name: "Token", value: resolved.response.token });
     }
 
 

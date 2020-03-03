@@ -4,16 +4,16 @@ import {
 
 } from 'reactstrap';
 
-const UserCreateCard = (set) => {
+const UserCreateCard = (props) => {
     return (
         <div>
             <Card>
                 <CardBody>
-                    <CardTitle> {set.term} </CardTitle>
-                    <input name='Term' type="text" size="40" placeholder="Type here" minlength="1" required onChange={set.functioni} />
-                    <CardTitle> {set.definition} </CardTitle>
-                    <input name='Description' type="text" size="40" placeholder="Type here" minlength="1" required onChange={set.functioni} />
-                    <button onClick={set.functionii}>Add</button>
+                    <CardTitle> Term </CardTitle>
+                    <input name='Term' type="text" size="40" placeholder="Type here" minlength="1" value={props.set.card.Term} onChange={props.functioni} required />
+                    <CardTitle> Description </CardTitle>
+                    <input name='Definition' type="text" size="40" placeholder="Type here" minlength="1" value={props.set.card.Definition} onChange={props.functioni} required />
+                    <button onClick={props.functionii}>Add</button>
                 </CardBody>
             </Card>
         </div >
