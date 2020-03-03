@@ -1,7 +1,8 @@
-$dark-color: #0c2461;
-$light-color: #1e3799;
-$light-blue: #4a69bd;
-$mobile-res: 991px;
+$dark-color: #000536;
+$light-color: #B6EE1A;
+$light-blue: #000536;
+$mobile-res: 576px;
+$tablet-res: 991px;
 $desktop-res: 992px;
 
 @mixin mobile {
@@ -23,6 +24,24 @@ $desktop-res: 992px;
   background-color: inherit;
   border: 0;
   color: white;
+  width: 10vw;
+  outline: none !important;
+  background: $color;
+  height: 60px;
+  border-radius: 5px;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+}
+
+@mixin outbutton($color) {
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: $light-color;
   width: 10vw;
   outline: none !important;
   background: $color;

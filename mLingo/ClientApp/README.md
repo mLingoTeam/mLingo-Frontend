@@ -29,6 +29,13 @@
     - pages
       The pages, views  of the app
 
+    - styles
+    There are scss files
+      - css
+      There are files translated from scss into css
+
+    - UserPanelComponents
+
   - img
   - services
   App.js

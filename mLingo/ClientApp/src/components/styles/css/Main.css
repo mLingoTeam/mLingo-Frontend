@@ -7,7 +7,7 @@
   color: white;
   width: 10vw;
   outline: none !important;
-  background: #4a69bd;
+  background: #000536;
   height: 60px;
   border-radius: 5px;
 }
@@ -89,6 +89,25 @@
 /* Login Panel */
 /* 7. Main Panel */
 /* 1. AppNavbar.js */
+.app--background {
+  background-color: #000536;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: -999;
+}
+
+.container {
+  background-color: #F8F8F8;
+}
+
+@media (min-width: 576px) {
+  .container {
+    border-radius: 70px;
+  }
+}
+
 /* MODAL */
 .show {
   opacity: 1;
@@ -158,8 +177,7 @@
 }
 
 .navbar--dark {
-  background: -webkit-gradient(linear, left top, left bottom, from(#1e3799), to(#0c2461));
-  background: linear-gradient(#1e3799, #0c2461);
+  background: #000536;
   margin: 0 !important;
 }
 
@@ -182,7 +200,7 @@
   color: white;
   width: 10vw;
   outline: none !important;
-  background: #4a69bd;
+  background: #000536;
   height: 60px;
   border-radius: 5px;
 }
@@ -240,8 +258,8 @@
 }
 
 .carousel-item {
-  background: -webkit-gradient(linear, left top, left bottom, from(#0c2461), to(#1e3799));
-  background: linear-gradient(#0c2461, #1e3799);
+  background: -webkit-gradient(linear, left top, left bottom, from(#000536), to(#B6EE1A));
+  background: linear-gradient(#000536, #B6EE1A);
 }
 
 .carousel-item img {
@@ -386,8 +404,7 @@ li.media h4 {
 
 /* 6. Footer.js */
 .footer {
-  background: -webkit-gradient(linear, left top, left bottom, from(#1e3799), to(#0c2461));
-  background: linear-gradient(#1e3799, #0c2461);
+  background: #000536;
   margin: 0 !important;
   width: 100%;
   height: 20vh;
@@ -413,6 +430,14 @@ li.media h4 {
 
 .social {
   color: white;
+  font-size: 32px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.social:hover {
+  color: #B6EE1A;
+  cursor: pointer;
 }
 
 /* Login Panel */
@@ -488,7 +513,7 @@ li.media h4 {
   color: white;
   width: 10vw;
   outline: none !important;
-  background: #4a69bd;
+  background: #000536;
   height: 60px;
   border-radius: 5px;
 }

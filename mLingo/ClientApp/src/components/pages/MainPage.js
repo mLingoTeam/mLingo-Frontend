@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import AppNavbar from "../MainPageComponents/AppNavbar";
 import Slider from "../MainPageComponents/Slider";
 import Promo from "../MainPageComponents/Promo";
 import UserPromo from "../MainPageComponents/UserPromo";
 import Register from "../FormComponents/Register";
 import Footer from "../MainPageComponents/Footer";
 import "../styles/css/Main.css";
+
+import Layout from '../layouts/Layout'
 
 export default class MainPage extends Component {
 
@@ -14,14 +15,10 @@ export default class MainPage extends Component {
       this.props.history.push('/login');
     }
     return (
-      <div>
-        <AppNavbar />
-        <Slider />
+      <Layout>
         <Promo />
-        <UserPromo />
         <Register />
-        <Footer />
-      </div>
+      </Layout>
     );
   }
 }
