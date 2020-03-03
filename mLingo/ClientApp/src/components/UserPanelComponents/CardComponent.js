@@ -5,7 +5,6 @@ import {
 } from 'reactstrap';
 
 const CardComponent = ({ set }) => {
-    console.log(set);
     return (
         <div>
             <Card>

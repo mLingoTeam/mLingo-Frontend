@@ -51,9 +51,6 @@ function requestCollection(type, name) {
     headers: { "Content-Type": "application/json" }
   };
 
-  console.log(type);
-  console.log(rqtype);
-
   return fetch(`http://localhost:5000/api/collections/${rqtype}?${type}=${name}`, requestOptions)
     .then(result => result.json())
 }

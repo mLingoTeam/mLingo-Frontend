@@ -15,20 +15,20 @@ class UserHead extends React.Component {
 
         this.findcollection = this.findcollection.bind(this);
         this.changeRequest = this.changeRequest.bind(this);
+        this.changeRequestType = this.changeRequestType.bind(this);
     }
 
     changeRequest(event) {
         this.setState({ "request": event.target.value });
     }
     changeRequestType(event) {
-        console.log(event)
+        this.setState({ "type": event.target.value });
     }
 
 
     async findcollection() {
         const collectiondata = await authenticationService.requestCollection(this.state.type, this.state.request);
-        console.log(collectiondata);
-        console.log(JSON.stringify(collectiondata));
+
         if (collectiondata.successful === true) {
             this.setState({ "fields": collectiondata.response, "exist": true });
         }
@@ -53,7 +53,7 @@ class UserHead extends React.Component {
                         <h3>Welcome in MLingo!</h3>
                         <p>Search collection by user or by name!</p>
                         <div>
-                            <div><input type="radio" name="radAnswer" value="username" checked onChange={this.changeRequestType} /> <label>Search by username</label></div>
+                            <div><input type="radio" name="radAnswer" value="username" onChange={this.changeRequestType} /> <label>Search by username</label></div>
                             <div><input type="radio" name="radAnswer" value="name" onChange={this.changeRequestType} /> <label>Search by set name</label></div>
                         </div>
                         <input className="searchcollectioninput" type="text" onChange={this.changeRequest} />
