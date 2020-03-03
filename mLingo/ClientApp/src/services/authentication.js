@@ -63,7 +63,7 @@ function createCollection(name, cards, OwnerId, Token) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json", "Authorization": `Bearer ${Token}` },
-    body: JSON.stringify({ Name: name, Cards: cards, OwnerId: OwnerId })
+    body: JSON.stringify({ Name: name, OwnerId: OwnerId, Cards: cards })
   };
 
   return fetch(`http://localhost:5000/api/collections/create`, requestOptions)
