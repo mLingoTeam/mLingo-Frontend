@@ -41,7 +41,6 @@ class UserCreate extends React.Component {
 
     createCollection() {
         authenticationService.createCollection(this.state.collectionName, this.state.cards, localStorage.getItem("ID"), localStorage.getItem("Token"));
-        console.log('created!')
     }
 
     logout = () => {

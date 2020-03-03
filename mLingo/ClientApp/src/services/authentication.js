@@ -67,5 +67,5 @@ function createCollection(name, cards, OwnerId, Token) {
   };
 
   return fetch(`http://localhost:5000/api/collections/create`, requestOptions)
-    .then(result => result.json())
+    .then(result => { console.log(result.body); return result.json() })
 }
