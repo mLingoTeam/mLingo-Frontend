@@ -44,7 +44,7 @@ function requestCollection(type, name) {
 
   let rqtype;
 
-  type === 'name' ? rqtype = 'find' : rqtype = "usercollections";
+  type === 'name' ? rqtype = 'find' : type === 'id' ? rqtype = 'find' : rqtype = "usercollections";
 
   const requestOptions = {
     method: "GET",

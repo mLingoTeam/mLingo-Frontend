@@ -10,9 +10,9 @@ const UserCreateCard = (props) => {
             <Card>
                 <CardBody>
                     <CardTitle> Term </CardTitle>
-                    <input name='Term' type="text" size="40" placeholder="Type here" minlength="1" value={props.set.card.Term} onChange={props.functioni} required />
+                    <input name='Term' type="text" size="40" placeholder="Type here" value={props.set.card.Term} onChange={props.functioni} required />
                     <CardTitle> Description </CardTitle>
-                    <input name='Definition' type="text" size="40" placeholder="Type here" minlength="1" value={props.set.card.Definition} onChange={props.functioni} required />
+                    <input name='Definition' type="text" size="40" placeholder="Type here" value={props.set.card.Definition} onChange={props.functioni} required />
                     <button onClick={props.functionii}>Add</button>
                 </CardBody>
             </Card>

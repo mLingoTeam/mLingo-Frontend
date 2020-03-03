@@ -11,7 +11,7 @@ class UserHead extends React.Component {
             this.props.history.push("/");
         }
 
-        this.state = { fields: [], exist: null, type: 'username', request: "example1" }
+        this.state = { fields: [], exist: null, type: 'username', request: "Test100" }
 
         this.findcollection = this.findcollection.bind(this);
         this.changeRequest = this.changeRequest.bind(this);
@@ -65,7 +65,7 @@ class UserHead extends React.Component {
                 {
                     this.state.exist ? this.state.fields.map(element => (
                         <CardComponent set={element} />
-                    )) : this.state.exist === false ? <div className="container text-center"><h2> No collection found </h2></div> : <div className="container text-center"><h2> No collection found </h2></div>
+                    )) : this.state.exist ? <div className="container text-center"><h2> No collection found </h2></div> : <div className="container text-center"><h2> No collection found </h2></div>
                 }
             </div>
         );
