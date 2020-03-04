@@ -77,8 +77,41 @@ a:hover{
   }
 }
 
+@mixin darkbutton($color) {
+  font-size: 16px;
+  font-weight: 400;
+  background-color: inherit;
+  border: 0;
+  color: $dark-blue;
+  outline: none !important;
+  background: $color;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.5s;
+
+  &:hover {
+    color: $dark-blue;
+    text-decoration: none !important;
+  }
+
+  @media(max-width: $mobile-res){
+    &{
+      font-size: 16px !important;
+    }
+  }
+}
+
+@mixin greenbutton{
+  @include darkbutton($light-green);
+}
+
 @mixin bluebutton {
   @include inbutton($light-blue);
+}
+
+.green-button{
+  @include greenbutton;
 }
 
 .blue-button {

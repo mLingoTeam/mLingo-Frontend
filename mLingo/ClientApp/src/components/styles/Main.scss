@@ -235,27 +235,59 @@ li.media h4 {
 
 /* 5. Register.js */
 
-.registerForm2 input {
+.registerForm2 input[type="text"], .registerForm2 input[type="password"] {
   height: 40px;
   font-size: 18px;
+  border: 1px solid #707070;
+  border-radius: 10px;
 }
 
-.registerForm2 input:focus {
-  outline: none;
-  border: 0;
+.registerForm2 input[type="text"]:focus, .registerForm2 input[type="password"]:focus {
+  outline: none !important;
+  border: 1px solid $light-green;
 }
 
 .registerForm2 {
   padding: 10vh 0;
 
   h1 {
-    font-size: 38px;
-    font-weight: 100;
+    font-size: 32px;
+    font-weight: 900;
   }
 
   form {
     display: flex;
     flex-wrap: wrap;
+  }
+  p{
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+.remember{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 14px;
+  color: $light-green;
+  font-weight: 400 !important;
+
+  a{
+    color: $light-green;
+  }
+}
+
+.alreadyaccount{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+
+  a{
+    color: $dark-blue;
+    text-decoration: underline $dark-blue;
+    font-weight: bold;
   }
 }
 

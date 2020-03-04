@@ -6,6 +6,32 @@ a:hover {
   text-decoration: none;
 }
 
+.green-button {
+  font-size: 16px;
+  font-weight: 400;
+  background-color: inherit;
+  border: 0;
+  color: #000536;
+  outline: none !important;
+  background: #B6EE1A;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.green-button:hover {
+  color: #000536;
+  text-decoration: none !important;
+}
+
+@media (max-width: 576px) {
+  .green-button {
+    font-size: 16px !important;
+  }
+}
+
 .blue-button {
   font-size: 24px;
   font-weight: bold;
