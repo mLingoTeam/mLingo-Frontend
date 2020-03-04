@@ -1,9 +1,10 @@
 import React from "react";
 import { Form } from "reactstrap";
 import FormField from "./FormField";
-import img1 from "../../img/monkey.png";
 import { withRouter } from 'react-router-dom';
 import { authenticationService } from "../../services/authentication";
+import { Link } from 'react-router-dom'
+import { FaGoogle, FaFacebook } from 'react-icons/fa';
 
 class Register extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class Register extends React.Component {
       {
         type: "text",
         name: "username",
-        label: "Username",
+        label: "username",
         function: this.handleChange.bind(this),
         placeholder: "Jake the dog",
         id: "Username"
@@ -28,7 +29,7 @@ class Register extends React.Component {
       {
         type: "email",
         name: "email",
-        label: "Email",
+        label: "email",
         function: this.handleChange.bind(this),
         placeholder: "Jake@dogmail.com",
         id: "Email"
@@ -36,7 +37,7 @@ class Register extends React.Component {
       {
         type: "password",
         name: "password",
-        label: "Password",
+        label: "password",
         function: this.handleChange.bind(this),
         placeholder: "admin",
         id: "Password"
@@ -100,8 +101,6 @@ class Register extends React.Component {
     return (
       <div>
         <div className="registerForm2 col-12 d-flex jusify-content-center flex-wrap">
-          <img src={img1} className="img-fluid offset-5 col-2" alt="logo" />
-          <h1 className="text-center col-12 mb-5">Join us now!</h1>
           <Form
             className="col-12 offset-lg-3 col-lg-6"
             onSubmit={e => {
@@ -109,13 +108,21 @@ class Register extends React.Component {
               e.preventDefault();
             }}
           >
+            <h1 className="col-12 mb-5">sign up</h1>
             {this.fields.map(element => (
               <FormField set={element} />
             ))}
 
-            <button className="col-12 offset-lg-4 col-lg-4 btn blue-button">
-              JOIN
+            <button className="col-12 offset-lg-4 col-lg-4 btn green-button registerbutton">
+              get started
             </button>
+            <div className="col-12">
+              <button className="col-12 fbconnect"><FaFacebook /> Sign in with Facebook</button>
+              <button className="col-12 ggconnect"><FaGoogle /> Sign in with Google</button>
+            </div>
+            <div className="col-12 alreadyaccount">
+              <p>Already have an account? &nbsp; </p><Link to='/login'>sign in</Link>
+            </div>
           </Form>
         </div>
       </div>

@@ -405,14 +405,18 @@ li.media h4 {
 }
 
 /* 5. Register.js */
-.registerForm2 input[type="text"], .registerForm2 input[type="password"] {
+.registerForm2 form div {
+  margin: 9px 0;
+}
+
+.registerForm2 input[type="text"], .registerForm2 input[type="password"], .registerForm2 input[type="email"] {
   height: 40px;
   font-size: 18px;
   border: 1px solid #707070;
   border-radius: 10px;
 }
 
-.registerForm2 input[type="text"]:focus, .registerForm2 input[type="password"]:focus {
+.registerForm2 input[type="text"]:focus, .registerForm2 input[type="password"]:focus, .registerForm2 input[type="email"]:focus {
   outline: none !important;
   border: 1px solid #B6EE1A;
 }
@@ -432,11 +436,55 @@ li.media h4 {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .registerForm2 p {
   padding: 0 !important;
   margin: 0 !important;
+}
+
+.registerForm2 input[type=checkbox] {
+  border: 1px solid #000536;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  -webkit-transform: translate(-50%, 20%);
+          transform: translate(-50%, 20%);
+}
+
+.registerForm2 input[type=checkbox]:checked {
+  background-color: #000536;
+  outline: none;
+}
+
+.registerForm2 input[type=checkbox]:focus {
+  outline: none;
+}
+
+.fbconnect, .ggconnect {
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 5px 0;
+  margin: 5px 0;
+}
+
+.fbconnect {
+  background-color: #3b5998;
+}
+
+.ggconnect {
+  background-color: #DB4437;
+}
+
+.registerbutton {
+  margin: 48px 0 85px 0;
 }
 
 .remember {
@@ -450,6 +498,10 @@ li.media h4 {
           align-items: center;
   font-size: 14px;
   color: #B6EE1A;
+  margin-bottom: 88px !important;
+}
+
+.remember label {
   font-weight: 400 !important;
 }
 
@@ -468,6 +520,7 @@ li.media h4 {
       -ms-flex-align: center;
           align-items: center;
   font-size: 14px;
+  margin-top: 28px !important;
 }
 
 .alreadyaccount a {

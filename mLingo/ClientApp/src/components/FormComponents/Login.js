@@ -98,18 +98,18 @@ class Login extends React.Component {
 
             <div className="col-12 remember">
               <span>
-                <input type="checkbox" name="remember" />
-                <label for="remember">remember me</label>
+                <input type="checkbox" id="remember1" className="remembercheck" />
+                <label for="remember1">remember me</label>
               </span>
               <Link to="/forgot">forgot password?</Link>
             </div>
 
-            <button className="col-12 offset-lg-4 col-lg-4 btn green-button">
+            <button className="col-12 col-lg-4 btn green-button">
               get started
             </button>
 
             <div className="col-12 alreadyaccount">
-              <p>Don't have an account?</p><Link to='/register'>sign up</Link>
+              <p>Don't have an account? &nbsp; </p><Link to='/register'>sign up</Link>
             </div>
           </Form>
         </div>

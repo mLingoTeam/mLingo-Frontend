@@ -235,14 +235,18 @@ li.media h4 {
 
 /* 5. Register.js */
 
-.registerForm2 input[type="text"], .registerForm2 input[type="password"] {
+.registerForm2 form div{
+  margin: 9px 0;
+}
+
+.registerForm2 input[type="text"], .registerForm2 input[type="password"], .registerForm2 input[type="email"] {
   height: 40px;
   font-size: 18px;
   border: 1px solid #707070;
   border-radius: 10px;
 }
 
-.registerForm2 input[type="text"]:focus, .registerForm2 input[type="password"]:focus {
+.registerForm2 input[type="text"]:focus, .registerForm2 input[type="password"]:focus, .registerForm2 input[type="email"]:focus {
   outline: none !important;
   border: 1px solid $light-green;
 }
@@ -258,11 +262,49 @@ li.media h4 {
   form {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
   }
   p{
     padding: 0 !important;
     margin: 0 !important;
   }
+
+  input[type=checkbox]{
+    border: 1px solid $dark-blue;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    -o-appearance:none;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    transform: translate(-50%, 20%);
+  }
+  input[type=checkbox]:checked{
+    background-color: $dark-blue;
+    outline: none;
+  }
+    input[type=checkbox]:focus{
+      outline: none;
+  }
+
+}
+.fbconnect,.ggconnect{
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 5px 0;
+  margin: 5px 0;
+}
+.fbconnect{
+  background-color: #3b5998;
+
+}
+.ggconnect{
+  background-color:#DB4437;
+}
+
+.registerbutton{
+  margin: 48px 0 85px 0;
 }
 
 .remember{
@@ -271,7 +313,11 @@ li.media h4 {
   align-items: center;
   font-size: 14px;
   color: $light-green;
-  font-weight: 400 !important;
+  margin-bottom: 88px !important;
+
+  label{
+    font-weight: 400 !important;
+  }
 
   a{
     color: $light-green;
@@ -283,6 +329,7 @@ li.media h4 {
   justify-content: center;
   align-items: center;
   font-size: 14px;
+  margin-top: 28px !important;
 
   a{
     color: $dark-blue;
