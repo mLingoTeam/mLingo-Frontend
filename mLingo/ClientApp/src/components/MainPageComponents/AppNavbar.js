@@ -10,9 +10,11 @@ const AppNavbar = props => {
       </Link>
       <div className="navbar__buttons">
         <input type="text" />
-        <SignInModal />
         <div>
-          <button className="navbar__registerbutton">sign up</button>
+          <Link className="signinbutton" to="/Login">sign in</Link>
+        </div>
+        <div>
+          <Link className="navbar__registerbutton" to="/Register">sign up</Link>
         </div>
       </div>
     </div>

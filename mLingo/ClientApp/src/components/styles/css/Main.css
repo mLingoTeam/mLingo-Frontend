@@ -2,6 +2,10 @@
   font-family: 'Poppins', sans-serif;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 .blue-button {
   font-size: 24px;
   font-weight: bold;
@@ -19,6 +23,7 @@
 
 .blue-button:hover {
   color: #B6EE1A;
+  text-decoration: none !important;
 }
 
 @media (max-width: 576px) {
@@ -44,6 +49,7 @@
 
 .in-button:hover {
   color: #B6EE1A;
+  text-decoration: none !important;
 }
 
 @media (max-width: 576px) {
@@ -95,15 +101,17 @@
 }
 
 /* MENU */
-/* MainPageComponents */
+/* Layout Components */
 /* 1. AppNavbar.js */
-/* 2. Slider.js */
+/* MainPageComponents */
 /* 3. Promo.js */
 /* 4. UserPromo.js */
 /* 5. Register.js */
 /* 6. Footer.js */
 /* Login Panel */
 /* 7. Main Panel */
+/* UNUSED */
+/* Slider.js */
 /* App Background and Bootstrap overwrites */
 .app--background {
   background-color: #000536;
@@ -124,6 +132,7 @@
   }
 }
 
+/* Layout Components */
 /* 1. AppNavbar.js */
 /* MODAL */
 .show {
@@ -142,6 +151,12 @@
   }
 }
 
+@media (min-width: 991px) {
+  .navbar--dark {
+    height: 100px;
+  }
+}
+
 .navbar__buttons {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
@@ -155,7 +170,7 @@
       flex-wrap: nowrap;
 }
 
-@media (min-width: 991px) {
+@media (min-width: 576px) {
   .navbar__buttons div {
     margin: 0 0 0 18px;
   }
@@ -193,13 +208,8 @@
   font-family: 'Poppins', sans-serif;
   font-size: 24px;
   text-shadow: 0.1em 0.1em 0.2em black;
+  color: #ddd;
   font-weight: bold;
-}
-
-@media (min-width: 991px) {
-  .navbar--dark {
-    height: 100px;
-  }
 }
 
 .navbar__brand {
@@ -214,11 +224,6 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.navbar__brand--text {
-  color: #ddd;
-  font-weight: bold;
 }
 
 .navbar--dark {
@@ -246,12 +251,14 @@
   background: "inherit";
   height: 60px;
   border-radius: 5px;
+  text-decoration: none;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
 .navbar__registerbutton:hover {
   color: white;
+  text-decoration: none !important;
 }
 
 @media (max-width: 576px) {
@@ -277,71 +284,13 @@
 
 .signinbutton:hover {
   color: #B6EE1A;
+  text-decoration: none !important;
 }
 
 @media (max-width: 576px) {
   .signinbutton {
     font-size: 16px !important;
   }
-}
-
-/* 2. Slider.js */
-.carousel-sign-in {
-  position: absolute;
-  width: 30vw;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
-
-@media (min-width: 992px) {
-  .carousel-caption p {
-    font-size: 18px;
-  }
-  .carousel-caption h3 {
-    font-size: 32px;
-  }
-}
-
-.slider {
-  padding: 0px !important;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  position: relative;
-}
-
-.carousel-item {
-  background: #000536;
-}
-
-.carousel-item img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  width: 100%;
-  height: 80vh;
-  -webkit-filter: brightness(0.5);
-          filter: brightness(0.5);
-}
-
-.carousel-indicators {
-  width: auto !important;
-  margin-left: 0px !important;
-  margin-right: 0px !important;
-}
-
-.carousel-indicators .active {
-  width: 45px !important;
-  height: 3px !important;
-  -webkit-transition: 0.7s;
-  transition: 0.7s;
-}
-
-.carousel-indicators li {
-  background-clip: unset !important;
-  border: 0px !important;
 }
 
 /* 3. Promo.js */
@@ -576,6 +525,7 @@ li.media h4 {
 
 .mainpanel__userbase button:hover {
   color: #B6EE1A;
+  text-decoration: none !important;
 }
 
 @media (max-width: 576px) {
@@ -586,5 +536,65 @@ li.media h4 {
 
 .searchcollectioninput {
   margin: 20px;
+}
+
+/* UNUSED */
+/*  Slider.js */
+.carousel-sign-in {
+  position: absolute;
+  width: 30vw;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+@media (min-width: 992px) {
+  .carousel-caption p {
+    font-size: 18px;
+  }
+  .carousel-caption h3 {
+    font-size: 32px;
+  }
+}
+
+.slider {
+  padding: 0px !important;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+}
+
+.carousel-item {
+  background: #000536;
+}
+
+.carousel-item img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 80vh;
+  -webkit-filter: brightness(0.5);
+          filter: brightness(0.5);
+}
+
+.carousel-indicators {
+  width: auto !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.carousel-indicators .active {
+  width: 45px !important;
+  height: 3px !important;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+}
+
+.carousel-indicators li {
+  background-clip: unset !important;
+  border: 0px !important;
 }
 /*# sourceMappingURL=Main.css.map */

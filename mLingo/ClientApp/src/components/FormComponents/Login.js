@@ -79,7 +79,7 @@ class Login extends React.Component {
 
   render() {
     if (localStorage.getItem("currentUser")) {
-      this.props.history.push('/login');
+      this.props.history.push('/head');
     }
     return (
       <div>

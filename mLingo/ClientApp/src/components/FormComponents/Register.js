@@ -50,15 +50,25 @@ class Register extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  async sendRequest() {
-    authenticationService.register(
-      this.state.username,
-      this.state.email,
-      this.state.password
-    );
-    authenticationService.setIntoLocalStorage({ name: "currentUser", value: this.state.username });
+  async sendLoginRequest() {
+    const resolved = await authenticationService.login(this.state.username, this.state.password);
+
+    //if there is not such an user
+    const resstatus = (JSON.stringify(resolved.successful));
+
+    if (resstatus == 'false') {
+      const err = (JSON.stringify(resolved.errorMessage));
+      alert(err);
+    } // if the user exist save they into the web
+    else {
+      authenticationService.setIntoLocalStorage({ name: "currentUser", value: resolved.response.username });
+      authenticationService.setIntoLocalStorage({ name: "ID", value: resolved.response.id });
+      authenticationService.setIntoLocalStorage({ name: "Token", value: resolved.response.token });
+    }
 
 
+
+    // TO RERENDER WHEN THE ITEM IS SET IN THE LOCALSTORAGE
     this.setState({
       ...this.state,
       isLoading: true
@@ -69,11 +79,22 @@ class Register extends React.Component {
         isLoading: false
       })
     }, 1000);
+
+  }
+
+  async sendRequest() {
+    const req = await authenticationService.register(
+      this.state.username,
+      this.state.email,
+      this.state.password
+    );
+
+    this.sendLoginRequest();
   }
 
   render() {
     if (localStorage.getItem("currentUser")) {
-      this.props.history.push('/login');
+      this.props.history.push('/head');
     }
 
     return (

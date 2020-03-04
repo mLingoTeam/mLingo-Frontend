@@ -10,6 +10,10 @@ $desktop-res: 992px;
   font-family: 'Poppins', sans-serif ;
 }
 
+a:hover{
+  text-decoration: none;
+}
+
 @mixin mobile {
   @media (max-width: 991px) {
     @content;
@@ -37,6 +41,7 @@ $desktop-res: 992px;
 
   &:hover {
     color: $light-green;
+    text-decoration: none !important;
   }
 
   @media(max-width: $mobile-res){
@@ -57,10 +62,12 @@ $desktop-res: 992px;
   background: $color;
   height: 60px;
   border-radius: 5px;
+  text-decoration: none;
   transition: 0.5s;
 
   &:hover {
     color: white;
+    text-decoration: none !important;
   }
 
   @media(max-width: $mobile-res){

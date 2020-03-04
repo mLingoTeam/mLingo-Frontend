@@ -10,7 +10,7 @@ const Promo = props => {
     <div className="offset-1 col-10 Promo">
       <h1>Develop all your senses!</h1>
       <Media list>
-        <Media data-aos="fade-up" tag="li">
+        <Media tag="li">
           <Media left href="#">
             <img src={img1} className="img-media" />
           </Media>
@@ -29,7 +29,7 @@ const Promo = props => {
             <Media></Media>
           </Media>
         </Media>
-        <Media data-aos="fade-up" tag="li">
+        <Media tag="li">
           <Media body>
             <Media heading>Writing</Media>
             <p className="d-block d-md-none">
@@ -43,11 +43,11 @@ const Promo = props => {
               nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
             </p>
           </Media>
-          <Media data-aos="fade-up" right href="#">
+          <Media right href="#">
             <img src={img2} className="img-media" />
           </Media>
         </Media>
-        <Media data-aos="fade-up" tag="li">
+        <Media tag="li">
           <Media left href="#">
             <img src={img3} className="img-media" />
           </Media>
@@ -66,7 +66,7 @@ const Promo = props => {
             <Media></Media>
           </Media>
         </Media>
-        <Media data-aos="fade-up" tag="li">
+        <Media tag="li">
           <Media body>
             <Media heading>Listening</Media>
             <p className="d-block d-md-none">

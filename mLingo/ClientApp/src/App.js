@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import MainPage from "./components/pages/MainPage";
+import LoginPage from "./components/pages/LoginPage";
+import RegisterPage from "./components/pages/RegisterPage";
 
 import { Router, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
@@ -16,7 +18,9 @@ export default class App extends Component {
       <Router history={history}>
         <div>
           <Route exact path="/" component={MainPage} />
-          <PrivateRoute exact path="/login" component={UserPanelHead} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/register" component={RegisterPage} />
+          <PrivateRoute exact path="/head" component={UserPanelHead} />
           <PrivateRoute exact path="/create" component={UserPanelCreate} />
           <PrivateRoute exact path="/collection" component={UserPanelCollection} />
         </div>

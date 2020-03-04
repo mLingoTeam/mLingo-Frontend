@@ -2,6 +2,10 @@
   font-family: 'Poppins', sans-serif;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 .blue-button {
   font-size: 24px;
   font-weight: bold;
@@ -19,6 +23,7 @@
 
 .blue-button:hover {
   color: #B6EE1A;
+  text-decoration: none !important;
 }
 
 @media (max-width: 576px) {
@@ -44,6 +49,7 @@
 
 .in-button:hover {
   color: #B6EE1A;
+  text-decoration: none !important;
 }
 
 @media (max-width: 576px) {

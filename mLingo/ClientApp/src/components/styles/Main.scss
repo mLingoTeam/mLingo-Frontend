@@ -4,9 +4,11 @@
 
 /* MENU */
 
-/* MainPageComponents */
+/* Layout Components */
 /* 1. AppNavbar.js */
-/* 2. Slider.js */
+
+/* MainPageComponents */
+
 /* 3. Promo.js */
 /* 4. UserPromo.js */
 /* 5. Register.js */
@@ -15,6 +17,10 @@
 
 /* Login Panel */
 /* 7. Main Panel */
+
+
+/* UNUSED */
+/* Slider.js */
 
 
 /* App Background and Bootstrap overwrites */
@@ -37,6 +43,8 @@
   }
 }
 
+
+/* Layout Components */
 /* 1. AppNavbar.js */
 
 /* MODAL */
@@ -45,18 +53,21 @@
 }
 
 @media (max-width: $mobile-res) {
-
   .navbar__brand--text {
     font-size: 14px !important;
   }
-
-
 }
 
 @media (min-width: $desktop-res) {
-
   .modal-dialog {
     max-width: 60vw;
+  }
+}
+
+
+@media(min-width: $tablet-res){
+  .navbar--dark {
+    height: 100px;
   }
 }
 
@@ -67,12 +78,11 @@
   flex-wrap: nowrap;
 
 
-  @media(min-width: $tablet-res){
+  @media(min-width: $mobile-res){
     & div{
       margin: 0 0 0 18px ;
     }
   }
-
 
   input[type="text"]{
     background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -106,17 +116,10 @@
   font-family: 'Poppins', sans-serif;
   font-size: 24px;
   text-shadow: 0.1em 0.1em 0.2em black;
+  color: #ddd;
   font-weight: bold;
 }
 
-@media(min-width: $tablet-res){
-
-
-  .navbar--dark {
-    height: 100px;
-  }
-
-}
 
 
 .navbar__brand{
@@ -127,11 +130,6 @@
   padding: 0 10px !important;
   display: flex;
   align-items: center;
-}
-
-.navbar__brand--text {
-  color: #ddd;
-  font-weight: bold;
 }
 
 
@@ -152,59 +150,7 @@
   @include inbutton("inherit");
 }
 
-/* 2. Slider.js */
 
-.carousel-sign-in {
-  position: absolute;
-  width: 30vw;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-@media (min-width: $desktop-res) {
-  .carousel-caption {
-    p {
-      font-size: 18px;
-    }
-    h3 {
-      font-size: 32px;
-    }
-  }
-}
-
-.slider {
-  padding: 0px !important;
-  object-fit: cover;
-  box-sizing: border-box;
-  position: relative;
-}
-.carousel-item {
-  background: $dark-blue;
-
-  img {
-    object-fit: cover;
-    width: 100%;
-    height: 80vh;
-    filter: brightness(0.5);
-  }
-}
-
-.carousel-indicators {
-  width: auto !important;
-  margin-left: 0px !important;
-  margin-right: 0px !important;
-
-  .active {
-    width: 45px !important;
-    height: 3px !important;
-    transition: 0.7s;
-  }
-  li {
-    background-clip: unset !important;
-    border: 0px !important;
-  }
-}
 
 /* 3. Promo.js */
 .help-others {
@@ -389,4 +335,60 @@ li.media h4 {
 
 .searchcollectioninput{
   margin: 20px;
+}
+
+/* UNUSED */
+
+/*  Slider.js */
+
+.carousel-sign-in {
+  position: absolute;
+  width: 30vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (min-width: $desktop-res) {
+  .carousel-caption {
+    p {
+      font-size: 18px;
+    }
+    h3 {
+      font-size: 32px;
+    }
+  }
+}
+
+.slider {
+  padding: 0px !important;
+  object-fit: cover;
+  box-sizing: border-box;
+  position: relative;
+}
+.carousel-item {
+  background: $dark-blue;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 80vh;
+    filter: brightness(0.5);
+  }
+}
+
+.carousel-indicators {
+  width: auto !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+
+  .active {
+    width: 45px !important;
+    height: 3px !important;
+    transition: 0.7s;
+  }
+  li {
+    background-clip: unset !important;
+    border: 0px !important;
+  }
 }
