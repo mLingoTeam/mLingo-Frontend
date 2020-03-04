@@ -150,6 +150,8 @@ a:hover {
 
 .container {
   background-color: #F8F8F8;
+  overflow: hidden;
+  padding: 50px;
 }
 
 @media (min-width: 576px) {
@@ -572,7 +574,6 @@ li.media h4 {
 /* Main Panel */
 @media (max-width: 576px) {
   .mainpanel {
-    width: 100vw;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -603,7 +604,6 @@ li.media h4 {
 
 @media (min-width: 992px) {
   .mainpanel {
-    width: 100vw;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

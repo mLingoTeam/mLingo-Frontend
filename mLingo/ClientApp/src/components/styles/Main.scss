@@ -35,6 +35,8 @@
 
 .container{
   background-color: #F8F8F8;
+  overflow: hidden;
+  padding: 50px;
 }
 
 @media(min-width: 576px){
@@ -375,7 +377,6 @@ li.media h4 {
 /* Main Panel */
 @media (max-width: $mobile-res) {
   .mainpanel{
-    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -393,7 +394,6 @@ li.media h4 {
 
 @media (min-width: $desktop-res) {
   .mainpanel{
-    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;

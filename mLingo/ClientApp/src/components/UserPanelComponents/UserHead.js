@@ -65,7 +65,7 @@ class UserHead extends React.Component {
                 {
                     this.state.exist ? this.state.fields.map(element => (
                         <CardComponent set={element} />
-                    )) : this.state.exist ? <div className="container text-center"><h2> No collection found </h2></div> : <div className="container text-center"><h2> No collection found </h2></div>
+                    )) : this.state.exist ? <div className="text-center"><h2> No collection found </h2></div> : <div className="text-center"><h2> No collection found </h2></div>
                 }
             </div>
         );
