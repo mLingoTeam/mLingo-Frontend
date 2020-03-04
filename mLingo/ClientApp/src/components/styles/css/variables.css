@@ -21,6 +21,12 @@
   color: #B6EE1A;
 }
 
+@media (max-width: 576px) {
+  .blue-button {
+    font-size: 16px !important;
+  }
+}
+
 .in-button {
   font-size: 24px;
   font-weight: bold;
@@ -38,6 +44,12 @@
 
 .in-button:hover {
   color: #B6EE1A;
+}
+
+@media (max-width: 576px) {
+  .in-button {
+    font-size: 16px !important;
+  }
 }
 
 @-webkit-keyframes navbar-monkey-bounce {

@@ -21,6 +21,12 @@
   color: #B6EE1A;
 }
 
+@media (max-width: 576px) {
+  .blue-button {
+    font-size: 16px !important;
+  }
+}
+
 .in-button {
   font-size: 24px;
   font-weight: bold;
@@ -38,6 +44,12 @@
 
 .in-button:hover {
   color: #B6EE1A;
+}
+
+@media (max-width: 576px) {
+  .in-button {
+    font-size: 16px !important;
+  }
 }
 
 @-webkit-keyframes navbar-monkey-bounce {
@@ -120,7 +132,7 @@
 
 @media (max-width: 576px) {
   .navbar__brand--text {
-    font-size: 18px;
+    font-size: 14px !important;
   }
 }
 
@@ -229,6 +241,12 @@
   color: white;
 }
 
+@media (max-width: 576px) {
+  .navbar__registerbutton {
+    font-size: 16px !important;
+  }
+}
+
 .signinbutton {
   font-size: 24px;
   font-weight: bold;
@@ -246,6 +264,12 @@
 
 .signinbutton:hover {
   color: #B6EE1A;
+}
+
+@media (max-width: 576px) {
+  .signinbutton {
+    font-size: 16px !important;
+  }
 }
 
 /* 2. Slider.js */
@@ -539,6 +563,12 @@ li.media h4 {
 
 .mainpanel__userbase button:hover {
   color: #B6EE1A;
+}
+
+@media (max-width: 576px) {
+  .mainpanel__userbase button {
+    font-size: 16px !important;
+  }
 }
 
 .searchcollectioninput {
