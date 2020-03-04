@@ -168,6 +168,7 @@
   height: 40px;
   max-width: 400px;
   font-size: 22px;
+  padding: 0 10px;
 }
 
 @media (max-width: 991px) {
