@@ -23,7 +23,7 @@ $desktop-res: 992px;
 }
 
 @mixin inbutton($color) {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
   background-color: inherit;
@@ -41,7 +41,7 @@ $desktop-res: 992px;
 }
 
 @mixin outbutton($color) {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
   background-color: inherit;

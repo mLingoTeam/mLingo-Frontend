@@ -46,7 +46,7 @@
 
 @media (max-width: $mobile-res) {
 
-    .navbar__brand--text {
+  .navbar__brand--text {
     font-size: 18px;
   }
 
@@ -65,15 +65,37 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: nowrap;
+
+  input[type="text"]{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 8px;
+    height: 40px;
+    max-width: 400px;
+    font-size: 22px;
+
+    @media(max-width: $tablet-res){
+      height: 30px !important;
+      font-size: 18px;
+    }
+
+    &:focus{
+      border: 1px solid $light-green;
+      outline: none !important;
+    }
+
+  }
+}
+
+.navbar__brand--text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  font-weight: bold;
 }
 
 @media(min-width: $tablet-res){
-  .navbar__brand--text {
-    font-family: 'Poppins', sans-serif;
-    font-size: 24px;
-    text-shadow: 0.1em 0.1em 0.2em black;
-    font-weight: bold;
-  }
+
 
   .navbar--dark {
     height: 100px;

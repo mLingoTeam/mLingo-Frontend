@@ -9,6 +9,7 @@ const AppNavbar = props => {
         <p className="navbar__brand--text">mLingo</p>
       </Link>
       <div className="navbar__buttons">
+        <input type="text" />
         <SignInModal />
         <div>
           <button className="navbar__registerbutton">sign up</button>

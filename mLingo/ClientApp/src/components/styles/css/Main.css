@@ -3,7 +3,7 @@
 }
 
 .blue-button {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
   background-color: inherit;
@@ -22,7 +22,7 @@
 }
 
 .in-button {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
   background-color: inherit;
@@ -143,13 +143,35 @@
       flex-wrap: nowrap;
 }
 
-@media (min-width: 991px) {
-  .navbar__brand--text {
-    font-family: 'Poppins', sans-serif;
-    font-size: 24px;
-    text-shadow: 0.1em 0.1em 0.2em black;
-    font-weight: bold;
+.navbar__buttons input[type="text"] {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #707070;
+  border-radius: 8px;
+  height: 40px;
+  max-width: 400px;
+  font-size: 22px;
+}
+
+@media (max-width: 991px) {
+  .navbar__buttons input[type="text"] {
+    height: 30px !important;
+    font-size: 18px;
   }
+}
+
+.navbar__buttons input[type="text"]:focus {
+  border: 1px solid #B6EE1A;
+  outline: none !important;
+}
+
+.navbar__brand--text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  font-weight: bold;
+}
+
+@media (min-width: 991px) {
   .navbar--dark {
     height: 100px;
   }
@@ -189,7 +211,7 @@
 }
 
 .navbar__registerbutton {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
   background-color: inherit;
@@ -208,7 +230,7 @@
 }
 
 .signinbutton {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
   background-color: inherit;
@@ -501,7 +523,7 @@ li.media h4 {
 }
 
 .mainpanel__userbase button {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
   background-color: inherit;
