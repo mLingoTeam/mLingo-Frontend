@@ -1,12 +1,14 @@
 import React from 'react';
 import UserNavbar from '../UserPanelComponents/UserNavbar'
+import Footer from '../MainPageComponents/Footer'
 
 const UserPanelLayout = ({ children }) => {
 
     return (
-        <div>
+        <div className="app--background">
             <UserNavbar />
-            <main>{children}</main>
+            <main className="container">{children}</main>
+            <Footer />
         </div>
     )
 }

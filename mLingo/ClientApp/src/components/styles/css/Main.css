@@ -2,6 +2,11 @@
   font-family: 'Poppins', sans-serif;
 }
 
+button::-moz-focus-inner, input::-moz-focus-inner, input::focus {
+  border: 0;
+  outline: none;
+}
+
 a:hover {
   text-decoration: none;
 }
@@ -185,6 +190,45 @@ a:hover {
   }
 }
 
+.searchbutton {
+  font-size: 24px;
+  color: white;
+  background: inherit;
+  border: none;
+  margin: 0;
+  text-decoration: none;
+  /*for FireFox*/
+  /*for IE8 and below */
+}
+
+.searchbutton::-moz-focus-inner {
+  border: 0;
+}
+
+.searchbutton:focus, .searchbutton:focus {
+  outline: none;
+}
+
+.searchbutton:hover {
+  color: #B6EE1A;
+  cursor: pointer;
+  outline: hidden;
+}
+
+.searchbutton:focus {
+  outline: hidden;
+  color: #A1D218;
+  border: 0;
+  -webkit-box-shadow: 0;
+          box-shadow: 0;
+  outline-offset: -4px;
+}
+
+.searchbutton::-moz-focus-inner {
+  border: 0;
+  outline: none;
+}
+
 .navbar__buttons {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
@@ -218,12 +262,6 @@ a:hover {
   .navbar__buttons input[type="text"] {
     height: 30px !important;
     font-size: 18px;
-  }
-}
-
-@media (min-width: 991px) {
-  .navbar__buttons input[type="text"] {
-    margin: 0 32px 0 0;
   }
 }
 
