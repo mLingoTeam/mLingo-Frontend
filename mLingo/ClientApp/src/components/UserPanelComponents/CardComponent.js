@@ -11,14 +11,14 @@ const CardComponent = ({ set }) => {
         <div>
             <Card>
                 <CardBody>
-                    <CardTitle>{set.name}</CardTitle>
-                    <CardSubtitle>{set.ownerId}</CardSubtitle>
-                    <CardText>{set.id}</CardText>
+                    <CardTitle>Collection name: {set.name}</CardTitle>
+                    <CardSubtitle></CardSubtitle>
+                    <CardText></CardText>
                     <Link to="/collection/"><Button onClick={
                         () => {
                             authenticationService.setIntoLocalStorage({ name: "collectionid", value: set.id })
                         }
-                    }>Work with that</Button></Link>
+                    }>See the collection</Button></Link>
                 </CardBody>
             </Card>
         </div>

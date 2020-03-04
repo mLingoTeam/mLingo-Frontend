@@ -61,12 +61,15 @@ class UserCreate extends React.Component {
                         <input name="collectionName" type="text" onChange={this.handleChange} value={this.state.collectionName} />
                         <UserCreateCard set={this.state} functioni={this.handleCardChange} functionii={this.addCard} />
 
-                        <p>Your collection:</p>
-                        <p>{JSON.stringify(this.state.collectionName)}</p>
-                        <p>{JSON.stringify(this.state.cards)}</p>
-                        <button onClick={this.createCollection}>Create</button>
-                        <p> -----------------</p>
-                        <button onClick={this.logout}>Logout</button>
+                        <div>
+                            <p>Your collection:</p>
+                            <p>{JSON.stringify(this.state.collectionName)}</p>
+                            <p>{JSON.stringify(this.state.cards)}</p>
+                        </div>
+                        <div>
+                            <button onClick={this.createCollection}>Create</button>
+                            <button onClick={this.logout}>Logout</button>
+                        </div>
                     </div>
                 </div>
             </div >

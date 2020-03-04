@@ -11,7 +11,7 @@ const Flashcard = ({ set }) => {
                 <CardBody>
                     <CardTitle>{set.term}</CardTitle>
                     <CardSubtitle>{set.definition}</CardSubtitle>
-                    <CardText>{set.id}</CardText>
+                    <CardText></CardText>
                 </CardBody>
             </Card>
         </div >
