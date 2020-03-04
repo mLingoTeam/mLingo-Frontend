@@ -1,3 +1,7 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
 .blue-button {
   font-size: 22px;
   font-weight: bold;
@@ -5,16 +9,16 @@
   background-color: inherit;
   border: 0;
   color: white;
-  width: 10vw;
   outline: none !important;
   background: #000536;
   height: 60px;
   border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .blue-button:hover {
-  -webkit-filter: brightness(0.8);
-          filter: brightness(0.8);
+  color: #B6EE1A;
 }
 
 .in-button {
@@ -24,16 +28,16 @@
   background-color: inherit;
   border: 0;
   color: white;
-  width: 10vw;
   outline: none !important;
   background: inherit;
   height: 60px;
   border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .in-button:hover {
-  -webkit-filter: brightness(0.8);
-          filter: brightness(0.8);
+  color: #B6EE1A;
 }
 
 @-webkit-keyframes navbar-monkey-bounce {

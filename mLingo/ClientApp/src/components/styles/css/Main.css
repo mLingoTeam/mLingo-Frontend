@@ -1,3 +1,7 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
 .blue-button {
   font-size: 22px;
   font-weight: bold;
@@ -5,16 +9,16 @@
   background-color: inherit;
   border: 0;
   color: white;
-  width: 10vw;
   outline: none !important;
   background: #000536;
   height: 60px;
   border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .blue-button:hover {
-  -webkit-filter: brightness(0.8);
-          filter: brightness(0.8);
+  color: #B6EE1A;
 }
 
 .in-button {
@@ -24,16 +28,16 @@
   background-color: inherit;
   border: 0;
   color: white;
-  width: 10vw;
   outline: none !important;
   background: inherit;
   height: 60px;
   border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .in-button:hover {
-  -webkit-filter: brightness(0.8);
-          filter: brightness(0.8);
+  color: #B6EE1A;
 }
 
 @-webkit-keyframes navbar-monkey-bounce {
@@ -88,7 +92,7 @@
 /* 6. Footer.js */
 /* Login Panel */
 /* 7. Main Panel */
-/* 1. AppNavbar.js */
+/* App Background and Bootstrap overwrites */
 .app--background {
   background-color: #000536;
   position: absolute;
@@ -108,62 +112,61 @@
   }
 }
 
+/* 1. AppNavbar.js */
 /* MODAL */
 .show {
   opacity: 1;
 }
 
-@media (max-width: 991px) {
-  .navbar__brand--icon {
-    max-width: 40px;
-    max-height: 40px;
-  }
+@media (max-width: 576px) {
   .navbar__brand--text {
-    font-size: 12px;
+    font-size: 18px;
   }
 }
 
 @media (min-width: 992px) {
-  .navbar {
-    height: 100px;
-  }
-  .navbar__brand--icon {
-    position: absolute;
-    left: 4%;
-    max-width: 80px;
-    max-height: 80px;
-    -webkit-animation: navbar-monkey-bounce 1.2s infinite ease-in-out;
-            animation: navbar-monkey-bounce 1.2s infinite ease-in-out;
-  }
-  .navbar__brand--text {
-    position: absolute;
-    left: 100%;
-    top: 100%;
-    -webkit-transform: translateY(-100%);
-            transform: translateY(-100%);
-    font-size: 24px;
-    text-shadow: 0.1em 0.1em 0.2em black;
-  }
   .modal-dialog {
     max-width: 60vw;
   }
-  .navbar__buttons {
-    display: -webkit-box !important;
-    display: -ms-flexbox !important;
-    display: flex !important;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
+}
+
+.navbar__buttons {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+@media (min-width: 991px) {
+  .navbar__brand--text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    text-shadow: 0.1em 0.1em 0.2em black;
+    font-weight: bold;
+  }
+  .navbar--dark {
+    height: 100px;
   }
 }
 
 .navbar__brand {
   position: relative;
   height: 100%;
+  vertical-align: middle;
+  height: auto !important;
+  padding: 0 10px !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .navbar__brand--text {
@@ -171,24 +174,18 @@
   font-weight: bold;
 }
 
-.navbar {
-  margin: 0 !important;
-  border: 0 !important;
-}
-
 .navbar--dark {
   background: #000536;
   margin: 0 !important;
-}
-
-.navbar--brand {
-  height: auto !important;
-  padding: 0 10px !important;
-}
-
-.navbar__buttons {
-  position: absolute;
-  right: 5vw;
+  border: 0 !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .navbar__registerbutton {
@@ -197,17 +194,17 @@
   text-shadow: 0.1em 0.1em 0.2em black;
   background-color: inherit;
   border: 0;
-  color: white;
-  width: 10vw;
+  color: #B6EE1A;
   outline: none !important;
-  background: #000536;
+  background: "inherit";
   height: 60px;
   border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .navbar__registerbutton:hover {
-  -webkit-filter: brightness(0.8);
-          filter: brightness(0.8);
+  color: white;
 }
 
 .signinbutton {
@@ -217,16 +214,16 @@
   background-color: inherit;
   border: 0;
   color: white;
-  width: 10vw;
   outline: none !important;
   background: "inherit";
   height: 60px;
   border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .signinbutton:hover {
-  -webkit-filter: brightness(0.8);
-          filter: brightness(0.8);
+  color: #B6EE1A;
 }
 
 /* 2. Slider.js */
@@ -258,8 +255,7 @@
 }
 
 .carousel-item {
-  background: -webkit-gradient(linear, left top, left bottom, from(#000536), to(#B6EE1A));
-  background: linear-gradient(#000536, #B6EE1A);
+  background: #000536;
 }
 
 .carousel-item img {
@@ -333,7 +329,7 @@
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 576px) {
   .Promo h1 {
     margin-bottom: 20px;
   }
@@ -442,7 +438,7 @@ li.media h4 {
 
 /* Login Panel */
 /* Main Panel */
-@media (max-width: 991px) {
+@media (max-width: 576px) {
   .mainpanel {
     width: 100vw;
     display: -webkit-box;
@@ -511,16 +507,16 @@ li.media h4 {
   background-color: inherit;
   border: 0;
   color: white;
-  width: 10vw;
   outline: none !important;
   background: #000536;
   height: 60px;
   border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .mainpanel__userbase button:hover {
-  -webkit-filter: brightness(0.8);
-          filter: brightness(0.8);
+  color: #B6EE1A;
 }
 
 .searchcollectioninput {

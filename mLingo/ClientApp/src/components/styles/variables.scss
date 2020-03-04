@@ -1,9 +1,14 @@
-$dark-color: #000536;
-$light-color: #B6EE1A;
+$dark-blue: #000536;
 $light-blue: #000536;
+$light-green: #B6EE1A;
+$dark-green: #A1D218;
 $mobile-res: 576px;
 $tablet-res: 991px;
 $desktop-res: 992px;
+
+*{
+  font-family: 'Poppins', sans-serif ;
+}
 
 @mixin mobile {
   @media (max-width: 991px) {
@@ -24,14 +29,14 @@ $desktop-res: 992px;
   background-color: inherit;
   border: 0;
   color: white;
-  width: 10vw;
   outline: none !important;
   background: $color;
   height: 60px;
   border-radius: 5px;
+  transition: 0.5s;
 
   &:hover {
-    filter: brightness(0.8);
+    color: $light-green;
   }
 }
 
@@ -41,15 +46,15 @@ $desktop-res: 992px;
   text-shadow: 0.1em 0.1em 0.2em black;
   background-color: inherit;
   border: 0;
-  color: $light-color;
-  width: 10vw;
+  color: $light-green;
   outline: none !important;
   background: $color;
   height: 60px;
   border-radius: 5px;
+  transition: 0.5s;
 
   &:hover {
-    filter: brightness(0.8);
+    color: white;
   }
 }
 

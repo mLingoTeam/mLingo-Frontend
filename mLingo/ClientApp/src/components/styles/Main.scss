@@ -1,5 +1,7 @@
 @import "./variables.scss";
 
+
+
 /* MENU */
 
 /* MainPageComponents */
@@ -14,10 +16,10 @@
 /* Login Panel */
 /* 7. Main Panel */
 
-/* 1. AppNavbar.js */
 
+/* App Background and Bootstrap overwrites */
 .app--background{
-  background-color: $dark-color;
+  background-color: $dark-blue;
   position: absolute;
   width: 100%;
   left: 0;
@@ -35,6 +37,8 @@
   }
 }
 
+/* 1. AppNavbar.js */
+
 /* MODAL */
 .show {
   opacity: 1;
@@ -42,52 +46,50 @@
 
 @media (max-width: $mobile-res) {
 
-  .navbar__brand--icon {
-    max-width: 40px;
-    max-height: 40px;
-  }
     .navbar__brand--text {
-    font-size: 12px;
+    font-size: 18px;
   }
 
 
 }
 
 @media (min-width: $desktop-res) {
-  .navbar {
-    height: 100px;
-  }
-  .navbar__brand--icon {
-    position: absolute;
-    left: 4%;
-    max-width: 80px;
-    max-height: 80px;
-    animation: navbar-monkey-bounce 1.2s infinite ease-in-out;
-  }
-  .navbar__brand--text {
-    position: absolute;
-    left: 100%;
-    top: 100%;
-    transform: translateY( -100%);
-    font-size: 24px;
-    text-shadow: 0.1em 0.1em 0.2em black;
-  }
+
   .modal-dialog {
     max-width: 60vw;
   }
+}
 
-  .navbar__buttons {
-    display: flex !important;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: nowrap;
+.navbar__buttons {
+  display: flex !important;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+@media(min-width: $tablet-res){
+  .navbar__brand--text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    text-shadow: 0.1em 0.1em 0.2em black;
+    font-weight: bold;
   }
+
+  .navbar--dark {
+    height: 100px;
+  }
+
 }
 
 
 .navbar__brand{
   position: relative;
   height: 100%;
+  vertical-align: middle;
+  height: auto !important;
+  padding: 0 10px !important;
+  display: flex;
+  align-items: center;
 }
 
 .navbar__brand--text {
@@ -95,28 +97,18 @@
   font-weight: bold;
 }
 
-.navbar {
-  margin: 0 !important;
-  border: 0 !important;
-}
 
 .navbar--dark {
-  background: $dark-color;
+  background: $dark-blue;
   margin: 0 !important;
-}
-
-.navbar--brand {
-  height: auto !important;
-  padding: 0 10px !important;
-}
-
-.navbar__buttons {
-  position: absolute;
-  right: 5vw;
+  border: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .navbar__registerbutton {
-  @include bluebutton;
+  @include outbutton("inherit");
 }
 
 .signinbutton {
@@ -151,7 +143,7 @@
   position: relative;
 }
 .carousel-item {
-  background: linear-gradient($dark-color, $light-color);
+  background: $dark-blue;
 
   img {
     object-fit: cover;
@@ -287,7 +279,7 @@ li.media h4 {
 /* 6. Footer.js */
 
 .footer {
-  background: $dark-color;
+  background: $dark-blue;
   margin: 0 !important;
   width: 100%;
   height: 20vh;
@@ -311,7 +303,7 @@ li.media h4 {
   transition: 0.5s;
 }
 .social:hover{
-  color: $light-color;
+  color: $light-green;
   cursor: pointer;
 }
 

@@ -9,7 +9,7 @@ const Footer = props => {
       <FaFacebook className="social" />
       <FaInstagram className="social" />
       <div className="footer-end-text">
-        <p>mLingo Team 2019 </p>
+        <p>© {new Date().getFullYear()} mLingo Team </p>
       </div>
     </div>
   );
