@@ -14,7 +14,8 @@ class Login extends React.Component {
       username: "",
       email: "",
       password: "",
-      isLoading: false
+      isLoading: false,
+      err: false
     };
 
     this.fields = [
@@ -53,7 +54,7 @@ class Login extends React.Component {
 
     if (resstatus == 'false') {
       const err = (JSON.stringify(resolved.errorMessage));
-      alert(err);
+      this.setState({ ...this.state, err: err })
     } // if the user exist save they into the web
     else {
       authenticationService.setIntoLocalStorage({ name: "currentUser", value: resolved.response.username });
@@ -96,6 +97,10 @@ class Login extends React.Component {
               <FormField set={element} />
             ))}
 
+            {
+              this.state.err != false ? <p>{this.state.err}</p> : undefined
+            }
+
             <div className="col-12 remember">
               <span>
                 <input type="checkbox" id="remember1" className="remembercheck" />
@@ -104,9 +109,12 @@ class Login extends React.Component {
               <Link to="/forgot">forgot password?</Link>
             </div>
 
+
             <button className="col-12 col-lg-4 btn green-button">
               get started
             </button>
+
+
 
             <div className="col-12 alreadyaccount">
               <p>Don't have an account? &nbsp; </p><Link to='/register'>sign up</Link>
