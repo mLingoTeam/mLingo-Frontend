@@ -32,6 +32,12 @@
     <ProjectReference Include="..\mLingoCore\mLingoCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="ClientApp\src\components\FormComponents\Search.js" />
+    <None Remove="ClientApp\src\components\layouts\Layout.js" />
+    <None Remove="ClientApp\src\components\pages\LoginPage.js" />
+    <None Remove="ClientApp\src\components\pages\RegisterPage.js" />
+  </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

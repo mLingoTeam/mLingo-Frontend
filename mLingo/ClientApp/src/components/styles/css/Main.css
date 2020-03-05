@@ -2,11 +2,6 @@
   font-family: 'Poppins', sans-serif;
 }
 
-button::-moz-focus-inner, input::-moz-focus-inner, input::focus {
-  border: 0;
-  outline: none;
-}
-
 a:hover {
   text-decoration: none;
 }
@@ -486,25 +481,50 @@ li.media h4 {
   margin: 0 !important;
 }
 
-.registerForm2 input[type=checkbox] {
-  border: 1px solid #000536;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  -o-appearance: none;
+.registerForm2 input[type="checkbox"] {
+  display: none;
+}
+
+.registerForm2 input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  font: 14px/20px 'Open Sans', Arial, sans-serif;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.registerForm2 input[type="checkbox"] + label:last-child {
+  margin-bottom: 0;
+}
+
+.registerForm2 input[type="checkbox"] + label:before {
+  content: '';
+  display: block;
   width: 20px;
   height: 20px;
-  border-radius: 5px;
-  -webkit-transform: translate(-50%, 20%);
-          transform: translate(-50%, 20%);
+  border: 1px solid #000536;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
 }
 
-.registerForm2 input[type=checkbox]:checked {
-  background-color: #000536;
-  outline: none;
-}
-
-.registerForm2 input[type=checkbox]:focus {
-  outline: none;
+.registerForm2 input[type="checkbox"]:checked + label:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 .fbconnect, .ggconnect {
@@ -531,13 +551,15 @@ li.media h4 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   font-size: 14px;
   color: #B6EE1A;
+  text-shadow: 0.1em 0.1em 0.1em #000536;
   margin-bottom: 88px !important;
 }
 
