@@ -1,5 +1,5 @@
 import React from "react";
-import Search from '../FormComponents/Search';
+import SearchInput from '../FormComponents/SearchInput';
 import { Link } from "react-router-dom";
 
 const UserNavbar = props => {
@@ -9,7 +9,7 @@ const UserNavbar = props => {
                 <p className="navbar__brand--text">mLingo</p>
             </Link>
             <div className="navbar__buttons">
-                <Search />
+                <SearchInput />
                 <div>
                     <Link className="signinbutton" to="/create">create</Link>
                 </div>

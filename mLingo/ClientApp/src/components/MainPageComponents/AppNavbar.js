@@ -1,15 +1,16 @@
 import React from "react";
-import Search from '../FormComponents/Search';
+import SearchInput from '../FormComponents/SearchInput';
 import { Link } from "react-router-dom";
+import logo from '../../img/Kompozycja 2.svg'
 
 const AppNavbar = props => {
   return (
-    <div className="navbar--dark">
+    <div className="navbar--dark container">
       <Link className="navbar__brand" to="/">
-        <p className="navbar__brand--text">mLingo</p>
+        <img src={logo} className="img-fluid" />
       </Link>
       <div className="navbar__buttons">
-        <Search />
+        <SearchInput />
         <div>
           <Link className="signinbutton" to="/Login">sign in</Link>
         </div>

@@ -3,7 +3,7 @@ import { FaYoutube, FaPodcast, FaFacebook, FaInstagram } from 'react-icons/fa';
 
 const Footer = props => {
   return (
-    <div className="footer">
+    <div className="footer container">
       <FaYoutube className="social" />
       <FaPodcast className="social" />
       <FaFacebook className="social" />

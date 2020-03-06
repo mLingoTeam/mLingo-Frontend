@@ -148,14 +148,14 @@ a:hover {
   z-index: -999;
 }
 
-.container {
+main.container {
   background-color: #F8F8F8;
   overflow: hidden;
   padding: 50px;
 }
 
 @media (min-width: 576px) {
-  .container {
+  main.container {
     border-radius: 70px;
   }
 }
@@ -170,6 +170,9 @@ a:hover {
 @media (max-width: 576px) {
   .navbar__brand--text {
     font-size: 14px !important;
+  }
+  .searchbuttontext {
+    display: none;
   }
 }
 
@@ -190,7 +193,7 @@ a:hover {
   color: white;
   background: inherit;
   border: none;
-  margin: 0;
+  margin: 0 0 0 10px;
   text-decoration: none;
   /*for FireFox*/
   /*for IE8 and below */
@@ -285,11 +288,11 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  max-width: 150px;
 }
 
 .navbar--dark {
   background: #000536;
-  margin: 0 !important;
   border: 0 !important;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -297,8 +300,9 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .navbar__registerbutton {
@@ -595,7 +599,6 @@ li.media h4 {
 /* 6. Footer.js */
 .footer {
   background: #000536;
-  margin: 0 !important;
   width: 100%;
   height: 20vh;
   display: -webkit-box;
