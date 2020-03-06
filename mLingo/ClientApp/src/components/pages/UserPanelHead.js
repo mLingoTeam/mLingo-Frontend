@@ -1,5 +1,5 @@
 import React from "react";
-import UserPanelLayout from '../layouts/UserPanelLayout'
+import Layout from '../layouts/Layout'
 import UserHead from '../UserPanelComponents/UserHead'
 
 class UserPanel extends React.Component {
@@ -7,9 +7,9 @@ class UserPanel extends React.Component {
 
   render() {
     return (
-      <UserPanelLayout>
+      <Layout>
         <UserHead />
-      </UserPanelLayout>
+      </Layout>
     )
   }
 }

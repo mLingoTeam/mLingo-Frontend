@@ -1,29 +1,41 @@
 import React from "react";
+import SearchInput from '../FormComponents/SearchInput';
 import { Link } from "react-router-dom";
-import SignInModal from "./SignInModal";
-import brandIcon from "../../img/monkey.png";
+import logo from '../../img/Kompozycja 2.svg'
+import { authenticationService } from "../../services/authentication";
+
+const logout = () => {
+  authenticationService.logout();
+  //it works because localStorage is empty imidiately
+  window.location.reload();
+};
 
 const AppNavbar = props => {
   return (
-    <div className="navbar--dark">
-      <nav
-        className="navbar navbar-expand-sm navbar-toggleable-sm ng-white box-shadow navbar-light bg-faded"
-      >
-        <a className="navbar__brand" tag={Link} to="/">
-          {" "}
-          <img alt="brand--icon" src={brandIcon} className="navbar__brand--icon" />
-          <p className="navbar__brand--text">mLingo</p>
-        </a>
-        <div className="navbar__buttons">
-          <SignInModal />
-          <div>
-            <a href="#Username">
-              <button className="navbar__registerbutton">Sign up</button>
-            </a>
+    <div className="navbar--dark container">
+      <Link className="navbar__brand" to="/">
+        <img src={logo} className="img-fluid" />
+      </Link>
+      <div className="navbar__buttons">
+        <SearchInput />
+        {
+          localStorage.getItem("currentUser") ? <div className="navbar__buttons">
+            <div>
+              <Link className="signinbutton" to="/head">learn</Link>
+            </div>
+            <div>
+              <button className="navbar__registerbutton" onClick={logout} >logout</button>
+            </div>
+          </div> : <div className="navbar__buttons"> <div>
+            <Link className="signinbutton" to="/Login">sign in</Link>
           </div>
-        </div>
-      </nav>
-    </div>
+              <div>
+                <Link className="navbar__registerbutton" to="/Register">sign up</Link>
+              </div>
+            </div>
+        }
+      </div>
+    </div >
   );
 };
 

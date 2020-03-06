@@ -1,6 +1,6 @@
 import React from "react";
-import CardComponent from './CardComponent'
-import { Link } from 'react-router-dom';
+import CardComponent from '../UserPanelComponents/CardComponent'
+import SearchInput from '../FormComponents/SearchInput'
 
 import { authenticationService } from "../../services/authentication";
 
@@ -8,15 +8,12 @@ class UserHead extends React.Component {
     constructor(props) {
         super(props);
 
-        if (!localStorage.getItem("currentUser")) {
-            this.props.history.push("/");
-        }
-
-        this.state = { fields: [], exist: null, type: 'username', request: "Test100" }
+        this.state = { fields: [], exist: null, type: 'name', request: localStorage.getItem("request") }
 
         this.findcollection = this.findcollection.bind(this);
         this.changeRequest = this.changeRequest.bind(this);
         this.changeRequestType = this.changeRequestType.bind(this);
+
     }
 
     changeRequest(event) {
@@ -39,21 +36,26 @@ class UserHead extends React.Component {
         }
     }
 
+    logout = () => {
+        authenticationService.logout();
+        //it works because localStorage is empty imidiately
+        window.location.reload();
+    };
+
+    componentDidMount() {
+        this.findcollection();
+    }
+
     render() {
         return (
             <div>
                 <div className="mainpanel">
                     <div className="mainpanel__userbase">
-                        <h1>Hi {localStorage.getItem("currentUser")}!</h1>
-                        <h3>Welcome in MLingo!</h3>
-                        <p>Search collection by user or by name!</p>
-                        <div>
-                            <div><input type="radio" name="radAnswer" value="username" onChange={this.changeRequestType} /> <label>Search by username</label></div>
-                            <div><input type="radio" name="radAnswer" value="name" onChange={this.changeRequestType} /> <label>Search by set name</label></div>
-                        </div>
-                        <input className="searchcollectioninput" type="text" onChange={this.changeRequest} />
+                        <h3>You have searched for : {localStorage.getItem("request")} </h3>
+                        <SearchInput />
                         <button onClick={this.findcollection}>Find</button>
-                        <Link to="/create">create collection</Link>
+                        <button onClick={this.logout}>Logout</button>
+
                     </div>
                 </div>
                 {
@@ -61,7 +63,7 @@ class UserHead extends React.Component {
                         <CardComponent set={element} />
                     )) : this.state.exist ? <div className="text-center"><h2> No collection found </h2></div> : <div className="text-center"><h2> No collection found </h2></div>
                 }
-            </div >
+            </div>
         );
     }
 }

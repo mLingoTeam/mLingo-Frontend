@@ -1,8 +1,18 @@
-$dark-color: #0c2461;
-$light-color: #1e3799;
-$light-blue: #4a69bd;
-$mobile-res: 991px;
+$dark-blue: #000536;
+$light-blue: #000536;
+$light-green: #B6EE1A;
+$dark-green: #A1D218;
+$mobile-res: 576px;
+$tablet-res: 991px;
 $desktop-res: 992px;
+
+*{
+  font-family: 'Poppins', sans-serif ;
+}
+
+a:hover{
+  text-decoration: none;
+}
 
 @mixin mobile {
   @media (max-width: 991px) {
@@ -17,25 +27,91 @@ $desktop-res: 992px;
 }
 
 @mixin inbutton($color) {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
   background-color: inherit;
   border: 0;
   color: white;
-  width: 10vw;
   outline: none !important;
   background: $color;
   height: 60px;
   border-radius: 5px;
+  transition: 0.5s;
 
   &:hover {
-    filter: brightness(0.8);
+    color: $light-green;
+    text-decoration: none !important;
   }
+
+  @media(max-width: $mobile-res){
+    &{
+      font-size: 16px !important;
+    }
+  }
+}
+
+@mixin outbutton($color) {
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: $light-green;
+  outline: none !important;
+  background: $color;
+  height: 60px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: 0.5s;
+
+  &:hover {
+    color: white;
+    text-decoration: none !important;
+  }
+
+  @media(max-width: $mobile-res){
+    &{
+      font-size: 16px !important;
+    }
+  }
+}
+
+@mixin darkbutton($color) {
+  font-size: 16px;
+  font-weight: 400;
+  background-color: inherit;
+  border: 0;
+  color: $dark-blue;
+  outline: none !important;
+  background: $color;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.5s;
+
+  &:hover {
+    color: $dark-blue;
+    text-decoration: none !important;
+  }
+
+  @media(max-width: $mobile-res){
+    &{
+      font-size: 16px !important;
+    }
+  }
+}
+
+@mixin greenbutton{
+  @include darkbutton($light-green);
 }
 
 @mixin bluebutton {
   @include inbutton($light-blue);
+}
+
+.green-button{
+  @include greenbutton;
 }
 
 .blue-button {

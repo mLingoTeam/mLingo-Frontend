@@ -1,39 +1,87 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.green-button {
+  font-size: 16px;
+  font-weight: 400;
+  background-color: inherit;
+  border: 0;
+  color: #000536;
+  outline: none !important;
+  background: #B6EE1A;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.green-button:hover {
+  color: #000536;
+  text-decoration: none !important;
+}
+
+@media (max-width: 576px) {
+  .green-button {
+    font-size: 16px !important;
+  }
+}
+
 .blue-button {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
   background-color: inherit;
   border: 0;
   color: white;
-  width: 10vw;
   outline: none !important;
-  background: #4a69bd;
+  background: #000536;
   height: 60px;
   border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .blue-button:hover {
-  -webkit-filter: brightness(0.8);
-          filter: brightness(0.8);
+  color: #B6EE1A;
+  text-decoration: none !important;
+}
+
+@media (max-width: 576px) {
+  .blue-button {
+    font-size: 16px !important;
+  }
 }
 
 .in-button {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
   background-color: inherit;
   border: 0;
   color: white;
-  width: 10vw;
   outline: none !important;
   background: inherit;
   height: 60px;
   border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .in-button:hover {
-  -webkit-filter: brightness(0.8);
-          filter: brightness(0.8);
+  color: #B6EE1A;
+  text-decoration: none !important;
+}
+
+@media (max-width: 576px) {
+  .in-button {
+    font-size: 16px !important;
+  }
 }
 
 @-webkit-keyframes navbar-monkey-bounce {
@@ -79,196 +127,242 @@
 }
 
 /* MENU */
-/* MainPageComponents */
+/* Layout Components */
 /* 1. AppNavbar.js */
-/* 2. Slider.js */
+/* MainPageComponents */
 /* 3. Promo.js */
 /* 4. UserPromo.js */
 /* 5. Register.js */
 /* 6. Footer.js */
 /* Login Panel */
 /* 7. Main Panel */
+/* 8 Cards */
+/* UNUSED */
+/* Slider.js */
+/* App Background and Bootstrap overwrites */
+.app--background {
+  background-color: #000536;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: -999;
+}
+
+main.container {
+  background-color: #F8F8F8;
+  overflow: hidden;
+  padding: 50px;
+}
+
+@media (min-width: 576px) {
+  main.container {
+    border-radius: 70px;
+  }
+}
+
+/* Layout Components */
 /* 1. AppNavbar.js */
 /* MODAL */
 .show {
   opacity: 1;
 }
 
-@media (max-width: 991px) {
-  .navbar__brand--icon {
-    max-width: 40px;
-    max-height: 40px;
-  }
+@media (max-width: 576px) {
   .navbar__brand--text {
-    font-size: 12px;
+    font-size: 14px !important;
+  }
+  .searchbuttontext {
+    display: none;
+  }
+  .navbar--dark {
+    padding: 15px 5px;
+  }
+  .navbar__buttons {
+    width: 70%;
   }
 }
 
 @media (min-width: 992px) {
-  .navbar {
-    height: 100px;
-  }
-  .navbar__brand--icon {
-    position: absolute;
-    left: 4%;
-    max-width: 80px;
-    max-height: 80px;
-    -webkit-animation: navbar-monkey-bounce 1.2s infinite ease-in-out;
-            animation: navbar-monkey-bounce 1.2s infinite ease-in-out;
-  }
-  .navbar__brand--text {
-    position: absolute;
-    left: 100%;
-    top: 100%;
-    -webkit-transform: translateY(-100%);
-            transform: translateY(-100%);
-    font-size: 24px;
-    text-shadow: 0.1em 0.1em 0.2em black;
-  }
   .modal-dialog {
     max-width: 60vw;
   }
-  .navbar__buttons {
-    display: -webkit-box !important;
-    display: -ms-flexbox !important;
-    display: flex !important;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
+}
+
+@media (min-width: 991px) {
+  .navbar--dark {
+    height: 100px;
   }
+}
+
+.searchbutton {
+  font-size: 24px;
+  color: white;
+  background: inherit;
+  border: none;
+  margin: 0 0 0 10px;
+  text-decoration: none;
+  /*for FireFox*/
+  /*for IE8 and below */
+}
+
+.searchbutton::-moz-focus-inner {
+  border: 0;
+}
+
+.searchbutton:focus, .searchbutton:focus {
+  outline: none;
+}
+
+.searchbutton:hover {
+  color: #B6EE1A;
+  cursor: pointer;
+  outline: hidden;
+}
+
+.searchbutton:focus {
+  outline: hidden;
+  color: #A1D218;
+  border: 0;
+  -webkit-box-shadow: 0;
+          box-shadow: 0;
+  outline-offset: -4px;
+}
+
+.searchbutton::-moz-focus-inner {
+  border: 0;
+  outline: none;
+}
+
+.navbar__buttons {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+@media (min-width: 576px) {
+  .navbar__buttons div {
+    margin: 0 0 0 18px;
+  }
+}
+
+.navbar__buttons input[type="text"] {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #707070;
+  border-radius: 8px;
+  height: 40px;
+  max-width: 400px;
+  font-size: 22px;
+  padding: 0 10px;
+}
+
+@media (max-width: 991px) {
+  .navbar__buttons input[type="text"] {
+    height: 30px !important;
+    font-size: 18px;
+  }
+}
+
+.navbar__buttons input[type="text"]:focus {
+  border: 1px solid #B6EE1A;
+  outline: none !important;
+}
+
+.navbar__brand--text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  color: #ddd;
+  font-weight: bold;
 }
 
 .navbar__brand {
   position: relative;
   height: 100%;
-}
-
-.navbar__brand--text {
-  color: #ddd;
-  font-weight: bold;
-}
-
-.navbar {
-  margin: 0 !important;
-  border: 0 !important;
+  vertical-align: middle;
+  height: auto !important;
+  padding: 0 10px !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 150px;
 }
 
 .navbar--dark {
-  background: -webkit-gradient(linear, left top, left bottom, from(#1e3799), to(#0c2461));
-  background: linear-gradient(#1e3799, #0c2461);
-  margin: 0 !important;
-}
-
-.navbar--brand {
-  height: auto !important;
-  padding: 0 10px !important;
-}
-
-.navbar__buttons {
-  position: absolute;
-  right: 5vw;
+  background: #000536;
+  border: 0 !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .navbar__registerbutton {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
   background-color: inherit;
   border: 0;
-  color: white;
-  width: 10vw;
-  outline: none !important;
-  background: #4a69bd;
-  height: 60px;
-  border-radius: 5px;
-}
-
-.navbar__registerbutton:hover {
-  -webkit-filter: brightness(0.8);
-          filter: brightness(0.8);
-}
-
-.signinbutton {
-  font-size: 22px;
-  font-weight: bold;
-  text-shadow: 0.1em 0.1em 0.2em black;
-  background-color: inherit;
-  border: 0;
-  color: white;
-  width: 10vw;
+  color: #B6EE1A;
   outline: none !important;
   background: "inherit";
   height: 60px;
   border-radius: 5px;
+  text-decoration: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.navbar__registerbutton:hover {
+  color: white;
+  text-decoration: none !important;
+}
+
+@media (max-width: 576px) {
+  .navbar__registerbutton {
+    font-size: 16px !important;
+  }
+}
+
+.signinbutton {
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  outline: none !important;
+  background: "inherit";
+  height: 60px;
+  border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .signinbutton:hover {
-  -webkit-filter: brightness(0.8);
-          filter: brightness(0.8);
+  color: #B6EE1A;
+  text-decoration: none !important;
 }
 
-/* 2. Slider.js */
-.carousel-sign-in {
-  position: absolute;
-  width: 30vw;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-}
-
-@media (min-width: 992px) {
-  .carousel-caption p {
-    font-size: 18px;
+@media (max-width: 576px) {
+  .signinbutton {
+    font-size: 16px !important;
   }
-  .carousel-caption h3 {
-    font-size: 32px;
-  }
-}
-
-.slider {
-  padding: 0px !important;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  position: relative;
-}
-
-.carousel-item {
-  background: -webkit-gradient(linear, left top, left bottom, from(#0c2461), to(#1e3799));
-  background: linear-gradient(#0c2461, #1e3799);
-}
-
-.carousel-item img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  width: 100%;
-  height: 80vh;
-  -webkit-filter: brightness(0.5);
-          filter: brightness(0.5);
-}
-
-.carousel-indicators {
-  width: auto !important;
-  margin-left: 0px !important;
-  margin-right: 0px !important;
-}
-
-.carousel-indicators .active {
-  width: 45px !important;
-  height: 3px !important;
-  -webkit-transition: 0.7s;
-  transition: 0.7s;
-}
-
-.carousel-indicators li {
-  background-clip: unset !important;
-  border: 0px !important;
 }
 
 /* 3. Promo.js */
@@ -315,7 +409,7 @@
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 576px) {
   .Promo h1 {
     margin-bottom: 20px;
   }
@@ -357,14 +451,20 @@ li.media h4 {
 }
 
 /* 5. Register.js */
-.registerForm2 input {
-  height: 40px;
-  font-size: 18px;
+.registerForm2 form div {
+  margin: 9px 0;
 }
 
-.registerForm2 input:focus {
-  outline: none;
-  border: 0;
+.registerForm2 input[type="text"], .registerForm2 input[type="password"], .registerForm2 input[type="email"] {
+  height: 40px;
+  font-size: 18px;
+  border: 1px solid #707070;
+  border-radius: 10px;
+}
+
+.registerForm2 input[type="text"]:focus, .registerForm2 input[type="password"]:focus, .registerForm2 input[type="email"]:focus {
+  outline: none !important;
+  border: 1px solid #B6EE1A;
 }
 
 .registerForm2 {
@@ -372,8 +472,8 @@ li.media h4 {
 }
 
 .registerForm2 h1 {
-  font-size: 38px;
-  font-weight: 100;
+  font-size: 32px;
+  font-weight: 900;
 }
 
 .registerForm2 form {
@@ -382,13 +482,130 @@ li.media h4 {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.registerForm2 p {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.registerForm2 input[type="checkbox"] {
+  display: none;
+}
+
+.registerForm2 input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  font: 14px/20px 'Open Sans', Arial, sans-serif;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.registerForm2 input[type="checkbox"] + label:last-child {
+  margin-bottom: 0;
+}
+
+.registerForm2 input[type="checkbox"] + label:before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000536;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+.registerForm2 input[type="checkbox"]:checked + label:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.fbconnect, .ggconnect {
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 5px 0;
+  margin: 5px 0;
+}
+
+.fbconnect {
+  background-color: #3b5998;
+}
+
+.ggconnect {
+  background-color: #DB4437;
+}
+
+.registerbutton {
+  margin: 48px 0 85px 0;
+}
+
+.remember {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 14px;
+  color: #B6EE1A;
+  text-shadow: 0.1em 0.1em 0.1em #000536;
+  margin-bottom: 88px !important;
+}
+
+.remember label {
+  font-weight: 400 !important;
+}
+
+.remember a {
+  color: #B6EE1A;
+}
+
+.alreadyaccount {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 14px;
+  margin-top: 28px !important;
+}
+
+.alreadyaccount a {
+  color: #000536;
+  -webkit-text-decoration: underline #000536;
+          text-decoration: underline #000536;
+  font-weight: bold;
 }
 
 /* 6. Footer.js */
 .footer {
-  background: -webkit-gradient(linear, left top, left bottom, from(#1e3799), to(#0c2461));
-  background: linear-gradient(#1e3799, #0c2461);
-  margin: 0 !important;
+  background: #000536;
   width: 100%;
   height: 20vh;
   display: -webkit-box;
@@ -413,13 +630,20 @@ li.media h4 {
 
 .social {
   color: white;
+  font-size: 32px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.social:hover {
+  color: #B6EE1A;
+  cursor: pointer;
 }
 
 /* Login Panel */
 /* Main Panel */
-@media (max-width: 991px) {
+@media (max-width: 576px) {
   .mainpanel {
-    width: 100vw;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -450,7 +674,6 @@ li.media h4 {
 
 @media (min-width: 992px) {
   .mainpanel {
-    width: 100vw;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -480,25 +703,126 @@ li.media h4 {
 }
 
 .mainpanel__userbase button {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   text-shadow: 0.1em 0.1em 0.2em black;
   background-color: inherit;
   border: 0;
   color: white;
-  width: 10vw;
   outline: none !important;
-  background: #4a69bd;
+  background: #000536;
   height: 60px;
   border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .mainpanel__userbase button:hover {
-  -webkit-filter: brightness(0.8);
-          filter: brightness(0.8);
+  color: #B6EE1A;
+  text-decoration: none !important;
+}
+
+@media (max-width: 576px) {
+  .mainpanel__userbase button {
+    font-size: 16px !important;
+  }
 }
 
 .searchcollectioninput {
   margin: 20px;
+}
+
+/* UNUSED */
+/*  Slider.js */
+.carousel-sign-in {
+  position: absolute;
+  width: 30vw;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+@media (min-width: 992px) {
+  .carousel-caption p {
+    font-size: 18px;
+  }
+  .carousel-caption h3 {
+    font-size: 32px;
+  }
+}
+
+.slider {
+  padding: 0px !important;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: relative;
+}
+
+.carousel-item {
+  background: #000536;
+}
+
+.carousel-item img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 80vh;
+  -webkit-filter: brightness(0.5);
+          filter: brightness(0.5);
+}
+
+.carousel-indicators {
+  width: auto !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.carousel-indicators .active {
+  width: 45px !important;
+  height: 3px !important;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+}
+
+.carousel-indicators li {
+  background-clip: unset !important;
+  border: 0px !important;
+}
+
+/* 8 Cards */
+.createCard div {
+  margin: 0 5%;
+}
+
+.createCard .flashsquare {
+  width: 200px;
+  height: 200px;
+  border: 3px solid #000536;
+  border-radius: 15px;
+  background: #B6EE1A;
+}
+
+.createCard button {
+  padding: 10px 50px;
+  border: 3px solid #000536;
+  border-radius: 15px;
+  background: #B6EE1A;
+  color: #000536;
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.createCard h5 {
+  color: #000536;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.createCard input[type=text] {
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 /*# sourceMappingURL=Main.css.map */

@@ -1,10 +1,14 @@
 @import "./variables.scss";
 
+
+
 /* MENU */
 
-/* MainPageComponents */
+/* Layout Components */
 /* 1. AppNavbar.js */
-/* 2. Slider.js */
+
+/* MainPageComponents */
+
 /* 3. Promo.js */
 /* 4. UserPromo.js */
 /* 5. Register.js */
@@ -13,7 +17,37 @@
 
 /* Login Panel */
 /* 7. Main Panel */
+/* 8 Cards */
 
+
+/* UNUSED */
+/* Slider.js */
+
+
+/* App Background and Bootstrap overwrites */
+.app--background{
+  background-color: $dark-blue;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: -999;
+}
+
+main.container{
+  background-color: #F8F8F8;
+  overflow: hidden;
+  padding: 50px;
+}
+
+@media(min-width: 576px){
+  main.container{
+    border-radius: 70px;
+  }
+}
+
+
+/* Layout Components */
 /* 1. AppNavbar.js */
 
 /* MODAL */
@@ -22,141 +56,152 @@
 }
 
 @media (max-width: $mobile-res) {
-
-  .navbar__brand--icon {
-    max-width: 40px;
-    max-height: 40px;
-  }
-    .navbar__brand--text {
-    font-size: 12px;
-  }
-
-
-}
-
-@media (min-width: $desktop-res) {
-  .navbar {
-    height: 100px;
-  }
-  .navbar__brand--icon {
-    position: absolute;
-    left: 4%;
-    max-width: 80px;
-    max-height: 80px;
-    animation: navbar-monkey-bounce 1.2s infinite ease-in-out;
-  }
   .navbar__brand--text {
-    position: absolute;
-    left: 100%;
-    top: 100%;
-    transform: translateY( -100%);
-    font-size: 24px;
-    text-shadow: 0.1em 0.1em 0.2em black;
+    font-size: 14px !important;
   }
-  .modal-dialog {
-    max-width: 60vw;
+  .searchbuttontext{
+    display: none;
+  }
+  .navbar--dark {
+    padding: 15px 5px;
   }
 
   .navbar__buttons {
-    display: flex !important;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: nowrap;
+    width: 70%;
   }
 }
+
+@media (min-width: $desktop-res) {
+  .modal-dialog {
+    max-width: 60vw;
+  }
+}
+
+
+@media(min-width: $tablet-res){
+  .navbar--dark {
+    height: 100px;
+  }
+}
+
+
+
+.searchbutton{
+  font-size: 24px;
+  color: white;
+  background: inherit;
+  border: none;
+  margin: 0 0 0 10px;
+  text-decoration: none;
+
+
+  /*for FireFox*/
+  &::-moz-focus-inner
+  {
+      border : 0;
+  }
+  /*for IE8 and below */
+  &:focus, &:focus
+  {
+      outline : none;
+  }
+
+  &:hover{
+    color: $light-green;
+    cursor: pointer;
+    outline: hidden;
+  }
+
+  &:focus{
+    outline: hidden;
+    color: $dark-green;
+    border: 0;
+    box-shadow: 0;
+    outline-offset: -4px;
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+    outline: none;
+  }
+
+}
+
+.navbar__buttons {
+  display: flex !important;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+
+
+  @media(min-width: $mobile-res){
+    & div{
+      margin: 0 0 0 18px ;
+    }
+  }
+
+  input[type="text"]{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 8px;
+    height: 40px;
+    max-width: 400px;
+    font-size: 22px;
+    padding: 0 10px;
+
+    @media(max-width: $tablet-res){
+      height: 30px !important;
+      font-size: 18px;
+    }
+
+    &:focus{
+      border: 1px solid $light-green;
+      outline: none !important;
+    }
+
+  }
+}
+
+.navbar__brand--text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  color: #ddd;
+  font-weight: bold;
+}
+
 
 
 .navbar__brand{
   position: relative;
   height: 100%;
-}
-
-.navbar__brand--text {
-  color: #ddd;
-  font-weight: bold;
-}
-
-.navbar {
-  margin: 0 !important;
-  border: 0 !important;
-}
-
-.navbar--dark {
-  background: linear-gradient($light-color, $dark-color);
-  margin: 0 !important;
-}
-
-.navbar--brand {
+  vertical-align: middle;
   height: auto !important;
   padding: 0 10px !important;
+  display: flex;
+  align-items: center;
+  max-width: 150px;
 }
 
-.navbar__buttons {
-  position: absolute;
-  right: 5vw;
+
+.navbar--dark {
+  background: $dark-blue;
+  border: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
 }
 
 .navbar__registerbutton {
-  @include bluebutton;
+  @include outbutton("inherit");
 }
 
 .signinbutton {
   @include inbutton("inherit");
 }
 
-/* 2. Slider.js */
 
-.carousel-sign-in {
-  position: absolute;
-  width: 30vw;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-@media (min-width: $desktop-res) {
-  .carousel-caption {
-    p {
-      font-size: 18px;
-    }
-    h3 {
-      font-size: 32px;
-    }
-  }
-}
-
-.slider {
-  padding: 0px !important;
-  object-fit: cover;
-  box-sizing: border-box;
-  position: relative;
-}
-.carousel-item {
-  background: linear-gradient($dark-color, $light-color);
-
-  img {
-    object-fit: cover;
-    width: 100%;
-    height: 80vh;
-    filter: brightness(0.5);
-  }
-}
-
-.carousel-indicators {
-  width: auto !important;
-  margin-left: 0px !important;
-  margin-right: 0px !important;
-
-  .active {
-    width: 45px !important;
-    height: 3px !important;
-    transition: 0.7s;
-  }
-  li {
-    background-clip: unset !important;
-    border: 0px !important;
-  }
-}
 
 /* 3. Promo.js */
 .help-others {
@@ -241,35 +286,138 @@ li.media h4 {
 
 /* 5. Register.js */
 
-.registerForm2 input {
-  height: 40px;
-  font-size: 18px;
+.registerForm2 form div{
+  margin: 9px 0;
 }
 
-.registerForm2 input:focus {
-  outline: none;
-  border: 0;
+.registerForm2 input[type="text"], .registerForm2 input[type="password"], .registerForm2 input[type="email"] {
+  height: 40px;
+  font-size: 18px;
+  border: 1px solid #707070;
+  border-radius: 10px;
+}
+
+.registerForm2 input[type="text"]:focus, .registerForm2 input[type="password"]:focus, .registerForm2 input[type="email"]:focus {
+  outline: none !important;
+  border: 1px solid $light-green;
 }
 
 .registerForm2 {
   padding: 10vh 0;
 
   h1 {
-    font-size: 38px;
-    font-weight: 100;
+    font-size: 32px;
+    font-weight: 900;
   }
 
   form {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+  }
+  p{
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  input[type="checkbox"] { display: none; }
+
+input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  font: 14px/20px 'Open Sans', Arial, sans-serif;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+
+input[type="checkbox"] + label:before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid $dark-blue;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+input[type="checkbox"]:checked + label:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+}
+.fbconnect,.ggconnect{
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 5px 0;
+  margin: 5px 0;
+}
+.fbconnect{
+  background-color: #3b5998;
+
+}
+.ggconnect{
+  background-color:#DB4437;
+}
+
+.registerbutton{
+  margin: 48px 0 85px 0;
+}
+
+.remember{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: $light-green;
+  text-shadow: 0.1em 0.1em 0.1em $dark-blue;
+  margin-bottom: 88px !important;
+
+  label{
+    font-weight: 400 !important;
+  }
+
+  a{
+    color: $light-green;
+  }
+}
+
+.alreadyaccount{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 28px !important;
+
+  a{
+    color: $dark-blue;
+    text-decoration: underline $dark-blue;
+    font-weight: bold;
   }
 }
 
 /* 6. Footer.js */
 
 .footer {
-  background: linear-gradient($light-color, $dark-color);
-  margin: 0 !important;
+  background: $dark-blue;
   width: 100%;
   height: 20vh;
   display: flex;
@@ -288,6 +436,12 @@ li.media h4 {
 
 .social {
   color: white;
+  font-size: 32px;
+  transition: 0.5s;
+}
+.social:hover{
+  color: $light-green;
+  cursor: pointer;
 }
 
 
@@ -296,7 +450,6 @@ li.media h4 {
 /* Main Panel */
 @media (max-width: $mobile-res) {
   .mainpanel{
-    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -314,7 +467,6 @@ li.media h4 {
 
 @media (min-width: $desktop-res) {
   .mainpanel{
-    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -335,4 +487,97 @@ li.media h4 {
 
 .searchcollectioninput{
   margin: 20px;
+}
+
+/* UNUSED */
+
+/*  Slider.js */
+
+.carousel-sign-in {
+  position: absolute;
+  width: 30vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (min-width: $desktop-res) {
+  .carousel-caption {
+    p {
+      font-size: 18px;
+    }
+    h3 {
+      font-size: 32px;
+    }
+  }
+}
+
+.slider {
+  padding: 0px !important;
+  object-fit: cover;
+  box-sizing: border-box;
+  position: relative;
+}
+.carousel-item {
+  background: $dark-blue;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 80vh;
+    filter: brightness(0.5);
+  }
+}
+
+.carousel-indicators {
+  width: auto !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+
+  .active {
+    width: 45px !important;
+    height: 3px !important;
+    transition: 0.7s;
+  }
+  li {
+    background-clip: unset !important;
+    border: 0px !important;
+  }
+}
+
+/* 8 Cards */
+.createCard{
+
+  div{
+    margin: 0 5%;
+  }
+
+  .flashsquare{
+    width: 200px;
+    height: 200px;
+    border: 3px solid $dark-blue;
+    border-radius: 15px;
+    background: $light-green;
+  }
+
+  button{
+    padding: 10px 50px;
+    border: 3px solid $dark-blue;
+    border-radius: 15px;
+    background: $light-green;
+    color: $dark-blue;
+    font-weight: 900;
+    font-size: 16px;
+  }
+
+  h5{
+    color: $dark-blue;
+    font-size: 18px;
+    font-weight: 900;
+  }
+
+  input[type=text]{
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
 }

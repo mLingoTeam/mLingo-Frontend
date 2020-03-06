@@ -2,6 +2,7 @@ import React from "react";
 
 import { authenticationService } from "../../services/authentication";
 import UserCreateCard from './UserCreateCard'
+import Flashcard from './Flashcard';
 
 class UserCreate extends React.Component {
     constructor(props) {
@@ -44,31 +45,20 @@ class UserCreate extends React.Component {
         this.setState({ collectionName: "", cards: [], card: { Term: "", Definition: "" } });
     }
 
-    logout = () => {
-        authenticationService.logout();
-        //it works because localStorage is empty imidiately
-        window.location.reload();
-    };
-
     render() {
         return (
-            <div>
-                <div className="mainpanel">
-                    <div className="mainpanel__userbase">
-                        <h1>Hi {localStorage.getItem("currentUser")}!</h1>
-                        <h3>Create your own collection here!</h3>
-                        <p>collection name</p>
-                        <input name="collectionName" type="text" onChange={this.handleChange} value={this.state.collectionName} />
-                        <UserCreateCard set={this.state} functioni={this.handleCardChange} functionii={this.addCard} />
-
-                        <p>Your collection:</p>
-                        <p>{JSON.stringify(this.state.collectionName)}</p>
-                        <p>{JSON.stringify(this.state.cards)}</p>
-                        <button onClick={this.createCollection}>Create</button>
-                        <p> -----------------</p>
-                        <button onClick={this.logout}>Logout</button>
-                    </div>
+            <div className="d-flex justify-content-center flex-wrap flex-column">
+                <div className="d-flex justify-content-center flex-wrap mb-5">
+                    <h1>Collection name</h1>
+                    <input name="collectionName" type="text" onChange={this.handleChange} value={this.state.collectionName} />
                 </div>
+                <UserCreateCard set={this.state} functioni={this.handleCardChange} functionii={this.addCard} />
+                {
+                    this.state.cards.map(element => {
+                        return <Flashcard set={element} />
+                    })
+                }
+                <button onClick={this.createCollection} className="green-button offset-4 col-4 mt-5 ">Create Collection</button>
             </div >
         );
     }

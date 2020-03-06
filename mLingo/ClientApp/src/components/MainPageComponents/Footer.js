@@ -1,14 +1,15 @@
 import React from "react";
+import { FaYoutube, FaPodcast, FaFacebook, FaInstagram } from 'react-icons/fa';
 
 const Footer = props => {
   return (
-    <div className="footer">
-      <div className="social">Facebook-monkey</div>
-      <div className="social">Github-monkey</div>
-      <div className="social">Slack-monkey</div>
-      <div className="social">Mail-monkey</div>
+    <div className="footer container">
+      <FaYoutube className="social" />
+      <FaPodcast className="social" />
+      <FaFacebook className="social" />
+      <FaInstagram className="social" />
       <div className="footer-end-text">
-        <p>mLingo Team 2019 </p>
+        <p>© {new Date().getFullYear()} mLingo Team </p>
       </div>
     </div>
   );
