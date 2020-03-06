@@ -11,14 +11,22 @@ const AppNavbar = props => {
       </Link>
       <div className="navbar__buttons">
         <SearchInput />
-        <div>
-          <Link className="signinbutton" to="/Login">sign in</Link>
-        </div>
-        <div>
-          <Link className="navbar__registerbutton" to="/Register">sign up</Link>
-        </div>
+        {
+          localStorage.getItem("currentUser") ? <div className="navbar__buttons"> <div>
+            <Link className="signinbutton" to="/create">create</Link>
+          </div>
+            <div>
+              <Link className="signinbutton" to="/head">learn</Link>
+            </div>
+          </div> : <div className="navbar__buttons"> <div>
+            <Link className="signinbutton" to="/Login">sign in</Link>
+          </div>
+              <div>
+                <Link className="navbar__registerbutton" to="/Register">sign up</Link>
+              </div></div>
+        }
       </div>
-    </div>
+    </div >
   );
 };
 
