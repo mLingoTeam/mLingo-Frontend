@@ -21,10 +21,11 @@ export default class App extends Component {
           <Route exact path="/" component={MainPage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/register" component={RegisterPage} />
+          <Route exact path="/collection" component={UserPanelCollection} />
           <Route exact path="/search" component={SearchPage} />
           <PrivateRoute exact path="/head" component={UserPanelHead} />
           <PrivateRoute exact path="/create" component={UserPanelCreate} />
-          <PrivateRoute exact path="/collection" component={UserPanelCollection} />
+          <Route exact path="/collection" component={UserPanelCollection} />
         </div>
       </Router>
     );
