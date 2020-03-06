@@ -2,6 +2,7 @@ import React from "react";
 
 import { authenticationService } from "../../services/authentication";
 import UserCreateCard from './UserCreateCard'
+import Flashcard from './Flashcard';
 
 class UserCreate extends React.Component {
     constructor(props) {
@@ -53,25 +54,16 @@ class UserCreate extends React.Component {
     render() {
         return (
             <div>
-                <div className="mainpanel">
-                    <div className="mainpanel__userbase">
-                        <h1>Hi {localStorage.getItem("currentUser")}!</h1>
-                        <h3>Create your own collection here!</h3>
-                        <p>collection name</p>
-                        <input name="collectionName" type="text" onChange={this.handleChange} value={this.state.collectionName} />
-                        <UserCreateCard set={this.state} functioni={this.handleCardChange} functionii={this.addCard} />
-
-                        <div>
-                            <p>Your collection:</p>
-                            <p>{JSON.stringify(this.state.collectionName)}</p>
-                            <p>{JSON.stringify(this.state.cards)}</p>
-                        </div>
-                        <div>
-                            <button onClick={this.createCollection}>Create</button>
-                            <button onClick={this.logout}>Logout</button>
-                        </div>
-                    </div>
+                <div className="d-flex justify-content-center align-items-center flex-wrap">
+                    <h1>Collection name</h1>
+                    <input name="collectionName" type="text" onChange={this.handleChange} value={this.state.collectionName} />
                 </div>
+                <UserCreateCard set={this.state} functioni={this.handleCardChange} functionii={this.addCard} />
+                {
+                    this.state.cards.map(element => {
+                        return <Flashcard set={element} />
+                    })
+                }
             </div >
         );
     }

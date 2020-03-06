@@ -136,6 +136,7 @@ a:hover {
 /* 6. Footer.js */
 /* Login Panel */
 /* 7. Main Panel */
+/* 8 Cards */
 /* UNUSED */
 /* Slider.js */
 /* App Background and Bootstrap overwrites */
@@ -783,5 +784,39 @@ li.media h4 {
 .carousel-indicators li {
   background-clip: unset !important;
   border: 0px !important;
+}
+
+/* 8 Cards */
+.createCard div {
+  margin: 0 5%;
+}
+
+.createCard .flashsquare {
+  width: 200px;
+  height: 200px;
+  border: 3px solid #000536;
+  border-radius: 15px;
+  background: #B6EE1A;
+}
+
+.createCard button {
+  padding: 10px 50px;
+  border: 3px solid #000536;
+  border-radius: 15px;
+  background: #B6EE1A;
+  color: #000536;
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.createCard h5 {
+  color: #000536;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.createCard input[type=text] {
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 /*# sourceMappingURL=Main.css.map */

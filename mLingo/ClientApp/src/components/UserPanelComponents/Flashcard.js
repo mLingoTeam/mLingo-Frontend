@@ -9,8 +9,8 @@ const Flashcard = ({ set }) => {
         <div key={set.id}>
             <Card>
                 <CardBody>
-                    <CardTitle>{set.term}</CardTitle>
-                    <CardSubtitle>{set.definition}</CardSubtitle>
+                    <CardTitle>{set.term || set.Term}</CardTitle>
+                    <CardSubtitle>{set.definition || set.Definition}</CardSubtitle>
                     <CardText></CardText>
                 </CardBody>
             </Card>
