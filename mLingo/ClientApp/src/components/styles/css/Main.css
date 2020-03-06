@@ -175,6 +175,12 @@ main.container {
   .searchbuttontext {
     display: none;
   }
+  .navbar--dark {
+    padding: 15px 5px;
+  }
+  .navbar__buttons {
+    width: 70%;
+  }
 }
 
 @media (min-width: 992px) {

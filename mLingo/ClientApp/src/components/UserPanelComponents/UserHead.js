@@ -1,5 +1,6 @@
 import React from "react";
 import CardComponent from './CardComponent'
+import { Link } from 'react-router-dom';
 
 import { authenticationService } from "../../services/authentication";
 
@@ -38,12 +39,6 @@ class UserHead extends React.Component {
         }
     }
 
-    logout = () => {
-        authenticationService.logout();
-        //it works because localStorage is empty imidiately
-        window.location.reload();
-    };
-
     render() {
         return (
             <div>
@@ -58,8 +53,7 @@ class UserHead extends React.Component {
                         </div>
                         <input className="searchcollectioninput" type="text" onChange={this.changeRequest} />
                         <button onClick={this.findcollection}>Find</button>
-                        <button onClick={this.logout}>Logout</button>
-
+                        <Link to="/create">create collection</Link>
                     </div>
                 </div>
                 {
@@ -67,7 +61,7 @@ class UserHead extends React.Component {
                         <CardComponent set={element} />
                     )) : this.state.exist ? <div className="text-center"><h2> No collection found </h2></div> : <div className="text-center"><h2> No collection found </h2></div>
                 }
-            </div>
+            </div >
         );
     }
 }

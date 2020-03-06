@@ -41,3 +41,9 @@
   App.js
   index.js
   registerServiceWorker ( default for now, in the future it will be used for the PWA )
+
+
+  fix styles:
+   UserCreate, UserCreateCard, AppNavbar
+
+   mobile app navbar logo without lyrics

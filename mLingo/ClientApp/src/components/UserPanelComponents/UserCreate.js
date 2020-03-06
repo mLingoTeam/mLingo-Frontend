@@ -45,16 +45,10 @@ class UserCreate extends React.Component {
         this.setState({ collectionName: "", cards: [], card: { Term: "", Definition: "" } });
     }
 
-    logout = () => {
-        authenticationService.logout();
-        //it works because localStorage is empty imidiately
-        window.location.reload();
-    };
-
     render() {
         return (
-            <div>
-                <div className="d-flex justify-content-center align-items-center flex-wrap">
+            <div className="d-flex justify-content-center flex-wrap flex-column">
+                <div className="d-flex justify-content-center flex-wrap mb-5">
                     <h1>Collection name</h1>
                     <input name="collectionName" type="text" onChange={this.handleChange} value={this.state.collectionName} />
                 </div>
@@ -64,6 +58,7 @@ class UserCreate extends React.Component {
                         return <Flashcard set={element} />
                     })
                 }
+                <button onClick={this.createCollection} className="green-button offset-4 col-4 mt-5 ">Create Collection</button>
             </div >
         );
     }
