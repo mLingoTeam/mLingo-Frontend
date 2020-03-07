@@ -1,5 +1,5 @@
 import React from "react";
-import UserSection from './UserSection';
+import UserSection from '../UserBaseComponents/UserSection';
 
 class UserHead extends React.Component {
     constructor(props) {

@@ -1,8 +1,8 @@
 import React from "react";
 
-import { authenticationService } from "../../services/authentication";
-import UserCreateCard from './UserCreateCard'
-import Flashcard from './Flashcard';
+import { authenticationService } from "../../../services/authentication";
+import UserCreateCard from '../CardComponents/UserCreateCard'
+import Flashcard from '../CardComponents/Flashcard';
 
 class UserCreate extends React.Component {
     constructor(props) {

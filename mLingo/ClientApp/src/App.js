@@ -1,15 +1,17 @@
 import React, { Component } from "react";
-import MainPage from "./components/pages/MainPage";
-import LoginPage from "./components/pages/LoginPage";
-import RegisterPage from "./components/pages/RegisterPage";
-
 import { Router, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
-import PrivateRoute from "./components/PrivateRoute";
-import UserPanelHead from "./components/pages/UserPanelHead";
-import UserPanelCreate from "./components/pages/UserPanelCreate";
-import UserPanelCollection from "./components/pages/UserPanelCollection";
-import SearchPage from './components/pages/SearchPage'
+
+import PrivateRoute from "./services/PrivateRoute";
+
+
+import MainPage from "./schema/pages/MainPage";
+import LoginPage from "./schema/pages/LoginPage";
+import RegisterPage from "./schema/pages/RegisterPage";
+import UserPanelHead from "./schema/pages/UserPanelHead";
+import UserPanelCreate from "./schema/pages/UserPanelCreate";
+import UserPanelCollection from "./schema/pages/UserPanelCollection";
+import SearchPage from './schema/pages/SearchPage'
 
 export const history = createBrowserHistory();
 

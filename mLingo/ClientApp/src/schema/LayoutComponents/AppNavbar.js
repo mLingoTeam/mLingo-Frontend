@@ -1,5 +1,5 @@
 import React from "react";
-import SearchInput from '../FormComponents/SearchInput';
+import SearchInput from '../components/SearchComponents/SearchInput';
 import { Link } from "react-router-dom";
 import logo from '../../img/Kompozycja 2.svg'
 import { authenticationService } from "../../services/authentication";

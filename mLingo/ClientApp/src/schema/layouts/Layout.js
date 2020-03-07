@@ -1,6 +1,6 @@
 import React from 'react';
-import AppNavbar from '../MainPageComponents/AppNavbar'
-import Footer from '../MainPageComponents/Footer'
+import AppNavbar from '../components/LayoutComponents/AppNavbar'
+import Footer from '../components/LayoutComponents/Footer'
 
 const Layout = ({ children }) => {
 

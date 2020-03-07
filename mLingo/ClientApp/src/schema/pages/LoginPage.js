@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Register from '../FormComponents/Register'
+import Login from '../components/FormComponents/Login'
 
 import Layout from '../layouts/Layout'
 
-export default class RegisterPage extends Component {
+export default class LoginPage extends Component {
 
     render() {
         if (localStorage.getItem("currentUser")) {
@@ -11,7 +11,7 @@ export default class RegisterPage extends Component {
         }
         return (
             <Layout>
-                <Register />
+                <Login />
             </Layout>
         );
     }

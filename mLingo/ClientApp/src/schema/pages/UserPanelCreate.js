@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from '../layouts/Layout'
-import UserCreate from '../UserPanelComponents/UserCreate'
+import UserCreate from '../components/pages-components/UserCreate'
 
 class UserPanelCreate extends React.Component {
 

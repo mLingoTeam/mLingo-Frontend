@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from '../layouts/Layout'
-import Collection from '../UserPanelComponents/Collection'
+import Collection from '../components/CardComponents/Collection'
 
 class UserPanelCollection extends React.Component {
 

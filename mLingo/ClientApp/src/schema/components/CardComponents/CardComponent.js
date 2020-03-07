@@ -1,10 +1,10 @@
 import React from 'react'
 import {
-    Card, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
+    Card, CardBody,
+    CardTitle, CardSubtitle
 } from 'reactstrap';
 import { Link } from 'react-router-dom'
-import { authenticationService } from '../../services/authentication';
+import { authenticationService } from '../../../services/authentication';
 
 const CardComponent = ({ set }) => {
     return (

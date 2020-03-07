@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from '../layouts/Layout'
-import Search from '../CollectionComponents/Search'
+import Search from '../components/pages-components/Search'
 
 class UserPanel extends React.Component {
 

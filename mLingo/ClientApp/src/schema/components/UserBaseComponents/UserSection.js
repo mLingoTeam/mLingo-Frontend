@@ -1,8 +1,8 @@
 import React from "react";
-import CardComponent from './CardComponent'
+import CardComponent from '../CardComponents/CardComponent';
 import { Link } from 'react-router-dom';
 
-import { authenticationService } from "../../services/authentication";
+import { authenticationService } from "../../../services/authentication";
 
 class UserSection extends React.Component {
     constructor(props) {

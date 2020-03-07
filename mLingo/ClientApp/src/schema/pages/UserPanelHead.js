@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from '../layouts/Layout'
-import UserHead from '../UserPanelComponents/UserHead'
+import UserHead from '../components/pages-components/UserHead'
 
 class UserPanel extends React.Component {
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Promo from "../MainPageComponents/Promo";
-import Register from "../FormComponents/Register";
+import Promo from "../components/LandPageComponents/Promo";
+import Register from "../components/FormComponents/Register";
 import "../styles/css/Main.css";
 
 import Layout from '../layouts/Layout'

@@ -4,7 +4,7 @@ import FormField from "./FormField";
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
-import { authenticationService } from "../../services/authentication";
+import { authenticationService } from "../../../services/authentication";
 
 class Login extends React.Component {
   constructor(props) {
