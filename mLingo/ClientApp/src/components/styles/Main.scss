@@ -50,6 +50,46 @@ main.container{
 /* Layout Components */
 /* 1. AppNavbar.js */
 
+// NAVBAR CONTAINER SIZES //
+
+@media (min-width: 576px)
+{
+  .navbar--dark {
+    max-width: 540px;
+
+}
+}
+
+@media (min-width: 577px)
+{
+  .navbar--dark {
+    max-width: 480px;
+    height: 80px;
+}
+}
+
+@media (min-width: 768px)
+{
+  .navbar--dark {
+    max-width: 600px;
+    height: 100px;
+}
+}
+
+@media (min-width: 992px)
+{
+  .navbar--dark {
+    max-width: 720px;
+    height: 100px;
+}
+}
+@media (min-width: 1199px)
+{
+  .navbar--dark{
+    max-width: 960px;
+    height: 100px;
+}
+}
 /* MODAL */
 .show {
   opacity: 1;
@@ -59,9 +99,7 @@ main.container{
   .navbar__brand--text {
     font-size: 14px !important;
   }
-  .searchbuttontext{
-    display: none;
-  }
+
   .navbar--dark {
     padding: 15px 5px;
   }
@@ -77,12 +115,12 @@ main.container{
   }
 }
 
-
-@media(min-width: $tablet-res){
-  .navbar--dark {
-    height: 100px;
+@media(max-width: $tablet-res){
+  .searchbuttontext{
+    display: none;
   }
 }
+
 
 
 
@@ -190,6 +228,7 @@ main.container{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0 auto;
 
 }
 

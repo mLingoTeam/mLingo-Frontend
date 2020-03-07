@@ -12,7 +12,7 @@ const logout = () => {
 
 const AppNavbar = props => {
   return (
-    <div className="navbar--dark container">
+    <div className="navbar--dark">
       <Link className="navbar__brand" to="/">
         <img src={logo} className="img-fluid" />
       </Link>
