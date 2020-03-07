@@ -50,7 +50,7 @@ class UserCreate extends React.Component {
             <div className="d-flex justify-content-center flex-wrap flex-column">
                 <div className="d-flex justify-content-center flex-wrap mb-5">
                     <h1>Collection name</h1>
-                    <input name="collectionName" type="text" onChange={this.handleChange} value={this.state.collectionName} />
+                    <input name="collectionName" type="text" onChange={this.handleChange} value={this.state.collectionName} required />
                 </div>
                 <UserCreateCard set={this.state} functioni={this.handleCardChange} functionii={this.addCard} />
                 {
