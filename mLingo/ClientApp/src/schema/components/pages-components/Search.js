@@ -49,14 +49,11 @@ class UserHead extends React.Component {
     render() {
         return (
             <div>
-                <div className="mainpanel">
-                    <div className="mainpanel__userbase">
-                        <h3>You have searched for : {localStorage.getItem("request")} </h3>
-                        <SearchInput />
-                        <button onClick={this.findcollection}>Find</button>
-                        <button onClick={this.logout}>Logout</button>
-
-                    </div>
+                <div>
+                    <h3>You have searched for : {localStorage.getItem("request")} </h3>
+                    <SearchInput />
+                    <button onClick={this.findcollection}>Find</button>
+                    <button onClick={this.logout}>Logout</button>
                 </div>
                 {
                     this.state.exist ? this.state.fields.map(element => (
