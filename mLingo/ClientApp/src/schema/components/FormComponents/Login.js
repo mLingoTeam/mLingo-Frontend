@@ -1,10 +1,10 @@
 import React from "react";
 import { Form } from "reactstrap";
 import FormField from "./FormField";
-import img1 from "../../img/monkey.png";
+import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
-import { authenticationService } from "../../services/authentication";
+import { authenticationService } from "../../../services/authentication";
 
 class Login extends React.Component {
   constructor(props) {
@@ -14,14 +14,15 @@ class Login extends React.Component {
       username: "",
       email: "",
       password: "",
-      isLoading: false
+      isLoading: false,
+      err: false
     };
 
     this.fields = [
       {
         type: "text",
         name: "username",
-        label: "Username or email",
+        label: "username/email",
         function: this.handleChange.bind(this),
         placeholder: "Jake the dog",
         id: "Username"
@@ -29,7 +30,7 @@ class Login extends React.Component {
       {
         type: "password",
         name: "password",
-        label: "Password",
+        label: "password",
         function: this.handleChange.bind(this),
         placeholder: "admin",
         id: "Password"
@@ -47,7 +48,21 @@ class Login extends React.Component {
 
   async sendRequest() {
     const resolved = await authenticationService.login(this.state.username, this.state.password);
-    authenticationService.setIntoLocalStorage({ name: "currentUser", value: resolved.Response.Username });
+
+    //if there is not such an user
+    const resstatus = (JSON.stringify(resolved.successful));
+
+    if (resstatus == 'false') {
+      const err = (JSON.stringify(resolved.errorMessage));
+      this.setState({ ...this.state, err: err })
+    } // if the user exist save they into the web
+    else {
+      authenticationService.setIntoLocalStorage({ name: "currentUser", value: resolved.response.username });
+      authenticationService.setIntoLocalStorage({ name: "ID", value: resolved.response.id });
+      authenticationService.setIntoLocalStorage({ name: "Token", value: resolved.response.token });
+    }
+
+
 
     // TO RERENDER WHEN THE ITEM IS SET IN THE LOCALSTORAGE
     this.setState({
@@ -65,13 +80,11 @@ class Login extends React.Component {
 
   render() {
     if (localStorage.getItem("currentUser")) {
-      this.props.history.push('/login');
+      this.props.history.push('/head');
     }
     return (
       <div>
         <div className="registerForm2 col-12 d-flex jusify-content-center flex-wrap">
-          <img src={img1} className="img-fluid offset-5 col-2" alt="logo" />
-          <h1 className="text-center col-12 mb-5">Join us now!</h1>
           <Form
             className="col-12 offset-lg-3 col-lg-6"
             onSubmit={e => {
@@ -79,13 +92,33 @@ class Login extends React.Component {
               this.sendRequest();
             }}
           >
+            <h1 className="col-12 mb-5">sign in</h1>
             {this.fields.map(element => (
               <FormField set={element} />
             ))}
 
-            <button className="col-12 offset-lg-4 col-lg-4 btn blue-button">
-              LOGIN
+            {
+              this.state.err != false ? <p>{this.state.err}</p> : undefined
+            }
+
+            <div className="col-12 remember">
+              <span>
+                <input type="checkbox" id="remember1" className="remembercheck" />
+                <label for="remember1">remember me</label>
+              </span>
+              <Link to="/forgot">forgot password?</Link>
+            </div>
+
+
+            <button className="col-12 col-lg-4 btn green-button">
+              get started
             </button>
+
+
+
+            <div className="col-12 alreadyaccount">
+              <p>Don't have an account? &nbsp; </p><Link to='/register'>sign up</Link>
+            </div>
           </Form>
         </div>
       </div>

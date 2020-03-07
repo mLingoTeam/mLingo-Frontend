@@ -13,7 +13,7 @@ const SignInModal = props => {
   return (
     <div>
       <button className="signinbutton" onClick={toggle}>
-        Sign in
+        sign in
       </button>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>SIGN IN</ModalHeader>

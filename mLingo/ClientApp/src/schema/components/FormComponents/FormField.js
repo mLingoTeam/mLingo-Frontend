@@ -4,7 +4,7 @@ import { FormGroup, Label, Input } from "reactstrap";
 const FormField = ({ set }) => {
   return (
     <FormGroup className="col-12 mb-3">
-      <Label for={set.id} className="col-2">
+      <Label for={set.id}>
         {set.label}
       </Label>
       <Input

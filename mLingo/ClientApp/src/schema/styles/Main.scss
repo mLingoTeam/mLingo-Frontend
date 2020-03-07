@@ -1,0 +1,797 @@
+@import "./variables.scss";
+
+
+/* MENU */
+
+/* Components */
+
+/* Card Components */
+/* 1.1 CardComponent.js */
+/* 1.2 Collection.js */
+/* 1.3 Flashcard.js */
+/* 1.4 UserCreateCard.js */
+
+/* Form Components */
+/* 2.1 FormField.js */
+/* 2.2 Login.js */
+/* 2.3 Register.js */
+
+/* LandPage Components */
+/* 3.1 Formular.js */
+/* 3.2 Promo.js */
+/* 3.3 SignInModal.js */
+/* 3.4 Slider.js */
+/* 3.5 UserPromo.js */
+
+/* Layout Components */
+/* 4.1 AppNavbar.js */
+/* 4.2 Footer.js */
+
+/* Pages Components */
+/* 5.1 Search.js */
+/* 5.2 UserCreate.js */
+/* 5.3 UserHead.js */
+
+/* Search Components */
+/* 6.1 SearchInput.js */
+
+/* UserBase Components */
+/* 7.1 UserSection.js */
+
+
+/* layouts */
+/* 8.1 Layout.js */
+
+
+//////////////////////////////////////////////////////
+/* Components */
+//////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////
+/* Card Components */
+//////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////
+/* 1.1 CardComponent.js */
+//////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////
+/* 1.2 Collection.js */
+//////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////
+/* 1.3 Flashcard.js */
+//////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////
+/* 1.4 UserCreateCard.js */
+//////////////////////////////////////////////////////
+
+.createCard{
+
+  div{
+    margin: 0 5%;
+  }
+
+  .flashsquare{
+    width: 200px;
+    height: 200px;
+    border: 3px solid $dark-blue;
+    border-radius: 15px;
+    background: $light-green;
+  }
+
+  button{
+    padding: 10px 50px;
+    border: 3px solid $dark-blue;
+    border-radius: 15px;
+    background: $light-green;
+    color: $dark-blue;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  h5{
+    color: $dark-blue;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  input[type=text]{
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid $dark-blue;
+  }
+}
+
+//////////////////////////////////////////////////////
+/* Form Components */
+//////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////
+/* 2.1 FormField.js */ /* & */ /* 2.2 Login.js */ /* & */ /* 2.3 Register.js */
+//////////////////////////////////////////////////////
+
+.registerForm2 form div{
+  margin: 9px 0;
+}
+
+.registerForm2 input[type="text"], .registerForm2 input[type="password"], .registerForm2 input[type="email"] {
+  height: 40px;
+  font-size: 18px;
+  border: 1px solid #707070;
+  border-radius: 10px;
+}
+
+.registerForm2 input[type="text"]:focus, .registerForm2 input[type="password"]:focus, .registerForm2 input[type="email"]:focus {
+  outline: none !important;
+  border: 1px solid $light-green;
+}
+
+.registerForm2 {
+  padding: 10vh 0;
+
+  h1 {
+    font-size: 32px;
+    font-weight: 900;
+  }
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  p{
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  input[type="checkbox"] { display: none; }
+
+  input[type="checkbox"] + label {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 20px;
+    font: 14px/20px 'Open Sans', Arial, sans-serif;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+
+  input[type="checkbox"] + label:before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid $dark-blue;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: .6;
+    -webkit-transition: all .12s, border-color .08s;
+    transition: all .12s, border-color .08s;
+  }
+
+  input[type="checkbox"]:checked + label:before {
+    width: 10px;
+    top: -5px;
+    left: 5px;
+    border-radius: 0;
+    opacity: 1;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+}
+
+.alreadyaccount{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 28px !important;
+
+  a{
+    color: $dark-blue;
+    text-decoration: underline $dark-blue;
+    font-weight: bold;
+  }
+}
+
+//////////////////////////////////////////////////////
+/* 2.2 Login.js */
+//////////////////////////////////////////////////////
+
+.remember{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: $dark-green;
+  margin-bottom: 88px !important;
+
+  label{
+    font-weight: 400 !important;
+  }
+
+  a{
+    color: $dark-green;
+  }
+}
+
+//////////////////////////////////////////////////////
+/* 2.3 Register.js */
+//////////////////////////////////////////////////////
+
+.fbconnect,.ggconnect{
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 5px 0;
+  margin: 5px 0;
+}
+.fbconnect{
+  background-color: #3b5998;
+
+}
+.ggconnect{
+  background-color:#DB4437;
+}
+
+.registerbutton{
+  margin: 48px 0 85px 0;
+}
+
+//////////////////////////////////////////////////////
+// REMOVE UNUSED COMPONENTS FIRST
+//////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////
+/* LandPage Components */
+//////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////
+/* 3.1 Formular.js */
+//////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////
+/* 3.2 Promo.js */
+//////////////////////////////////////////////////////
+
+.help-others {
+  margin: 0 auto;
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("../../../img/slid3.jpg") fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: brightness(0.5);
+  position: relative;
+  z-index: -1;
+}
+
+.img-media {
+  max-width: 128px;
+}
+
+.Promo {
+  padding: 5vh 0;
+}
+
+@media (min-width: $desktop-res) {
+  .Promo h1 {
+    font-size: 48px;
+  }
+  .help-others-text h1 {
+    font-size: 52px;
+  }
+  .help-others-text h3 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: $mobile-res) {
+  .Promo h1 {
+    margin-bottom: 20px;
+  }
+}
+
+.Promo h1 {
+  text-align: center;
+  font-size: 28px;
+}
+
+li.media {
+  padding: 3vh 0;
+  border-bottom: 1px solid gray;
+  font-size: 16px;
+}
+
+li.media h4 {
+  font-size: 32px;
+}
+
+
+/* 3.3 SignInModal.js */
+/* 3.4 Slider.js */
+
+/* UNUSED */
+
+/*  Slider.js */
+
+.carousel-sign-in {
+  position: absolute;
+  width: 30vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (min-width: $desktop-res) {
+  .carousel-caption {
+    p {
+      font-size: 18px;
+    }
+    h3 {
+      font-size: 32px;
+    }
+  }
+}
+
+.slider {
+  padding: 0px !important;
+  object-fit: cover;
+  box-sizing: border-box;
+  position: relative;
+}
+.carousel-item {
+  background: $dark-blue;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 80vh;
+    filter: brightness(0.5);
+  }
+}
+
+.carousel-indicators {
+  width: auto !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+
+  .active {
+    width: 45px !important;
+    height: 3px !important;
+    transition: 0.7s;
+  }
+  li {
+    background-clip: unset !important;
+    border: 0px !important;
+  }
+}
+
+//////////////////////////////////////////////////////
+/* 3.5 UserPromo.js */
+//////////////////////////////////////////////////////
+
+.help-others-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: white;
+  text-shadow: 0.1em 0.1em 0.2em black;
+
+  h1 {
+    text-align: center;
+  }
+
+  h3 {
+    line-height: 1.6;
+    text-align: center;
+  }
+}
+
+//////////////////////////////////////////////////////
+/* Layout Components */
+//////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////
+/* 4.1 AppNavbar.js */
+//////////////////////////////////////////////////////
+
+// NAVBAR CONTAINER SIZES //
+
+@media (min-width: 576px)
+{
+  .navbar--dark {
+    max-width: 540px;
+
+  }
+}
+
+@media (min-width: 577px)
+{
+  .navbar--dark {
+    max-width: 480px;
+    height: 80px;
+  }
+}
+
+@media (min-width: 768px)
+{
+  .navbar--dark {
+    max-width: 600px;
+    height: 100px;
+  }
+}
+
+@media (min-width: 992px)
+{
+  .navbar--dark {
+    max-width: 720px;
+    height: 100px;
+  }
+}
+@media (min-width: 1199px)
+{
+  .navbar--dark{
+    max-width: 1000px;
+    height: 100px;
+  }
+}
+/* MODAL */
+.show {
+  opacity: 1;
+}
+
+@media (max-width: $mobile-res) {
+  .navbar__brand--text {
+    font-size: 14px !important;
+  }
+
+  .navbar--dark {
+    padding: 15px 5px;
+  }
+
+  .navbar__buttons {
+    width: 70%;
+  }
+}
+
+@media (min-width: $desktop-res) {
+  .modal-dialog {
+    max-width: 60vw;
+  }
+}
+
+.navbar__buttons {
+  display: flex !important;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+
+
+  @media(min-width: $mobile-res){
+    & div{
+      margin: 0 0 0 18px ;
+    }
+  }
+
+  input[type="text"]{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 8px;
+    height: 40px;
+    max-width: 400px;
+    font-size: 22px;
+    padding: 0 10px;
+
+    @media(max-width: $tablet-res){
+      height: 30px !important;
+      font-size: 18px;
+    }
+
+    &:focus{
+      border: 1px solid $light-green;
+      outline: none !important;
+    }
+
+  }
+}
+
+.navbar__brand--text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  color: #ddd;
+  font-weight: bold;
+}
+.navbar__brand{
+  position: relative;
+  height: 100%;
+  vertical-align: middle;
+  height: auto !important;
+  padding: 0 10px !important;
+  display: flex;
+  align-items: center;
+  max-width: 150px;
+}
+
+.navbar--dark {
+  background: $dark-blue;
+  border: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+
+}
+
+.navbar__registerbutton {
+  @include outbutton("inherit");
+}
+
+.signinbutton {
+  @include inbutton("inherit");
+}
+
+
+//////////////////////////////////////////////////////
+/* 4.2 Footer.js */
+//////////////////////////////////////////////////////
+
+.footer {
+  background: $dark-blue;
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+
+  &-end-text {
+    color: white;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.social {
+  color: white;
+  font-size: 32px;
+  transition: 0.5s;
+}
+.social:hover{
+  color: $light-green;
+  cursor: pointer;
+}
+
+
+//////////////////////////////////////////////////////
+/* Pages Components */
+//////////////////////////////////////////////////////
+
+
+
+//////////////////////////////////////////////////////
+/* 5.1 Search.js */
+//////////////////////////////////////////////////////
+
+
+
+//////////////////////////////////////////////////////
+/* 5.2 UserCreate.js */
+//////////////////////////////////////////////////////
+
+input[name=collectionName]{
+  padding: 5px;
+  margin: 0 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid $dark-blue;
+}
+
+//////////////////////////////////////////////////////
+/* 5.3 UserHead.js */
+//////////////////////////////////////////////////////
+
+.mainpanel__userbase{
+  section{
+    box-shadow: 0px 6px 8px #00000029;
+    border-radius: 25px;
+    padding: 50px;
+  }
+}
+
+@media (max-width: $mobile-res) {
+  .mainpanel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .mainpanel__userbase{
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 50px;
+    width: 300px;
+  }
+}
+
+@media (min-width: $desktop-res) {
+  .mainpanel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .mainpanel__userbase{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 50px;
+  }
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/* Search Components */
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/* 6.1 SearchInput.js */
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@media(max-width: $tablet-res){
+  .searchbuttontext{
+    display: none;
+  }
+}
+
+.searchbutton{
+  font-size: 24px;
+  color: white;
+  background: inherit;
+  border: none;
+  margin: 0 0 0 10px;
+  text-decoration: none;
+
+
+  /*for FireFox*/
+  &::-moz-focus-inner
+  {
+      border : 0;
+  }
+  /*for IE8 and below */
+  &:focus, &:focus
+  {
+      outline : none;
+  }
+
+  &:hover{
+    color: $light-green;
+    cursor: pointer;
+    outline: hidden;
+  }
+
+  &:focus{
+    outline: hidden;
+    color: $dark-green;
+    border: 0;
+    box-shadow: 0;
+    outline-offset: -4px;
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+    outline: none;
+  }
+
+}
+
+//////////////////////////////////////////////////////////////////
+/* UserBase Components */
+//////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////
+/* 7.1 UserSection.js */
+//////////////////////////////////////////////////////////////////
+
+.yourcollections{
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 50px 0;
+  width: 1000px;
+
+  /* hide scrollbar */
+
+    &::-webkit-scrollbar {
+      width: 0px;  /* Remove scrollbar space */
+      background: transparent;  /* Optional: just make scrollbar invisible */
+    }
+    /* Optional: show position indicator in red */
+    &::-webkit-scrollbar-thumb {
+        background: transparent;
+    }
+}
+
+.yourcollections div.card{
+  border: 4px solid $dark-blue;
+  width: 150px;
+  height: 150px;
+  margin: 0 60px 0 0 ;
+  background: $light-green;
+  border-radius: 25px;
+  text-align: center;
+}
+
+.yourcollections h5,h6{
+   color: $dark-blue;
+}
+.yourcollections h5{
+  font-weight: 900;
+}
+
+//////////////////////////////////////////////////////////////////
+/* layouts */
+//////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////
+/* 8.1 Layout.js */
+//////////////////////////////////////////////////////////////////
+
+/* App Background and Bootstrap overwrites */
+.app--background{
+  background-color: $dark-blue;
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  left: 0;
+  top: 0;
+  z-index: -999;
+}
+
+main.container{
+  background-color: #F8F8F8;
+  overflow: hidden;
+  padding: 50px;
+}
+
+@media(min-width: 576px){
+  main.container{
+    border-radius: 70px;
+  }
+}
+
+
+
+
+//////////////////////////////////////////////////////////////////
+//////// LOOOOST STYLES ////////////
+/////////////////////////////////
+
+.searchcollectioninput{
+  margin: 20px;
+}

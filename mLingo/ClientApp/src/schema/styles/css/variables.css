@@ -2,7 +2,7 @@
   font-family: 'Poppins', sans-serif;
 }
 
-a:hover, a:focus, a:checked {
+a:hover {
   text-decoration: none;
 }
 
@@ -47,7 +47,7 @@ a:hover, a:focus, a:checked {
   transition: 0.5s;
 }
 
-.blue-button:hover, .blue-button:focus, .blue-button:active, .blue-button:checked {
+.blue-button:hover {
   color: #B6EE1A;
   text-decoration: none !important;
 }
@@ -73,7 +73,7 @@ a:hover, a:focus, a:checked {
   transition: 0.5s;
 }
 
-.in-button:hover, .in-button:focus, .in-button:active, .in-button:checked {
+.in-button:hover {
   color: #B6EE1A;
   text-decoration: none !important;
 }
