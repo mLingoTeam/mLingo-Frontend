@@ -7,7 +7,7 @@ import {
 const UserCreateCard = (props) => {
     return (
         <div className="createCard">
-            <Card>
+            <div>
                 <CardBody className="d-flex flex-nowrap justify-content-center">
                     <div className="flashsquare"></div>
                     <div>
@@ -18,7 +18,7 @@ const UserCreateCard = (props) => {
                         <button onClick={props.functionii}>Add</button>
                     </div>
                 </CardBody>
-            </Card>
+            </div>
         </div >
     );
 };

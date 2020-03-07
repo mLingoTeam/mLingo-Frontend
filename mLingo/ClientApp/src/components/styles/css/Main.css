@@ -192,7 +192,7 @@ main.container {
 
 @media (min-width: 1199px) {
   .navbar--dark {
-    max-width: 960px;
+    max-width: 1000px;
     height: 100px;
   }
 }
@@ -601,8 +601,7 @@ li.media h4 {
       -ms-flex-align: center;
           align-items: center;
   font-size: 14px;
-  color: #B6EE1A;
-  text-shadow: 0.1em 0.1em 0.1em #000536;
+  color: #A1D218;
   margin-bottom: 88px !important;
 }
 
@@ -611,7 +610,7 @@ li.media h4 {
 }
 
 .remember a {
-  color: #B6EE1A;
+  color: #A1D218;
 }
 
 .alreadyaccount {
@@ -825,6 +824,14 @@ li.media h4 {
 }
 
 /* 8 Cards */
+input[name=collectionName] {
+  padding: 5px;
+  margin: 0 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #000536;
+}
+
 .createCard div {
   margin: 0 5%;
 }
@@ -843,18 +850,21 @@ li.media h4 {
   border-radius: 15px;
   background: #B6EE1A;
   color: #000536;
-  font-weight: 900;
+  font-weight: 700;
   font-size: 16px;
 }
 
 .createCard h5 {
   color: #000536;
   font-size: 18px;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .createCard input[type=text] {
   font-size: 18px;
   margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 5px;
+  border: 1px solid #000536;
 }
 /*# sourceMappingURL=Main.css.map */

@@ -86,7 +86,7 @@ main.container{
 @media (min-width: 1199px)
 {
   .navbar--dark{
-    max-width: 960px;
+    max-width: 1000px;
     height: 100px;
 }
 }
@@ -426,8 +426,7 @@ input[type="checkbox"]:checked + label:before {
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
-  color: $light-green;
-  text-shadow: 0.1em 0.1em 0.1em $dark-blue;
+  color: $dark-green;
   margin-bottom: 88px !important;
 
   label{
@@ -435,7 +434,7 @@ input[type="checkbox"]:checked + label:before {
   }
 
   a{
-    color: $light-green;
+    color: $dark-green;
   }
 }
 
@@ -585,6 +584,15 @@ input[type="checkbox"]:checked + label:before {
 }
 
 /* 8 Cards */
+
+input[name=collectionName]{
+  padding: 5px;
+  margin: 0 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid $dark-blue;
+}
+
 .createCard{
 
   div{
@@ -605,18 +613,21 @@ input[type="checkbox"]:checked + label:before {
     border-radius: 15px;
     background: $light-green;
     color: $dark-blue;
-    font-weight: 900;
+    font-weight: 700;
     font-size: 16px;
   }
 
   h5{
     color: $dark-blue;
     font-size: 18px;
-    font-weight: 900;
+    font-weight: 700;
   }
 
   input[type=text]{
     font-size: 18px;
     margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid $dark-blue;
   }
 }
