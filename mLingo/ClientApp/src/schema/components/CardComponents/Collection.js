@@ -1,7 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+
 import { authenticationService } from '../../../services/authentication';
 import Flashcard from './Flashcard';
-
 
 
 class Collection extends React.Component {
@@ -40,7 +41,9 @@ class Collection extends React.Component {
                         <Flashcard set={element} />
                     )) : <h1>loading</h1>
                 }
+                <Link to='/head' className="green-button">go back</Link>
             </div>
+
         )
     }
 };

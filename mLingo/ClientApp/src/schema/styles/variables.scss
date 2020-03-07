@@ -10,7 +10,7 @@ $desktop-res: 992px;
   font-family: 'Poppins', sans-serif ;
 }
 
-a:hover{
+a:hover, a:focus, a:checked{
   text-decoration: none;
 }
 
@@ -39,7 +39,7 @@ a:hover{
   border-radius: 5px;
   transition: 0.5s;
 
-  &:hover {
+  &:hover, &:focus, &:active, &:checked {
     color: $light-green;
     text-decoration: none !important;
   }
@@ -65,7 +65,7 @@ a:hover{
   text-decoration: none;
   transition: 0.5s;
 
-  &:hover {
+  &:hover, &:focus, &:active, &:checked  {
     color: white;
     text-decoration: none !important;
   }
