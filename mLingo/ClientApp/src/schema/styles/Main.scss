@@ -774,24 +774,20 @@ input[name=collectionName]{
 }
 
 .yourcollections div.card{
-  border: 4px solid $dark-blue;
   width: 150px;
   height: 150px;
   margin: 0 60px 0 0 ;
-  background: $light-green;
+  background: url('../../img/studyset.png');
   border-radius: 25px;
-  text-align: center;
+  border: 0;
+}
 
-  text-align: center;
-    max-width: 200px;
-    padding-left: 12px;
-    padding-right: 12px;
-    font-size: 16px;
-    z-index: 100;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-
+.yourcollections div.card div.card-body{
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .yourcollections h5,h6{
