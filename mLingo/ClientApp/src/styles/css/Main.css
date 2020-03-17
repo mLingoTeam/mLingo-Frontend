@@ -839,7 +839,7 @@ input[name=collectionName] {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    max-width: 33%;
+    max-width: 85%;
   }
   .mainpanel__userbase {
     display: -webkit-box;
@@ -981,7 +981,7 @@ input[name=collectionName] {
 .yourcollections div.card {
   width: 150px;
   height: 150px;
-  margin: 0 60px 0 0;
+  margin: 0 55px 0 0;
   background: url("../../img/studyset.png");
   border-radius: 25px;
   border: 0;

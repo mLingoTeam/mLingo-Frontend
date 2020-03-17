@@ -12,15 +12,13 @@ class UserHead extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="mainpanel">
-                    <div className="mainpanel__userbase">
-                        <StudySetsSection />
-                        <StudySetsSection />
-                        <StudySetsSection />
-                    </div>
+            <div className="mainpanel">
+                <div className="mainpanel__userbase">
+                    <StudySetsSection />
+                    <StudySetsSection />
+                    <StudySetsSection />
                 </div>
-            </div >
+            </div>
         );
     }
 }

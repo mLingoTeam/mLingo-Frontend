@@ -8,7 +8,6 @@ const Layout = ({ children }) => {
     return (
         <div className="app--background">
             <AppNavbar />
-
             <main className="container user--container"> <UserMenu /> {children}</main>
             <Footer />
         </div>
