@@ -1,29 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaYoutube, FaPodcast, FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaBookOpen, FaFolder, FaHouzz, FaRegFile, FaRegChartBar, FaCog } from 'react-icons/fa';
+import Category from './UserMenuComponents/Category'
 
 
 const UserMenu = props => {
+    const categories = [
+        { "icon": FaBookOpen, "text": "learning plan", "link": "/head" },
+        { "icon": FaFolder, "text": "study sets", "link": "/head" },
+        { "icon": FaRegFile, "text": "collections", "link": "/head" },
+        { "icon": FaRegChartBar, "text": "stats", "link": "/head" },
+        { "icon": FaHouzz, "text": "your profile", "link": "/head" },
+        { "icon": FaCog, "text": "settings", "link": "/head" },
+    ]
+
+    const categoriesmapped = categories.map(el => <Category icon={el.icon} text={el.text} link={el.link} />)
+
     return (
         <div className="UserMenu">
-            <div className="navbar__buttons">
-                {
-                    localStorage.getItem("currentUser") ? <div className="navbar__buttons">
-                        <div>
-                            <Link className="signinbutton" to="/head">learn</Link>
-                        </div>
-                        <div>
-                            <button className="navbar__registerbutton" >logout</button>
-                        </div>
-                    </div> : <div className="navbar__buttons"> <div>
-                        <Link className="signinbutton" to="/Login">sign in</Link>
-                    </div>
-                            <div>
-                                <Link className="navbar__registerbutton" to="/Register">sign up</Link>
-                            </div>
-                        </div>
-                }
-            </div>
+            <h2>menu</h2>
+            {categoriesmapped}
         </div >
     );
 };
