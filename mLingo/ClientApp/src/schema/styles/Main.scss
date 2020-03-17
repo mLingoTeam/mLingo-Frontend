@@ -275,7 +275,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("../../../img/slid3.jpg") fixed;
+  background: url("../../img/slid3.jpg") fixed;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -557,27 +557,58 @@ li.media h4 {
 /* 4.2 Footer.js */
 //////////////////////////////////////////////////////
 
+@media (min-width: 1199px){
+  .footer{
+    max-width: 100%;
+  }
+}
+
 .footer {
   background: $dark-blue;
   width: 100%;
   height: 20vh;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   position: relative;
+  color: white;
 
   &-end-text {
     color: white;
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    vertical-align: middle;
+
+  }
+
+  &>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>div{
+      padding: 0 10px;
+    }
+
+    &>div:nth-child(2),&>div:nth-child(3){
+      border-left: 2px solid white;
+    }
+
+    @media(max-width: 767px){
+      &>div:nth-child(2),&>div:nth-child(3){
+        display: none;
+      }
+    }
+
+    p{
+      margin: 0 !important;
+    }
+
   }
 }
 
 .social {
   color: white;
-  font-size: 32px;
+  font-size: 24px;
+  margin: 0 12px;
   transition: 0.5s;
 }
 .social:hover{
@@ -719,11 +750,12 @@ input[name=collectionName]{
 //////////////////////////////////////////////////////////////////
 
 .yourcollections{
+  padding: 50px 0;
   display: flex;
+  text-align: center;
+  flex-wrap: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 50px 0;
-  width: 1000px;
 
   /* hide scrollbar */
 
@@ -745,6 +777,17 @@ input[name=collectionName]{
   background: $light-green;
   border-radius: 25px;
   text-align: center;
+
+  text-align: center;
+    max-width: 200px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 16px;
+    z-index: 100;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+
 }
 
 .yourcollections h5,h6{

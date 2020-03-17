@@ -32,6 +32,11 @@ a:hover, a:focus, a:checked {
   }
 }
 
+.green-button:active {
+  background: -webkit-gradient(linear, left top, left bottom, from(#A1D218), to(#B6EE1A));
+  background: linear-gradient(#A1D218, #B6EE1A);
+}
+
 .blue-button {
   font-size: 24px;
   font-weight: bold;
@@ -373,7 +378,7 @@ a:hover, a:focus, a:checked {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: url("../../../img/slid3.jpg") fixed;
+  background: url("../../img/slid3.jpg") fixed;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -698,6 +703,12 @@ li.media h4 {
 }
 
 /* 4.2 Footer.js */
+@media (min-width: 1199px) {
+  .footer {
+    max-width: 100%;
+  }
+}
+
 .footer {
   background: #000536;
   width: 100%;
@@ -705,26 +716,55 @@ li.media h4 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   position: relative;
+  color: white;
 }
 
 .footer-end-text {
   color: white;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  vertical-align: middle;
+}
+
+.footer > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer > div > div {
+  padding: 0 10px;
+}
+
+.footer > div > div:nth-child(2), .footer > div > div:nth-child(3) {
+  border-left: 2px solid white;
+}
+
+@media (max-width: 767px) {
+  .footer > div > div:nth-child(2), .footer > div > div:nth-child(3) {
+    display: none;
+  }
+}
+
+.footer > div p {
+  margin: 0 !important;
 }
 
 .social {
   color: white;
-  font-size: 32px;
+  font-size: 24px;
+  margin: 0 12px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
@@ -861,13 +901,15 @@ input[name=collectionName] {
 /* UserBase Components */
 /* 7.1 UserSection.js */
 .yourcollections {
+  padding: 50px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  text-align: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 50px 0;
-  width: 1000px;
   /* hide scrollbar */
   /* Optional: show position indicator in red */
 }
@@ -891,6 +933,19 @@ input[name=collectionName] {
   background: #B6EE1A;
   border-radius: 25px;
   text-align: center;
+  text-align: center;
+  max-width: 200px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 16px;
+  z-index: 100;
+  white-space: nowrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .yourcollections h5, h6 {

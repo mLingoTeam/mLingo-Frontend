@@ -12,7 +12,7 @@ import UserPanelHead from "./schema/pages/UserPanelHead";
 import UserPanelCreate from "./schema/pages/UserPanelCreate";
 import UserPanelCollection from "./schema/pages/UserPanelCollection";
 import SearchPage from './schema/pages/SearchPage';
-import './components/styles/css/Main.css';
+import './styles/css/Main.css';
 
 export const history = createBrowserHistory();
 

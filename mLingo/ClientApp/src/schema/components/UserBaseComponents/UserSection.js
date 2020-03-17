@@ -34,13 +34,15 @@ class UserSection extends React.Component {
             <section>
                 <h2>study sets</h2>
                 <p>Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.</p>
-                <div className="yourcollections">
-                    {
-                        this.state.exist ? this.state.fields.map(element => (
-                            <CardComponent set={element} />
-                        )) : <div className="text-center"><h2> You have no collection! &nbsp; </h2></div>
-                    }
-                    <button class="green-button">Load more</button>
+                <div>
+                    <div className="yourcollections">
+                        {
+                            this.state.exist ? this.state.fields.map(element => (
+                                <CardComponent set={element} />
+                            )) : <div className="text-center"><h2> You have no collection! &nbsp; </h2></div>
+                        }
+                        <button class="green-button">Load more</button>
+                    </div>
                 </div>
                 <div>
                     <Link to="/create" className="green-button">Create more collections</Link>

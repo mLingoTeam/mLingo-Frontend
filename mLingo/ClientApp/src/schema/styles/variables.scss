@@ -104,6 +104,10 @@ a:hover, a:focus, a:checked{
 
 @mixin greenbutton{
   @include darkbutton($light-green);
+
+  &:active{
+    background: linear-gradient($dark-green, $light-green);
+  }
 }
 
 @mixin bluebutton {

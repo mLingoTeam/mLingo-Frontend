@@ -32,6 +32,11 @@ a:hover, a:focus, a:checked {
   }
 }
 
+.green-button:active {
+  background: -webkit-gradient(linear, left top, left bottom, from(#A1D218), to(#B6EE1A));
+  background: linear-gradient(#A1D218, #B6EE1A);
+}
+
 .blue-button {
   font-size: 24px;
   font-weight: bold;
