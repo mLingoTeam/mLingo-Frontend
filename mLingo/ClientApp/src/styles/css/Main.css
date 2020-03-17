@@ -839,6 +839,7 @@ input[name=collectionName] {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    max-width: 30%;
   }
   .mainpanel__userbase {
     display: -webkit-box;
@@ -904,7 +905,13 @@ input[name=collectionName] {
 }
 
 /* UserBase Components */
+/* 7.0 UserMenu.js */
 /* 7.1 UserSection.js */
+.UserSection {
+  margin: 0px 0px 120px 0px;
+}
+
+/* 7.1.2 StudySetsSection.js */
 .yourcollections {
   padding: 50px 0;
   display: -webkit-box;
@@ -989,6 +996,14 @@ main.container {
   background-color: #F8F8F8;
   overflow: hidden;
   padding: 50px;
+  position: relative;
+}
+
+main.user--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0px !important;
 }
 
 @media (min-width: 576px) {
