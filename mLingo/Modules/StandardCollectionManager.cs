@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IvanAkcheurov.Commons;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using mLingo.Extensions.Api;
 using mLingo.Models.Database;
@@ -129,7 +128,8 @@ namespace mLingo.Modules
                 Id = colId,
                 Name = newCollectionData.Name,
                 OwnerId = user.Id,
-                DetailsId = detailsId
+                DetailsId = detailsId,
+                Set = null
             };
 
             var testBaseLangStr = "";
