@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using mLingo.Models.Database.Sets;
 using mLingo.Models.Database.User;
 using mLingoCore.Models.FlashCards.Base;
 
@@ -24,5 +25,7 @@ namespace mLingo.Models.Database.Collections
         public virtual AppUser Owner { get; set; }
 
         public virtual CollectionDetails Details { get; set; }
+
+        public virtual Set Set { get; set; }
     }
 }                                                                                                                                                                                                                                                                                                               
