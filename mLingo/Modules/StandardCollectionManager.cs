@@ -129,7 +129,7 @@ namespace mLingo.Modules
                 Name = newCollectionData.Name,
                 OwnerId = user.Id,
                 DetailsId = detailsId,
-                Set = null
+                Sets = null
             };
 
             var testBaseLangStr = "";

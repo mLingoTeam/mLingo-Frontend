@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using mLingo.Models.Database.Collections;
+using mLingo.Models.Database.JoinTables;
 using mLingoCore.Models.FlashCards.Base;
 
 namespace mLingo.Models.Database.Sets
@@ -11,7 +12,7 @@ namespace mLingo.Models.Database.Sets
 
         public Set()
         {
-            Collections = new List<Collection>();
+            Collections = new List<SetCollection>();
         }
 
         #endregion
@@ -20,7 +21,7 @@ namespace mLingo.Models.Database.Sets
 
         public string Id { get; set; }
 
-        public virtual ICollection<Collection> Collections { get; set; }
+        public virtual ICollection<SetCollection> Collections { get; set; }
 
         #endregion
     }
