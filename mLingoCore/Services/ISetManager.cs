@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using mLingoCore.Models.Api.Base;
+using mLingoCore.Models.Forms.Sets;
 
 namespace mLingoCore.Services
 {
@@ -12,7 +13,7 @@ namespace mLingoCore.Services
 
         KeyValuePair<ApiResponse, int> UserSets(string username);
 
-        KeyValuePair<ApiResponse, int> CreateSet(string username, object newSetData);
+        KeyValuePair<ApiResponse, int> CreateSet(string username, CreateSetForm newSetData);
 
         KeyValuePair<ApiResponse, int> DeleteSet(string id);
 

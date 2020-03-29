@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using mLingo.Models.Database.Collections;
+﻿using System.Collections.Generic;
 using mLingo.Models.Database.JoinTables;
 using mLingoCore.Models.FlashCards.Base;
 
