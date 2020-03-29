@@ -792,10 +792,8 @@ input[name=collectionName] {
 
 .mainpanel__userbase section {
   max-width: 100%;
-  -webkit-box-shadow: 0px 6px 8px #00000029;
-          box-shadow: 0px 6px 8px #00000029;
-  border-radius: 25px;
   padding: 50px;
+  background-color: white;
 }
 
 @media (max-width: 576px) {
@@ -811,10 +809,6 @@ input[name=collectionName] {
             align-items: center;
   }
   .mainpanel__userbase {
-    border: 1px solid black;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -823,8 +817,6 @@ input[name=collectionName] {
             align-items: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    padding: 50px;
-    width: 300px;
   }
 }
 
@@ -854,6 +846,12 @@ input[name=collectionName] {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     padding: 50px;
+  }
+  .mainpanel__userbase section {
+    -webkit-box-shadow: 0px 6px 8px #00000029;
+            box-shadow: 0px 6px 8px #00000029;
+    border-radius: 25px;
+    padding: 20px;
   }
 }
 
@@ -910,6 +908,12 @@ input[name=collectionName] {
   background-color: white;
   -webkit-box-shadow: 0px 6px 8px #00000029;
           box-shadow: 0px 6px 8px #00000029;
+}
+
+@media (max-width: 991px) {
+  .usermenu div.collapse, .usermenu div.collapsing {
+    width: 100vw;
+  }
 }
 
 .usermenu div {
@@ -1042,6 +1046,23 @@ input[name=collectionName] {
 .yourcollections button {
   min-width: 200px;
   max-height: 60px;
+}
+
+.plus-button {
+  background-color: #B6EE1A;
+  color: #000536;
+  border: 5px solid #000536;
+  font-weight: 800;
+  font-size: 28px;
+  border-radius: 50%;
+  padding: 5px 12px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.plus-button:hover {
+  color: #000536;
+  background-color: #A1D218;
 }
 
 /* layouts */

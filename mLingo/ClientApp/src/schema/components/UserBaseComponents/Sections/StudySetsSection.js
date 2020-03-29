@@ -6,6 +6,8 @@ import CardComponent from '../../CardComponents/CardComponent';
 
 import { authenticationService } from "../../../../services/authentication";
 
+import { FaPlus } from 'react-icons/fa'
+
 class StudySetsSection extends React.Component {
     constructor(props) {
         super(props);
@@ -44,8 +46,8 @@ class StudySetsSection extends React.Component {
                             }
                             <button class="green-button">Load more</button>
                         </div>
-                        <div>
-                            <Link to="/create" className="green-button">Create more collections</Link>
+                        <div className="d-flex justify-content-center">
+                            <Link to="/create" className="plus-button"><FaPlus /></Link>
                         </div>
                     </div>
                 }
