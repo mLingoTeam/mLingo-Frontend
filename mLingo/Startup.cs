@@ -150,6 +150,7 @@ namespace mLingo
 
             // Make sure we have the database
             serviceProvider.GetService<AppDbContext>().Database.EnsureCreated();
+            serviceProvider.GetService<AppDbContext>().Database.Migrate();
         }
     }
 }
