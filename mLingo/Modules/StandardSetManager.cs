@@ -57,7 +57,7 @@ namespace mLingo.Modules
                 }
                 catch
                 {
-                    return new ApiResponse {ErrorMessage = "No set with given ID found"}.WithStatusCode(404);
+                    return new ApiResponse {ErrorMessage = ErrorMessages.SetNotFound}.WithStatusCode(404);
                 }
             }
 
@@ -74,7 +74,7 @@ namespace mLingo.Modules
             }
             catch
             {
-                return new ApiResponse { ErrorMessage = "No set with given name found" }.WithStatusCode(404);
+                return new ApiResponse { ErrorMessage = ErrorMessages.SetNotFound }.WithStatusCode(404);
             }
         }
 
@@ -84,23 +84,24 @@ namespace mLingo.Modules
             if (user == null)
                 return new ApiResponse {ErrorMessage = ErrorMessages.UsernameNotFound}.WithStatusCode(404);
 
-            List<Set> userSets;
+            List<SetOverviewResponse> setsResponse;
             try
             {
-                userSets = DbContext.Sets.Where(s => s.OwnerId.Equals(user.Id)).ToList();
-                var setResponse = userSets.Select(s => new SetOverviewResponse
+                var userSets = DbContext.Sets.Where(s => s.OwnerId.Equals(user.Id)).ToList();
+                setsResponse = userSets.Select(s => new SetOverviewResponse
                 {
+                    Id = s.Id,
                     Name = s.Name,
                     OwnerId = s.OwnerId
-                });
+                }).ToList();
 
             }
             catch
             {
-                userSets = new List<Set>();
+                setsResponse = new List<SetOverviewResponse>();
             }
 
-            return new ApiResponse {Response = userSets}.WithStatusCode(200);
+            return new ApiResponse {Response = setsResponse }.WithStatusCode(200);
         }
 
         public KeyValuePair<ApiResponse, int> CreateSet(string username, CreateSetForm newSetData)
@@ -134,7 +135,7 @@ namespace mLingo.Modules
             }
             catch
             {
-                return new ApiResponse {ErrorMessage = ""}.WithStatusCode(403);
+                return new ApiResponse { ErrorMessage = ErrorMessages.DbError }.WithStatusCode(403);
             }
 
             return ApiResponseExtensions.StatusCodeOnly(202);
@@ -180,7 +181,7 @@ namespace mLingo.Modules
             }
             catch
             {
-                return new ApiResponse {ErrorMessage = ""}.WithStatusCode(404);
+                return new ApiResponse {ErrorMessage = ErrorMessages.DbError}.WithStatusCode(404);
             }
 
             return ApiResponseExtensions.StatusCodeOnly(202);
@@ -199,7 +200,7 @@ namespace mLingo.Modules
             }
             catch
             {
-                return new ApiResponse { ErrorMessage = "" }.WithStatusCode(404);
+                return new ApiResponse { ErrorMessage = ErrorMessages.DbError }.WithStatusCode(404);
             }
 
             return ApiResponseExtensions.StatusCodeOnly(202);
