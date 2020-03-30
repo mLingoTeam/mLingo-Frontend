@@ -11,6 +11,8 @@ using mLingo.Models.Database.Sets;
 using mLingo.Models.Database.User;
 using mLingoCore.Models.Api;
 using mLingoCore.Models.Api.Base;
+using mLingoCore.Models.Api.ResponseModels.Collections;
+using mLingoCore.Models.Api.ResponseModels.Sets;
 using mLingoCore.Models.Forms.Sets;
 using mLingoCore.Services;
 
@@ -25,31 +27,55 @@ namespace mLingo.Modules
 
         public KeyValuePair<ApiResponse, int> Find(string id, string name)
         {
+            if (name == null && id == null) return ApiResponseExtensions.StatusCodeOnly(403);
+
             if (id != null)
             {
                 try
                 {
-                    var set = DbContext.Sets.FirstOrDefault(s => s.Id.Equals(id));
+                    var set = DbContext.Sets.Find(id);
                     var setCollections = DbContext.SetCollectionJoinTable.Where(sc => sc.SetId.Equals(id)).ToList();
+                    var collectionsNormalized = setCollections.Select(sc => new CollectionOverviewResponse
+                    {
+                        Id = sc.Collection.Id,
+                        Name = sc.Collection.Name,
+                        OwnerId = sc.Collection.OwnerId,
+                        BaseLanguage = sc.Collection.Details.BaseLanguage,
+                        SecondLanguage = sc.Collection.Details.SecondLanguage,
+                        PlayCount = sc.Collection.Details.PlayCount,
+                        Rating = sc.Collection.Details.Rating
+                    }).ToList();
+
+                    var res = new SetFullResponse
+                    {
+                        Name = set.Name,
+                        OwnerId = set.OwnerId,
+                        Collections = collectionsNormalized
+                    };
+
+                    return new ApiResponse {Response = res}.WithStatusCode(200);
                 }
                 catch
                 {
                     return new ApiResponse {ErrorMessage = "No set with given ID found"}.WithStatusCode(404);
                 }
             }
-            else if (name != null)
-            {
-                try
-                {
-                    var sets = DbContext.Sets.Where(s => s.Name.Equals(name)).ToList();
-                }
-                catch
-                {
-                    return new ApiResponse { ErrorMessage = "No set with given name found" }.WithStatusCode(404);
-                }
-            }
 
-            return ApiResponseExtensions.StatusCodeOnly(403);
+            try
+            {
+                var sets = DbContext.Sets.Where(s => s.Name.Equals(name)).ToList();
+                var setResponse = sets.Select(s => new SetOverviewResponse
+                {
+                    Name = s.Name,
+                    OwnerId = s.OwnerId
+                });
+
+                return new ApiResponse {Response = setResponse}.WithStatusCode(200);
+            }
+            catch
+            {
+                return new ApiResponse { ErrorMessage = "No set with given name found" }.WithStatusCode(404);
+            }
         }
 
         public async Task<KeyValuePair<ApiResponse, int>> UserSets(string username)
@@ -62,6 +88,12 @@ namespace mLingo.Modules
             try
             {
                 userSets = DbContext.Sets.Where(s => s.OwnerId.Equals(user.Id)).ToList();
+                var setResponse = userSets.Select(s => new SetOverviewResponse
+                {
+                    Name = s.Name,
+                    OwnerId = s.OwnerId
+                });
+
             }
             catch
             {
