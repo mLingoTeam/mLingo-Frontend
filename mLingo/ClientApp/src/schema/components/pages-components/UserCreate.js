@@ -14,22 +14,34 @@ class UserCreate extends React.Component {
             this.props.history.push("/");
         }
 
-        this.state = { collectionName: "", cards: [], card: { Term: "", Definition: "" } }
+        this.state = { collectionName: "", cards: [], card: { term: "", definition: "" } }
 
         this.createCollection = this.createCollection.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleCardChange = this.handleCardChange.bind(this);
         this.addCard = this.addCard.bind(this);
+        this.removeCard = this.removeCard.bind(this);
     }
 
     addCard() {
-        if (this.state.card.Term === '' || this.state.card.Definition === '') {
+        if (this.state.card.term === '' || this.state.card.definition === '') {
             alert("Fields Term and Description cannot be empty!")
         }
         else {
             this.setState({ ...this.state, cards: this.state.cards.push(this.state.card) })
-            this.setState({ ...this.state, card: { Term: "", Definition: "" } })
+            this.setState({ ...this.state, card: { term: "", definition: "" } })
         }
+    }
+
+    removeCard(set) {
+        //only looking for the first card
+        const searchedValue = this.state.cards.find(element => ((element.term == set.term) && (element.definition == set.definition)));
+        this.setState(() => {
+            return {
+                ...this.state,
+                cards: this.state.cards.filter(element => element !== searchedValue)
+            }
+        })
     }
 
     handleCardChange(event) {
@@ -44,7 +56,7 @@ class UserCreate extends React.Component {
 
     createCollection() {
         authenticationService.createCollection(this.state.collectionName, this.state.cards, localStorage.getItem("ID"), localStorage.getItem("Token"));
-        this.setState({ collectionName: "", cards: [], card: { Term: "", Definition: "" } });
+        this.setState({ collectionName: "", cards: [], card: { term: "", definition: "" } });
     }
 
     render() {
@@ -57,7 +69,7 @@ class UserCreate extends React.Component {
                 <UserCreateCard set={this.state} functioni={this.handleCardChange} functionii={this.addCard} />
                 {
                     this.state.cards.map(element => {
-                        return <Flashcard set={element} />
+                        return <Flashcard set={element} remove={this.removeCard} />
                     })
                 }
                 <div>

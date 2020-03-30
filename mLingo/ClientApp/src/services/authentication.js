@@ -5,7 +5,8 @@ export const authenticationService = {
   setIntoLocalStorage,
   requestCollection,
   createCollection,
-  removeCollection
+  removeCollection,
+  updateCollection
 };
 
 function register(username, email, password) {
@@ -72,14 +73,28 @@ function createCollection(name, cards, OwnerId, Token) {
 
 function removeCollection(id, token) {
 
-  console.log(`http://localhost:5000/api/collections/delete?id=${id}`)
-
   const requestOptions = {
     method: "DELETE",
     headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
   }
 
   return fetch(`http://localhost:5000/api/collections/delete?id=${id}`, requestOptions)
+    .then(result => result.json())
+    .catch(err => console.log(err))
+}
+
+function updateCollection({ id, token, name, cards }) {
+
+  console.log(id)
+  console.log(cards)
+
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
+    body: JSON.stringify({ Name: null, Cards: cards, BaseLanguage: null, SecondLanguage: null })
+  }
+
+  return fetch(`http://localhost:5000/api/collections/update?id=${id}`, requestOptions)
     .then(result => result.json())
     .catch(err => console.log(err))
 }

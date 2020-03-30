@@ -4,14 +4,23 @@ import {
     CardTitle, CardSubtitle
 } from 'reactstrap';
 
-const Flashcard = ({ set }) => {
+import { FaTrash } from 'react-icons/fa'
+
+
+
+const Flashcard = ({ set, remove }) => {
+
+    const removeCard = () => {
+        remove(set);
+    }
+
     return (
-        <div key={set.id}>
+        <div key={set.term}>
             <Card>
                 <CardBody>
                     <CardTitle>{set.term || set.Term}</CardTitle>
                     <CardSubtitle>{set.definition || set.Definition}</CardSubtitle>
-                    <CardText></CardText>
+                    <button onClick={removeCard}><FaTrash /></button>
                 </CardBody>
             </Card>
         </div >

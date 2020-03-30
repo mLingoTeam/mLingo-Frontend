@@ -41,9 +41,11 @@ class StudySetsSection extends React.Component {
                             {
                                 this.state.exist ? this.state.fields.map(element => (
                                     <CardComponent set={element} />
-                                )) : <div className="text-center"><h2> You have no collection! &nbsp; </h2></div>
+                                )) : <div className="text-center col-12"><h2> You have no collection! &nbsp; </h2></div>
                             }
-                            <button class="green-button">Load more</button>
+                            {
+                                this.state.exist ? <button class="green-button">Load more</button> : null
+                            }
                         </div>
                         <div className="d-flex justify-content-center">
                             <Link to="/create" className="plus-button"><FaPlus /></Link>
