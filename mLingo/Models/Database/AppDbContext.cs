@@ -102,12 +102,12 @@ namespace mLingo.Models.Database
             builder.Entity<SetCollection>()
                 .HasOne(t => t.Set)
                 .WithMany(t => t.Collections)
-                .HasForeignKey(t => new {t.SetId, t.CollectionId})
+                .HasForeignKey(t => t.SetId)
                 .OnDelete(DeleteBehavior.ClientNoAction);
             builder.Entity<SetCollection>()
                 .HasOne(t => t.Collection)
                 .WithMany(t => t.Sets)
-                .HasForeignKey(t => new {t.SetId, t.CollectionId})
+                .HasForeignKey(t => t.CollectionId)
                 .OnDelete(DeleteBehavior.ClientNoAction);
 
             // Create tables
@@ -115,6 +115,8 @@ namespace mLingo.Models.Database
             builder.Entity<Collection>().ToTable("Collections");
             builder.Entity<Card>().ToTable("Cards");
             builder.Entity<CollectionDetails>().ToTable("CollectionDetails");
+            builder.Entity<Set>().ToTable("Sets");
+            builder.Entity<SetCollection>().ToTable("SetCollectionJoinTable");
         }
 
         #endregion

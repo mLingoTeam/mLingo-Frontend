@@ -9,7 +9,9 @@
         public static string InvalidLogin = "Please enter correct login credentials!";
         public static string UsernameNotFound = "User with entered name does not exist!";
         public static string UserEmailNotFound = "User with entered e-mail does not exist!";
-        public static string NoSuchCollection = "Collection of given ID does not exist!";
+        public static string NoSuchCollection = "Collection not found";
         public static string InvalidQuery = "Invalid query parameters";
+        public static string DbError = "Database query error";
+        public static string SetNotFound = "Set not found";
     }
 }
