@@ -4,7 +4,8 @@ export const authenticationService = {
   logout,
   setIntoLocalStorage,
   requestCollection,
-  createCollection
+  createCollection,
+  removeCollection
 };
 
 function register(username, email, password) {
@@ -65,6 +66,20 @@ function createCollection(name, cards, OwnerId, Token) {
   };
 
   return fetch(`http://localhost:5000/api/collections/create`, requestOptions)
+    .then(result => result.json())
+    .catch(err => console.log(err))
+}
+
+function removeCollection(id, token) {
+
+  console.log(`http://localhost:5000/api/collections/delete?id=${id}`)
+
+  const requestOptions = {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
+  }
+
+  return fetch(`http://localhost:5000/api/collections/delete?id=${id}`, requestOptions)
     .then(result => result.json())
     .catch(err => console.log(err))
 }

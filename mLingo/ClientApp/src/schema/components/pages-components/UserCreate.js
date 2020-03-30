@@ -4,6 +4,8 @@ import { authenticationService } from "../../../services/authentication";
 import UserCreateCard from '../CardComponents/UserCreateCard'
 import Flashcard from '../CardComponents/Flashcard';
 
+import { FaPlus } from 'react-icons/fa'
+
 class UserCreate extends React.Component {
     constructor(props) {
         super(props);
@@ -58,7 +60,9 @@ class UserCreate extends React.Component {
                         return <Flashcard set={element} />
                     })
                 }
-                <button onClick={this.createCollection} className="green-button offset-4 col-4 mt-5 ">Create Collection</button>
+                <div>
+                    <button onClick={this.createCollection} className="plus-button "><FaPlus /></button>
+                </div>
             </div >
         );
     }

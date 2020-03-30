@@ -24,8 +24,7 @@ class StudySetsSection extends React.Component {
             this.setState({ "fields": collectiondata.response, "exist": true, "loading": false });
         }
         else {
-            console.log("false")
-            this.setState({ "fields": [], "exist": false, "loading": true });
+            this.setState({ "fields": [], "exist": false, "loading": false });
         }
     }
 

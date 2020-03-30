@@ -148,6 +148,7 @@ a:hover, a:focus, a:checked {
 /* 3.3 SignInModal.js */
 /* 3.4 Slider.js */
 /* 3.5 UserPromo.js */
+/* 3.6 WelcomeSection.js */
 /* Layout Components */
 /* 4.1 AppNavbar.js */
 /* 4.2 Footer.js */
@@ -509,6 +510,104 @@ li.media h4 {
 .help-others-text h3 {
   line-height: 1.6;
   text-align: center;
+}
+
+/* 3.6 WelcomeSection.js */
+div.welcome-section {
+  width: 100%;
+  background: url("../../img/landpage1.png") no-repeat center center;
+  background-size: 100% 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  min-height: 494px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+div.welcome-section > div {
+  max-width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-right: 80px;
+}
+
+div.welcome-section > div h2 {
+  font-size: 32px;
+  text-align: left;
+  font-weight: bold;
+  color: #000536;
+}
+
+div.welcome-section > div p {
+  font-size: 16px;
+  max-width: 350px;
+  color: #000536;
+}
+
+@media (min-width: 1200px) {
+  div.welcome-section {
+    min-height: 618px;
+  }
+}
+
+@media (max-width: 991px) {
+  div.welcome-section {
+    min-height: 371px;
+  }
+  div.welcome-section > div h2 {
+    font-size: 22px;
+  }
+  div.welcome-section > div p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  div.welcome-section {
+    min-height: 297px;
+  }
+  div.welcome-section > div {
+    padding-right: 0px;
+  }
+  div.welcome-section > div h2 {
+    font-size: 18px;
+  }
+  div.welcome-section > div p {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 415px) {
+  div.welcome-section {
+    max-height: 214px;
+  }
+  div.welcome-section > div {
+    padding-right: 0px;
+  }
+  div.welcome-section > div h2 {
+    font-size: 16px;
+  }
+  div.welcome-section > div p {
+    font-size: 10px;
+  }
 }
 
 /* Layout Components */
@@ -1102,6 +1201,10 @@ main.user--container {
   main.container {
     max-width: 100%;
   }
+}
+
+.container.p-0 > div {
+  padding: 50px;
 }
 
 .searchcollectioninput {
