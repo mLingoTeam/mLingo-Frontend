@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using mLingo.Models.Database.JoinTables;
+using mLingo.Models.Database.User;
 using mLingoCore.Models.FlashCards.Base;
 
 namespace mLingo.Models.Database.Sets
@@ -18,6 +19,8 @@ namespace mLingo.Models.Database.Sets
         #region PublicFields
 
         public string Id { get; set; }
+
+        public virtual AppUser Owner { get; set; }
 
         public virtual ICollection<SetCollection> Collections { get; set; }
 

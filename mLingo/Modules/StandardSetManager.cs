@@ -33,7 +33,6 @@ namespace mLingo.Modules
                 }
                 catch
                 {
-                    
                     return new ApiResponse {ErrorMessage = "No set with given ID found"}.WithStatusCode(404);
                 }
             }
