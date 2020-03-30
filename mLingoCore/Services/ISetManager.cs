@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using mLingoCore.Models.Api.Base;
 using mLingoCore.Models.Forms.Sets;
 
@@ -11,7 +12,7 @@ namespace mLingoCore.Services
     {
         KeyValuePair<ApiResponse, int> Find(string id, string name);
 
-        KeyValuePair<ApiResponse, int> UserSets(string username);
+        Task<KeyValuePair<ApiResponse, int>> UserSets(string username);
 
         KeyValuePair<ApiResponse, int> CreateSet(string username, CreateSetForm newSetData);
 
