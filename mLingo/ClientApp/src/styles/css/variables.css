@@ -130,4 +130,25 @@ a:hover, a:focus, a:checked {
     bottom: 10%;
   }
 }
+
+.remove-button {
+  font-size: 24px;
+  color: #000536;
+  background-color: #F8F8F8;
+  border: 0;
+}
+
+.remove-button:hover, .remove-button:focus {
+  background: #F8F8F8;
+}
+
+.remove-button:focus {
+  outline: 1px solid #F8F8F8;
+  outline-offset: -4px;
+}
+
+.remove-button:active {
+  -webkit-transform: scale(0.99);
+          transform: scale(0.99);
+}
 /*# sourceMappingURL=variables.css.map */

@@ -83,7 +83,7 @@ function removeCollection(id, token) {
     .catch(err => console.log(err))
 }
 
-function updateCollection({ id, token, name, cards }) {
+function updateCollection({ id, token, cards }) {
 
   console.log(id)
   console.log(cards)

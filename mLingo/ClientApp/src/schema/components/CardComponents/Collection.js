@@ -2,8 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 import { authenticationService } from '../../../services/authentication';
-import Flashcard from './Flashcard';
-import { createImportSpecifier } from 'typescript';
+import AddFlashcard from './AddFlashcard';
 
 
 class Collection extends React.Component {
@@ -71,7 +70,7 @@ class Collection extends React.Component {
                 Collection
                 {
                     this.state.loaded ? this.state.collection ? this.state.collection.map(element => (
-                        <Flashcard set={element} remove={this.removeCard} />
+                        <AddFlashcard set={element} remove={this.removeCard} />
                     )) : <h1>Collection removed!</h1> : <h1>loading</h1>
                 }
                 <Link to='/head' className="green-button">go back</Link>

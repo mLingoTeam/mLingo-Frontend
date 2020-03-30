@@ -131,6 +131,27 @@ a:hover, a:focus, a:checked {
   }
 }
 
+.remove-button {
+  font-size: 24px;
+  color: #000536;
+  background-color: #F8F8F8;
+  border: 0;
+}
+
+.remove-button:hover, .remove-button:focus {
+  background: #F8F8F8;
+}
+
+.remove-button:focus {
+  outline: 1px solid #F8F8F8;
+  outline-offset: -4px;
+}
+
+.remove-button:active {
+  -webkit-transform: scale(0.99);
+          transform: scale(0.99);
+}
+
 /* MENU */
 /* Components */
 /* Card Components */
@@ -167,17 +188,47 @@ a:hover, a:focus, a:checked {
 /* 1.1 CardComponent.js */
 /* 1.2 Collection.js */
 /* 1.3 Flashcard.js */
+.flashcard {
+  height: 200px;
+  padding: 20px;
+  background: white;
+  border-radius: 25px;
+  -webkit-box-shadow: 0px 6px 8px #00000029;
+          box-shadow: 0px 6px 8px #00000029;
+  margin: 20px;
+}
+
+.flashcard .flashcard--title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.flashcard h2 {
+  color: #000536;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.flashcard h5 {
+  color: #B6EE1A;
+  font-size: 12px;
+}
+
 /* 1.4 UserCreateCard.js */
 .createCard div {
   margin: 0 5%;
 }
 
 .createCard .flashsquare {
-  width: 200px;
-  height: 200px;
-  border: 3px solid #000536;
-  border-radius: 15px;
-  background: #B6EE1A;
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
 }
 
 .createCard button {

@@ -2,7 +2,7 @@ import React from "react";
 
 import { authenticationService } from "../../../services/authentication";
 import UserCreateCard from '../CardComponents/UserCreateCard'
-import Flashcard from '../CardComponents/Flashcard';
+import AddFlashcard from '../CardComponents/AddFlashcard';
 
 import { FaPlus } from 'react-icons/fa'
 
@@ -61,15 +61,15 @@ class UserCreate extends React.Component {
 
     render() {
         return (
-            <div className="d-flex justify-content-center flex-wrap flex-column">
+            <div className="d-flex justify-content-center flex-wrap">
                 <div className="d-flex justify-content-center flex-wrap mb-5">
                     <h1>Collection name</h1>
                     <input name="collectionName" type="text" onChange={this.handleChange} value={this.state.collectionName} required />
                 </div>
                 <UserCreateCard set={this.state} functioni={this.handleCardChange} functionii={this.addCard} />
                 {
-                    this.state.cards.map(element => {
-                        return <Flashcard set={element} remove={this.removeCard} />
+                    this.state.cards.map((element, index) => {
+                        return <AddFlashcard set={element} remove={this.removeCard} index={index}/>
                     })
                 }
                 <div>
