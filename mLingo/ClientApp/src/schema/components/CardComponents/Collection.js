@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 import { authenticationService } from '../../../services/authentication';
-import AddFlashcard from './AddFlashcard';
+import Flashcard from './Flashcard';
 
 
 class Collection extends React.Component {
@@ -33,14 +33,14 @@ class Collection extends React.Component {
         }
     }
 
-    removeCard(set) {
-        console.log(set);
+    async removeCard(set) {
         //only looking for the first card
         const searchedValue = this.state.collection.find(element => ((element.term == set.term) && (element.definition == set.definition)));
+        const new_collection = this.state.collection.filter(element => element !== searchedValue);
         this.setState(() => {
             return {
                 ...this.state,
-                collection: this.state.collection.filter(element => element !== searchedValue)
+                collection: new_collection
             }
         })
     }
@@ -54,7 +54,6 @@ class Collection extends React.Component {
     }
 
     modifyCollection() {
-
         authenticationService.updateCollection({ id: localStorage.getItem("collectionid"), token: localStorage.getItem("Token"), cards: this.state.collection })
     }
 
@@ -65,12 +64,13 @@ class Collection extends React.Component {
     }
 
     render() {
+        console.log(this.state)
         return (
-            <div>
+            <div className="col-9">
                 Collection
                 {
-                    this.state.loaded ? this.state.collection ? this.state.collection.map(element => (
-                        <AddFlashcard set={element} remove={this.removeCard} />
+                    this.state.loaded ? this.state.collection ? this.state.collection.map((element, index) => (
+                        <Flashcard set={element} remove={this.removeCard} index={index}/>
                     )) : <h1>Collection removed!</h1> : <h1>loading</h1>
                 }
                 <Link to='/head' className="green-button">go back</Link>

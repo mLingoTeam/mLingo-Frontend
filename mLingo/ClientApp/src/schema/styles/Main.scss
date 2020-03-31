@@ -9,7 +9,7 @@
 /* 1.1 CardComponent.js */
 /* 1.2 Collection.js */
 /* 1.3 Flashcard.js */
-/* 1.4 UserCreateCard.js */
+/* 1.4 UserCreateCollection.js */
 
 /* Form Components */
 /* 2.1 FormField.js */
@@ -73,11 +73,24 @@
   box-shadow: 0px 6px 8px #00000029;
   margin: 20px;
 
+
   .flashcard--title{
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+
+  .flashcard--def{
+    color: #B2B2B2;
+    font-size: 16px;
+    border: 0;
+    border-bottom: 1px solid #B2B2B2;
+
+    &:focus{
+      outline: none;
+    }
+  }
+
 
   h2{
     color: $dark-blue;
@@ -92,42 +105,36 @@
 }
 
 //////////////////////////////////////////////////////
-/* 1.4 UserCreateCard.js */
+/* 1.4 UserCreateCollection.js */
 //////////////////////////////////////////////////////
 
-.createCard{
-
-  div{
-    margin: 0 5%;
-  }
+.createCollection{
 
   .flashsquare{
     transform: scale(0.8);
   }
 
   button{
-    padding: 10px 50px;
-    border: 3px solid $dark-blue;
-    border-radius: 15px;
-    background: $light-green;
-    color: $dark-blue;
-    font-weight: 700;
-    font-size: 16px;
+    margin: 0 10px 0 0 ;
   }
 
   h5{
     color: $dark-blue;
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 14px;
   }
 
-  input[type=text]{
-    font-size: 18px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    padding: 5px;
-    border: 1px solid $dark-blue;
+  & {
+    input[type=text], textarea[name=collectionDescription]{
+      font-size: 14px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      padding: 5px;
+      border: 1px solid $dark-blue;
+      border: 1px solid #B2B2B2;
+      border-radius: 10px;
+    }
   }
+
 }
 
 //////////////////////////////////////////////////////
@@ -755,7 +762,6 @@ div.welcome-section{
 
 input[name=collectionName]{
   padding: 5px;
-  margin: 0 10px;
   font-size: 14px;
   border-radius: 5px;
   border: 1px solid $dark-blue;

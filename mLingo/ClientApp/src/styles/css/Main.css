@@ -158,7 +158,7 @@ a:hover, a:focus, a:checked {
 /* 1.1 CardComponent.js */
 /* 1.2 Collection.js */
 /* 1.3 Flashcard.js */
-/* 1.4 UserCreateCard.js */
+/* 1.4 UserCreateCollection.js */
 /* Form Components */
 /* 2.1 FormField.js */
 /* 2.2 Login.js */
@@ -210,6 +210,17 @@ a:hover, a:focus, a:checked {
           align-items: center;
 }
 
+.flashcard .flashcard--def {
+  color: #B2B2B2;
+  font-size: 16px;
+  border: 0;
+  border-bottom: 1px solid #B2B2B2;
+}
+
+.flashcard .flashcard--def:focus {
+  outline: none;
+}
+
 .flashcard h2 {
   color: #000536;
   font-size: 16px;
@@ -221,38 +232,29 @@ a:hover, a:focus, a:checked {
   font-size: 12px;
 }
 
-/* 1.4 UserCreateCard.js */
-.createCard div {
-  margin: 0 5%;
-}
-
-.createCard .flashsquare {
+/* 1.4 UserCreateCollection.js */
+.createCollection .flashsquare {
   -webkit-transform: scale(0.8);
           transform: scale(0.8);
 }
 
-.createCard button {
-  padding: 10px 50px;
-  border: 3px solid #000536;
-  border-radius: 15px;
-  background: #B6EE1A;
-  color: #000536;
-  font-weight: 700;
-  font-size: 16px;
+.createCollection button {
+  margin: 0 10px 0 0;
 }
 
-.createCard h5 {
+.createCollection h5 {
   color: #000536;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 14px;
 }
 
-.createCard input[type=text] {
-  font-size: 18px;
+.createCollection input[type=text], .createCollection textarea[name=collectionDescription] {
+  font-size: 14px;
   margin-bottom: 10px;
   border-radius: 5px;
   padding: 5px;
   border: 1px solid #000536;
+  border: 1px solid #B2B2B2;
+  border-radius: 10px;
 }
 
 /* Form Components */
@@ -929,7 +931,6 @@ div.welcome-section > div p {
 /* 5.2 UserCreate.js */
 input[name=collectionName] {
   padding: 5px;
-  margin: 0 10px;
   font-size: 14px;
   border-radius: 5px;
   border: 1px solid #000536;

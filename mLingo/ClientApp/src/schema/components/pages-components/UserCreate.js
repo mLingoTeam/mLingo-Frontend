@@ -1,7 +1,7 @@
 import React from "react";
 
 import { authenticationService } from "../../../services/authentication";
-import UserCreateCard from '../CardComponents/UserCreateCard'
+import UserCreateCollection from '../CardComponents/UserCreateCollection'
 import AddFlashcard from '../CardComponents/AddFlashcard';
 
 import { FaPlus } from 'react-icons/fa'
@@ -14,7 +14,7 @@ class UserCreate extends React.Component {
             this.props.history.push("/");
         }
 
-        this.state = { collectionName: "", cards: [], card: { term: "", definition: "" } }
+        this.state = { collectionTitle: "", cards: [ { term: "", definition: "" } ], card: { term: "", definition: "" } }
 
         this.createCollection = this.createCollection.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -24,13 +24,8 @@ class UserCreate extends React.Component {
     }
 
     addCard() {
-        if (this.state.card.term === '' || this.state.card.definition === '') {
-            alert("Fields Term and Description cannot be empty!")
-        }
-        else {
             this.setState({ ...this.state, cards: this.state.cards.push(this.state.card) })
             this.setState({ ...this.state, card: { term: "", definition: "" } })
-        }
     }
 
     removeCard(set) {
@@ -52,28 +47,44 @@ class UserCreate extends React.Component {
         this.setState({ ...this.state, [event.target.name]: event.target.value });
     }
 
-
-
     createCollection() {
-        authenticationService.createCollection(this.state.collectionName, this.state.cards, localStorage.getItem("ID"), localStorage.getItem("Token"));
-        this.setState({ collectionName: "", cards: [], card: { term: "", definition: "" } });
+
+        this.setState((state)=>{
+            return{
+                ...state,
+                cards: state.cards.filter(el => (el.term != '' || el.definition != ''))
+            }
+        })
+
+        if(this.state.collectionTitle == ""){
+            alert('Name your collection!')
+            return
+        }
+        else if( this.state.cards.length == 1 ){
+            alert("Add more cards")
+            return
+        }
+        else{
+            authenticationService.createCollection(this.state.collectionTitle, this.state.cards, localStorage.getItem("ID"), localStorage.getItem("Token"));
+            this.setState({ collectionTitle: "", cards: [], card: { term: "", definition: "" } });
+        }
+
+
     }
 
     render() {
+        console.log(this.state)
         return (
             <div className="d-flex justify-content-center flex-wrap">
-                <div className="d-flex justify-content-center flex-wrap mb-5">
-                    <h1>Collection name</h1>
-                    <input name="collectionName" type="text" onChange={this.handleChange} value={this.state.collectionName} required />
-                </div>
-                <UserCreateCard set={this.state} functioni={this.handleCardChange} functionii={this.addCard} />
+                <UserCreateCollection set={this.state} handleChange={this.handleCardChange} />
                 {
                     this.state.cards.map((element, index) => {
-                        return <AddFlashcard set={element} remove={this.removeCard} index={index}/>
+                        return <AddFlashcard set={element} remove={this.removeCard} index={index} functioni={this.handleCardChange} functionii={this.addCard}/>
                     })
                 }
                 <div>
-                    <button onClick={this.createCollection} className="plus-button "><FaPlus /></button>
+                    <button onClick={this.addCard} className="plus-button"><FaPlus /></button>
+                    <button onClick={this.createCollection} className="green-button"> create collection </button>
                 </div>
             </div >
         );
