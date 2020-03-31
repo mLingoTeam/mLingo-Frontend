@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using mLingo.Models.Database.Collections;
+using mLingo.Models.Database.JoinTables;
+using mLingo.Models.Database.Sets;
 using mLingo.Models.Database.User;
 
 namespace mLingo.Models.Database
@@ -31,6 +33,10 @@ namespace mLingo.Models.Database
         public virtual DbSet<Collection> Collections { get; set; }
 
         public virtual DbSet<CollectionDetails> CollectionDetails { get; set; }
+
+        public virtual DbSet<Set> Sets { get; set; }
+
+        public virtual DbSet<SetCollection> SetCollectionJoinTable { get; set; }
 
         #endregion
 
@@ -90,11 +96,27 @@ namespace mLingo.Models.Database
                 .HasForeignKey(t => t.CollectionId)
                 .OnDelete(DeleteBehavior.ClientNoAction);
 
+            // Set many to many relation with Collection
+            builder.Entity<SetCollection>().HasKey(t => new {t.SetId, t.CollectionId});
+            builder.Entity<Set>().HasKey(t => t.Id);
+            builder.Entity<SetCollection>()
+                .HasOne(t => t.Set)
+                .WithMany(t => t.Collections)
+                .HasForeignKey(t => t.SetId)
+                .OnDelete(DeleteBehavior.ClientNoAction);
+            builder.Entity<SetCollection>()
+                .HasOne(t => t.Collection)
+                .WithMany(t => t.Sets)
+                .HasForeignKey(t => t.CollectionId)
+                .OnDelete(DeleteBehavior.ClientNoAction);
+
             // Create tables
             builder.Entity<UserInformation>().ToTable("UserInformation");
             builder.Entity<Collection>().ToTable("Collections");
             builder.Entity<Card>().ToTable("Cards");
             builder.Entity<CollectionDetails>().ToTable("CollectionDetails");
+            builder.Entity<Set>().ToTable("Sets");
+            builder.Entity<SetCollection>().ToTable("SetCollectionJoinTable");
         }
 
         #endregion

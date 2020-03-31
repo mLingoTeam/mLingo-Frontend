@@ -24,7 +24,6 @@ namespace mLingo.Modules
 
         public ILanguageDetector LanguageDetector { get; set; }
 
-
         public KeyValuePair<ApiResponse, int> Find(string id, string name)
         {
             if (!id.IsNullOrEmpty())
@@ -129,7 +128,8 @@ namespace mLingo.Modules
                 Id = colId,
                 Name = newCollectionData.Name,
                 OwnerId = user.Id,
-                DetailsId = detailsId
+                DetailsId = detailsId,
+                Sets = null
             };
 
             var testBaseLangStr = "";
@@ -257,6 +257,30 @@ namespace mLingo.Modules
             }
 
             return ApiResponseExtensions.StatusCodeOnly(202);
+        }
+
+        public async Task<KeyValuePair<ApiResponse, int>> DetectLanguage(string collectionId, string username)
+        {
+            var collection = DbContext.Collections.Find(collectionId);
+            var user = await UserManager.FindByNameAsync(username);
+            if (user.Id != collection.OwnerId) return ApiResponseExtensions.StatusCodeOnly(401);
+
+            var testBaseStr = "";
+            var testSecondStr = "";
+            collection.Cards.ForEach(c =>
+            {
+                testBaseStr += $" {c.Definition}";
+                testSecondStr += $" {c.Term}";
+            });
+
+            var baseLang = LanguageDetector.DetectLanguage(testBaseStr);
+            var secondLang = LanguageDetector.DetectLanguage(testSecondStr);
+
+            var details = DbContext.CollectionDetails.Find(collection.DetailsId);
+            details.BaseLanguage = baseLang;
+            details.SecondLanguage = secondLang;
+
+            return ApiResponseExtensions.StatusCodeOnly(200);
         }
 
         public KeyValuePair<ApiResponse, int> Delete(string id)
