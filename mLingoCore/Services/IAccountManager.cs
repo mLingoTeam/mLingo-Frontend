@@ -11,22 +11,22 @@ namespace mLingoCore.Services
     /// </summary>
     public interface IAccountManager
     {
-        Task<KeyValuePair<ApiResponse, int>> Register(RegisterFormModel form);
+        Task<ApiResponse> Register(RegisterFormModel form);
 
-        Task<KeyValuePair<ApiResponse, int>> Login(LoginFormModel form);
+        Task<ApiResponse> Login(LoginFormModel form);
 
-        Task<KeyValuePair<ApiResponse, int>> Details(string username);
+        Task<ApiResponse> Details(string username);
 
-        Task<KeyValuePair<ApiResponse, int>> Delete(string username);
+        Task<ApiResponse> Delete(string username);
 
-        Task<KeyValuePair<ApiResponse, int>> EditInformation(string username, EditInformationForm form);
+        Task<ApiResponse> EditInformation(string username, EditInformationForm form);
 
-        Task<KeyValuePair<ApiResponse, int>> RequestChangeToken(string username, string prop, EditMailForm form);
+        Task<ApiResponse> RequestChangeToken(string username, string prop, EditMailForm form);
 
-        Task<KeyValuePair<ApiResponse, int>> ChangeEmail(string username, string token, EditMailForm form);
+        Task<ApiResponse> ChangeEmail(string username, string token, EditMailForm form);
 
-        Task<KeyValuePair<ApiResponse, int>> ChangePassword(string username, ResetPasswordForm form);
+        Task<ApiResponse> ChangePassword(string username, ResetPasswordForm form);
 
-        Task<KeyValuePair<ApiResponse, int>> ResetPassword(string username, string token, ResetPasswordForm form);
+        Task<ApiResponse> ResetPassword(string username, string token, ResetPasswordForm form);
     }
 }

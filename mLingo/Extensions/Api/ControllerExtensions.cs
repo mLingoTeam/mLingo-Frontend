@@ -6,10 +6,9 @@ namespace mLingo.Extensions.Api
 {
     public static class ControllerExtensions
     {
-        public static IActionResult HandleManagerResponse(this Controller controller, KeyValuePair<ApiResponse, int> res)
+        public static IActionResult HandleManagerResponse(this Controller controller, ApiResponse res)
         {
-            if (res.Key == null) return controller.StatusCode(res.Value);
-            return controller.StatusCode(res.Value, res.Key);
+            return controller.StatusCode(res.StatusCode, res.Response);
         }
     }
 }
