@@ -49,34 +49,34 @@ class UserCreate extends React.Component {
 
     createCollection() {
 
-        this.setState((state)=>{
-            return{
-                ...state,
-                cards: state.cards.filter(el => (el.term != '' || el.definition != ''))
-            }
-        })
-
-        if(this.state.collectionTitle == ""){
+ if(this.state.collectionTitle == ""){
             alert('Name your collection!')
             return
         }
-        else if( this.state.cards.length == 1 ){
-            alert("Add more cards")
-            return
-        }
         else{
-            authenticationService.createCollection(this.state.collectionTitle, this.state.cards, localStorage.getItem("ID"), localStorage.getItem("Token"));
-            this.setState({ collectionTitle: "", cards: [], card: { term: "", definition: "" } });
-        }
+            this.setState((state)=>{
+                return{
+                    ...state,
+                    cards: state.cards.filter(el => (el.term != '' || el.definition != ''))
+                }
+            })
 
+            if( this.state.cards.length == 1 ){
+                alert("Add more cards")
+                return
+            }
+            else{
+                authenticationService.createCollection(this.state.collectionTitle, this.state.cards, localStorage.getItem("ID"), localStorage.getItem("Token"));
+                this.setState({ collectionTitle: "", cards: [], card: { term: "", definition: "" } });
+            }
+        }
 
     }
 
     render() {
-        console.log(this.state)
         return (
             <div className="d-flex justify-content-center flex-wrap">
-                <UserCreateCollection set={this.state} handleChange={this.handleCardChange} />
+                <UserCreateCollection set={this.state} handleChange={this.handleChange} />
                 {
                     this.state.cards.map((element, index) => {
                         return <AddFlashcard set={element} remove={this.removeCard} index={index} functioni={this.handleCardChange} functionii={this.addCard}/>
