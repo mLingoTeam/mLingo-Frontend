@@ -1,11 +1,11 @@
 import React from 'react'
-
 import { FaTrash } from 'react-icons/fa'
 
 
 
-const Flashcard = ({ set, remove, index}) => {
+const AddFlashcard = ({ set, remove, index, functioni }) => {
 
+    let isFirst = index;
     index++;
 
     if(index < 10 ){index = `0${index}`} ;
@@ -15,14 +15,14 @@ const Flashcard = ({ set, remove, index}) => {
     }
 
     return (
-        <div key={set.term} className="col-12 d-flex">
+        <div key={index} className="col-12 d-flex">
             <div className="flashcard col-5">
                 <div className="flashcard--title">
                     <h2>card {index}</h2>
                     <h5>front</h5>
                 </div>
                 <div className="flashcard--body">
-                    <div className="flashcard--">{set.term}</div>
+                    <input type="text" name='term' className="flashcard--def" placeholder="Term" onChange={functioni}></input>
                 </div>
             </div>
             <div className="flashcard col-5">
@@ -31,13 +31,15 @@ const Flashcard = ({ set, remove, index}) => {
                     <h5>back</h5>
                 </div>
                 <div className="flashcard--body">
-                    <div className="flashcard--">{set.definition}</div>
+                    <input type="text" name='definition' className="flashcard--def" placeholder="Definiton" onChange={functioni}></input>
                 </div>
             </div>
+            {
+                isFirst === 0 ?  null: <button onClick={removeCard}  className="remove-button"><FaTrash onClick={removeCard}/></button>
+            }
 
-            <button onClick={removeCard} className="remove-button"><FaTrash onClick={removeCard} /></button>
         </div >
     );
 };
 
-export default Flashcard;
+export default AddFlashcard;

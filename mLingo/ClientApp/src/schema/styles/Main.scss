@@ -9,7 +9,7 @@
 /* 1.1 CardComponent.js */
 /* 1.2 Collection.js */
 /* 1.3 Flashcard.js */
-/* 1.4 UserCreateCard.js */
+/* 1.4 UserCreateCollection.js */
 
 /* Form Components */
 /* 2.1 FormField.js */
@@ -22,6 +22,7 @@
 /* 3.3 SignInModal.js */
 /* 3.4 Slider.js */
 /* 3.5 UserPromo.js */
+/* 3.6 WelcomeSection.js */
 
 /* Layout Components */
 /* 4.1 AppNavbar.js */
@@ -63,47 +64,77 @@
 /* 1.3 Flashcard.js */
 //////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////
-/* 1.4 UserCreateCard.js */
-//////////////////////////////////////////////////////
+.flashcard{
 
-.createCard{
+  height: 200px;
+  padding: 20px;
+  background: white;
+  border-radius: 25px;
+  box-shadow: 0px 6px 8px #00000029;
+  margin: 20px;
 
-  div{
-    margin: 0 5%;
+
+  .flashcard--title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
+  .flashcard--def{
+    color: #B2B2B2;
+    font-size: 16px;
+    border: 0;
+    border-bottom: 1px solid #B2B2B2;
+
+    &:focus{
+      outline: none;
+    }
+  }
+
+
+  h2{
+    color: $dark-blue;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  h5{
+    color: $light-green;
+    font-size:12px;
+  }
+
+}
+
+//////////////////////////////////////////////////////
+/* 1.4 UserCreateCollection.js */
+//////////////////////////////////////////////////////
+
+.createCollection{
+
   .flashsquare{
-    width: 200px;
-    height: 200px;
-    border: 3px solid $dark-blue;
-    border-radius: 15px;
-    background: $light-green;
+    transform: scale(0.8);
   }
 
   button{
-    padding: 10px 50px;
-    border: 3px solid $dark-blue;
-    border-radius: 15px;
-    background: $light-green;
-    color: $dark-blue;
-    font-weight: 700;
-    font-size: 16px;
+    margin: 0 10px 0 0 ;
   }
 
   h5{
     color: $dark-blue;
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 14px;
   }
 
-  input[type=text]{
-    font-size: 18px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    padding: 5px;
-    border: 1px solid $dark-blue;
+  & {
+    input[type=text], textarea[name=collectionDescription]{
+      font-size: 14px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      padding: 5px;
+      border: 1px solid $dark-blue;
+      border: 1px solid #B2B2B2;
+      border-radius: 10px;
+    }
   }
+
 }
 
 //////////////////////////////////////////////////////
@@ -275,7 +306,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("../../../img/slid3.jpg") fixed;
+  background: url("../../img/slid3.jpg") fixed;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -405,6 +436,102 @@ li.media h4 {
   h3 {
     line-height: 1.6;
     text-align: center;
+  }
+}
+
+//////////////////////////////////////////////////////
+/* 3.6 WelcomeSection.js */
+//////////////////////////////////////////////////////
+
+
+
+div.welcome-section{
+  width: 100%;
+  background: url('../../img/landpage1.png')no-repeat center center;
+  background-size: 100% 100%;
+  object-fit: cover;
+  min-height: 494px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  &>div{
+    max-width:50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-right: 80px;
+
+  h2{
+    font-size: 32px;
+    text-align: left;
+    font-weight: bold;
+    color: $light-blue;
+  }
+  p{
+    font-size: 16px;
+    max-width: 350px;
+    color: $light-blue;
+  }
+  }
+
+}
+
+@media(min-width: 1200px){
+  div.welcome-section{
+    min-height: 618px;
+  }
+}
+
+@media(max-width:$tablet-res){
+  div.welcome-section{
+    min-height: 371px;
+
+    &>div h2{
+      font-size: 22px;
+    }
+    &>div p{
+      font-size: 12px;
+    }
+  }
+}
+
+
+@media(max-width: $mobile-res){
+  div.welcome-section{
+    min-height: 297px;
+
+    &>div{
+      padding-right: 0px;
+    }
+
+    &>div h2{
+      font-size: 18px;
+    }
+    &>div p{
+      font-size: 10px;
+    }
+  }
+
+}
+
+// Iphone number Plus models and lower
+@media(max-width:415px){
+  div.welcome-section{
+    max-height: 214px;
+
+    &>div{
+      padding-right: 0px;
+    }
+
+    &>div h2{
+      font-size: 16px;
+    }
+    &>div p{
+      font-size: 10px;
+    }
   }
 }
 
@@ -557,27 +684,58 @@ li.media h4 {
 /* 4.2 Footer.js */
 //////////////////////////////////////////////////////
 
+@media (min-width: 1199px){
+  .footer{
+    max-width: 100%;
+  }
+}
+
 .footer {
   background: $dark-blue;
   width: 100%;
   height: 20vh;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   position: relative;
+  color: white;
 
   &-end-text {
     color: white;
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    vertical-align: middle;
+
+  }
+
+  &>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>div{
+      padding: 0 10px;
+    }
+
+    &>div:nth-child(2),&>div:nth-child(3){
+      border-left: 2px solid white;
+    }
+
+    @media(max-width: 767px){
+      &>div:nth-child(2),&>div:nth-child(3){
+        display: none;
+      }
+    }
+
+    p{
+      margin: 0 !important;
+    }
+
   }
 }
 
 .social {
   color: white;
-  font-size: 32px;
+  font-size: 24px;
+  margin: 0 12px;
   transition: 0.5s;
 }
 .social:hover{
@@ -604,7 +762,6 @@ li.media h4 {
 
 input[name=collectionName]{
   padding: 5px;
-  margin: 0 10px;
   font-size: 14px;
   border-radius: 5px;
   border: 1px solid $dark-blue;
@@ -614,11 +771,14 @@ input[name=collectionName]{
 /* 5.3 UserHead.js */
 //////////////////////////////////////////////////////
 
+// Max-width: 100% - because of overflow-x: auto //
+
 .mainpanel__userbase{
+  max-width: 100%;
   section{
-    box-shadow: 0px 6px 8px #00000029;
-    border-radius: 25px;
+    max-width: 100%;
     padding: 50px;
+    background-color: white;
   }
 }
 
@@ -629,13 +789,9 @@ input[name=collectionName]{
     align-items: center;
   }
   .mainpanel__userbase{
-    border: 1px solid black;
-    display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    padding: 50px;
-    width: 300px;
   }
 }
 
@@ -644,6 +800,7 @@ input[name=collectionName]{
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 85%;
   }
   .mainpanel__userbase{
     display: flex;
@@ -651,6 +808,12 @@ input[name=collectionName]{
     align-items: center;
     flex-wrap: wrap;
     padding: 50px;
+
+    section{
+      box-shadow: 0px 6px 8px #00000029;
+      border-radius: 25px;
+      padding: 20px;
+    }
   }
 }
 
@@ -715,15 +878,93 @@ input[name=collectionName]{
 //////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////
+/* 7.0 UserMenu.js */
+//////////////////////////////////////////////////////////////////
+
+.usermenu{
+  background-color: white;
+  box-shadow: 0px 6px 8px #00000029;
+
+  @media(max-width: $tablet-res){
+    div.collapse, div.collapsing{
+      width: 100vw;
+    }
+  }
+
+  & div{
+    padding: 10px 15px;
+  }
+
+  & h2{
+    font-size: 28px;
+    font-weight: 900;
+    padding: 25px 25px 5px 25px;
+  }
+
+   .category{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 18px;
+    border-top: 1px solid #00000029;
+
+    a{
+      font-size: 18px;
+      color: #000536;
+      white-space: nowrap;
+      margin-left: 10px;
+    }
+  }
+  @media(min-width:768px){
+    .navbar-toggler{
+      display:none;
+    }
+  }
+
+  @media(max-width: 767px){
+    .navbar-toggler-icon{
+      position: relative;
+      padding: 10px;
+      height: 30px;
+    }
+
+    .navbar-toggler-icon:after,.navbar-toggler-icon:before {
+      content:'';
+      position: absolute;
+      z-index: 999;
+      top: 10px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: $dark-blue;
+    }
+    .navbar-toggler-icon:after{
+      top: 20px;
+    }
+  }
+}
+
+//////////////////////////////////////////////////////////////////
 /* 7.1 UserSection.js */
 //////////////////////////////////////////////////////////////////
 
+.UserSection{
+  margin: 0px 0px 120px 0px;
+}
+
+//////////////////////////////////////////////////////////////////
+/* 7.1.2 StudySetsSection.js */
+//////////////////////////////////////////////////////////////////
+
 .yourcollections{
+  padding: 50px 0;
   display: flex;
+  text-align: center;
+  align-items: center;
+  flex-wrap: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 50px 0;
-  width: 1000px;
 
   /* hide scrollbar */
 
@@ -738,13 +979,20 @@ input[name=collectionName]{
 }
 
 .yourcollections div.card{
-  border: 4px solid $dark-blue;
   width: 150px;
   height: 150px;
-  margin: 0 60px 0 0 ;
-  background: $light-green;
+  margin: 0 55px 0 0 ;
+  background: url('../../img/studyset.png');
   border-radius: 25px;
-  text-align: center;
+  border: 0;
+}
+
+.yourcollections div.card div.card-body{
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .yourcollections h5,h6{
@@ -752,6 +1000,25 @@ input[name=collectionName]{
 }
 .yourcollections h5{
   font-weight: 900;
+}
+.yourcollections button{
+  min-width: 200px;
+  max-height: 60px;
+}
+
+.plus-button{
+  background-color: $light-green;
+  color: $dark-blue;
+  border: 5px solid $dark-blue;
+  font-weight: 800;
+  font-size: 28px;
+  border-radius: 50%;
+  padding: 5px 12px;
+  transition: 0.5s;
+}
+.plus-button:hover{
+  color: $dark-blue;
+  background-color: $dark-green;
 }
 
 //////////////////////////////////////////////////////////////////
@@ -777,12 +1044,27 @@ main.container{
   background-color: #F8F8F8;
   overflow: hidden;
   padding: 50px;
+  position: relative;
+}
+main.user--container{
+  display: flex;
+  padding: 0px !important;
 }
 
-@media(min-width: 576px){
+@media(min-width: 768px){
   main.container{
     border-radius: 70px;
   }
+}
+@media(max-width:767px){
+  main.container{
+    max-width: 100%;
+  }
+}
+
+// Landpage layout
+.container.p-0>div{
+  padding: 50px;
 }
 
 

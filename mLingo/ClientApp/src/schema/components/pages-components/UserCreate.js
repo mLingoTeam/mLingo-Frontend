@@ -1,8 +1,10 @@
 import React from "react";
 
 import { authenticationService } from "../../../services/authentication";
-import UserCreateCard from '../CardComponents/UserCreateCard'
-import Flashcard from '../CardComponents/Flashcard';
+import UserCreateCollection from '../CardComponents/UserCreateCollection'
+import AddFlashcard from '../CardComponents/AddFlashcard';
+
+import { FaPlus } from 'react-icons/fa'
 
 class UserCreate extends React.Component {
     constructor(props) {
@@ -12,22 +14,29 @@ class UserCreate extends React.Component {
             this.props.history.push("/");
         }
 
-        this.state = { collectionName: "", cards: [], card: { Term: "", Definition: "" } }
+        this.state = { collectionTitle: "", cards: [ { term: "", definition: "" } ], card: { term: "", definition: "" } }
 
         this.createCollection = this.createCollection.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleCardChange = this.handleCardChange.bind(this);
         this.addCard = this.addCard.bind(this);
+        this.removeCard = this.removeCard.bind(this);
     }
 
     addCard() {
-        if (this.state.card.Term === '' || this.state.card.Definition === '') {
-            alert("Fields Term and Description cannot be empty!")
-        }
-        else {
             this.setState({ ...this.state, cards: this.state.cards.push(this.state.card) })
-            this.setState({ ...this.state, card: { Term: "", Definition: "" } })
-        }
+            this.setState({ ...this.state, card: { term: "", definition: "" } })
+    }
+
+    removeCard(set) {
+        //only looking for the first card
+        const searchedValue = this.state.cards.find(element => ((element.term == set.term) && (element.definition == set.definition)));
+        this.setState(() => {
+            return {
+                ...this.state,
+                cards: this.state.cards.filter(element => element !== searchedValue)
+            }
+        })
     }
 
     handleCardChange(event) {
@@ -38,27 +47,45 @@ class UserCreate extends React.Component {
         this.setState({ ...this.state, [event.target.name]: event.target.value });
     }
 
-
-
     createCollection() {
-        authenticationService.createCollection(this.state.collectionName, this.state.cards, localStorage.getItem("ID"), localStorage.getItem("Token"));
-        this.setState({ collectionName: "", cards: [], card: { Term: "", Definition: "" } });
+
+ if(this.state.collectionTitle == ""){
+            alert('Name your collection!')
+            return
+        }
+        else{
+            this.setState((state)=>{
+                return{
+                    ...state,
+                    cards: state.cards.filter(el => (el.term != '' || el.definition != ''))
+                }
+            })
+
+            if( this.state.cards.length == 1 ){
+                alert("Add more cards")
+                return
+            }
+            else{
+                authenticationService.createCollection(this.state.collectionTitle, this.state.cards, localStorage.getItem("ID"), localStorage.getItem("Token"));
+                this.setState({ collectionTitle: "", cards: [], card: { term: "", definition: "" } });
+            }
+        }
+
     }
 
     render() {
         return (
-            <div className="d-flex justify-content-center flex-wrap flex-column">
-                <div className="d-flex justify-content-center flex-wrap mb-5">
-                    <h1>Collection name</h1>
-                    <input name="collectionName" type="text" onChange={this.handleChange} value={this.state.collectionName} required />
-                </div>
-                <UserCreateCard set={this.state} functioni={this.handleCardChange} functionii={this.addCard} />
+            <div className="d-flex justify-content-center flex-wrap">
+                <UserCreateCollection set={this.state} handleChange={this.handleChange} />
                 {
-                    this.state.cards.map(element => {
-                        return <Flashcard set={element} />
+                    this.state.cards.map((element, index) => {
+                        return <AddFlashcard set={element} remove={this.removeCard} index={index} functioni={this.handleCardChange} functionii={this.addCard}/>
                     })
                 }
-                <button onClick={this.createCollection} className="green-button offset-4 col-4 mt-5 ">Create Collection</button>
+                <div>
+                    <button onClick={this.addCard} className="plus-button"><FaPlus /></button>
+                    <button onClick={this.createCollection} className="green-button"> create collection </button>
+                </div>
             </div >
         );
     }

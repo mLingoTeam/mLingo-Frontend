@@ -32,6 +32,11 @@ a:hover, a:focus, a:checked {
   }
 }
 
+.green-button:active {
+  background: -webkit-gradient(linear, left top, left bottom, from(#A1D218), to(#B6EE1A));
+  background: linear-gradient(#A1D218, #B6EE1A);
+}
+
 .blue-button {
   font-size: 24px;
   font-weight: bold;
@@ -126,13 +131,34 @@ a:hover, a:focus, a:checked {
   }
 }
 
+.remove-button {
+  font-size: 24px;
+  color: #000536;
+  background-color: #F8F8F8;
+  border: 0;
+}
+
+.remove-button:hover, .remove-button:focus {
+  background: #F8F8F8;
+}
+
+.remove-button:focus {
+  outline: 1px solid #F8F8F8;
+  outline-offset: -4px;
+}
+
+.remove-button:active {
+  -webkit-transform: scale(0.99);
+          transform: scale(0.99);
+}
+
 /* MENU */
 /* Components */
 /* Card Components */
 /* 1.1 CardComponent.js */
 /* 1.2 Collection.js */
 /* 1.3 Flashcard.js */
-/* 1.4 UserCreateCard.js */
+/* 1.4 UserCreateCollection.js */
 /* Form Components */
 /* 2.1 FormField.js */
 /* 2.2 Login.js */
@@ -143,6 +169,7 @@ a:hover, a:focus, a:checked {
 /* 3.3 SignInModal.js */
 /* 3.4 Slider.js */
 /* 3.5 UserPromo.js */
+/* 3.6 WelcomeSection.js */
 /* Layout Components */
 /* 4.1 AppNavbar.js */
 /* 4.2 Footer.js */
@@ -161,41 +188,73 @@ a:hover, a:focus, a:checked {
 /* 1.1 CardComponent.js */
 /* 1.2 Collection.js */
 /* 1.3 Flashcard.js */
-/* 1.4 UserCreateCard.js */
-.createCard div {
-  margin: 0 5%;
-}
-
-.createCard .flashsquare {
-  width: 200px;
+.flashcard {
   height: 200px;
-  border: 3px solid #000536;
-  border-radius: 15px;
-  background: #B6EE1A;
+  padding: 20px;
+  background: white;
+  border-radius: 25px;
+  -webkit-box-shadow: 0px 6px 8px #00000029;
+          box-shadow: 0px 6px 8px #00000029;
+  margin: 20px;
 }
 
-.createCard button {
-  padding: 10px 50px;
-  border: 3px solid #000536;
-  border-radius: 15px;
-  background: #B6EE1A;
-  color: #000536;
-  font-weight: 700;
+.flashcard .flashcard--title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.flashcard .flashcard--def {
+  color: #B2B2B2;
   font-size: 16px;
+  border: 0;
+  border-bottom: 1px solid #B2B2B2;
 }
 
-.createCard h5 {
+.flashcard .flashcard--def:focus {
+  outline: none;
+}
+
+.flashcard h2 {
   color: #000536;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: bold;
 }
 
-.createCard input[type=text] {
-  font-size: 18px;
+.flashcard h5 {
+  color: #B6EE1A;
+  font-size: 12px;
+}
+
+/* 1.4 UserCreateCollection.js */
+.createCollection .flashsquare {
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+}
+
+.createCollection button {
+  margin: 0 10px 0 0;
+}
+
+.createCollection h5 {
+  color: #000536;
+  font-size: 14px;
+}
+
+.createCollection input[type=text], .createCollection textarea[name=collectionDescription] {
+  font-size: 14px;
   margin-bottom: 10px;
   border-radius: 5px;
   padding: 5px;
   border: 1px solid #000536;
+  border: 1px solid #B2B2B2;
+  border-radius: 10px;
 }
 
 /* Form Components */
@@ -373,7 +432,7 @@ a:hover, a:focus, a:checked {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: url("../../../img/slid3.jpg") fixed;
+  background: url("../../img/slid3.jpg") fixed;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -504,6 +563,104 @@ li.media h4 {
 .help-others-text h3 {
   line-height: 1.6;
   text-align: center;
+}
+
+/* 3.6 WelcomeSection.js */
+div.welcome-section {
+  width: 100%;
+  background: url("../../img/landpage1.png") no-repeat center center;
+  background-size: 100% 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  min-height: 494px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+div.welcome-section > div {
+  max-width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-right: 80px;
+}
+
+div.welcome-section > div h2 {
+  font-size: 32px;
+  text-align: left;
+  font-weight: bold;
+  color: #000536;
+}
+
+div.welcome-section > div p {
+  font-size: 16px;
+  max-width: 350px;
+  color: #000536;
+}
+
+@media (min-width: 1200px) {
+  div.welcome-section {
+    min-height: 618px;
+  }
+}
+
+@media (max-width: 991px) {
+  div.welcome-section {
+    min-height: 371px;
+  }
+  div.welcome-section > div h2 {
+    font-size: 22px;
+  }
+  div.welcome-section > div p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  div.welcome-section {
+    min-height: 297px;
+  }
+  div.welcome-section > div {
+    padding-right: 0px;
+  }
+  div.welcome-section > div h2 {
+    font-size: 18px;
+  }
+  div.welcome-section > div p {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 415px) {
+  div.welcome-section {
+    max-height: 214px;
+  }
+  div.welcome-section > div {
+    padding-right: 0px;
+  }
+  div.welcome-section > div h2 {
+    font-size: 16px;
+  }
+  div.welcome-section > div p {
+    font-size: 10px;
+  }
 }
 
 /* Layout Components */
@@ -698,6 +855,12 @@ li.media h4 {
 }
 
 /* 4.2 Footer.js */
+@media (min-width: 1199px) {
+  .footer {
+    max-width: 100%;
+  }
+}
+
 .footer {
   background: #000536;
   width: 100%;
@@ -705,26 +868,55 @@ li.media h4 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   position: relative;
+  color: white;
 }
 
 .footer-end-text {
   color: white;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  vertical-align: middle;
+}
+
+.footer > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer > div > div {
+  padding: 0 10px;
+}
+
+.footer > div > div:nth-child(2), .footer > div > div:nth-child(3) {
+  border-left: 2px solid white;
+}
+
+@media (max-width: 767px) {
+  .footer > div > div:nth-child(2), .footer > div > div:nth-child(3) {
+    display: none;
+  }
+}
+
+.footer > div p {
+  margin: 0 !important;
 }
 
 .social {
   color: white;
-  font-size: 32px;
+  font-size: 24px;
+  margin: 0 12px;
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
@@ -739,18 +931,20 @@ li.media h4 {
 /* 5.2 UserCreate.js */
 input[name=collectionName] {
   padding: 5px;
-  margin: 0 10px;
   font-size: 14px;
   border-radius: 5px;
   border: 1px solid #000536;
 }
 
 /* 5.3 UserHead.js */
+.mainpanel__userbase {
+  max-width: 100%;
+}
+
 .mainpanel__userbase section {
-  -webkit-box-shadow: 0px 6px 8px #00000029;
-          box-shadow: 0px 6px 8px #00000029;
-  border-radius: 25px;
+  max-width: 100%;
   padding: 50px;
+  background-color: white;
 }
 
 @media (max-width: 576px) {
@@ -766,10 +960,6 @@ input[name=collectionName] {
             align-items: center;
   }
   .mainpanel__userbase {
-    border: 1px solid black;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -778,8 +968,6 @@ input[name=collectionName] {
             align-items: center;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    padding: 50px;
-    width: 300px;
   }
 }
 
@@ -794,6 +982,7 @@ input[name=collectionName] {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+    max-width: 85%;
   }
   .mainpanel__userbase {
     display: -webkit-box;
@@ -808,6 +997,12 @@ input[name=collectionName] {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     padding: 50px;
+  }
+  .mainpanel__userbase section {
+    -webkit-box-shadow: 0px 6px 8px #00000029;
+            box-shadow: 0px 6px 8px #00000029;
+    border-radius: 25px;
+    padding: 20px;
   }
 }
 
@@ -859,15 +1054,97 @@ input[name=collectionName] {
 }
 
 /* UserBase Components */
-/* 7.1 UserSection.js */
-.yourcollections {
+/* 7.0 UserMenu.js */
+.usermenu {
+  background-color: white;
+  -webkit-box-shadow: 0px 6px 8px #00000029;
+          box-shadow: 0px 6px 8px #00000029;
+}
+
+@media (max-width: 991px) {
+  .usermenu div.collapse, .usermenu div.collapsing {
+    width: 100vw;
+  }
+}
+
+.usermenu div {
+  padding: 10px 15px;
+}
+
+.usermenu h2 {
+  font-size: 28px;
+  font-weight: 900;
+  padding: 25px 25px 5px 25px;
+}
+
+.usermenu .category {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  font-size: 18px;
+  border-top: 1px solid #00000029;
+}
+
+.usermenu .category a {
+  font-size: 18px;
+  color: #000536;
+  white-space: nowrap;
+  margin-left: 10px;
+}
+
+@media (min-width: 768px) {
+  .usermenu .navbar-toggler {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .usermenu .navbar-toggler-icon {
+    position: relative;
+    padding: 10px;
+    height: 30px;
+  }
+  .usermenu .navbar-toggler-icon:after, .usermenu .navbar-toggler-icon:before {
+    content: '';
+    position: absolute;
+    z-index: 999;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #000536;
+  }
+  .usermenu .navbar-toggler-icon:after {
+    top: 20px;
+  }
+}
+
+/* 7.1 UserSection.js */
+.UserSection {
+  margin: 0px 0px 120px 0px;
+}
+
+/* 7.1.2 StudySetsSection.js */
+.yourcollections {
+  padding: 50px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 50px 0;
-  width: 1000px;
   /* hide scrollbar */
   /* Optional: show position indicator in red */
 }
@@ -884,13 +1161,29 @@ input[name=collectionName] {
 }
 
 .yourcollections div.card {
-  border: 4px solid #000536;
   width: 150px;
   height: 150px;
-  margin: 0 60px 0 0;
-  background: #B6EE1A;
+  margin: 0 55px 0 0;
+  background: url("../../img/studyset.png");
   border-radius: 25px;
-  text-align: center;
+  border: 0;
+}
+
+.yourcollections div.card div.card-body {
+  padding: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 .yourcollections h5, h6 {
@@ -899,6 +1192,28 @@ input[name=collectionName] {
 
 .yourcollections h5 {
   font-weight: 900;
+}
+
+.yourcollections button {
+  min-width: 200px;
+  max-height: 60px;
+}
+
+.plus-button {
+  background-color: #B6EE1A;
+  color: #000536;
+  border: 5px solid #000536;
+  font-weight: 800;
+  font-size: 28px;
+  border-radius: 50%;
+  padding: 5px 12px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.plus-button:hover {
+  color: #000536;
+  background-color: #A1D218;
 }
 
 /* layouts */
@@ -918,12 +1233,30 @@ main.container {
   background-color: #F8F8F8;
   overflow: hidden;
   padding: 50px;
+  position: relative;
 }
 
-@media (min-width: 576px) {
+main.user--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0px !important;
+}
+
+@media (min-width: 768px) {
   main.container {
     border-radius: 70px;
   }
+}
+
+@media (max-width: 767px) {
+  main.container {
+    max-width: 100%;
+  }
+}
+
+.container.p-0 > div {
+  padding: 50px;
 }
 
 .searchcollectioninput {

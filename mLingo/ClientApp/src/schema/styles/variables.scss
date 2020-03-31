@@ -104,6 +104,10 @@ a:hover, a:focus, a:checked{
 
 @mixin greenbutton{
   @include darkbutton($light-green);
+
+  &:active{
+    background: linear-gradient($dark-green, $light-green);
+  }
 }
 
 @mixin bluebutton {
@@ -140,5 +144,28 @@ a:hover, a:focus, a:checked{
   }
   100% {
     bottom: 10%;
+  }
+}
+
+
+
+.remove-button{
+  font-size: 24px;
+  color: $dark-blue;
+  background-color: #F8F8F8;
+  border: 0;
+
+  &:hover,
+  &:focus {
+    background: #F8F8F8;
+  }
+
+  &:focus {
+    outline: 1px solid #F8F8F8;
+    outline-offset: -4px;
+  }
+
+  &:active {
+    transform: scale(0.99);
   }
 }
