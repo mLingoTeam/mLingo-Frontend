@@ -9,12 +9,12 @@ namespace mLingo.Modules
     /// </summary>
     class LanguageDetector : ILanguageDetector
     {
-        private readonly RankedLanguageIdentifier Identifier;
+        private readonly RankedLanguageIdentifier _identifier;
 
         public LanguageDetector()
         {
             var factory = new RankedLanguageIdentifierFactory();
-            Identifier = factory.Load(@"./Assets/LanguageDetectorProfiles/Core14.profile.xml");
+            _identifier = factory.Load(@"./Assets/LanguageDetectorProfiles/Core14.profile.xml");
         }
 
 
@@ -25,11 +25,11 @@ namespace mLingo.Modules
         /// <returns>ISO639_2T string language code Iso639_2T standardized (eg. "EN")</returns>
         public string DetectLanguage(string input)
         {
-            if (input.Split(' ').Length < 5) return "NA";
+            if (input.Split(' ').Length < 5) return "N/A";
 
-            var languages = Identifier.Identify(input);
+            var languages = _identifier.Identify(input);
             var mostCertainLanguage = languages.FirstOrDefault();
-            return mostCertainLanguage != null ? mostCertainLanguage.Item1.Iso639_2T : "NA";
+            return mostCertainLanguage != null ? mostCertainLanguage.Item1.Iso639_2T : "N/A";
         }
     }
 }

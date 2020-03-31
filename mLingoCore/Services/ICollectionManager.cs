@@ -5,6 +5,9 @@ using mLingoCore.Models.Forms.Collections;
 
 namespace mLingoCore.Services
 {
+    /// <summary>
+    /// Base definition of collection manager functionality
+    /// </summary>
     public interface ICollectionManager
     {
         KeyValuePair<ApiResponse, int> Find(string id, string name);

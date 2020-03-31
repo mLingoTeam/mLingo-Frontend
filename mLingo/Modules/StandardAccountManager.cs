@@ -11,14 +11,19 @@ using mLingoCore.Models.Api.Base;
 using mLingoCore.Models.Forms;
 using mLingoCore.Models.Forms.Accounts;
 using mLingoCore.Services;
+using mLingo.Controllers.Api;
 
 namespace mLingo.Modules
 {
+    /// <summary>
+    /// Standard implementation of <see cref="IAccountManager"/> used to manage user accounts.
+    /// </summary>
     public class StandardAccountManager : IAccountManager
     {
-        
         private static KeyValuePair<ApiResponse, int> _Response(ApiResponse res, int statusCode) => new KeyValuePair<ApiResponse, int>(res, statusCode);
         private static KeyValuePair<ApiResponse, int> _Response(int statusCode) => new KeyValuePair<ApiResponse, int>(null, statusCode);
+
+        #region PublicProperties
 
         public AppDbContext DbContext { get; set; }
 
@@ -26,6 +31,13 @@ namespace mLingo.Modules
 
         public IConfiguration Configuration { get; set; }
 
+        #endregion
+
+        #region Implementation
+
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
         public async Task<KeyValuePair<ApiResponse, int>> Register(RegisterFormModel form)
         {
             if (form == null || RegisterFormModel.ValidateForm(form) == false)
@@ -67,6 +79,9 @@ namespace mLingo.Modules
 
         }
 
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
         public async Task<KeyValuePair<ApiResponse, int>> Login(LoginFormModel form)
         {
             if (form == null || LoginFormModel.ValidateForm(form) == false)
@@ -101,6 +116,9 @@ namespace mLingo.Modules
             }, 200);
         }
 
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
         public async Task<KeyValuePair<ApiResponse, int>> Details(string username)
         {
             var user = await UserManager.FindByNameAsync(username);
@@ -119,6 +137,9 @@ namespace mLingo.Modules
             }, 200);
         }
 
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
         public async Task<KeyValuePair<ApiResponse, int>> Delete(string username)
         {
             var user = await UserManager.FindByNameAsync(username);
@@ -127,6 +148,9 @@ namespace mLingo.Modules
             return res.Succeeded ? _Response(200) : _Response(null, 404);
         }
 
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
         public async Task<KeyValuePair<ApiResponse, int>> EditInformation(string username, EditInformationForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
@@ -151,6 +175,9 @@ namespace mLingo.Modules
             }
         }
 
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
         public async Task<KeyValuePair<ApiResponse, int>> RequestChangeToken(string username, string prop, EditMailForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
@@ -183,6 +210,9 @@ namespace mLingo.Modules
             }, 200);
         }
 
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
         public async Task<KeyValuePair<ApiResponse, int>> ChangeEmail(string username, string token, EditMailForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
@@ -194,6 +224,9 @@ namespace mLingo.Modules
             return _Response(res.Succeeded ? 202 : 403);
         }
 
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
         public async Task<KeyValuePair<ApiResponse, int>> ChangePassword(string username, ResetPasswordForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
@@ -205,6 +238,9 @@ namespace mLingo.Modules
             return _Response(res.Succeeded ? 202 : 403);
         }
 
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
         public async Task<KeyValuePair<ApiResponse, int>> ResetPassword(string username, string token, ResetPasswordForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
@@ -215,5 +251,7 @@ namespace mLingo.Modules
 
             return _Response(res.Succeeded ? 202 : 403);
         }
+
+        #endregion
     }
 }

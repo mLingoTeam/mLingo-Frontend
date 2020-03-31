@@ -5,6 +5,9 @@ using mLingoCore.Models.FlashCards.Base;
 
 namespace mLingo.Models.Database.Sets
 {
+    /// <summary>
+    /// Database model representing set of collections
+    /// </summary>
     public class Set : SetBase
     {
         #region Constructor
