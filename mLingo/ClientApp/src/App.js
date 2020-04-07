@@ -28,7 +28,6 @@ export default class App extends Component {
           <Route exact path="/search" component={SearchPage} />
           <PrivateRoute exact path="/head" component={UserPanelHead} />
           <PrivateRoute exact path="/create" component={UserPanelCreate} />
-          <Route exact path="/collection" component={UserPanelCollection} />
         </div>
       </Router>
     );

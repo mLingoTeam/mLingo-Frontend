@@ -7,7 +7,7 @@ const FormField = ({ set }) => {
       <Label for={set.id}>
         {set.label}
       </Label>
-      <Input
+      <input
         className="col-12 col-lg-12"
         type={set.type}
         name={set.name}

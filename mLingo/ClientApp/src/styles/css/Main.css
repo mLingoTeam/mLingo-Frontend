@@ -89,6 +89,18 @@ a:hover, a:focus, a:checked {
   }
 }
 
+input.text {
+  border: 1px solid #B2B2B2;
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 10px 10px;
+}
+
+input.text:hover, input.text:focus, input.text:active, input.text:checked {
+  text-decoration: none !important;
+  outline: none;
+}
+
 @-webkit-keyframes navbar-monkey-bounce {
   0% {
     bottom: 10%;
@@ -170,6 +182,8 @@ a:hover, a:focus, a:checked {
 /* 3.4 Slider.js */
 /* 3.5 UserPromo.js */
 /* 3.6 WelcomeSection.js */
+/* 3.7 Newsletter */
+/* 3.8 Steps.js & Step.js */
 /* Layout Components */
 /* 4.1 AppNavbar.js */
 /* 4.2 Footer.js */
@@ -276,7 +290,6 @@ a:hover, a:focus, a:checked {
 
 .registerForm2 input[type="text"]:focus, .registerForm2 input[type="password"]:focus, .registerForm2 input[type="email"]:focus {
   outline: none !important;
-  border: 1px solid #B6EE1A;
 }
 
 .registerForm2 {
@@ -661,6 +674,121 @@ div.welcome-section > div p {
   div.welcome-section > div p {
     font-size: 10px;
   }
+}
+
+/* 3.7 Newsletter */
+#newsletter-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  color: #000536;
+}
+
+#newsletter-section h2 {
+  font-weight: bold;
+  font-size: 28px;
+}
+
+#newsletter-section p {
+  margin: 0 !important;
+}
+
+#newsletter-section input {
+  width: 200px;
+  margin: 20px 0;
+}
+
+#newsletter-section .left-circle-container, #newsletter-section .right-circle-container {
+  position: absolute;
+  overflow: hidden;
+  height: auto;
+  width: auto;
+  max-width: 50vw;
+}
+
+#newsletter-section .left-circle-container {
+  left: -30%;
+}
+
+#newsletter-section .right-circle-container {
+  right: -30%;
+}
+
+#newsletter-section .newsletter-subscribe {
+  padding: 200px 0;
+  text-align: center;
+}
+
+/* 3.8 Steps.js & Step.js */
+#Steps {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #000536;
+}
+
+#Steps > h2 {
+  font-weight: bold;
+  font-size: 32px;
+  margin: 40px;
+}
+
+#Steps-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Step {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.Step img {
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+}
+
+.Step h2 {
+  font-weight: bold;
+}
+
+.Step div {
+  margin: 0 20px;
 }
 
 /* Layout Components */

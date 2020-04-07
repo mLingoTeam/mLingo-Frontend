@@ -89,6 +89,18 @@ a:hover, a:focus, a:checked {
   }
 }
 
+input.text {
+  border: 1px solid #B2B2B2;
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 10px 10px;
+}
+
+input.text:hover, input.text:focus, input.text:active, input.text:checked {
+  text-decoration: none !important;
+  outline: none;
+}
+
 @-webkit-keyframes navbar-monkey-bounce {
   0% {
     bottom: 10%;

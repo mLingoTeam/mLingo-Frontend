@@ -126,6 +126,19 @@ a:hover, a:focus, a:checked{
   @include inbutton(inherit);
 }
 
+input.text{
+  border: 1px solid #B2B2B2;
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 10px 10px;
+
+  &:hover, &:focus, &:active, &:checked {
+    text-decoration: none !important;
+    outline: none;
+  }
+}
+
+
 @keyframes navbar-monkey-bounce {
   0% {
     bottom: 10%;

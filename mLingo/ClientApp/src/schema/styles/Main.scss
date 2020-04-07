@@ -23,6 +23,8 @@
 /* 3.4 Slider.js */
 /* 3.5 UserPromo.js */
 /* 3.6 WelcomeSection.js */
+/* 3.7 Newsletter */
+/* 3.8 Steps.js & Step.js */
 
 /* Layout Components */
 /* 4.1 AppNavbar.js */
@@ -154,11 +156,12 @@
   font-size: 18px;
   border: 1px solid #707070;
   border-radius: 10px;
+
 }
 
 .registerForm2 input[type="text"]:focus, .registerForm2 input[type="password"]:focus, .registerForm2 input[type="email"]:focus {
   outline: none !important;
-  border: 1px solid $light-green;
+
 }
 
 .registerForm2 {
@@ -534,6 +537,93 @@ div.welcome-section{
     }
   }
 }
+
+//////////////////////////////////////////////////////
+/* 3.7 Newsletter */
+//////////////////////////////////////////////////////
+
+#newsletter-section{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: $dark-blue;
+
+  h2{
+    font-weight: bold;
+    font-size: 28px;
+  }
+  p{
+    margin: 0 !important;
+  }
+
+  input{
+    width: 200px;
+    margin: 20px 0;
+  }
+
+  .left-circle-container, .right-circle-container{
+    position: absolute;
+    overflow: hidden;
+    height: auto;
+    width: auto;
+    max-width: 50vw;
+  }
+  .left-circle-container{
+    left: -30%;
+  }
+  .right-circle-container{
+    right: -30%;
+  }
+
+  .newsletter-subscribe{
+    padding: 200px 0;
+    text-align:center;
+  }
+}
+
+//////////////////////////////////////////////////////
+/* 3.8 Steps.js & Step.js */
+//////////////////////////////////////////////////////
+
+#Steps{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $dark-blue;
+
+  >h2{
+    font-weight: bold;
+    font-size: 32px;
+    margin: 40px;
+  }
+}
+#Steps-container{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Step{
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+
+  img{
+    transform: scale(0.8);
+  }
+  h2{
+    font-weight: bold;
+  }
+  div{
+    margin:  0 20px;
+  }
+}
+
 
 //////////////////////////////////////////////////////
 /* Layout Components */

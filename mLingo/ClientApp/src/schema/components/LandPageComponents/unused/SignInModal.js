@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import Login from "../FormComponents/Login";
+import Login from "../../FormComponents/Login";
 
 const SignInModal = props => {
 

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Promo from "../components/LandPageComponents/Promo";
-import Register from "../components/FormComponents/Register";
 import WelcomeSection from '../components/LandPageComponents/WelcomeSection'
 
 import Layout from '../layouts/LandpageLayout'
+import Newsletter from "../components/LandPageComponents/Newsletter";
+import Steps from '../components/LandPageComponents/Steps';
 
 export default class MainPage extends Component {
 
@@ -14,7 +14,8 @@ export default class MainPage extends Component {
     return (
       <Layout>
         <WelcomeSection />
-        <Register />
+        <Steps/>
+        <Newsletter/>
       </Layout>
     );
   }
