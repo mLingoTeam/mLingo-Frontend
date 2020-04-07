@@ -8,6 +8,7 @@ const WelcomeSection = props => {
             <div>
                 <h2>mLingo</h2>
                 <p> practice your skills daily through easy to set up learning plans. Join now! </p>
+                <button className="green-button px-5">get started</button>
             </div>
         </div>
     );
