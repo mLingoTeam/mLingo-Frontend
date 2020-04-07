@@ -36,9 +36,11 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="SetsController"/>
         /// </summary>
-        public KeyValuePair<ApiResponse, int> Find(string id, string name)
+        public ApiResponse Find(string id, string name)
         {
-            if (name == null && id == null) return ApiResponseExtensions.StatusCodeOnly(403);
+            if (name == null && id == null) return ApiResponse.StatusCodeResponse(403);
+
+            ApiResponse response;
 
             if (id != null)
             {
@@ -63,40 +65,42 @@ namespace mLingo.Modules
                         OwnerId = set.OwnerId,
                         Collections = collectionsNormalized
                     };
-
-                    return new ApiResponse { Response = res }.WithStatusCode(200);
+                    response = ApiResponse.StandardSuccessResponse(res, 200);
                 }
                 catch
                 {
-                    return new ApiResponse { ErrorMessage = ErrorMessages.SetNotFound }.WithStatusCode(404);
+                    response = ApiResponse.StandardErrorResponse(ErrorMessages.SetNotFound, 404);
                 }
             }
-
-            try
+            else
             {
-                var sets = DbContext.Sets.Where(s => s.Name.Equals(name)).ToList();
-                var setResponse = sets.Select(s => new SetOverviewResponse
+                try
                 {
-                    Name = s.Name,
-                    OwnerId = s.OwnerId
-                });
-
-                return new ApiResponse { Response = setResponse }.WithStatusCode(200);
+                    var sets = DbContext.Sets.Where(s => s.Name.Equals(name)).ToList();
+                    var res = sets.Select(s => new SetOverviewResponse
+                    {
+                        Name = s.Name,
+                        OwnerId = s.OwnerId
+                    });
+                    response = ApiResponse.StandardSuccessResponse(res, 200);
+                }
+                catch
+                {
+                    response = ApiResponse.StandardErrorResponse(ErrorMessages.SetNotFound, 404);
+                }
             }
-            catch
-            {
-                return new ApiResponse { ErrorMessage = ErrorMessages.SetNotFound }.WithStatusCode(404);
-            }
+            
+            return response;
         }
 
         /// <summary>
         /// For documentation <see cref="SetsController"/>
         /// </summary>
-        public async Task<KeyValuePair<ApiResponse, int>> UserSets(string username)
+        public async Task<ApiResponse> UserSets(string username)
         {
             var user = await UserManager.FindByNameAsync(username);
             if (user == null)
-                return new ApiResponse { ErrorMessage = ErrorMessages.UsernameNotFound }.WithStatusCode(404);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
 
             List<SetOverviewResponse> setsResponse;
             try
@@ -115,13 +119,13 @@ namespace mLingo.Modules
                 setsResponse = new List<SetOverviewResponse>();
             }
 
-            return new ApiResponse { Response = setsResponse }.WithStatusCode(200);
+            return ApiResponse.StandardSuccessResponse(setsResponse, 200);
         }
 
         /// <summary>
         /// For documentation <see cref="SetsController"/>
         /// </summary>
-        public KeyValuePair<ApiResponse, int> CreateSet(string username, CreateSetForm newSetData)
+        public ApiResponse CreateSet(string username, CreateSetForm newSetData)
         {
             var set = new Set
             {
@@ -152,16 +156,16 @@ namespace mLingo.Modules
             }
             catch
             {
-                return new ApiResponse { ErrorMessage = ErrorMessages.DbError }.WithStatusCode(403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.DbError, 403);
             }
 
-            return ApiResponseExtensions.StatusCodeOnly(202);
+            return ApiResponse.StatusCodeResponse(202);
         }
 
         /// <summary>
         /// For documentation <see cref="SetsController"/>
         /// </summary>
-        public KeyValuePair<ApiResponse, int> DeleteSet(string id)
+        public ApiResponse DeleteSet(string id)
         {
             try
             {
@@ -170,18 +174,18 @@ namespace mLingo.Modules
                 DbContext.Sets.Remove(set);
                 DbContext.SetCollectionJoinTable.RemoveRange(setCollections);
             }
-            catch
+            catch (Exception e)
             {
-                return new ApiResponse { ErrorMessage = "" }.WithStatusCode(404);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
             }
 
-            return ApiResponseExtensions.StatusCodeOnly(202);
+            return ApiResponse.StatusCodeResponse(202);
         }
 
         /// <summary>
         /// For documentation <see cref="SetsController"/>
         /// </summary>
-        public KeyValuePair<ApiResponse, int> EditSet(string id, object editedData)
+        public ApiResponse EditSet(string id, object editedData)
         {
             throw new System.NotImplementedException();
         }
@@ -189,7 +193,7 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="SetsController"/>
         /// </summary>
-        public KeyValuePair<ApiResponse, int> Add(string setId, string collectionId)
+        public ApiResponse Add(string setId, string collectionId)
         {
             try
             {
@@ -205,18 +209,18 @@ namespace mLingo.Modules
                 DbContext.SetCollectionJoinTable.Add(setCollection);
                 DbContext.SaveChanges();
             }
-            catch
+            catch(Exception e)
             {
-                return new ApiResponse { ErrorMessage = ErrorMessages.DbError }.WithStatusCode(404);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
             }
 
-            return ApiResponseExtensions.StatusCodeOnly(202);
+            return ApiResponse.StatusCodeResponse(202);
         }
 
         /// <summary>
         /// For documentation <see cref="SetsController"/>
         /// </summary>
-        public KeyValuePair<ApiResponse, int> Remove(string setId, string collectionId)
+        public ApiResponse Remove(string setId, string collectionId)
         {
             var key = new { setId, collectionId };
             try
@@ -225,12 +229,12 @@ namespace mLingo.Modules
                 DbContext.SetCollectionJoinTable.Remove(sc);
                 DbContext.SaveChanges();
             }
-            catch
+            catch(Exception e)
             {
-                return new ApiResponse { ErrorMessage = ErrorMessages.DbError }.WithStatusCode(404);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
             }
 
-            return ApiResponseExtensions.StatusCodeOnly(202);
+            return ApiResponse.StatusCodeResponse(202);
         }
 
         #endregion
