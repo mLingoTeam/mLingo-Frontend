@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 import UserSection from '../UserSection';
-import StudySetCardComponent from '../../CardComponents/StudySetCardComponent';
+import CollectionCardComponent from '../../CardComponents/CollectionCardComponent';
 
 import { authenticationService } from "../../../../services/authentication";
 
 import { FaPlus } from 'react-icons/fa'
 
-class StudySetsSection extends React.Component {
+class CollectionSection extends React.Component {
     constructor(props) {
         super(props);
 
@@ -40,7 +40,7 @@ class StudySetsSection extends React.Component {
                         <div className="yourcollections">
                             {
                                 this.state.exist ? this.state.fields.map(element => (
-                                    <StudySetCardComponent set={element} />
+                                    <CollectionCardComponent set={element} />
                                 )) : <div className="text-center col-12"><h2> You have no collection! &nbsp; </h2></div>
                             }
                             {
@@ -57,4 +57,4 @@ class StudySetsSection extends React.Component {
     }
 }
 
-export default StudySetsSection;
+export default CollectionSection;

@@ -490,15 +490,17 @@ div.welcome-section{
 
 }
 
-@media(min-width: 1200px){
-  div.welcome-section{
-    min-height: 618px;
-  }
-}
+
 
 @media(min-width: $tablet-res){
   div.welcome-section{
     min-height: 494px;
+  }
+}
+
+@media(min-width: 1200px){
+  div.welcome-section{
+    min-height: 618px;
   }
 }
 
