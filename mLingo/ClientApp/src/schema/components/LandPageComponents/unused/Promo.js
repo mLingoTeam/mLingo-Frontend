@@ -1,9 +1,9 @@
 import React from "react";
 import { Media } from "reactstrap";
-import img1 from "../../../img/books.png";
-import img2 from "../../../img/edit.png";
-import img3 from "../../../img/speak.png";
-import img4 from "../../../img/monkey.png";
+import img1 from "../../../../img/books.png";
+import img2 from "../../../../img/edit.png";
+import img3 from "../../../../img/speak.png";
+import img4 from "../../../../img/monkey.png";
 
 const Promo = props => {
   return (

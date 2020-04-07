@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Promo from "../components/LandPageComponents/Promo";
+import Promo from "../components/LandPageComponents/unused/Promo";
 import Register from "../components/FormComponents/Register";
 import WelcomeSection from '../components/LandPageComponents/WelcomeSection'
 
@@ -15,7 +15,6 @@ export default class MainPage extends Component {
     return (
       <Layout>
         <WelcomeSection />
-        <Register />
         <Newsletter/>
       </Layout>
     );
