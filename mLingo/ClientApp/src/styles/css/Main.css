@@ -183,6 +183,7 @@ input.text:hover, input.text:focus, input.text:active, input.text:checked {
 /* 3.5 UserPromo.js */
 /* 3.6 WelcomeSection.js */
 /* 3.7 Newsletter */
+/* 3.8 Steps.js & Step.js */
 /* Layout Components */
 /* 4.1 AppNavbar.js */
 /* 4.2 Footer.js */
@@ -725,6 +726,44 @@ div.welcome-section > div p {
 #newsletter-section .newsletter-subscribe {
   padding: 200px 0;
   text-align: center;
+}
+
+/* 3.8 Steps.js & Step.js */
+#Steps {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#Steps-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#Step {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 /* Layout Components */

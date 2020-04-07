@@ -1,6 +1,6 @@
 import React from "react";
 import { FaYoutube, FaPodcast, FaFacebook, FaInstagram } from 'react-icons/fa';
-import mlingo from '../../../img/mlingologowhite.png'
+import mlingo from '../../../img/logo-wjite.svg'
 
 const Footer = props => {
   return (
