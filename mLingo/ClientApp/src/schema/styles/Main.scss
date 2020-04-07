@@ -40,6 +40,8 @@
 
 /* UserBase Components */
 /* 7.1 UserSection.js */
+/* 7.2 StudySetsSection.js */
+/* 7.3 CollectionSection */
 
 
 /* layouts */
@@ -1064,10 +1066,14 @@ input[name=collectionName]{
 }
 
 //////////////////////////////////////////////////////////////////
-/* 7.1.2 StudySetsSection.js */
+/* 7.2 StudySetsSection.js */
+//////////////////////////////////////////////////////////////////
+// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& BOTH &&&&&&&&&&&&&&&&&//////
+//////////////////////////////////////////////////////////////////
+/* 7.3 CollectionSection.js */
 //////////////////////////////////////////////////////////////////
 
-.yourcollections{
+.yourcollections, .yourstudysets{
   padding: 50px 0;
   display: flex;
   text-align: center;
@@ -1088,16 +1094,17 @@ input[name=collectionName]{
     }
 }
 
-.yourcollections div.card{
+.yourcollections div.card, .yourstudysets div.card{
   width: 150px;
   height: 150px;
   margin: 0 55px 0 0 ;
-  background: url('../../img/studyset.png');
+  background: url('../../img/collection.svg');
+  background-size: cover;
   border-radius: 25px;
   border: 0;
 }
 
-.yourcollections div.card div.card-body{
+.yourcollections div.card div.card-body, .yourstudysets div.card div.card-body {
   padding: 25px;
   display: flex;
   flex-direction: column;
@@ -1105,13 +1112,13 @@ input[name=collectionName]{
   align-items: flex-end;
 }
 
-.yourcollections h5,h6{
+.yourcollections h5,.yourcollections h6, .yourstudysets h5, .yourstudysets h6{
    color: $dark-blue;
 }
-.yourcollections h5{
+.yourcollections h5, .yourstudysets h5{
   font-weight: 900;
 }
-.yourcollections button{
+.yourcollections button, .yourstudysets buttton{
   min-width: 200px;
   max-height: 60px;
 }
@@ -1130,6 +1137,13 @@ input[name=collectionName]{
   color: $dark-blue;
   background-color: $dark-green;
 }
+
+.yourstudysets div.card{
+  background: url('../../img/studyset.png');
+}
+
+
+
 
 //////////////////////////////////////////////////////////////////
 /* layouts */
