@@ -3,65 +3,32 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace mLingoCore.Models.Api.Base
 {
-    //public class ApiResponse
-    //{
-    //    #region Public Properties
-
-    //    /// <summary>
-    //    /// Indicates if the API call was successful
-    //    /// </summary>
-    //    public bool Successful => ErrorMessage == null;
-
-    //    /// <summary>
-    //    /// The error message for a failed API call
-    //    /// </summary>
-    //    public string ErrorMessage { get; set; }
-
-    //    /// <summary>
-    //    /// The API response object
-    //    /// </summary>
-    //    public object Response { get; set; }
-
-    //    #endregion
-
-    //    #region Constructor
-
-    //    /// <summary>
-    //    /// Default constructor
-    //    /// </summary>
-    //    public ApiResponse()
-    //    {
-
-    //    }
-
-    //    #endregion
-    //}
-
-    ///// <summary>
-    ///// The response for all Web API calls made
-    ///// with a specific type of known response
-    ///// </summary>
-    ///// <typeparam name="T">The specific type of server response</typeparam>
-    //public class ApiResponse<T> : ApiResponse
-    //{
-    //    /// <summary>
-    //    /// The API response object as T
-    //    /// </summary>
-    //    public new T Response { get => (T)base.Response; set => base.Response = value; }
-    //}
-
+    /// <summary>
+    /// Standard response model for API calls
+    /// </summary>
     public class ApiResponse
     {
         public int StatusCode { get; set; }
 
         public object Response { get; set; }
 
+        /// <summary>
+        /// Shortcut for status code only response
+        /// </summary>
+        /// <param name="statusCode">status code to return</param>
+        /// <returns>Status code and empty body</returns>
         public static ApiResponse StatusCodeResponse(int statusCode) => new ApiResponse
         {
             Response = null,
             StatusCode = statusCode
         };
 
+        /// <summary>
+        /// Shortcut for standard error response
+        /// </summary>
+        /// <param name="errorMessage">Message for end user</param>
+        /// <param name="statusCode">Response status code</param>
+        /// <returns>Status code and <see cref="ErrorRapport"/> with error message in the body</returns>
         public static ApiResponse StandardErrorResponse(string errorMessage, int statusCode) => new ApiResponse
         {
             Response = new ErrorRapport
@@ -71,6 +38,13 @@ namespace mLingoCore.Models.Api.Base
             StatusCode = statusCode
         };
 
+        /// <summary>
+        /// Shortcut for server fault error
+        /// </summary>
+        /// <param name="errorMessage">Message for end user</param>
+        /// <param name="stackTrace">Stack trace to improve communication</param>
+        /// <param name="statusCode">Response status code</param>
+        /// <returns>Status code and <see cref="ErrorRapport"/> with error message and stack trace in the body</returns>
         public static ApiResponse ServerExceptionResponse(string errorMessage, string stackTrace, int statusCode) =>
             new ApiResponse
             {
@@ -82,6 +56,12 @@ namespace mLingoCore.Models.Api.Base
                 StatusCode = statusCode
             };
 
+        /// <summary>
+        /// Shortcut for standard success response
+        /// </summary>
+        /// <param name="response">Response object to be serialized</param>
+        /// <param name="statusCode">Response status code</param>
+        /// <returns>Status code and serialized response object in the body</returns>
         public static ApiResponse StandardSuccessResponse(object response, int statusCode) => new ApiResponse
         {
             Response = response,
