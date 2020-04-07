@@ -1,5 +1,5 @@
 import React from "react";
-import CardComponent from '../CardComponents/CardComponent'
+import StudySetCardComponent from '../CardComponents/StudySetCardComponent'
 import SearchInput from '../SearchComponents/SearchInput'
 
 import { authenticationService } from "../../../services/authentication";
@@ -57,7 +57,7 @@ class UserHead extends React.Component {
                 </div>
                 {
                     this.state.exist ? this.state.fields.map(element => (
-                        <CardComponent set={element} />
+                        <StudySetCardComponent set={element} />
                     )) : this.state.exist ? <div className="text-center"><h2> No collection found </h2></div> : <div className="text-center"><h2> No collection found </h2></div>
                 }
             </div>

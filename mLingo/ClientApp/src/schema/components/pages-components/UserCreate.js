@@ -47,17 +47,17 @@ class UserCreate extends React.Component {
         this.setState({ ...this.state, [event.target.name]: event.target.value });
     }
 
-    createCollection() {
+    async createCollection() {
 
- if(this.state.collectionTitle == ""){
+        if(this.state.collectionTitle.trim() === ""){
             alert('Name your collection!')
             return
         }
         else{
-            this.setState((state)=>{
+            await this.setState((state)=>{
                 return{
                     ...state,
-                    cards: state.cards.filter(el => (el.term != '' || el.definition != ''))
+                    cards: state.cards.filter(el => (el.term.trim() != '' && el.definition.trim() != ''))
                 }
             })
 
@@ -66,7 +66,7 @@ class UserCreate extends React.Component {
                 return
             }
             else{
-                authenticationService.createCollection(this.state.collectionTitle, this.state.cards, localStorage.getItem("ID"), localStorage.getItem("Token"));
+                await authenticationService.createCollection(this.state.collectionTitle, this.state.cards, localStorage.getItem("ID"), localStorage.getItem("Token"));
                 this.setState({ collectionTitle: "", cards: [], card: { term: "", definition: "" } });
             }
         }

@@ -40,6 +40,8 @@
 
 /* UserBase Components */
 /* 7.1 UserSection.js */
+/* 7.2 StudySetsSection.js */
+/* 7.3 CollectionSection */
 
 
 /* layouts */
@@ -449,17 +451,25 @@ li.media h4 {
 
 
 div.welcome-section{
-  width: 100%;
-  background: url('../../img/landpage1.png')no-repeat center center;
-  background-size: 100% 100%;
-  object-fit: cover;
-  min-height: 494px;
+  position: relative;
 
+  img{
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 0;
+    object-fit: cover;
+  }
+
+
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
 
   &>div{
+
+    z-index: 1;
     max-width:50%;
     display: flex;
     justify-content: center;
@@ -482,6 +492,14 @@ div.welcome-section{
 
 }
 
+
+
+@media(min-width: $tablet-res){
+  div.welcome-section{
+    min-height: 494px;
+  }
+}
+
 @media(min-width: 1200px){
   div.welcome-section{
     min-height: 618px;
@@ -490,7 +508,7 @@ div.welcome-section{
 
 @media(max-width:$tablet-res){
   div.welcome-section{
-    min-height: 371px;
+    height: 371px;
 
     &>div h2{
       font-size: 22px;
@@ -504,7 +522,7 @@ div.welcome-section{
 
 @media(max-width: $mobile-res){
   div.welcome-section{
-    min-height: 297px;
+    height: 297px;
 
     &>div{
       padding-right: 0px;
@@ -523,7 +541,7 @@ div.welcome-section{
 // Iphone number Plus models and lower
 @media(max-width:415px){
   div.welcome-section{
-    max-height: 214px;
+    height: 214px;
 
     &>div{
       padding-right: 0px;
@@ -684,11 +702,15 @@ div.welcome-section{
   }
 
   .navbar--dark {
-    padding: 15px 5px;
+    padding: 10px 5px;
   }
 
   .navbar__buttons {
     width: 70%;
+  }
+
+  .navbar__brand{
+    transform: scale(0.8);
   }
 }
 
@@ -1041,13 +1063,21 @@ input[name=collectionName]{
 
 .UserSection{
   margin: 0px 0px 120px 0px;
+  h2{
+    color: $dark-blue;
+    font-weight: bold;
+  }
 }
 
 //////////////////////////////////////////////////////////////////
-/* 7.1.2 StudySetsSection.js */
+/* 7.2 StudySetsSection.js */
+//////////////////////////////////////////////////////////////////
+// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& BOTH &&&&&&&&&&&&&&&&&//////
+//////////////////////////////////////////////////////////////////
+/* 7.3 CollectionSection.js */
 //////////////////////////////////////////////////////////////////
 
-.yourcollections{
+.yourcollections, .yourstudysets{
   padding: 50px 0;
   display: flex;
   text-align: center;
@@ -1068,16 +1098,17 @@ input[name=collectionName]{
     }
 }
 
-.yourcollections div.card{
+.yourcollections div.card, .yourstudysets div.card{
   width: 150px;
   height: 150px;
   margin: 0 55px 0 0 ;
-  background: url('../../img/studyset.png');
+  background: url('../../img/collection.svg');
+  background-size: cover;
   border-radius: 25px;
   border: 0;
 }
 
-.yourcollections div.card div.card-body{
+.yourcollections div.card div.card-body, .yourstudysets div.card div.card-body {
   padding: 25px;
   display: flex;
   flex-direction: column;
@@ -1085,13 +1116,13 @@ input[name=collectionName]{
   align-items: flex-end;
 }
 
-.yourcollections h5,h6{
+.yourcollections h5,.yourcollections h6, .yourstudysets h5, .yourstudysets h6{
    color: $dark-blue;
 }
-.yourcollections h5{
+.yourcollections h5, .yourstudysets h5{
   font-weight: 900;
 }
-.yourcollections button{
+.yourcollections button, .yourstudysets button{
   min-width: 200px;
   max-height: 60px;
 }
@@ -1110,6 +1141,13 @@ input[name=collectionName]{
   color: $dark-blue;
   background-color: $dark-green;
 }
+
+.yourstudysets div.card{
+  background: url('../../img/studyset.png');
+}
+
+
+
 
 //////////////////////////////////////////////////////////////////
 /* layouts */

@@ -1,5 +1,6 @@
 import React from "react";
 import StudySetsSection from '../UserBaseComponents/Sections/StudySetsSection'
+import CollectionSection from '../UserBaseComponents/Sections/CollectionSection'
 
 class UserHead extends React.Component {
     constructor(props) {
@@ -15,8 +16,7 @@ class UserHead extends React.Component {
             <div className="mainpanel">
                 <div className="mainpanel__userbase">
                     <StudySetsSection />
-                    <StudySetsSection />
-                    <StudySetsSection />
+                    <CollectionSection />
                 </div>
             </div>
         );

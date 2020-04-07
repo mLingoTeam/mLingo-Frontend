@@ -6,7 +6,7 @@ import {
 import { Link } from 'react-router-dom'
 import { authenticationService } from '../../../services/authentication';
 
-const CardComponent = ({ set }) => {
+const StudySetCardComponent = ({ set }) => {
     return (
         <div>
             <Link to="/collection/" onClick={
@@ -25,4 +25,4 @@ const CardComponent = ({ set }) => {
     );
 };
 
-export default CardComponent;
+export default StudySetCardComponent;

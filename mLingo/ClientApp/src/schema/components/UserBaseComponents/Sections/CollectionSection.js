@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 import UserSection from '../UserSection';
-import StudySetCardComponent from '../../CardComponents/StudySetCardComponent';
+import CollectionCardComponent from '../../CardComponents/CollectionCardComponent';
 
 import { authenticationService } from "../../../../services/authentication";
 
 import { FaPlus } from 'react-icons/fa'
 
-class StudySetsSection extends React.Component {
+class CollectionSection extends React.Component {
     constructor(props) {
         super(props);
 
@@ -34,13 +34,13 @@ class StudySetsSection extends React.Component {
 
     render() {
         return (
-            <UserSection title="study sets" description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.">
+            <UserSection title="collections" description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.">
                 {
                     this.state.loading ? <p>Loading</p> : <div>
-                        <div className="yourstudysets">
+                        <div className="yourcollections">
                             {
                                 this.state.exist ? this.state.fields.map(element => (
-                                    <StudySetCardComponent set={element} />
+                                    <CollectionCardComponent set={element} />
                                 )) : <div className="text-center col-12"><h2> You have no collection! &nbsp; </h2></div>
                             }
                             {
@@ -57,4 +57,4 @@ class StudySetsSection extends React.Component {
     }
 }
 
-export default StudySetsSection;
+export default CollectionSection;

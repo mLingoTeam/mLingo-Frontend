@@ -195,6 +195,8 @@ input.text:hover, input.text:focus, input.text:active, input.text:checked {
 /* 6.1 SearchInput.js */
 /* UserBase Components */
 /* 7.1 UserSection.js */
+/* 7.2 StudySetsSection.js */
+/* 7.3 CollectionSection */
 /* layouts */
 /* 8.1 Layout.js */
 /* Components */
@@ -580,12 +582,8 @@ li.media h4 {
 
 /* 3.6 WelcomeSection.js */
 div.welcome-section {
+  position: relative;
   width: 100%;
-  background: url("../../img/landpage1.png") no-repeat center center;
-  background-size: 100% 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  min-height: 494px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -597,7 +595,17 @@ div.welcome-section {
           align-items: center;
 }
 
+div.welcome-section img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 div.welcome-section > div {
+  z-index: 1;
   max-width: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -628,6 +636,12 @@ div.welcome-section > div p {
   color: #000536;
 }
 
+@media (min-width: 991px) {
+  div.welcome-section {
+    min-height: 494px;
+  }
+}
+
 @media (min-width: 1200px) {
   div.welcome-section {
     min-height: 618px;
@@ -636,7 +650,7 @@ div.welcome-section > div p {
 
 @media (max-width: 991px) {
   div.welcome-section {
-    min-height: 371px;
+    height: 371px;
   }
   div.welcome-section > div h2 {
     font-size: 22px;
@@ -648,7 +662,7 @@ div.welcome-section > div p {
 
 @media (max-width: 576px) {
   div.welcome-section {
-    min-height: 297px;
+    height: 297px;
   }
   div.welcome-section > div {
     padding-right: 0px;
@@ -663,7 +677,7 @@ div.welcome-section > div p {
 
 @media (max-width: 415px) {
   div.welcome-section {
-    max-height: 214px;
+    height: 214px;
   }
   div.welcome-section > div {
     padding-right: 0px;
@@ -837,10 +851,14 @@ div.welcome-section > div p {
     font-size: 14px !important;
   }
   .navbar--dark {
-    padding: 15px 5px;
+    padding: 10px 5px;
   }
   .navbar__buttons {
     width: 70%;
+  }
+  .navbar__brand {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
   }
 }
 
@@ -1259,8 +1277,14 @@ input[name=collectionName] {
   margin: 0px 0px 120px 0px;
 }
 
-/* 7.1.2 StudySetsSection.js */
-.yourcollections {
+.UserSection h2 {
+  color: #000536;
+  font-weight: bold;
+}
+
+/* 7.2 StudySetsSection.js */
+/* 7.3 CollectionSection.js */
+.yourcollections, .yourstudysets {
   padding: 50px 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1277,27 +1301,28 @@ input[name=collectionName] {
   /* Optional: show position indicator in red */
 }
 
-.yourcollections::-webkit-scrollbar {
+.yourcollections::-webkit-scrollbar, .yourstudysets::-webkit-scrollbar {
   width: 0px;
   /* Remove scrollbar space */
   background: transparent;
   /* Optional: just make scrollbar invisible */
 }
 
-.yourcollections::-webkit-scrollbar-thumb {
+.yourcollections::-webkit-scrollbar-thumb, .yourstudysets::-webkit-scrollbar-thumb {
   background: transparent;
 }
 
-.yourcollections div.card {
+.yourcollections div.card, .yourstudysets div.card {
   width: 150px;
   height: 150px;
   margin: 0 55px 0 0;
-  background: url("../../img/studyset.png");
+  background: url("../../img/collection.svg");
+  background-size: cover;
   border-radius: 25px;
   border: 0;
 }
 
-.yourcollections div.card div.card-body {
+.yourcollections div.card div.card-body, .yourstudysets div.card div.card-body {
   padding: 25px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1314,15 +1339,15 @@ input[name=collectionName] {
           align-items: flex-end;
 }
 
-.yourcollections h5, h6 {
+.yourcollections h5, .yourcollections h6, .yourstudysets h5, .yourstudysets h6 {
   color: #000536;
 }
 
-.yourcollections h5 {
+.yourcollections h5, .yourstudysets h5 {
   font-weight: 900;
 }
 
-.yourcollections button {
+.yourcollections button, .yourstudysets button {
   min-width: 200px;
   max-height: 60px;
 }
@@ -1342,6 +1367,10 @@ input[name=collectionName] {
 .plus-button:hover {
   color: #000536;
   background-color: #A1D218;
+}
+
+.yourstudysets div.card {
+  background: url("../../img/studyset.png");
 }
 
 /* layouts */
