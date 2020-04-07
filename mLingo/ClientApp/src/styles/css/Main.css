@@ -96,6 +96,11 @@ input.text {
   padding: 10px 10px;
 }
 
+input.text:hover, input.text:focus, input.text:active, input.text:checked {
+  text-decoration: none !important;
+  outline: none;
+}
+
 @-webkit-keyframes navbar-monkey-bounce {
   0% {
     bottom: 10%;
@@ -284,7 +289,6 @@ input.text {
 
 .registerForm2 input[type="text"]:focus, .registerForm2 input[type="password"]:focus, .registerForm2 input[type="email"]:focus {
   outline: none !important;
-  border: 1px solid #B6EE1A;
 }
 
 .registerForm2 {
@@ -702,18 +706,19 @@ div.welcome-section > div p {
   margin: 20px 0;
 }
 
-#newsletter-section .left-circle, #newsletter-section .right-circle {
-  -webkit-transform: scale(0.8);
-          transform: scale(0.8);
+#newsletter-section .left-circle-container, #newsletter-section .right-circle-container {
   position: absolute;
-  top: -30%;
+  overflow: hidden;
+  height: auto;
+  width: auto;
+  max-width: 50vw;
 }
 
-#newsletter-section .left-circle {
+#newsletter-section .left-circle-container {
   left: -30%;
 }
 
-#newsletter-section .right-circle {
+#newsletter-section .right-circle-container {
   right: -30%;
 }
 

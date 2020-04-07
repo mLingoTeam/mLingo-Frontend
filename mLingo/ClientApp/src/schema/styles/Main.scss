@@ -155,11 +155,12 @@
   font-size: 18px;
   border: 1px solid #707070;
   border-radius: 10px;
+
 }
 
 .registerForm2 input[type="text"]:focus, .registerForm2 input[type="password"]:focus, .registerForm2 input[type="email"]:focus {
   outline: none !important;
-  border: 1px solid $light-green;
+
 }
 
 .registerForm2 {
@@ -561,15 +562,17 @@ div.welcome-section{
     margin: 20px 0;
   }
 
-  .left-circle, .right-circle{
-    transform: scale(0.8);
+  .left-circle-container, .right-circle-container{
     position: absolute;
-    top:-30%;
+    overflow: hidden;
+    height: auto;
+    width: auto;
+    max-width: 50vw;
   }
-  .left-circle{
+  .left-circle-container{
     left: -30%;
   }
-  .right-circle{
+  .right-circle-container{
     right: -30%;
   }
 

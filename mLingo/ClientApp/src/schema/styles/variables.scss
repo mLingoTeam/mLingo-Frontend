@@ -131,6 +131,11 @@ input.text{
   border-radius: 10px;
   font-size: 14px;
   padding: 10px 10px;
+
+  &:hover, &:focus, &:active, &:checked {
+    text-decoration: none !important;
+    outline: none;
+  }
 }
 
 

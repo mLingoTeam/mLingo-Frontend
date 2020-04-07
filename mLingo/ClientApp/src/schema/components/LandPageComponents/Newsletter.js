@@ -14,7 +14,9 @@ class Newsletter extends React.Component {
     render(){
         return(
             <section id="newsletter-section">
-                <img src={left} className="left-circle"/>
+                <div className="left-circle-container">
+                    <img src={left} className="left-circle img-fluid"/>
+                </div>
                 <div className="newsletter-subscribe">
                     <h2>newsletter</h2>
                     <p>awesome content once a week.</p>
@@ -23,7 +25,9 @@ class Newsletter extends React.Component {
                     <br/>
                     <button className="green-button px-5">sign me up</button>
                 </div>
-                <img src={right} className="right-circle"/>
+                <div className="right-circle-container">
+                    <img src={right} className="right-circle img-fluid"/>
+                </div>
             </section>
         )
     }

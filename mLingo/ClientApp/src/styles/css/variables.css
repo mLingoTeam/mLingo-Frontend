@@ -96,6 +96,11 @@ input.text {
   padding: 10px 10px;
 }
 
+input.text:hover, input.text:focus, input.text:active, input.text:checked {
+  text-decoration: none !important;
+  outline: none;
+}
+
 @-webkit-keyframes navbar-monkey-bounce {
   0% {
     bottom: 10%;
