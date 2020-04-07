@@ -56,6 +56,12 @@ namespace mLingoCore.Models.Api.Base
 
         public object Response { get; set; }
 
+        public static ApiResponse StatusCodeResponse(int statusCode) => new ApiResponse
+        {
+            Response = null,
+            StatusCode = statusCode
+        };
+
         public static ApiResponse StandardErrorResponse(string errorMessage, int statusCode) => new ApiResponse
         {
             Response = new ErrorRapport
