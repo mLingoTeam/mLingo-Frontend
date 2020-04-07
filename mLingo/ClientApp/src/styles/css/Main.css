@@ -1277,6 +1277,11 @@ input[name=collectionName] {
   margin: 0px 0px 120px 0px;
 }
 
+.UserSection h2 {
+  color: #000536;
+  font-weight: bold;
+}
+
 /* 7.2 StudySetsSection.js */
 /* 7.3 CollectionSection.js */
 .yourcollections, .yourstudysets {
@@ -1342,7 +1347,7 @@ input[name=collectionName] {
   font-weight: 900;
 }
 
-.yourcollections button, .yourstudysets buttton {
+.yourcollections button, .yourstudysets button {
   min-width: 200px;
   max-height: 60px;
 }

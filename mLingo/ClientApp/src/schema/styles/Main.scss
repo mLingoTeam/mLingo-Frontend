@@ -1063,6 +1063,10 @@ input[name=collectionName]{
 
 .UserSection{
   margin: 0px 0px 120px 0px;
+  h2{
+    color: $dark-blue;
+    font-weight: bold;
+  }
 }
 
 //////////////////////////////////////////////////////////////////
@@ -1118,7 +1122,7 @@ input[name=collectionName]{
 .yourcollections h5, .yourstudysets h5{
   font-weight: 900;
 }
-.yourcollections button, .yourstudysets buttton{
+.yourcollections button, .yourstudysets button{
   min-width: 200px;
   max-height: 60px;
 }

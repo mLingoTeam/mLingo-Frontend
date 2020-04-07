@@ -15,8 +15,8 @@ class UserHead extends React.Component {
         return (
             <div className="mainpanel">
                 <div className="mainpanel__userbase">
-                    <CollectionSection />
                     <StudySetsSection />
+                    <CollectionSection />
                 </div>
             </div>
         );
