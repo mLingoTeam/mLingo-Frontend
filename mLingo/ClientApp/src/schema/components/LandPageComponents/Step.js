@@ -6,8 +6,10 @@ const Step = ( {props}) => {
     return(
         <div className="Step" key={props.title}>
             <img src={props.img} className="img-fluid"/>
-            <h2>{props.title}</h2>
-            <p>{props.desc}</p>
+            <div>
+                <h2>{props.title}</h2>
+                <p>{props.desc}</p>
+            </div>
         </div>
     )
 }

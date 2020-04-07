@@ -592,6 +592,13 @@ div.welcome-section{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: $dark-blue;
+
+  >h2{
+    font-weight: bold;
+    font-size: 32px;
+    margin: 40px;
+  }
 }
 #Steps-container{
   display: flex;
@@ -600,9 +607,21 @@ div.welcome-section{
   align-items: center;
 }
 
-#Step{
+.Step{
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+
+  img{
+    transform: scale(0.8);
+  }
+  h2{
+    font-weight: bold;
+  }
+  div{
+    margin:  0 20px;
+  }
 }
 
 
