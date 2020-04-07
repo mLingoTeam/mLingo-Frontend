@@ -199,6 +199,8 @@ input.text:hover, input.text:focus, input.text:active, input.text:checked {
 /* 7.3 CollectionSection */
 /* layouts */
 /* 8.1 Layout.js */
+/* Animations */
+/* 9.1 Loading.js */
 /* Components */
 /* Card Components */
 /* 1.1 CardComponent.js */
@@ -1414,6 +1416,149 @@ main.user--container {
 
 .container.p-0 > div {
   padding: 50px;
+}
+
+/* 9.1 Loading.js */
+.loader {
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
+  position: absolute;
+}
+
+.introLoader {
+  -webkit-animation: animate 1s linear infinite;
+          animation: animate 1s linear infinite;
+}
+
+.loader span {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+}
+
+.introSpan {
+  -webkit-animation: rotate 2s ease-in-out infinite;
+          animation: rotate 2s ease-in-out infinite;
+}
+
+.loader span:nth-child(1) {
+  background-color: #000536;
+  top: 0;
+  left: 0;
+}
+
+.loader span:nth-child(2) {
+  background-color: #A1D218;
+  top: 0;
+  right: 0;
+}
+
+.loader span:nth-child(3) {
+  background-color: #A1D218;
+  bottom: 0;
+  left: 0;
+}
+
+.loader span:nth-child(4) {
+  background-color: #000536;
+  bottom: 0;
+  right: 0;
+}
+
+@-webkit-keyframes animate {
+  0% {
+    width: 50px;
+    height: 50px;
+  }
+  10% {
+    width: 50px;
+    height: 50px;
+  }
+  50% {
+    width: 75px;
+    height: 75px;
+  }
+  90% {
+    width: 50px;
+    height: 50px;
+  }
+  100% {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@keyframes animate {
+  0% {
+    width: 50px;
+    height: 50px;
+  }
+  10% {
+    width: 50px;
+    height: 50px;
+  }
+  50% {
+    width: 75px;
+    height: 75px;
+  }
+  90% {
+    width: 50px;
+    height: 50px;
+  }
+  100% {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  10% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+  90% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  10% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+  }
+  90% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
 }
 
 .searchcollectioninput {
