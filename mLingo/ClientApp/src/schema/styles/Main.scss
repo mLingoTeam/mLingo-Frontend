@@ -449,17 +449,25 @@ li.media h4 {
 
 
 div.welcome-section{
-  width: 100%;
-  background: url('../../img/landpage1.png')no-repeat center center;
-  background-size: 100% 100%;
-  object-fit: cover;
-  min-height: 494px;
+  position: relative;
 
+  img{
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 0;
+    object-fit: cover;
+  }
+
+
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
 
   &>div{
+
+    z-index: 1;
     max-width:50%;
     display: flex;
     justify-content: center;
@@ -488,9 +496,15 @@ div.welcome-section{
   }
 }
 
+@media(min-width: $tablet-res){
+  div.welcome-section{
+    min-height: 494px;
+  }
+}
+
 @media(max-width:$tablet-res){
   div.welcome-section{
-    min-height: 371px;
+    height: 371px;
 
     &>div h2{
       font-size: 22px;
@@ -504,7 +518,7 @@ div.welcome-section{
 
 @media(max-width: $mobile-res){
   div.welcome-section{
-    min-height: 297px;
+    height: 297px;
 
     &>div{
       padding-right: 0px;
@@ -523,7 +537,7 @@ div.welcome-section{
 // Iphone number Plus models and lower
 @media(max-width:415px){
   div.welcome-section{
-    max-height: 214px;
+    height: 214px;
 
     &>div{
       padding-right: 0px;
@@ -684,11 +698,15 @@ div.welcome-section{
   }
 
   .navbar--dark {
-    padding: 15px 5px;
+    padding: 10px 5px;
   }
 
   .navbar__buttons {
     width: 70%;
+  }
+
+  .navbar__brand{
+    transform: scale(0.8);
   }
 }
 
