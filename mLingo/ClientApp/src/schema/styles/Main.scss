@@ -23,6 +23,7 @@
 /* 3.4 Slider.js */
 /* 3.5 UserPromo.js */
 /* 3.6 WelcomeSection.js */
+/* 3.7 Newsletter */
 
 /* Layout Components */
 /* 4.1 AppNavbar.js */
@@ -532,6 +533,49 @@ div.welcome-section{
     &>div p{
       font-size: 10px;
     }
+  }
+}
+
+//////////////////////////////////////////////////////
+/* 3.7 Newsletter */
+//////////////////////////////////////////////////////
+
+#newsletter-section{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  color: $dark-blue;
+
+  h2{
+    font-weight: bold;
+    font-size: 28px;
+  }
+  p{
+    margin: 0 !important;
+  }
+
+  input{
+    width: 200px;
+    margin: 20px 0;
+  }
+
+  .left-circle, .right-circle{
+    transform: scale(0.8);
+    position: absolute;
+    top:-30%;
+  }
+  .left-circle{
+    left: -30%;
+  }
+  .right-circle{
+    right: -30%;
+  }
+
+  .newsletter-subscribe{
+    padding: 200px 0;
+    text-align:center;
   }
 }
 

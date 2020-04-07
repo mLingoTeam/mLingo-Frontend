@@ -4,6 +4,7 @@ import Register from "../components/FormComponents/Register";
 import WelcomeSection from '../components/LandPageComponents/WelcomeSection'
 
 import Layout from '../layouts/LandpageLayout'
+import Newsletter from "../components/LandPageComponents/Newsletter";
 
 export default class MainPage extends Component {
 
@@ -15,6 +16,7 @@ export default class MainPage extends Component {
       <Layout>
         <WelcomeSection />
         <Register />
+        <Newsletter/>
       </Layout>
     );
   }
