@@ -92,6 +92,21 @@ namespace mLingo.Controllers.Api
         /// HTTP POST endpoint that creates new collection in the database.
         /// This method automatically generates all ids and assigns owner id based on user token
         /// </summary>
+        /// <remarks>
+        /// {
+        ///     "Name": "example",
+        ///     "Cards": [
+        ///         {
+        ///             "Term": "example1",
+        ///             "Definition": "example1"
+        ///         },
+        ///         {
+        ///             "Term": "example2",
+        ///             "Definition": "example2"
+        ///         }
+        ///     ]
+        /// }
+        /// </remarks>
         /// <param name="newCollectionData"><see cref="CreateCollectionFormModel"/></param>
         /// <returns>Http status code</returns>
         [HttpPost]
@@ -104,6 +119,33 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// HTTP PUT endpoint that updates collection data, add/removes cards etc.
         /// </summary>
+        /// <remarks>
+        /// {
+        ///     "Name": "updated_collection_name",
+        ///     "BaseLanguage": "language_code_ISO639_2T",
+        ///     "SecondLanguage": "language_code_ISO639_2T",
+        ///     "Cards": [
+        ///         {
+        ///             "Id": "182bd798-64b1-404f-b52f-63dc7163eaf2",
+        ///             "Term": "updated_term",
+        ///             "Definition": "updated_definition",
+        ///             "CollectionId": "182bd798-64b1-404f-b52f-63dc7163eaf2"
+        ///         },
+        ///         {
+        ///             "Id": null,
+        ///             "Term": "new_term",
+        ///             "Definition": "new_definition",
+        ///             "CollectionId": "182bd798-64b1-404f-b52f-63dc7163eaf2"
+        ///         },
+        ///         {
+        ///             "Id": "182bd798-64b1-404f-b52f-63dc7163eaf2",
+        ///             "Term": "unchanged_term",
+        ///             "Definition": "unchanged_definition",
+        ///             "CollectionId": "182bd798-64b1-404f-b52f-63dc7163eaf2"
+        ///         }
+        ///     ]
+        /// }
+        /// </remarks>
         /// <param name="id">Id of collection to be updated</param>
         /// <param name="updatedCollection"><see cref="UpdateCollectionFormModel"/> with new collection data</param>
         /// <returns>Http response code</returns>

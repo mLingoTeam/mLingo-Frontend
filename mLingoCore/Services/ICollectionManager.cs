@@ -10,16 +10,16 @@ namespace mLingoCore.Services
     /// </summary>
     public interface ICollectionManager
     {
-        KeyValuePair<ApiResponse, int> Find(string id, string name);
+        ApiResponse Find(string id, string name);
 
-        KeyValuePair<ApiResponse, int> UserCollections(string username);
+        ApiResponse UserCollections(string username);
 
-        Task<KeyValuePair<ApiResponse, int>> Create(string username, CreateCollectionFormModel newCollectionData);
+        Task<ApiResponse> Create(string username, CreateCollectionFormModel newCollectionData);
 
-        Task<KeyValuePair<ApiResponse, int>> Update(string id, string username, UpdateCollectionFormModel updatedCollection);
+        Task<ApiResponse> Update(string id, string username, UpdateCollectionFormModel updatedCollection);
 
-        Task<KeyValuePair<ApiResponse, int>> DetectLanguage(string collectionId, string username);
+        Task<ApiResponse> DetectLanguage(string collectionId, string username);
 
-        KeyValuePair<ApiResponse, int> Delete(string id);
+        ApiResponse Delete(string id);
     }
 }
