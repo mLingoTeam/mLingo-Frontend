@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using mLingo.Models.Database.User;
@@ -19,11 +23,13 @@ namespace mLingo.Extensions.Authentication
         /// </summary>
         /// <param name="user">The users details</param>
         /// <returns></returns>
-        public static string GenerateJwtToken(this AppUser user, IConfiguration configuration)
+        public static async Task<string> GenerateJwtToken(this AppUser user, UserManager<AppUser> userManager, IConfiguration configuration)
         {
-            
+
+            var userRoles = await userManager.GetRolesAsync(user); 
+
             // Set our tokens claims for member
-            var memberClaims = new[]
+            var claims = new List<Claim>
             {
                 // Unique ID for this token
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
@@ -33,19 +39,11 @@ namespace mLingo.Extensions.Authentication
                 new Claim(ClaimsIdentity.DefaultNameClaimType, user.UserName),
 
                 // Add user Id so that UserManager.GetUserAsync can find the user based on Id
-                new Claim(ClaimTypes.NameIdentifier, user.Id),
-                
+                new Claim(ClaimTypes.NameIdentifier, user.Id)
             };
 
-            // Set token claims for admin
-            var adminClaims = new[]
-            {
-                new Claim(ClaimTypes.Role, "admin")
-            };
-            Array.Copy(memberClaims, adminClaims, memberClaims.Length);
-
-
-            var isAdmin = user.Email.Equals("admin@mlingo.com");
+            // Add role claims
+            claims.AddRange(userRoles.Select(role => new Claim(ClaimTypes.Role, role)));
 
             // Create the credentials used to generate the token
             var credentials = new SigningCredentials(
@@ -58,7 +56,7 @@ namespace mLingo.Extensions.Authentication
             var token = new JwtSecurityToken(
                 issuer: configuration["Jwt:JwtIssuer"],
                 audience: configuration["Jwt:JwtAudience"],
-                claims: isAdmin ? adminClaims : memberClaims,
+                claims: claims,
                 signingCredentials: credentials,
                 expires: DateTime.Now.AddHours(3)
             );

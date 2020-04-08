@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using mLingo.Extensions.App;
 using mLingo.Models.Database;
 using mLingo.Models.Database.User;
 using mLingo.Modules;
@@ -107,6 +109,13 @@ namespace mLingo
             services.AddTransient<ICollectionManager, StandardCollectionManager>();
             services.AddTransient<ILanguageDetector, LanguageDetector>();
             services.AddTransient<ISetManager, StandardSetManager>();
+
+            
+        }
+
+        private async Task _createRoles(IServiceProvider serviceProvider)
+        {
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
@@ -147,6 +156,12 @@ namespace mLingo
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+
+            app.UseDefaultMlingoRoles(serviceProvider)
+                .Wait();
+
+            app.UseMlingoSuperUser(serviceProvider, Configuration)
+                .Wait();
 
             // Make sure we have the database
             serviceProvider.GetService<AppDbContext>().Database.EnsureCreated();

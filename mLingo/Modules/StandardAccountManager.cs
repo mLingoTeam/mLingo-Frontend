@@ -59,9 +59,13 @@ namespace mLingo.Modules
             if (!result.Succeeded)
                 return ApiResponse.StandardErrorResponse(ErrorMessages.InvalidRegistration, 403);
 
+            var addRoleResult = await UserManager.AddToRoleAsync(user, "Member");
+
+            if (!addRoleResult.Succeeded) 
+                return ApiResponse.StandardErrorResponse(ErrorMessages.DbError, 500);
 
             var userIdentity = await UserManager.FindByNameAsync(user.UserName);
-            var identityResponse = userIdentity.Credentials(userIdentity.GenerateJwtToken(Configuration));
+            var identityResponse = userIdentity.Credentials(await userIdentity.GenerateJwtToken(UserManager, Configuration));
 
             return ApiResponse.StandardSuccessResponse(identityResponse, 200);
         }
@@ -92,7 +96,7 @@ namespace mLingo.Modules
             if (!isPasswordOk)
                 return ApiResponse.StandardErrorResponse(ErrorMessages.InvalidLogin, 403);
 
-            var userCredentials = user.Credentials(user.GenerateJwtToken(Configuration));
+            var userCredentials = user.Credentials(await user.GenerateJwtToken(UserManager, Configuration));
             return ApiResponse.StandardSuccessResponse(userCredentials, 200);
         }
 
