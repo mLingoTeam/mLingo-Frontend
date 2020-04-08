@@ -113,11 +113,6 @@ namespace mLingo
             
         }
 
-        private async Task _createRoles(IServiceProvider serviceProvider)
-        {
-            
-        }
-
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())

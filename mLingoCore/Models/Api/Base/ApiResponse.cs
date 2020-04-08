@@ -12,6 +12,8 @@ namespace mLingoCore.Models.Api.Base
 
         public object Response { get; set; }
 
+        public bool Successful { get; set; }
+
         /// <summary>
         /// Shortcut for status code only response
         /// </summary>
@@ -20,7 +22,8 @@ namespace mLingoCore.Models.Api.Base
         public static ApiResponse StatusCodeResponse(int statusCode) => new ApiResponse
         {
             Response = null,
-            StatusCode = statusCode
+            StatusCode = statusCode,
+            Successful = statusCode >= 200 && statusCode < 300
         };
 
         /// <summary>
@@ -35,7 +38,8 @@ namespace mLingoCore.Models.Api.Base
             {
                 ErrorMessage = errorMessage
             },
-            StatusCode = statusCode
+            StatusCode = statusCode,
+            Successful = false
         };
 
         /// <summary>
@@ -53,7 +57,8 @@ namespace mLingoCore.Models.Api.Base
                     ErrorMessage = errorMessage,
                     StackTrace = stackTrace
                 },
-                StatusCode = statusCode
+                StatusCode = statusCode,
+                Successful = false
             };
 
         /// <summary>
@@ -65,7 +70,8 @@ namespace mLingoCore.Models.Api.Base
         public static ApiResponse StandardSuccessResponse(object response, int statusCode) => new ApiResponse
         {
             Response = response,
-            StatusCode = statusCode
+            StatusCode = statusCode,
+            Successful = true
         };
     }
 }

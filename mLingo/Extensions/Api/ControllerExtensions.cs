@@ -8,7 +8,7 @@ namespace mLingo.Extensions.Api
         public static IActionResult HandleManagerResponse(this Controller controller, ApiResponse res)
         {
             if (res.Response == null) return controller.StatusCode(res.StatusCode);
-            return controller.StatusCode(res.StatusCode, res.Response);
+            return controller.StatusCode(res.StatusCode, res);
         }
     }
 }
