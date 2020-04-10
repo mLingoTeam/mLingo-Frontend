@@ -10,7 +10,7 @@ import LoginPage from "./schema/pages/LoginPage";
 import RegisterPage from "./schema/pages/RegisterPage";
 import UserPanelHead from "./schema/pages/UserPanelHead";
 import UserPanelCreate from "./schema/pages/UserPanelCreate";
-import UserPanelCollection from "./schema/pages/UserPanelCollection";
+import CollectionPage from "./schema/pages/CollectionPage";
 import SearchPage from './schema/pages/SearchPage';
 import './styles/css/Main.css';
 
@@ -24,7 +24,7 @@ export default class App extends Component {
           <Route exact path="/" component={MainPage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/register" component={RegisterPage} />
-          <Route exact path="/collection" component={UserPanelCollection} />
+          <Route exact path="/collection" component={CollectionPage} />
           <Route exact path="/search" component={SearchPage} />
           <PrivateRoute exact path="/head" component={UserPanelHead} />
           <PrivateRoute exact path="/create" component={UserPanelCreate} />

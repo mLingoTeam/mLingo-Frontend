@@ -77,7 +77,7 @@ class Collection extends React.Component {
                 {
                     this.state.collection ? <div>
                         <button className="green-button" onClick={this.removeCollection}>Remove Collection</button>
-                        <button className="green-button" onClick={this.modifyCollection}>Update Collection</button>
+                        <button className="green-button" onClick={this.modifyCollection}>Remove Cards</button>
                     </div> : null
                 }
             </div>
