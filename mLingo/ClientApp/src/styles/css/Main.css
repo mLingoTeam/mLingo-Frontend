@@ -1377,6 +1377,11 @@ input[name=collectionName] {
   transition: 0.5s;
 }
 
+.plus-button:focus {
+  outline: none;
+  outline-offset: -4px;
+}
+
 .plus-button:hover {
   color: #000536;
   background-color: #A1D218;

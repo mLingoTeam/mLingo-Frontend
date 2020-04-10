@@ -79,12 +79,12 @@ class UserCreate extends React.Component {
             })
             if( this.state.cards.length <= 1 ){
                 alert("Add more cards")
-                this.setState({ collectionTitle: "", cards: [{ term: "", definition: "" }], card: { term: "", definition: "" } });
+                this.setState({ collectionTitle: "", cards: [{ term: "", definition: "" }]});
                 return
             }
             else{
                 await authenticationService.createCollection(this.state.collectionTitle, this.state.cards, localStorage.getItem("ID"), localStorage.getItem("Token"));
-                this.setState({ collectionTitle: "", cards: [], card: { term: "", definition: "" } });
+                this.setState({ collectionTitle: "", cards: [] });
             }
         }
 
@@ -92,16 +92,16 @@ class UserCreate extends React.Component {
 
     render() {
         return (
-            <div className="d-flex justify-content-center flex-wrap">
+            <div className="d-flex justify-content-center flex-wrap p-5">
                 <UserCreateCollection set={this.state} handleChange={this.handleChange} />
                 {
                     this.state.cards.map((element, index) => {
                         return <AddFlashcard set={element} remove={this.removeCard} index={index} functioni={this.handleCardChange} functionii={this.addCard}/>
                     })
                 }
-                <div className="col-12 d-flex justify-content-center flex-wrap">
-                        <button onClick={this.addCard} className="plus-button"><FaPlus /></button>
-                        <h3 className="col-12 text-center color-dark-blue">Add more cards</h3>
+                <div className="col-12 d-flex justify-content-center flex-wrap align-items-center m-5">
+                        <button onClick={this.addCard} className="plus-button m-5"><FaPlus /></button>
+                        <h3 className="text-center color-dark-blue">add more cards</h3>
                 </div>
                 <button onClick={this.createCollection} className="green-button"> create collection </button>
             </div >

@@ -1144,6 +1144,11 @@ input[name=collectionName]{
   border-radius: 50%;
   padding: 5px 12px;
   transition: 0.5s;
+
+  &:focus {
+    outline: none;
+    outline-offset: -4px;
+  }
 }
 .plus-button:hover{
   color: $dark-blue;
