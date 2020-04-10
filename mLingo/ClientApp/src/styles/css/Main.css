@@ -101,6 +101,15 @@ input.text:hover, input.text:focus, input.text:active, input.text:checked {
   outline: none;
 }
 
+input[type='text']:hover, input[type='text']:focus, input[type='text']:active, input[type='text']:checked, textarea:hover, textarea:focus, textarea:active, textarea:checked {
+  text-decoration: none !important;
+  outline: none;
+}
+
+.color-dark-blue {
+  color: #000536 !important;
+}
+
 @-webkit-keyframes navbar-monkey-bounce {
   0% {
     bottom: 10%;
@@ -1091,7 +1100,7 @@ input[name=collectionName] {
 
 .mainpanel__userbase section {
   max-width: 100%;
-  padding: 50px;
+  padding: 30px;
   background-color: white;
 }
 
@@ -1212,6 +1221,8 @@ input[name=collectionName] {
 @media (max-width: 991px) {
   .usermenu div.collapse, .usermenu div.collapsing {
     width: 100vw;
+    height: 100vh;
+    overflow: hidden;
   }
 }
 
@@ -1366,6 +1377,11 @@ input[name=collectionName] {
   transition: 0.5s;
 }
 
+.plus-button:focus {
+  outline: none;
+  outline-offset: -4px;
+}
+
 .plus-button:hover {
   color: #000536;
   background-color: #A1D218;
@@ -1373,6 +1389,19 @@ input[name=collectionName] {
 
 .yourstudysets div.card {
   background: url("../../img/studyset.png");
+}
+
+/* 7.3 Collectionscontent.js */
+.yourcollections2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 /* layouts */

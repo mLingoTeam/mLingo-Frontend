@@ -12,6 +12,7 @@ import UserPanelHead from "./schema/pages/UserPanelHead";
 import UserPanelCreate from "./schema/pages/UserPanelCreate";
 import CollectionPage from "./schema/pages/CollectionPage";
 import SearchPage from './schema/pages/SearchPage';
+import UserCollections from './schema/pages/UserCollections'
 import './styles/css/Main.css';
 
 export const history = createBrowserHistory();
@@ -28,6 +29,7 @@ export default class App extends Component {
           <Route exact path="/search" component={SearchPage} />
           <PrivateRoute exact path="/head" component={UserPanelHead} />
           <PrivateRoute exact path="/create" component={UserPanelCreate} />
+          <PrivateRoute exact path="/collections" component={UserCollections} />
         </div>
       </Router>
     );
