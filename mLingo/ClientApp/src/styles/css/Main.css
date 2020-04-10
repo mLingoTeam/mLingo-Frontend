@@ -1212,6 +1212,8 @@ input[name=collectionName] {
 @media (max-width: 991px) {
   .usermenu div.collapse, .usermenu div.collapsing {
     width: 100vw;
+    height: 100vh;
+    overflow: hidden;
   }
 }
 
@@ -1373,6 +1375,19 @@ input[name=collectionName] {
 
 .yourstudysets div.card {
   background: url("../../img/studyset.png");
+}
+
+/* 7.3 Collectionscontent.js */
+.yourcollections2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 /* layouts */

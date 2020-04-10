@@ -1001,9 +1001,13 @@ input[name=collectionName]{
   background-color: white;
   box-shadow: 0px 6px 8px #00000029;
 
+  // usermenu 100vh when is collapsed!!
+
   @media(max-width: $tablet-res){
     div.collapse, div.collapsing{
       width: 100vw;
+      height: 100vh;
+      overflow: hidden;
     }
   }
 
@@ -1151,7 +1155,16 @@ input[name=collectionName]{
 }
 
 
+//////////////////////////////////////////////////////////////////
+/* 7.3 Collectionscontent.js */
+//////////////////////////////////////////////////////////////////
 
+.yourcollections2{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
 //////////////////////////////////////////////////////////////////
 /* layouts */
