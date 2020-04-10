@@ -14,7 +14,7 @@ class UserCreate extends React.Component {
             this.props.history.push("/");
         }
 
-        this.state = { collectionTitle: "", cards: [ { term: "", definition: "" } ], card: { term: "", definition: "" } }
+        this.state = { collectionTitle: "", cards: [ { term: "", definition: "" } ] }
 
         this.createCollection = this.createCollection.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -24,8 +24,12 @@ class UserCreate extends React.Component {
     }
 
     addCard() {
-            this.setState({ ...this.state, cards: this.state.cards.push(this.state.card) })
-            this.setState({ ...this.state, card: { term: "", definition: "" } })
+            this.setState(state => {
+                return {
+                ...state,
+                 cards: [...state.cards, { term: "", definition: "" }]
+                }
+            })
     }
 
     removeCard(set) {
@@ -40,7 +44,19 @@ class UserCreate extends React.Component {
     }
 
     handleCardChange(event) {
-        this.setState({ ...this.state, card: { ...this.state.card, [event.target.name]: event.target.value } });
+
+        let items = this.state.cards
+
+        let item = items[event.target.alt];
+
+        item = {...item, [event.target.name]: event.target.value}
+
+        items[[event.target.alt]] = item;
+
+        this.setState({
+            ...this.state,
+            cards: items
+        });
     }
 
     handleChange(event) {
@@ -49,9 +65,10 @@ class UserCreate extends React.Component {
 
     async createCollection() {
 
-        if(this.state.collectionTitle.trim() === ""){
+        let title = this.state.collectionTitle;
+        console.log(title)
+        if(title.trim() === ""){
             alert('Name your collection!')
-            return
         }
         else{
             await this.setState((state)=>{
@@ -60,9 +77,9 @@ class UserCreate extends React.Component {
                     cards: state.cards.filter(el => (el.term.trim() != '' && el.definition.trim() != ''))
                 }
             })
-
-            if( this.state.cards.length == 1 ){
+            if( this.state.cards.length <= 1 ){
                 alert("Add more cards")
+                this.setState({ collectionTitle: "", cards: [{ term: "", definition: "" }], card: { term: "", definition: "" } });
                 return
             }
             else{
@@ -82,10 +99,11 @@ class UserCreate extends React.Component {
                         return <AddFlashcard set={element} remove={this.removeCard} index={index} functioni={this.handleCardChange} functionii={this.addCard}/>
                     })
                 }
-                <div>
-                    <button onClick={this.addCard} className="plus-button"><FaPlus /></button>
-                    <button onClick={this.createCollection} className="green-button"> create collection </button>
+                <div className="col-12 d-flex justify-content-center flex-wrap">
+                        <button onClick={this.addCard} className="plus-button"><FaPlus /></button>
+                        <h3 className="col-12 text-center color-dark-blue">Add more cards</h3>
                 </div>
+                <button onClick={this.createCollection} className="green-button"> create collection </button>
             </div >
         );
     }
