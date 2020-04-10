@@ -5,6 +5,8 @@ import { FaTrash } from 'react-icons/fa'
 
 const AddFlashcard = ({ set, remove, index, functioni }) => {
 
+    console.log(set)
+
     let isFirst = index;
     index++;
 
@@ -22,7 +24,7 @@ const AddFlashcard = ({ set, remove, index, functioni }) => {
                     <h5>front</h5>
                 </div>
                 <div className="flashcard--body">
-                    <input type="text" name='term' alt={isFirst} className="flashcard--def" placeholder="Term" onChange={functioni}></input>
+                    <input type="text" name='term' alt={isFirst} value={set.term} className="flashcard--def" placeholder="Term" onChange={functioni}></input>
                 </div>
             </div>
             <div className="flashcard col-5">
@@ -31,7 +33,7 @@ const AddFlashcard = ({ set, remove, index, functioni }) => {
                     <h5>back</h5>
                 </div>
                 <div className="flashcard--body">
-                    <input type="text" alt={isFirst} name='definition' className="flashcard--def" placeholder="Definiton" onChange={functioni}></input>
+                    <input type="text" alt={isFirst}  value={set.definition} name='definition' className="flashcard--def" placeholder="Definiton" onChange={functioni}></input>
                 </div>
             </div>
             {

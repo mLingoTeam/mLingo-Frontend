@@ -1,8 +1,11 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
+import  requests  from '../../../services/requests'
 import { authenticationService } from "../../../services/authentication";
 import UserCreateCollection from '../CardComponents/UserCreateCollection'
 import AddFlashcard from '../CardComponents/AddFlashcard';
+
 
 import { FaPlus } from 'react-icons/fa'
 
@@ -14,13 +17,28 @@ class UserCreate extends React.Component {
             this.props.history.push("/");
         }
 
-        this.state = { collectionTitle: "", cards: [ { term: "", definition: "" } ] }
+        this.state = { collectionTitle: "", cards: [ { term: "", definition: "" } ], loading: false, edit: false }
 
+
+        this.submit = this.submit.bind(this);
+        this.modifyCollection = this.modifyCollection.bind(this);
+        this.mount = this.mount.bind(this);
         this.createCollection = this.createCollection.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleCardChange = this.handleCardChange.bind(this);
         this.addCard = this.addCard.bind(this);
         this.removeCard = this.removeCard.bind(this);
+
+        if ( localStorage.getItem("editCollection") ){
+            this.mount();
+        }
+    }
+
+    async mount(){
+        this.setState({ ...this.state, loading: true });
+            const req = await requests.mountEditCollection();
+            console.log(req.response);
+            this.setState({ ...this.state, cards: req.response.cards, collectionTitle: req.response.name, loading: false, edit: true });
     }
 
     addCard() {
@@ -63,6 +81,19 @@ class UserCreate extends React.Component {
         this.setState({ ...this.state, [event.target.name]: event.target.value });
     }
 
+    submit(){
+        if( this.state.edit){
+            this.modifyCollection()
+        }
+        else{
+            this.createCollection()
+        }
+    }
+
+    modifyCollection() {
+        authenticationService.updateCollection({ id: localStorage.getItem("editCollection"), token: localStorage.getItem("Token"), cards: this.state.cards, name: this.state.collectionTitle })
+    }
+
     async createCollection() {
 
         let title = this.state.collectionTitle;
@@ -90,22 +121,31 @@ class UserCreate extends React.Component {
 
     }
 
+    componentWillUnmount(){
+        localStorage.removeItem("editCollection")
+    }
+
     render() {
-        return (
-            <div className="d-flex justify-content-center flex-wrap p-5">
-                <UserCreateCollection set={this.state} handleChange={this.handleChange} />
-                {
-                    this.state.cards.map((element, index) => {
-                        return <AddFlashcard set={element} remove={this.removeCard} index={index} functioni={this.handleCardChange} functionii={this.addCard}/>
-                    })
-                }
-                <div className="col-12 d-flex justify-content-center flex-wrap align-items-center m-5">
-                        <button onClick={this.addCard} className="plus-button m-5"><FaPlus /></button>
-                        <h3 className="text-center color-dark-blue">add more cards</h3>
-                </div>
-                <button onClick={this.createCollection} className="green-button"> create collection </button>
-            </div >
-        );
+        if(this.state.loading){
+            return <div>loading</div>
+        }
+        else{
+            return (
+                <div className="d-flex justify-content-center flex-wrap p-5">
+                    <UserCreateCollection set={this.state} handleChange={this.handleChange} edit={this.state.edit}/>
+                    {
+                        this.state.cards.map((element, index) => {
+                            return <AddFlashcard set={element} remove={this.removeCard} index={index} functioni={this.handleCardChange} functionii={this.addCard}/>
+                        })
+                    }
+                    <div className="col-12 d-flex justify-content-center flex-wrap align-items-center m-5">
+                            <button onClick={this.addCard} className="plus-button m-5"><FaPlus /></button>
+                            <h3 className="text-center color-dark-blue">add more cards</h3>
+                    </div>
+                    <Link to="/head" onClick={this.submit}  className="green-button"> {this.state.edit ? "edit collection" : "create collection"} </Link>
+                </div >
+            );
+        }
     }
 }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 import { authenticationService } from '../../../services/authentication';
+import  requests  from '../../../services/requests';
 import Flashcard from './Flashcard';
 
 
@@ -12,26 +13,13 @@ class Collection extends React.Component {
 
         this.state = [{ "loaded": false }];
 
-        this.mount = this.mount.bind(this);
+        this.mountCollection = requests.mountCollection.bind(this);
         this.removeCollection = this.removeCollection.bind(this);
         this.removeCard = this.removeCard.bind(this);
         this.modifyCollection = this.modifyCollection.bind(this);
     }
 
-    async mount() {
-        const collid = localStorage.getItem("collectionid");
 
-        if (collid) {
-            const collectioni = await authenticationService.requestCollection("id", collid);
-
-            this.setState({ ...this.state, "collection": collectioni.response.cards });
-            this.setState({ ...this.state, "loaded": true });
-        }
-        else {
-            this.setState({ ...this.state, "collection": false });
-            this.setState({ ...this.state, "loaded": true });
-        }
-    }
 
     async removeCard(set) {
         //only looking for the first card
@@ -50,7 +38,7 @@ class Collection extends React.Component {
     }
 
     componentDidMount() {
-        this.mount()
+        this.mountCollection();
     }
 
     modifyCollection() {
@@ -61,6 +49,10 @@ class Collection extends React.Component {
         authenticationService.removeCollection(localStorage.getItem("collectionid"), localStorage.getItem("Token"));
         localStorage.removeItem("collectionid");
         this.setState({ ...this.state, "collection": false });
+    }
+
+    editCollection(){
+        localStorage.setItem("editCollection", localStorage.getItem("collectionid"))
     }
 
     render() {
@@ -77,6 +69,7 @@ class Collection extends React.Component {
                     this.state.collection ? <div>
                         <button className="green-button" onClick={this.removeCollection}>Remove Collection</button>
                         <button className="green-button" onClick={this.modifyCollection}>Remove Cards</button>
+                        <Link className="green-button" onClick={this.editCollection} to="/create" >Edit Collection</Link>
                     </div> : null
                 }
             </div>

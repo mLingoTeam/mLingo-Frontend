@@ -48,7 +48,7 @@ class StudySetsSection extends React.Component {
                                 this.state.exist ? <button class="green-button">Load more</button> : null
                             }
                         </div>
-                        <div className="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center align-items-center">
                             <Link to="/create" className="plus-button"><FaPlus /></Link>
                         </div>
                     </div>
