@@ -1,7 +1,6 @@
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0-buster-slim AS base
 WORKDIR /app
-ENV ASPNETCORE_URLS http://+:8080
-EXPOSE 8888
+ENV ASPNETCORE_URLS http://+:$PORT
 
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
