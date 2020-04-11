@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -11,14 +10,16 @@ using mLingoCore.Models.Api.Base;
 using mLingoCore.Models.Forms;
 using mLingoCore.Models.Forms.Accounts;
 using mLingoCore.Services;
+using mLingo.Controllers.Api;
 
 namespace mLingo.Modules
 {
+    /// <summary>
+    /// Standard implementation of <see cref="IAccountManager"/> used to manage user accounts.
+    /// </summary>
     public class StandardAccountManager : IAccountManager
     {
-        
-        private static KeyValuePair<ApiResponse, int> _Response(ApiResponse res, int statusCode) => new KeyValuePair<ApiResponse, int>(res, statusCode);
-        private static KeyValuePair<ApiResponse, int> _Response(int statusCode) => new KeyValuePair<ApiResponse, int>(null, statusCode);
+        #region PublicProperties
 
         public AppDbContext DbContext { get; set; }
 
@@ -26,13 +27,17 @@ namespace mLingo.Modules
 
         public IConfiguration Configuration { get; set; }
 
-        public async Task<KeyValuePair<ApiResponse, int>> Register(RegisterFormModel form)
+        #endregion
+
+        #region Implementation
+
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
+        public async Task<ApiResponse> Register(RegisterFormModel form)
         {
             if (form == null || RegisterFormModel.ValidateForm(form) == false)
-                return _Response(new ApiResponse
-                {
-                    ErrorMessage = ErrorMessages.InvalidRegistration
-                }, 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.InvalidRegistration, 403);
 
             var user = new AppUser
             {
@@ -52,28 +57,26 @@ namespace mLingo.Modules
             var result = await UserManager.CreateAsync(user, form.Password);
 
             if (!result.Succeeded)
-                return _Response(new ApiResponse
-                {
-                    ErrorMessage = ErrorMessages.InvalidRegistration
-                }, 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.InvalidRegistration, 403);
 
+            var addRoleResult = await UserManager.AddToRoleAsync(user, "Member");
+
+            if (!addRoleResult.Succeeded) 
+                return ApiResponse.StandardErrorResponse(ErrorMessages.DbError, 500);
 
             var userIdentity = await UserManager.FindByNameAsync(user.UserName);
+            var identityResponse = userIdentity.Credentials(await userIdentity.GenerateJwtToken(UserManager, Configuration));
 
-            return _Response(new ApiResponse
-            {
-                Response = userIdentity.Credentials(userIdentity.GenerateJwtToken(Configuration))
-            }, 200);
-
+            return ApiResponse.StandardSuccessResponse(identityResponse, 200);
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> Login(LoginFormModel form)
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
+        public async Task<ApiResponse> Login(LoginFormModel form)
         {
             if (form == null || LoginFormModel.ValidateForm(form) == false)
-                return _Response(new ApiResponse
-                {
-                    ErrorMessage = ErrorMessages.InvalidLogin
-                }, 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.InvalidLogin, 403);
 
             var isEmail = form.UserId.Contains("@");
 
@@ -82,55 +85,54 @@ namespace mLingo.Modules
                 : await UserManager.FindByNameAsync(form.UserId);
 
             if (user == null)
-                return _Response(new ApiResponse
-                {
-                    ErrorMessage = isEmail ? ErrorMessages.UserEmailNotFound : ErrorMessages.UsernameNotFound
-                }, 404);
+            {
+                var errMsg = isEmail ? ErrorMessages.UserEmailNotFound : ErrorMessages.UsernameNotFound;
+                return ApiResponse.StandardErrorResponse(errMsg, 404);
+            }
+                
 
             var isPasswordOk = await UserManager.CheckPasswordAsync(user, form.Password);
 
             if (!isPasswordOk)
-                return _Response(new ApiResponse
-                {
-                    ErrorMessage = ErrorMessages.InvalidLogin
-                }, 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.InvalidLogin, 403);
 
-            return _Response(new ApiResponse
-            {
-                Response = user.Credentials(user.GenerateJwtToken(Configuration))
-            }, 200);
+            var userCredentials = user.Credentials(await user.GenerateJwtToken(UserManager, Configuration));
+            return ApiResponse.StandardSuccessResponse(userCredentials, 200);
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> Details(string username)
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
+        public async Task<ApiResponse> Details(string username)
         {
             var user = await UserManager.FindByNameAsync(username);
 
-            if (user == null)
-            {
-                return _Response(new ApiResponse
-                {
-                    ErrorMessage = ErrorMessages.UsernameNotFound
-                }, 403);
-            }
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
 
-            return _Response(new ApiResponse
-            {
-                Response = user.CredentialsNoToken()
-            }, 200);
+            var credentials = user.CredentialsNoToken();
+            return ApiResponse.StandardSuccessResponse(credentials, 200);
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> Delete(string username)
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
+        public async Task<ApiResponse> Delete(string username)
         {
             var user = await UserManager.FindByNameAsync(username);
-            if (user == null) return _Response(401);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
             var res = await UserManager.DeleteAsync(user);
-            return res.Succeeded ? _Response(200) : _Response(null, 404);
+            return res.Succeeded
+                ? ApiResponse.StandardSuccessResponse(null, 200)
+                : ApiResponse.StandardErrorResponse(ErrorMessages.DbError, 500);
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> EditInformation(string username, EditInformationForm form)
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
+        public async Task<ApiResponse> EditInformation(string username, EditInformationForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
-            if (user == null) return _Response(404);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
 
             try
             {
@@ -143,24 +145,23 @@ namespace mLingo.Modules
                 }
 
                 DbContext.SaveChanges();
-                return _Response(200);
+                return ApiResponse.StandardSuccessResponse(null, 200);
             }
-            catch
+            catch(Exception e)
             {
-                return _Response(500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
             }
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> RequestChangeToken(string username, string prop, EditMailForm form)
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
+        public async Task<ApiResponse> RequestChangeToken(string username, string prop, EditMailForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
-            if (user == null) return _Response(404);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
 
-            if (prop == null)
-                return _Response(new ApiResponse
-                {
-                    ErrorMessage = "Invalid prop"
-                }, 403);
+            if (prop == null) return ApiResponse.StandardErrorResponse(ErrorMessages.InvalidProp, 403);
 
             var token = prop switch
             {
@@ -172,48 +173,80 @@ namespace mLingo.Modules
             };
 
             if (token == "Invalid prop" || token == "No email")
-                return _Response(new ApiResponse
-                {
-                    ErrorMessage = token
-                }, 403);
+                return ApiResponse.StandardErrorResponse(token, 403);
 
-            return _Response(new ApiResponse
+            return ApiResponse.StandardSuccessResponse(token, 200);
+        }
+
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
+        public async Task<ApiResponse> ChangeEmail(string username, string token, EditMailForm form)
+        {
+            var user = await UserManager.FindByNameAsync(username);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
+
+            IdentityResult res;
+            try
             {
-                Response = token
-            }, 200);
+                res = await UserManager.ChangeEmailAsync(user, form.Email, token);
+                DbContext.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
+            }
+            return res.Succeeded 
+                ? ApiResponse.StandardSuccessResponse(null, 200) 
+                : ApiResponse.StandardErrorResponse(ErrorMessages.ChangeMailFail, 403);
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> ChangeEmail(string username, string token, EditMailForm form)
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
+        public async Task<ApiResponse> ChangePassword(string username, ResetPasswordForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
-            if (user == null) return _Response(404);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
 
-            var res = await UserManager.ChangeEmailAsync(user, form.Email, token);
-            DbContext.SaveChanges();
-
-            return _Response(res.Succeeded ? 202 : 403);
+            IdentityResult res;
+            try
+            {
+                res = await UserManager.ChangePasswordAsync(user, form.OldPassword, form.NewPassword);
+                DbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
+            }
+            return res.Succeeded
+                ? ApiResponse.StandardSuccessResponse(null, 200)
+                : ApiResponse.StandardErrorResponse(ErrorMessages.ChangePasswordFail, 403);
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> ChangePassword(string username, ResetPasswordForm form)
+        /// <summary>
+        /// For documentation <see cref="AccountController"/>
+        /// </summary>
+        public async Task<ApiResponse> ResetPassword(string username, string token, ResetPasswordForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
-            if (user == null) return _Response(404);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
 
-            var res = await UserManager.ChangePasswordAsync(user, form.OldPassword, form.NewPassword);
-            DbContext.SaveChanges();
-
-            return _Response(res.Succeeded ? 202 : 403);
+            IdentityResult res;
+            try
+            {
+                res = await UserManager.ResetPasswordAsync(user, token, form.NewPassword);
+                DbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
+            }
+            return res.Succeeded
+                ? ApiResponse.StandardSuccessResponse(null, 200)
+                : ApiResponse.StandardErrorResponse(ErrorMessages.ResetPasswordFail, 403);
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> ResetPassword(string username, string token, ResetPasswordForm form)
-        {
-            var user = await UserManager.FindByNameAsync(username);
-            if (user == null) return _Response(404);
-
-            var res = await UserManager.ResetPasswordAsync(user, token, form.NewPassword);
-            DbContext.SaveChanges();
-
-            return _Response(res.Succeeded ? 202 : 403);
-        }
+        #endregion
     }
 }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using IvanAkcheurov.Commons;
 using Microsoft.AspNetCore.Identity;
-using mLingo.Extensions.Api;
 using mLingo.Models.Database;
 using mLingo.Models.Database.Collections;
 using mLingo.Models.Database.User;
@@ -13,43 +12,53 @@ using mLingoCore.Models.Api.Base;
 using mLingoCore.Models.Api.ResponseModels.Collections;
 using mLingoCore.Models.Forms.Collections;
 using mLingoCore.Services;
+using mLingo.Controllers.Api;
 
 namespace mLingo.Modules
 {
+    /// <summary>
+    /// Standard implementation of <see cref="ICollectionManager"/> used to manage collections of cards.
+    /// </summary>
     public class StandardCollectionManager : ICollectionManager
     {
+        #region PublicProperties
+
         public UserManager<AppUser> UserManager { get; set; }
 
         public AppDbContext DbContext { get; set; }
 
         public ILanguageDetector LanguageDetector { get; set; }
 
-        public KeyValuePair<ApiResponse, int> Find(string id, string name)
+        #endregion
+
+        #region Implementation
+
+        /// <summary>
+        /// For documentation <see cref="CollectionsController"/>
+        /// </summary>
+        public ApiResponse Find(string id, string name)
         {
             if (!id.IsNullOrEmpty())
             {
                 var collection = DbContext.Collections.Find(id);
                 if (collection == null)
-                    return new ApiResponse {ErrorMessage = ErrorMessages.NoSuchCollection}.WithStatusCode(403);
+                    return ApiResponse.StandardErrorResponse(ErrorMessages.NoSuchCollection, 403);
 
                 var cards = collection.Cards
                     .Select(card => new CardResponse { CollectionId = card.CollectionId, Definition = card.Definition, Term = card.Term, Id = card.Id })
                     .ToList();
 
-                return new ApiResponse
+                return ApiResponse.StandardSuccessResponse(new CollectionFullResponse
                 {
-                    Response = new CollectionFullResponse
-                    {
-                        Id = collection.Id,
-                        Name = collection.Name,
-                        OwnerId = collection.OwnerId,
-                        Cards = cards,
-                        BaseLanguage = collection.Details.BaseLanguage,
-                        SecondLanguage = collection.Details.SecondLanguage,
-                        PlayCount = collection.Details.PlayCount,
-                        Rating = collection.Details.Rating
-                    }
-                }.WithStatusCode(200);
+                    Id = collection.Id,
+                    Name = collection.Name,
+                    OwnerId = collection.OwnerId,
+                    Cards = cards,
+                    BaseLanguage = collection.Details.BaseLanguage,
+                    SecondLanguage = collection.Details.SecondLanguage,
+                    PlayCount = collection.Details.PlayCount,
+                    Rating = collection.Details.Rating
+                }, 200);
             }
 
             if (!name.IsNullOrEmpty())
@@ -77,16 +86,19 @@ namespace mLingo.Modules
                     })
                     .ToList();
 
-                return new ApiResponse {Response = colls}.WithStatusCode(200);
+                return ApiResponse.StandardSuccessResponse(colls, 200);
             }
 
-            return new ApiResponse {ErrorMessage = ErrorMessages.InvalidQuery}.WithStatusCode(403);
+            return ApiResponse.StandardErrorResponse(ErrorMessages.InvalidQuery, 403);
         }
 
-        public KeyValuePair<ApiResponse, int> UserCollections(string username)
+        /// <summary>
+        /// For documentation <see cref="CollectionsController"/>
+        /// </summary>
+        public ApiResponse UserCollections(string username)
         {
             var user = DbContext.Users.FirstOrDefault(u => u.UserName.Equals(username));
-            if (user == null) return new ApiResponse {ErrorMessage = ErrorMessages.UsernameNotFound}.WithStatusCode(404);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
 
             List<Collection> collections;
             try
@@ -98,7 +110,7 @@ namespace mLingo.Modules
                 collections = new List<Collection>();
             }
 
-            if (collections.Count == 0) return new ApiResponse {ErrorMessage = ErrorMessages.NoSuchCollection}.WithStatusCode(404);
+            if (collections.Count == 0) return ApiResponse.StandardErrorResponse(ErrorMessages.NoSuchCollection, 404);
 
             var collectionsNormalized = collections
                 .Select(c => new CollectionOverviewResponse
@@ -113,13 +125,16 @@ namespace mLingo.Modules
                 })
                 .ToList();
 
-            return new ApiResponse {Response = collectionsNormalized}.WithStatusCode(200);
+            return ApiResponse.StandardSuccessResponse(collectionsNormalized, 200);
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> Create(string username, CreateCollectionFormModel newCollectionData)
+        /// <summary>
+        /// For documentation <see cref="CollectionsController"/>
+        /// </summary>
+        public async Task<ApiResponse> Create(string username, CreateCollectionFormModel newCollectionData)
         {
             var user = await UserManager.FindByNameAsync(username);
-            if (user == null) return ApiResponseExtensions.StatusCodeOnly(401);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
 
             var colId = Guid.NewGuid().ToString();
             var detailsId = Guid.NewGuid().ToString();
@@ -142,7 +157,7 @@ namespace mLingo.Modules
 
             var baseLang = LanguageDetector.DetectLanguage(testBaseLangStr.Trim());
             var secondLang = LanguageDetector.DetectLanguage(testSecondLangStr.Trim());
-           
+
 
             var details = new CollectionDetails
             {
@@ -154,13 +169,13 @@ namespace mLingo.Modules
             };
 
             var cards = newCollectionData.Cards.Select(c => new Card
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Collection = collection,
-                    CollectionId = collection.Id,
-                    Term = c.Term,
-                    Definition = c.Definition
-                })
+            {
+                Id = Guid.NewGuid().ToString(),
+                Collection = collection,
+                CollectionId = collection.Id,
+                Term = c.Term,
+                Definition = c.Definition
+            })
                 .ToList();
 
             try
@@ -170,29 +185,29 @@ namespace mLingo.Modules
                 DbContext.CollectionDetails.Add(details);
                 DbContext.SaveChanges();
             }
-            catch
+            catch(Exception e)
             {
-                return new ApiResponse {ErrorMessage = ""}.WithStatusCode(403);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
             }
 
-            return ApiResponseExtensions.StatusCodeOnly(202);
+            return ApiResponse.StatusCodeResponse(202);
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> Update(string id, string username, UpdateCollectionFormModel updatedCollection)
+        /// <summary>
+        /// For documentation <see cref="CollectionsController"/>
+        /// </summary>
+        public async Task<ApiResponse> Update(string id, string username, UpdateCollectionFormModel updatedCollection)
         {
             // find collection to update
             var collectionToUpdate = DbContext.Collections.Find(id);
             if (collectionToUpdate == null)
-                return new ApiResponse
-                {
-                    ErrorMessage = "Collection does not exist"
-                }.WithStatusCode(403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.NoSuchCollection, 403);
 
             // check if user trying to update collection is its owner
             var user = await UserManager.FindByNameAsync(username);
-            if (user == null) return ApiResponseExtensions.StatusCodeOnly(401);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 401);
             var uid = user.Id;
-            if (!uid.Equals(collectionToUpdate.OwnerId)) return ApiResponseExtensions.StatusCodeOnly(401);
+            if (!uid.Equals(collectionToUpdate.OwnerId)) return ApiResponse.StatusCodeResponse(401);
 
             // update name
             collectionToUpdate.Name = updatedCollection.Name;
@@ -243,7 +258,7 @@ namespace mLingo.Modules
                 foreach (var updated in cardsToUpdate)
                 {
                     var card = DbContext.Cards.Find(updated.Id);
-                    if(card == null) continue;
+                    if (card == null) continue;
 
                     card.Term = updated.Term;
                     card.Definition = updated.Definition;
@@ -251,19 +266,22 @@ namespace mLingo.Modules
 
                 DbContext.SaveChanges();
             }
-            catch
+            catch(Exception e)
             {
-                return ApiResponseExtensions.StatusCodeOnly(500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
             }
 
-            return ApiResponseExtensions.StatusCodeOnly(202);
+            return ApiResponse.StatusCodeResponse(202);
         }
 
-        public async Task<KeyValuePair<ApiResponse, int>> DetectLanguage(string collectionId, string username)
+        /// <summary>
+        /// For documentation <see cref="CollectionsController"/>
+        /// </summary>
+        public async Task<ApiResponse> DetectLanguage(string collectionId, string username)
         {
             var collection = DbContext.Collections.Find(collectionId);
             var user = await UserManager.FindByNameAsync(username);
-            if (user.Id != collection.OwnerId) return ApiResponseExtensions.StatusCodeOnly(401);
+            if (user.Id != collection.OwnerId) return ApiResponse.StatusCodeResponse(401);
 
             var testBaseStr = "";
             var testSecondStr = "";
@@ -280,10 +298,13 @@ namespace mLingo.Modules
             details.BaseLanguage = baseLang;
             details.SecondLanguage = secondLang;
 
-            return ApiResponseExtensions.StatusCodeOnly(200);
+            return ApiResponse.StatusCodeResponse(200);
         }
 
-        public KeyValuePair<ApiResponse, int> Delete(string id)
+        /// <summary>
+        /// For documentation <see cref="CollectionsController"/>
+        /// </summary>
+        public ApiResponse Delete(string id)
         {
             try
             {
@@ -291,12 +312,14 @@ namespace mLingo.Modules
                 DbContext.Cards.RemoveRange(DbContext.Cards.Where(c => c.CollectionId.Equals(id)));
                 DbContext.SaveChanges();
             }
-            catch
+            catch(Exception e)
             {
-                return ApiResponseExtensions.StatusCodeOnly(403);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
             }
 
-            return ApiResponseExtensions.StatusCodeOnly(202);
+            return ApiResponse.StatusCodeResponse(202);
         }
+
+        #endregion
     }
 }

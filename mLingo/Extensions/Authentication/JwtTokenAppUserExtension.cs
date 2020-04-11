@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using mLingo.Models.Database.User;
@@ -18,10 +23,13 @@ namespace mLingo.Extensions.Authentication
         /// </summary>
         /// <param name="user">The users details</param>
         /// <returns></returns>
-        public static string GenerateJwtToken(this AppUser user, IConfiguration configuration)
+        public static async Task<string> GenerateJwtToken(this AppUser user, UserManager<AppUser> userManager, IConfiguration configuration)
         {
-            // Set our tokens claims
-            var claims = new[]
+
+            var userRoles = await userManager.GetRolesAsync(user); 
+
+            // Set our tokens claims for member
+            var claims = new List<Claim>
             {
                 // Unique ID for this token
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N")),
@@ -33,6 +41,9 @@ namespace mLingo.Extensions.Authentication
                 // Add user Id so that UserManager.GetUserAsync can find the user based on Id
                 new Claim(ClaimTypes.NameIdentifier, user.Id)
             };
+
+            // Add role claims
+            claims.AddRange(userRoles.Select(role => new Claim(ClaimTypes.Role, role)));
 
             // Create the credentials used to generate the token
             var credentials = new SigningCredentials(
@@ -47,8 +58,7 @@ namespace mLingo.Extensions.Authentication
                 audience: configuration["Jwt:JwtAudience"],
                 claims: claims,
                 signingCredentials: credentials,
-                // Expire if not used for 3 months
-                expires: DateTime.Now.AddMonths(3)
+                expires: DateTime.Now.AddHours(3)
             );
 
             // Return the generated token

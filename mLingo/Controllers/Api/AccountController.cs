@@ -51,12 +51,22 @@ namespace mLingo.Controllers.Api
         #endregion
 
         #region LoginAndRegister
-
         /// <summary>
         /// Registers new user account.
         /// </summary>
+        /// <remarks>
+        /// {
+        ///     "Username": "example1",
+        ///     "Password": "zaq1@WSX",
+        ///     "Email": "email@example1.com",
+        ///     "FirstName": "John",
+        ///     "LastName": "Doe",
+        ///     "DateOfBirth": "iso-formatted-timestamp",
+        ///     "PhoneNo": "123456789"
+        /// } 
+        /// </remarks>
         /// <param name="registerForm">User information passed through request body</param>
-        /// <returns>returns appropriate <see cref="ApiResponse{T}"/></returns>
+        /// <returns>returns appropriate <see cref="ApiResponse"/></returns>
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterFormModel registerForm)
@@ -69,6 +79,12 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Logs user in.
         /// </summary>
+        /// <remarks>
+        /// {
+        ///     "Username": "example1",
+        ///     "Password": "zaq1@WSX"
+        /// }
+        /// </remarks>
         /// <param name="loginForm">User information passed through request body</param>
         /// <returns>returns appropriate <see cref="ApiResponse{T}"/></returns>
         [HttpPost]
@@ -111,6 +127,14 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Edit accounts <see cref="UserInformation"/>
         /// </summary>
+        /// <remarks>
+        /// {
+        ///     "FirstName": "edited_firstname",
+        ///     "LastName": "edited_lastname",
+        ///     "DateOfBirth": "iso_formatted_timestamp",
+        ///     "Age": 0
+        /// }
+        /// </remarks>
         /// <param name="userId">id of account</param>
         /// <param name="newInformation">updated information</param>
         /// <returns>Http status code</returns>
@@ -124,6 +148,11 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Generates token to change email / password
         /// </summary>
+        /// <remarks>
+        /// {
+        ///     "Email": "new@mail.com"
+        /// }
+        /// </remarks>
         /// <param name="userId"></param>
         /// <param name="prop">Property user wants to change (email / password)</param>
         /// <param name="newEmail">Parameter required to generate token for email change</param>
@@ -138,6 +167,11 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Changes email of an account
         /// </summary>
+        /// <remarks>
+        /// {
+        ///     "Email": "new@email.com"
+        /// }
+        /// </remarks>
         /// <param name="userId"></param>
         /// <param name="token">Email change token generated via <see cref="RequestChangeToken"/></param>
         /// <param name="newEmail"></param>
@@ -152,6 +186,12 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Resets password for the account
         /// </summary>
+        /// <remarks>
+        /// {
+        ///     "OldPassword": "old_password",
+        ///     "NewPassword": "new_password"
+        /// }
+        /// </remarks>
         /// <param name="userId"></param>
         /// <param name="token">reset password token generated via <see cref="RequestChangeToken"/></param>
         /// <param name="newPassword"></param>

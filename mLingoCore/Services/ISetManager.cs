@@ -10,18 +10,18 @@ namespace mLingoCore.Services
     /// </summary>
     public interface ISetManager
     {
-        KeyValuePair<ApiResponse, int> Find(string id, string name);
+        ApiResponse Find(string id, string name);
 
-        Task<KeyValuePair<ApiResponse, int>> UserSets(string username);
+        Task<ApiResponse> UserSets(string username);
 
-        KeyValuePair<ApiResponse, int> CreateSet(string username, CreateSetForm newSetData);
+        ApiResponse CreateSet(string username, CreateSetForm newSetData);
 
-        KeyValuePair<ApiResponse, int> DeleteSet(string id);
+        ApiResponse DeleteSet(string id);
 
-        KeyValuePair<ApiResponse, int> EditSet(string id, object editedData);
+        ApiResponse EditSet(string id, object editedData);
 
-        KeyValuePair<ApiResponse, int> Add(string setId, string collectionId);
+        ApiResponse Add(string setId, string collectionId);
 
-        KeyValuePair<ApiResponse, int> Remove(string setId, string collectionId);
+        ApiResponse Remove(string setId, string collectionId);
     }
 }
