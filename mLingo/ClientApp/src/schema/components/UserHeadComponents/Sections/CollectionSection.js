@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import UserSection from '../UserSection';
 import CollectionCardComponent from '../../CardComponents/CollectionCardComponent';
+import Loading from '../../Animations/Loading'
 
 import { authenticationService } from "../../../../services/authentication";
 
@@ -36,7 +37,7 @@ class CollectionSection extends React.Component {
         return (
             <UserSection title="collections" description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.">
                 {
-                    this.state.loading ? <p>Loading</p> : <div>
+                    this.state.loading ? <div className="position-relative"><Loading/></div>  : <div>
                         <div className="yourcollections">
                             {
                                 this.state.exist ? this.state.fields.map(element => (

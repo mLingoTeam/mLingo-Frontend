@@ -138,6 +138,17 @@ input.text{
   }
 }
 
+input[type='text'],textarea{
+  &:hover, &:focus, &:active, &:checked {
+    text-decoration: none !important;
+    outline: none;
+  }
+}
+
+.color-dark-blue{
+  color: $dark-blue !important;
+}
+
 
 @keyframes navbar-monkey-bounce {
   0% {

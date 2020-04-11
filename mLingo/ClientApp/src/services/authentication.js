@@ -83,7 +83,7 @@ function removeCollection(id, token) {
     .catch(err => console.log(err))
 }
 
-function updateCollection({ id, token, cards }) {
+function updateCollection({ id, token, cards, name }) {
 
   console.log(id)
   console.log(cards)
@@ -91,7 +91,7 @@ function updateCollection({ id, token, cards }) {
   const requestOptions = {
     method: "PUT",
     headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
-    body: JSON.stringify({ Name: null, Cards: cards, BaseLanguage: null, SecondLanguage: null })
+    body: JSON.stringify({ Name: name, Cards: cards, BaseLanguage: null, SecondLanguage: null })
   }
 
   return fetch(`http://localhost:5000/api/collections/update?id=${id}`, requestOptions)

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import UserSection from '../UserSection';
 import StudySetCardComponent from '../../CardComponents/StudySetCardComponent';
+import Loading from '../../Animations/Loading'
 
 import { authenticationService } from "../../../../services/authentication";
 
@@ -36,7 +37,7 @@ class StudySetsSection extends React.Component {
         return (
             <UserSection title="study sets" description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.">
                 {
-                    this.state.loading ? <p>Loading</p> : <div>
+                    this.state.loading ? <div className="position-relative"><Loading/></div> : <div>
                         <div className="yourstudysets">
                             {
                                 this.state.exist ? this.state.fields.map(element => (
@@ -47,7 +48,7 @@ class StudySetsSection extends React.Component {
                                 this.state.exist ? <button class="green-button">Load more</button> : null
                             }
                         </div>
-                        <div className="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center align-items-center">
                             <Link to="/create" className="plus-button"><FaPlus /></Link>
                         </div>
                     </div>
