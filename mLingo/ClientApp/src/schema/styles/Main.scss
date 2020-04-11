@@ -25,6 +25,7 @@
 /* 3.6 WelcomeSection.js */
 /* 3.7 Newsletter */
 /* 3.8 Steps.js & Step.js */
+/* 3.9 Opinions.js & Opinion.js */
 
 /* Layout Components */
 /* 4.1 AppNavbar.js */
@@ -298,6 +299,12 @@
 /* LandPage Components */
 //////////////////////////////////////////////////////
 
+.main-page-h2{
+  color: $dark-blue;
+  font-size: 36px;
+  font-weight: bold;
+}
+
 //////////////////////////////////////////////////////
 /* 3.1 Formular.js */
 //////////////////////////////////////////////////////
@@ -482,10 +489,7 @@ div.welcome-section{
     padding-right: 80px;
 
   h2{
-    font-size: 32px;
     text-align: left;
-    font-weight: bold;
-    color: $light-blue;
   }
   p{
     font-size: 16px;
@@ -572,10 +576,6 @@ div.welcome-section{
   position: relative;
   color: $dark-blue;
 
-  h2{
-    font-weight: bold;
-    font-size: 32px;
-  }
   p{
     font-size: 18px;
     margin: 0 !important;
@@ -640,10 +640,6 @@ div.welcome-section{
   color: $dark-blue;
   padding-top: 0px !important;
 
-  >h2{
-    font-weight: bold;
-    font-size: 34px;
-  }
   >h2::before{
     content: url("../../img/bubbles-L.svg");
     margin-right: 10px;
@@ -709,6 +705,53 @@ div.welcome-section{
     }
   }
 }
+
+//////////////////////////////////////////////////////
+/* 3.9 Opinions.js & Opinion.js */
+//////////////////////////////////////////////////////
+
+#Opinions{
+
+  h2{
+    text-align: center;
+    margin-bottom: 10vh;
+  }
+
+}
+
+.Opinion{
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+
+
+  img{
+    width: 130px;
+    height: 130px;
+    border-radius: 100%;
+  }
+  &::before{
+    content: url("../../img/bubbles-newsletter-01.svg");
+    transform: scale(0.8);
+    position: absolute;
+    top:-50%;
+    left:-10%;
+  }
+  &::after{
+    content: url("../../img/bubbles-newsletter-02.svg");
+    transform: scale(0.8);
+    position: absolute;
+    bottom:-40%;
+    left:0;
+  }
+
+  p{
+    font-size: 16px;
+    color: $dark-blue;
+    word-spacing: 2px;
+  }
+}
+
 
 
 //////////////////////////////////////////////////////

@@ -6,7 +6,7 @@ const WelcomeSection = props => {
         <div className="welcome-section">
             <img src={backgroundimg} className="img-fluid"/>
             <div>
-                <h2>mLingo</h2>
+                <h2 className="main-page-h2">mLingo</h2>
                 <p> practice your skills daily through easy to set up learning plans. Join now! </p>
                 <button className="green-button px-5">get started</button>
             </div>
