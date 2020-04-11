@@ -30,8 +30,8 @@ const Steps = () => {
 
     return(
         <div id="Steps">
-            <h2>here's how it works!</h2>
-            <div id="Steps-container">
+            <h2 className="mt-5">here's how it works!</h2>
+            <div id="Steps-container" className="mt-5">
                 {steps_set}
             </div>
         </div>

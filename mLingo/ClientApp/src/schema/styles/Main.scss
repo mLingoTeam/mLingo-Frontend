@@ -574,16 +574,35 @@ div.welcome-section{
 
   h2{
     font-weight: bold;
-    font-size: 28px;
+    font-size: 32px;
   }
   p{
+    font-size: 18px;
     margin: 0 !important;
   }
-
   input{
     width: 200px;
-    margin: 20px 0;
   }
+
+
+  @media(max-width: $mobile-res){
+    &{
+      h2{
+        font-size: 20px;
+      }
+      p{
+        font-size: 12px;
+        margin: 0 !important;
+      }
+      input{
+        margin: 10px 0 !important;
+        font-size: 12px;
+        width: 150px;
+      }
+    }
+  }
+
+
 
   .left-circle-container, .right-circle-container{
     position: absolute;
@@ -593,15 +612,19 @@ div.welcome-section{
     max-width: 50vw;
   }
   .left-circle-container{
-    left: -30%;
+    left: -25%;
   }
   .right-circle-container{
-    right: -30%;
+    right: -25%;
   }
 
   .newsletter-subscribe{
     padding: 200px 0;
     text-align:center;
+
+    @media(max-width: $mobile-res){
+      padding: 150px 0;
+    }
   }
 }
 
@@ -615,18 +638,43 @@ div.welcome-section{
   justify-content: center;
   align-items: center;
   color: $dark-blue;
+  padding-top: 0px !important;
 
   >h2{
     font-weight: bold;
-    font-size: 32px;
-    margin: 40px;
+    font-size: 34px;
   }
+  >h2::before{
+    content: url("../../img/bubbles-L.svg");
+    margin-right: 10px;
+  }
+  >h2::after{
+    content: url("../../img/bubbles-R.svg");
+    margin-left: 10px;
+  }
+
+  @media(max-width: $mobile-res){
+    &{
+      padding: 0 !important;
+
+      >h2{
+        font-size: 20px;
+      }
+    }
+  }
+
 }
 #Steps-container{
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
+
+  @media(max-width: 1200px){
+    &{
+      flex-wrap: wrap;
+    }
+  }
 }
 
 .Step{
@@ -634,6 +682,12 @@ div.welcome-section{
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-around;
+
+  @media(max-width: 1200px){
+    &{
+      justify-content: space-around;
+    }
+  }
 
   img{
     transform: scale(0.8);
@@ -643,6 +697,16 @@ div.welcome-section{
   }
   div{
     margin:  0 20px;
+  }
+
+  @media(max-width: $mobile-res){
+    &{
+      flex-wrap: wrap;
+      text-align: center;
+      img{
+        margin-bottom: 20px;
+      }
+    }
   }
 }
 

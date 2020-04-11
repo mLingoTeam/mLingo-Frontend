@@ -28,7 +28,8 @@ a:hover, a:focus, a:checked {
 
 @media (max-width: 576px) {
   .green-button {
-    font-size: 16px !important;
+    font-size: 12px !important;
+    padding: 5px 3px;
   }
 }
 
@@ -720,16 +721,31 @@ div.welcome-section > div p {
 
 #newsletter-section h2 {
   font-weight: bold;
-  font-size: 28px;
+  font-size: 32px;
 }
 
 #newsletter-section p {
+  font-size: 18px;
   margin: 0 !important;
 }
 
 #newsletter-section input {
   width: 200px;
-  margin: 20px 0;
+}
+
+@media (max-width: 576px) {
+  #newsletter-section h2 {
+    font-size: 20px;
+  }
+  #newsletter-section p {
+    font-size: 12px;
+    margin: 0 !important;
+  }
+  #newsletter-section input {
+    margin: 10px 0 !important;
+    font-size: 12px;
+    width: 150px;
+  }
 }
 
 #newsletter-section .left-circle-container, #newsletter-section .right-circle-container {
@@ -741,16 +757,22 @@ div.welcome-section > div p {
 }
 
 #newsletter-section .left-circle-container {
-  left: -30%;
+  left: -25%;
 }
 
 #newsletter-section .right-circle-container {
-  right: -30%;
+  right: -25%;
 }
 
 #newsletter-section .newsletter-subscribe {
   padding: 200px 0;
   text-align: center;
+}
+
+@media (max-width: 576px) {
+  #newsletter-section .newsletter-subscribe {
+    padding: 150px 0;
+  }
 }
 
 /* 3.8 Steps.js & Step.js */
@@ -769,12 +791,31 @@ div.welcome-section > div p {
       -ms-flex-align: center;
           align-items: center;
   color: #000536;
+  padding-top: 0px !important;
 }
 
 #Steps > h2 {
   font-weight: bold;
-  font-size: 32px;
-  margin: 40px;
+  font-size: 34px;
+}
+
+#Steps > h2::before {
+  content: url("../../img/bubbles-L.svg");
+  margin-right: 10px;
+}
+
+#Steps > h2::after {
+  content: url("../../img/bubbles-R.svg");
+  margin-left: 10px;
+}
+
+@media (max-width: 576px) {
+  #Steps {
+    padding: 0 !important;
+  }
+  #Steps > h2 {
+    font-size: 20px;
+  }
 }
 
 #Steps-container {
@@ -790,6 +831,13 @@ div.welcome-section > div p {
           align-items: center;
 }
 
+@media (max-width: 1200px) {
+  #Steps-container {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+
 .Step {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -803,6 +851,13 @@ div.welcome-section > div p {
       justify-content: space-around;
 }
 
+@media (max-width: 1200px) {
+  .Step {
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+}
+
 .Step img {
   -webkit-transform: scale(0.8);
           transform: scale(0.8);
@@ -814,6 +869,17 @@ div.welcome-section > div p {
 
 .Step div {
   margin: 0 20px;
+}
+
+@media (max-width: 576px) {
+  .Step {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    text-align: center;
+  }
+  .Step img {
+    margin-bottom: 20px;
+  }
 }
 
 /* Layout Components */

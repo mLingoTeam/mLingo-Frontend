@@ -18,10 +18,10 @@ class Newsletter extends React.Component {
                     <img src={left} className="left-circle img-fluid"/>
                 </div>
                 <div className="newsletter-subscribe">
-                    <h2>newsletter</h2>
+                    <h2 className="mb-5">newsletter</h2>
                     <p>awesome content once a week.</p>
                     <p>{"No spam, we promise :)"}</p>
-                    <input type="email" className="text" placeholder="email"/>
+                    <input type="email" className="text my-5" placeholder="email"/>
                     <br/>
                     <button className="green-button px-5">sign me up</button>
                 </div>
