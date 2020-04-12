@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using mLingo.Extensions.Api;
 using mLingo.Models.Database;
 using mLingo.Models.Database.Collections;
 using mLingo.Models.Database.JoinTables;
@@ -36,9 +35,10 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="SetsController"/>
         /// </summary>
-        public ApiResponse Find(string id, string name)
+        public ApiResponse Find(string id, string name, string range)
         {
-            if (name == null && id == null) return ApiResponse.StatusCodeResponse(403);
+            if (name == null && id == null) 
+                return ApiResponse.StandardErrorResponse(ErrorMessages.Server.ActionFail("search for set"), 400);
 
             ApiResponse response;
 
@@ -69,14 +69,30 @@ namespace mLingo.Modules
                 }
                 catch
                 {
-                    response = ApiResponse.StandardErrorResponse(ErrorMessages.SetNotFound, 404);
+                    response = ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.SetNotFound(id), 404);
                 }
             }
             else
             {
                 try
                 {
-                    var sets = DbContext.Sets.Where(s => s.Name.Equals(name)).ToList();
+                    List<Set> sets;
+                    if (range != null)
+                    {
+                        var split = range.Split('-');
+                        var start = int.Parse(split[0]);
+                        var end = int.Parse(split[1]);
+                        sets = DbContext.Sets
+                            .Where(s => s.Name.ToUpper().Contains(name.ToUpper()))
+                            .Skip(start).Take(end - start).ToList();
+                    }
+                    else
+                    {
+                        sets = DbContext.Sets
+                            .Where(s => s.Name.ToUpper().Contains(name.ToUpper()))
+                            .Take(10).ToList();
+                    }
+
                     var res = sets.Select(s => new SetOverviewResponse
                     {
                         Name = s.Name,
@@ -86,7 +102,7 @@ namespace mLingo.Modules
                 }
                 catch
                 {
-                    response = ApiResponse.StandardErrorResponse(ErrorMessages.SetNotFound, 404);
+                    response = ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.SetNotFound(name), 404);
                 }
             }
             
@@ -100,7 +116,7 @@ namespace mLingo.Modules
         {
             var user = await UserManager.FindByNameAsync(username);
             if (user == null)
-                return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
 
             List<SetOverviewResponse> setsResponse;
             try
@@ -116,7 +132,7 @@ namespace mLingo.Modules
             }
             catch
             {
-                setsResponse = new List<SetOverviewResponse>();
+                return ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.UserHasNoSets, 404);
             }
 
             return ApiResponse.StandardSuccessResponse(setsResponse, 200);
@@ -156,10 +172,10 @@ namespace mLingo.Modules
             }
             catch
             {
-                return ApiResponse.StandardErrorResponse(ErrorMessages.DbError, 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.Server.ActionFail("create set"), 500);
             }
 
-            return ApiResponse.StatusCodeResponse(202);
+            return ApiResponse.StatusCodeResponse(200);
         }
 
         /// <summary>
@@ -176,10 +192,10 @@ namespace mLingo.Modules
             }
             catch (Exception e)
             {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("delete set"), e.StackTrace, 500);
             }
 
-            return ApiResponse.StatusCodeResponse(202);
+            return ApiResponse.StatusCodeResponse(200);
         }
 
         /// <summary>
@@ -199,6 +215,10 @@ namespace mLingo.Modules
             {
                 var set = DbContext.Sets.Find(setId);
                 var collection = DbContext.Collections.Find(collectionId);
+                if (set == null || collection == null)
+                    return ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.ActionFail("add"), 400);
+                
+
                 var setCollection = new SetCollection
                 {
                     Set = set,
@@ -211,10 +231,10 @@ namespace mLingo.Modules
             }
             catch(Exception e)
             {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("add collection to set"), e.StackTrace, 500);
             }
 
-            return ApiResponse.StatusCodeResponse(202);
+            return ApiResponse.StatusCodeResponse(200);
         }
 
         /// <summary>
@@ -226,12 +246,14 @@ namespace mLingo.Modules
             try
             {
                 var sc = DbContext.SetCollectionJoinTable.Find(key);
+                if(sc == null) 
+                    return ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.ActionFail("delete"), 400);
                 DbContext.SetCollectionJoinTable.Remove(sc);
                 DbContext.SaveChanges();
             }
             catch(Exception e)
             {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("remove collection from set"), e.StackTrace, 500);
             }
 
             return ApiResponse.StatusCodeResponse(202);

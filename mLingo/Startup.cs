@@ -158,15 +158,16 @@ namespace mLingo
                 }
             });
 
+            // Make sure we have the database
+            serviceProvider.GetService<AppDbContext>().Database.EnsureCreated();
+            serviceProvider.GetService<AppDbContext>().Database.Migrate();
+
+            // add default roles and superuser
             app.UseDefaultMlingoRoles(serviceProvider)
                 .Wait();
 
             app.UseMlingoSuperUser(serviceProvider, Configuration)
                 .Wait();
-
-            // Make sure we have the database
-            serviceProvider.GetService<AppDbContext>().Database.EnsureCreated();
-            serviceProvider.GetService<AppDbContext>().Database.Migrate();
         }
     }
 }

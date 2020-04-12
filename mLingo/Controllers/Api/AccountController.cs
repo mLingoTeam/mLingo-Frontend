@@ -11,6 +11,7 @@ using mLingoCore.Models.Api.Base;
 using mLingoCore.Models.Forms;
 using mLingo.Models.Database.User;
 using mLingo.Modules;
+using mLingoCore.Models.Api.ResponseModels;
 using mLingoCore.Models.Forms.Accounts;
 using mLingoCore.Services;
 
@@ -29,6 +30,8 @@ namespace mLingo.Controllers.Api
 
         private readonly IAccountManager accountManager;
 
+        private readonly UserManager<AppUser> userManager;
+
         #endregion
 
         #region Constructor
@@ -42,6 +45,7 @@ namespace mLingo.Controllers.Api
         {
             apiLogger = logger;
             var am = (StandardAccountManager) accountManager;
+            this.userManager = userManager;
             am.UserManager = userManager;
             am.DbContext = dbContext;
             am.Configuration = configuration;
@@ -55,6 +59,8 @@ namespace mLingo.Controllers.Api
         /// Registers new user account.
         /// </summary>
         /// <remarks>
+        /// Sample request
+        /// POST /api/account/register
         /// {
         ///     "Username": "example1",
         ///     "Password": "zaq1@WSX",
@@ -66,7 +72,9 @@ namespace mLingo.Controllers.Api
         /// } 
         /// </remarks>
         /// <param name="registerForm">User information passed through request body</param>
-        /// <returns>returns appropriate <see cref="ApiResponse"/></returns>
+        /// <response code="200">Returns newly created user credentials <see cref="CredentialsResponse"/></response>
+        /// <response code="400">If user credentials are invalid</response>
+        /// <response code="500">If server failed to create user</response>
         [HttpPost]
         [AllowAnonymous]
         [Route("register")]
@@ -87,7 +95,8 @@ namespace mLingo.Controllers.Api
         /// }
         /// </remarks>
         /// <param name="loginForm">User information passed through request body</param>
-        /// <returns>returns appropriate <see cref="ApiResponse"/></returns>
+        /// <response code="200">Returns user credentials with access token <see cref="CredentialsResponse"/></response>
+        /// <response code="400">If login credentials are incorrect</response>
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
@@ -104,12 +113,26 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Returns all the account details based on current user context
         /// </summary>
-        /// <returns>returns approperiate <see cref="ApiResponse"/></returns>
+        /// <response code="200">Returns user credentials <see cref="CredentialsResponse"/></response>
+        /// <response code="404">If user does not exist</response>
         [HttpGet]
         [Route("details")]
         public async Task<IActionResult> Details()
         {
             var res = await accountManager.Details(HttpContext.User.Identity.Name);
+            return this.HandleManagerResponse(res);
+        }
+
+        /// <summary>
+        /// Returns all the account details based on id
+        /// </summary>
+        /// <response code="200">Returns user credentials <see cref="CredentialsResponse"/></response>
+        /// <response code="404">If user does not exist</response>
+        [HttpGet]
+        [Route("detailsbyid")]
+        public async Task<IActionResult> DetailsById([FromQuery] string id)
+        {
+            var res = await accountManager.DetailsById(id);
             return this.HandleManagerResponse(res);
         }
 
@@ -120,7 +143,9 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Deletes user account
         /// </summary>
-        /// <returns>Http status code</returns>
+        /// <response code="200">User deleted</response>
+        /// <response code="404">If user does not exist</response>
+        /// <response code="500">Server error. Returns <see cref="ErrorRapport"/> in response body</response>
         [HttpDelete]
         [Route("delete")]
         public async Task<IActionResult> Delete()
@@ -140,9 +165,9 @@ namespace mLingo.Controllers.Api
         ///     "Age": 0
         /// }
         /// </remarks>
-        /// <param name="userId">id of account</param>
         /// <param name="newInformation">updated information</param>
-        /// <returns>Http status code</returns>
+        /// <response code="200">If information updated successfully</response>
+        /// <response code="500">Server error. Returns <see cref="ErrorRapport"/> in response body</response>
         [HttpPut]
         [Route("editinformation")]
         public async Task<IActionResult> EditInformation([FromBody] EditInformationForm newInformation)
@@ -159,10 +184,11 @@ namespace mLingo.Controllers.Api
         ///     "Email": "new@mail.com"
         /// }
         /// </remarks>
-        /// <param name="userId"></param>
         /// <param name="prop">Property user wants to change (email / password)</param>
         /// <param name="newEmail">Parameter required to generate token for email change</param>
-        /// <returns><see cref="ApiResponse"/> with token string</returns>
+        /// <response code="200">Token string in response body</response>
+        /// <response code="400">Token could not be generated</response>
+        /// <response code="404">User not found</response>
         [HttpGet]
         [Route("requestchangetoken")]
         public async Task<IActionResult> RequestChangeToken([FromQuery] string prop, [FromBody]EditMailForm newEmail = null)
@@ -179,10 +205,11 @@ namespace mLingo.Controllers.Api
         ///     "Email": "new@email.com"
         /// }
         /// </remarks>
-        /// <param name="userId"></param>
         /// <param name="token">Email change token generated via <see cref="RequestChangeToken"/></param>
         /// <param name="newEmail"></param>
-        /// <returns>Http status code</returns>
+        /// <response code="200">Email changed successfully</response>
+        /// <response code="400">Invalid/expired token. <see cref="ErrorRapport"/> in response body.</response>
+        /// <response code="404">User does not exist</response>
         [HttpPut]
         [Route("changeemail")]
         public async Task<IActionResult> ChangeEmail([FromQuery] string token, [FromBody]EditMailForm newEmail)
@@ -200,10 +227,11 @@ namespace mLingo.Controllers.Api
         ///     "NewPassword": "new_password"
         /// }
         /// </remarks>
-        /// <param name="userId"></param>
         /// <param name="token">reset password token generated via <see cref="RequestChangeToken"/></param>
         /// <param name="newPassword"></param>
-        /// <returns>Http status code</returns>
+        /// <response code="200">Password reset successfully.</response>
+        /// <response code="400">Invalid/expired token. <see cref="ErrorRapport"/> in response body.</response>
+        /// <response code="404">User not found.</response>
         [HttpPut]
         [Route("resetpassword")]
         public async Task<IActionResult> ResetPassword([FromQuery] string token, [FromBody] ResetPasswordForm newPassword)
@@ -215,9 +243,10 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Changes password for the account
         /// </summary>
-        /// <param name="userId"></param>
         /// <param name="resetPasswordForm">Information required to change password <see cref="ResetPasswordForm"/></param>
-        /// <returns>Http status code</returns>
+        /// <response code="200">Password changed successfully</response>
+        /// <response code="400">Invalid/expired token. <see cref="ErrorRapport"/> in response body.</response>
+        /// <response code="404">User does not exist</response>
         [HttpPut]
         [Route("changepassword")]
         public async Task<IActionResult> ChangePassword([FromBody] ResetPasswordForm resetPasswordForm)

@@ -9,6 +9,8 @@ namespace mLingoCore.Models.Forms.Collections
     {
         public string Name { get; set; }
 
+        public string Description { get; set; }
+
         public string BaseLanguage { get; set; }
 
         public string SecondLanguage { get; set; }

@@ -10,7 +10,7 @@ namespace mLingoCore.Services
     /// </summary>
     public interface ICollectionManager
     {
-        ApiResponse Find(string id, string name);
+        ApiResponse Find(string id, string name, string range);
 
         ApiResponse UserCollections(string username);
 
