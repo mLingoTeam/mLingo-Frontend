@@ -42,7 +42,7 @@ namespace mLingo.Modules
             {
                 var collection = DbContext.Collections.Find(id);
                 if (collection == null)
-                    return ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.CollectionNotFound(id), 403);
+                    return ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.CollectionNotFound(id), 404);
 
                 var cards = collection.Cards
                     .Select(card => new CardResponse { CollectionId = card.CollectionId, Definition = card.Definition, Term = card.Term, Id = card.Id })
@@ -61,7 +61,7 @@ namespace mLingo.Modules
                 }, 200);
             }
 
-            if (name == null) return ApiResponse.StandardErrorResponse(ErrorMessages.Server.ActionFail("search for collection"), 403);
+            if (name == null) return ApiResponse.StandardErrorResponse(ErrorMessages.Server.ActionFail("search for collection"), 400);
             
             List<Collection> collections;
             try
@@ -86,7 +86,7 @@ namespace mLingo.Modules
             }
             catch (ArgumentNullException)
             {
-                return ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.CollectionNotFound(name), 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.CollectionNotFound(name), 404);
             }
 
             var colls = collections
@@ -149,8 +149,7 @@ namespace mLingo.Modules
         public async Task<ApiResponse> Create(string username, CreateCollectionFormModel newCollectionData)
         {
             var user = await UserManager.FindByNameAsync(username);
-            if (user == null) 
-                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
+            if(user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
 
             var colId = Guid.NewGuid().ToString();
             var detailsId = Guid.NewGuid().ToString();
@@ -207,7 +206,7 @@ namespace mLingo.Modules
                 return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("create collection"), e.StackTrace, 500);
             }
 
-            return ApiResponse.StatusCodeResponse(202);
+            return ApiResponse.StatusCodeResponse(200);
         }
 
         /// <summary>
@@ -218,10 +217,11 @@ namespace mLingo.Modules
             // find collection to update
             var collectionToUpdate = DbContext.Collections.Find(id);
             if (collectionToUpdate == null)
-                return ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.CollectionNotFound(id), 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.CollectionNotFound(id), 404);
 
             // check if user trying to update collection is its owner
             var user = await UserManager.FindByNameAsync(username);
+            if(user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 400);
             if (!user.Id.Equals(collectionToUpdate.OwnerId)) return ApiResponse.StatusCodeResponse(401);
 
             // update name
@@ -287,7 +287,7 @@ namespace mLingo.Modules
                 return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("edit collection"), e.StackTrace, 500);
             }
 
-            return ApiResponse.StatusCodeResponse(202);
+            return ApiResponse.StatusCodeResponse(200);
         }
 
         /// <summary>
@@ -334,7 +334,7 @@ namespace mLingo.Modules
                 return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("delete collection"), e.StackTrace, 500);
             }
 
-            return ApiResponse.StatusCodeResponse(202);
+            return ApiResponse.StatusCodeResponse(200);
         }
 
         #endregion

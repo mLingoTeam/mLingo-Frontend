@@ -9,6 +9,7 @@ using mLingo.Models.Database;
 using mLingoCore.Models.Api.ResponseModels.Collections;
 using mLingo.Models.Database.User;
 using mLingo.Modules;
+using mLingoCore.Models.Api.Base;
 using mLingoCore.Models.Forms.Collections;
 using mLingoCore.Services;
 
@@ -62,7 +63,9 @@ namespace mLingo.Controllers.Api
         /// <param name="id">Optional id of collection to find</param>
         /// <param name="name">Optional name of collection to find</param>
         /// <param name="range">Optional range of elements to get</param>
-        /// <returns>for id: <see cref="CollectionFullResponse"/> and for name: <see cref="CollectionOverviewResponse"/></returns>
+        /// <response code="200">Successful returns collection data</response>
+        /// <response code="400">Incorrect parameters</response>
+        /// <response code="404">Collection not found</response>
         [HttpGet]
         [AllowAnonymous]
         [Route("find")]
@@ -76,7 +79,8 @@ namespace mLingo.Controllers.Api
         /// Returns information about all collections that specified user owns
         /// </summary>
         /// <param name="username">Username of user whose collections we want to fetch</param>
-        /// <returns>List of <see cref="CollectionOverviewResponse"/></returns>
+        /// <response code="200">Successful, returns list of user collections</response>
+        /// <response code="404">User not found or user has no collections, check <see cref="ErrorRapport"/> for details</response>
         [HttpGet]
         [AllowAnonymous]
         [Route("usercollections")]
@@ -110,7 +114,9 @@ namespace mLingo.Controllers.Api
         /// }
         /// </remarks>
         /// <param name="newCollectionData"><see cref="CreateCollectionFormModel"/></param>
-        /// <returns>Http status code</returns>
+        /// <response code="200">Successful, collection created</response>
+        /// <response code="400">Authorization issues, should not ever happen</response>
+        /// <response code="500">Creation failed, server fault. Check <see cref="ErrorRapport"/> for details</response>
         [HttpPost]
         [Route("create")]
         public async Task<IActionResult> Create([FromBody] CreateCollectionFormModel newCollectionData)
@@ -151,7 +157,11 @@ namespace mLingo.Controllers.Api
         /// </remarks>
         /// <param name="id">Id of collection to be updated</param>
         /// <param name="updatedCollection"><see cref="UpdateCollectionFormModel"/> with new collection data</param>
-        /// <returns>Http response code</returns>
+        /// <response code="200">Successful, collection updated</response>
+        /// <response code="400">Authorization issues, should not ever happen</response>
+        /// <response code="401">User trying to update collection is not its owner</response>
+        /// <response code="404">Collection does not exist</response>
+        /// <response code="500">Failed to create collection, server fault. Check <see cref="ErrorRapport"/> for details.</response>
         [HttpPut]
         [Route("update")]
         public async Task<IActionResult> Update([FromQuery] string id, [FromBody] UpdateCollectionFormModel updatedCollection)
@@ -164,7 +174,8 @@ namespace mLingo.Controllers.Api
         /// Deletes collection from database
         /// </summary>
         /// <param name="id">Id of collection to delete</param>
-        /// <returns>Http response code</returns>
+        /// <response code="200">Successful, collection deleted</response>
+        /// <response code="500">Failed to delete collection, server fault. Check <see cref="ErrorRapport"/> for details.</response>
         [HttpDelete]
         [Route("delete")]
         public IActionResult Delete([FromQuery] string id)
@@ -177,7 +188,9 @@ namespace mLingo.Controllers.Api
         /// Detects collection languages with <see cref="ILanguageDetector"/> and updates collection information
         /// </summary>
         /// <param name="collectionId"></param>
-        /// <returns>Http response code</returns>
+        /// <response code="200">Successful, language detected, collection updated</response>
+        /// <response code="404">Collection not found</response>
+        /// <response code="500">Failed to detect language, server fault. Check <see cref="ErrorRapport"/> for details.</response>
         [HttpPut]
         [Route("detectlanguage")]
         public async Task<IActionResult> DetectLanguage([FromQuery] string collectionId)

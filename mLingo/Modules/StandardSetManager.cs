@@ -38,7 +38,7 @@ namespace mLingo.Modules
         public ApiResponse Find(string id, string name, string range)
         {
             if (name == null && id == null) 
-                return ApiResponse.StandardErrorResponse(ErrorMessages.Server.ActionFail("search for set"), 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.Server.ActionFail("search for set"), 400);
 
             ApiResponse response;
 
@@ -175,7 +175,7 @@ namespace mLingo.Modules
                 return ApiResponse.StandardErrorResponse(ErrorMessages.Server.ActionFail("create set"), 500);
             }
 
-            return ApiResponse.StatusCodeResponse(202);
+            return ApiResponse.StatusCodeResponse(200);
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace mLingo.Modules
                 return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("delete set"), e.StackTrace, 500);
             }
 
-            return ApiResponse.StatusCodeResponse(202);
+            return ApiResponse.StatusCodeResponse(200);
         }
 
         /// <summary>
@@ -215,6 +215,10 @@ namespace mLingo.Modules
             {
                 var set = DbContext.Sets.Find(setId);
                 var collection = DbContext.Collections.Find(collectionId);
+                if (set == null || collection == null)
+                    return ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.ActionFail("add"), 400);
+                
+
                 var setCollection = new SetCollection
                 {
                     Set = set,
@@ -230,7 +234,7 @@ namespace mLingo.Modules
                 return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("add collection to set"), e.StackTrace, 500);
             }
 
-            return ApiResponse.StatusCodeResponse(202);
+            return ApiResponse.StatusCodeResponse(200);
         }
 
         /// <summary>
@@ -242,6 +246,8 @@ namespace mLingo.Modules
             try
             {
                 var sc = DbContext.SetCollectionJoinTable.Find(key);
+                if(sc == null) 
+                    return ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.ActionFail("delete"), 400);
                 DbContext.SetCollectionJoinTable.Remove(sc);
                 DbContext.SaveChanges();
             }

@@ -7,6 +7,7 @@ using mLingo.Extensions.Authentication;
 using mLingo.Models.Database;
 using mLingo.Models.Database.User;
 using mLingo.Modules;
+using mLingoCore.Models.Api.Base;
 using mLingoCore.Models.Forms.Sets;
 using mLingoCore.Services;
 
@@ -65,7 +66,8 @@ namespace mLingo.Controllers.Api
         /// }
         /// </remarks>
         /// <param name="setInfo">Information about set from request body</param>
-        /// <returns></returns>
+        /// <response code="200">Successful, set created</response>
+        /// <response code="500">Set creation failed, server fault. Check <see cref="ErrorRapport"/> for details.</response>
         [HttpPost]
         [Route("create")]
         public IActionResult Create([FromBody] CreateSetForm setInfo)
@@ -78,7 +80,8 @@ namespace mLingo.Controllers.Api
         /// Deletes set
         /// </summary>
         /// <param name="id">Id of set to delete</param>
-        /// <returns></returns>
+        /// <response code="200">Successful, set deleted</response>
+        /// <response code="500">Set deletion failed, server fault. Check <see cref="ErrorRapport"/> for details.</response>
         [HttpDelete]
         [Route("delete")]
         public IActionResult Delete([FromQuery] string id)
@@ -92,7 +95,9 @@ namespace mLingo.Controllers.Api
         /// </summary>
         /// <param name="setId">Target set id</param>
         /// <param name="collectionId">Target collection id</param>
-        /// <returns></returns>
+        /// <response code="200">Successful, collection added to the set</response>
+        /// <response code="400">Failed to add collection to set (collection or set is null)</response>
+        /// <response code="500">Failed to add collection to set, server fault. Please check <see cref="ErrorRapport"/> for details.</response>
         [HttpPut]
         [Route("add")]
         public IActionResult Add([FromQuery] string setId, [FromQuery] string collectionId)
@@ -106,7 +111,9 @@ namespace mLingo.Controllers.Api
         /// </summary>
         /// <param name="setId">Target set id</param>
         /// <param name="collectionId">Target collection id</param>
-        /// <returns></returns>
+        /// <response code="200">Successful, collection removed from set</response>
+        /// <response code="400">Failed to remove collection from set (there is no such collection in the set)</response>
+        /// <response code="500">Failed to remove collection from set, server fault. Please check <see cref="ErrorRapport"/> for details.</response>
         [HttpDelete]
         [Route("remove")]
         public IActionResult Remove([FromQuery] string setId, [FromQuery] string collectionId)
@@ -127,7 +134,9 @@ namespace mLingo.Controllers.Api
         /// <param name="id">Id of the set to find</param>
         /// <param name="name">Name of the set(s) to find</param>
         /// <param name="range">Range of elements to retrieve from query</param>
-        /// <returns></returns>
+        /// <response code="200">Successful, returns set information</response>
+        /// <response code="400">Invalid query</response>
+        /// <response code="404">Set does not exist</response>
         [HttpGet]
         [AllowAnonymous]
         [Route("find")]
@@ -141,7 +150,8 @@ namespace mLingo.Controllers.Api
         /// Returns overview of all sets owned by specified user
         /// </summary>
         /// <param name="username">Name of user whom sets you want to retrieve</param>
-        /// <returns></returns>
+        /// <response code="200">Successful, returns set information</response>
+        /// <response code="404">Set/user does not exist. Check <see cref="ErrorRapport"/> for details.</response>
         [HttpGet]
         [AllowAnonymous]
         [Route("usersets")]
