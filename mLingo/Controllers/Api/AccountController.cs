@@ -29,6 +29,8 @@ namespace mLingo.Controllers.Api
 
         private readonly IAccountManager accountManager;
 
+        private readonly UserManager<AppUser> userManager;
+
         #endregion
 
         #region Constructor
@@ -42,6 +44,7 @@ namespace mLingo.Controllers.Api
         {
             apiLogger = logger;
             var am = (StandardAccountManager) accountManager;
+            this.userManager = userManager;
             am.UserManager = userManager;
             am.DbContext = dbContext;
             am.Configuration = configuration;
@@ -110,6 +113,18 @@ namespace mLingo.Controllers.Api
         public async Task<IActionResult> Details()
         {
             var res = await accountManager.Details(HttpContext.User.Identity.Name);
+            return this.HandleManagerResponse(res);
+        }
+
+        /// <summary>
+        /// Returns all the account details based on id
+        /// </summary>
+        /// <returns>returns approperiate <see cref="ApiResponse"/></returns>
+        [HttpGet]
+        [Route("detailsbyid")]
+        public async Task<IActionResult> DetailsById([FromQuery] string id)
+        {
+            var res = await accountManager.DetailsById(id);
             return this.HandleManagerResponse(res);
         }
 

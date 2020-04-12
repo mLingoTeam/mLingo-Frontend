@@ -113,6 +113,16 @@ namespace mLingo.Modules
             return ApiResponse.StandardSuccessResponse(credentials, 200);
         }
 
+        public async Task<ApiResponse> DetailsById(string id)
+        {
+            var user = await UserManager.FindByIdAsync(id);
+
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
+
+            var credentials = user.CredentialsNoToken();
+            return ApiResponse.StandardSuccessResponse(credentials, 200);
+        }
+
         /// <summary>
         /// For documentation <see cref="AccountController"/>
         /// </summary>

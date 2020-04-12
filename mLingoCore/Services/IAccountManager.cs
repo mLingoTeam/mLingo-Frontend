@@ -16,6 +16,8 @@ namespace mLingoCore.Services
 
         Task<ApiResponse> Details(string username);
 
+        Task<ApiResponse> DetailsById(string id);
+
         Task<ApiResponse> Delete(string username);
 
         Task<ApiResponse> EditInformation(string username, EditInformationForm form);
