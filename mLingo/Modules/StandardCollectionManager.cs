@@ -320,6 +320,7 @@ namespace mLingo.Modules
             {
                 DbContext.Collections.Remove(DbContext.Collections.First(c => c.Id.Equals(id)));
                 DbContext.Cards.RemoveRange(DbContext.Cards.Where(c => c.CollectionId.Equals(id)));
+                DbContext.SetCollectionJoinTable.RemoveRange(DbContext.SetCollectionJoinTable.Where(s => s.CollectionId.Equals(id)));
                 DbContext.SaveChanges();
             }
             catch(Exception e)
