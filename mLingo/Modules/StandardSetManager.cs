@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using mLingo.Extensions.Api;
 using mLingo.Models.Database;
 using mLingo.Models.Database.Collections;
 using mLingo.Models.Database.JoinTables;
@@ -38,7 +37,8 @@ namespace mLingo.Modules
         /// </summary>
         public ApiResponse Find(string id, string name, string range)
         {
-            if (name == null && id == null) return ApiResponse.StatusCodeResponse(403);
+            if (name == null && id == null) 
+                return ApiResponse.StandardErrorResponse(ErrorMessages.Server.ActionFail("search for set"), 403);
 
             ApiResponse response;
 
@@ -69,7 +69,7 @@ namespace mLingo.Modules
                 }
                 catch
                 {
-                    response = ApiResponse.StandardErrorResponse(ErrorMessages.SetNotFound, 404);
+                    response = ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.SetNotFound(id), 404);
                 }
             }
             else
@@ -102,7 +102,7 @@ namespace mLingo.Modules
                 }
                 catch
                 {
-                    response = ApiResponse.StandardErrorResponse(ErrorMessages.SetNotFound, 404);
+                    response = ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.SetNotFound(name), 404);
                 }
             }
             
@@ -116,7 +116,7 @@ namespace mLingo.Modules
         {
             var user = await UserManager.FindByNameAsync(username);
             if (user == null)
-                return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
 
             List<SetOverviewResponse> setsResponse;
             try
@@ -132,7 +132,7 @@ namespace mLingo.Modules
             }
             catch
             {
-                setsResponse = new List<SetOverviewResponse>();
+                return ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.UserHasNoSets, 404);
             }
 
             return ApiResponse.StandardSuccessResponse(setsResponse, 200);
@@ -172,7 +172,7 @@ namespace mLingo.Modules
             }
             catch
             {
-                return ApiResponse.StandardErrorResponse(ErrorMessages.DbError, 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.Server.ActionFail("create set"), 500);
             }
 
             return ApiResponse.StatusCodeResponse(202);
@@ -192,7 +192,7 @@ namespace mLingo.Modules
             }
             catch (Exception e)
             {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("delete set"), e.StackTrace, 500);
             }
 
             return ApiResponse.StatusCodeResponse(202);
@@ -227,7 +227,7 @@ namespace mLingo.Modules
             }
             catch(Exception e)
             {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("add collection to set"), e.StackTrace, 500);
             }
 
             return ApiResponse.StatusCodeResponse(202);
@@ -247,7 +247,7 @@ namespace mLingo.Modules
             }
             catch(Exception e)
             {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("remove collection from set"), e.StackTrace, 500);
             }
 
             return ApiResponse.StatusCodeResponse(202);

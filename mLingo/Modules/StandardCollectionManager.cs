@@ -38,11 +38,11 @@ namespace mLingo.Modules
         /// </summary>
         public ApiResponse Find(string id, string name, string range=null)
         {
-            if (!id.IsNullOrEmpty())
+            if (id != null)
             {
                 var collection = DbContext.Collections.Find(id);
                 if (collection == null)
-                    return ApiResponse.StandardErrorResponse(ErrorMessages.NoSuchCollection, 403);
+                    return ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.CollectionNotFound(id), 403);
 
                 var cards = collection.Cards
                     .Select(card => new CardResponse { CollectionId = card.CollectionId, Definition = card.Definition, Term = card.Term, Id = card.Id })
@@ -61,51 +61,49 @@ namespace mLingo.Modules
                 }, 200);
             }
 
-            if (!name.IsNullOrEmpty())
+            if (name == null) return ApiResponse.StandardErrorResponse(ErrorMessages.Server.ActionFail("search for collection"), 403);
+            
+            List<Collection> collections;
+            try
             {
-                List<Collection> collections;
-                try
-                {
                     
-                    if (range != null)
-                    {
-                        var split = range.Split('-');
-                        var start = int.Parse(split[0]);
-                        var end = int.Parse(split[1]);
-                        collections = DbContext.Collections
-                            .Where(c => c.Name.ToUpper().Contains(name.ToUpper()))
-                            .Skip(start).Take(end - start).ToList();
-                    }
-                    else 
-                    {
-                        collections = DbContext.Collections
-                            .Where(c => c.Name.ToUpper().Contains(name.ToUpper()))
-                            .Take(10).ToList();
-                    }
-                    
-                }
-                catch (ArgumentNullException)
+                if (range != null)
                 {
-                    collections = new List<Collection>();
+                    var split = range.Split('-');
+                    var start = int.Parse(split[0]);
+                    var end = int.Parse(split[1]);
+                    collections = DbContext.Collections
+                        .Where(c => c.Name.ToUpper().Contains(name.ToUpper()))
+                        .Skip(start).Take(end - start).ToList();
                 }
-
-                var colls = collections
-                    .Select(c => new CollectionOverviewResponse
-                    {
-                        Id = c.Id,
-                        Name = c.Name,
-                        OwnerId = c.OwnerId,
-                        BaseLanguage = c.Details.BaseLanguage,
-                        SecondLanguage = c.Details.SecondLanguage,
-                        PlayCount = c.Details.PlayCount,
-                        Rating = c.Details.Rating
-                    })
-                    .ToList();
-
-                return ApiResponse.StandardSuccessResponse(colls, 200);
+                else 
+                {
+                    collections = DbContext.Collections
+                        .Where(c => c.Name.ToUpper().Contains(name.ToUpper()))
+                        .Take(10).ToList();
+                }
+                    
+            }
+            catch (ArgumentNullException)
+            {
+                return ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.CollectionNotFound(name), 403);
             }
 
-            return ApiResponse.StandardErrorResponse(ErrorMessages.InvalidQuery, 403);
+            var colls = collections
+                .Select(c => new CollectionOverviewResponse
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    OwnerId = c.OwnerId,
+                    BaseLanguage = c.Details.BaseLanguage,
+                    SecondLanguage = c.Details.SecondLanguage,
+                    PlayCount = c.Details.PlayCount,
+                    Rating = c.Details.Rating
+                })
+                .ToList();
+
+            return ApiResponse.StandardSuccessResponse(colls, 200);
+
         }
 
         /// <summary>
@@ -114,7 +112,7 @@ namespace mLingo.Modules
         public ApiResponse UserCollections(string username)
         {
             var user = DbContext.Users.FirstOrDefault(u => u.UserName.Equals(username));
-            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
 
             List<Collection> collections;
             try
@@ -126,7 +124,8 @@ namespace mLingo.Modules
                 collections = new List<Collection>();
             }
 
-            if (collections.Count == 0) return ApiResponse.StandardErrorResponse(ErrorMessages.NoSuchCollection, 404);
+            if (collections.Count == 0) 
+                return ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.UserHasNoCollections, 404);
 
             var collectionsNormalized = collections
                 .Select(c => new CollectionOverviewResponse
@@ -150,7 +149,8 @@ namespace mLingo.Modules
         public async Task<ApiResponse> Create(string username, CreateCollectionFormModel newCollectionData)
         {
             var user = await UserManager.FindByNameAsync(username);
-            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
+            if (user == null) 
+                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
 
             var colId = Guid.NewGuid().ToString();
             var detailsId = Guid.NewGuid().ToString();
@@ -204,7 +204,7 @@ namespace mLingo.Modules
             }
             catch(Exception e)
             {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("create collection"), e.StackTrace, 500);
             }
 
             return ApiResponse.StatusCodeResponse(202);
@@ -218,7 +218,7 @@ namespace mLingo.Modules
             // find collection to update
             var collectionToUpdate = DbContext.Collections.Find(id);
             if (collectionToUpdate == null)
-                return ApiResponse.StandardErrorResponse(ErrorMessages.NoSuchCollection, 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.CollectionNotFound(id), 403);
 
             // check if user trying to update collection is its owner
             var user = await UserManager.FindByNameAsync(username);
@@ -284,7 +284,7 @@ namespace mLingo.Modules
             }
             catch(Exception e)
             {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("edit collection"), e.StackTrace, 500);
             }
 
             return ApiResponse.StatusCodeResponse(202);
@@ -331,7 +331,7 @@ namespace mLingo.Modules
             }
             catch(Exception e)
             {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("delete collection"), e.StackTrace, 500);
             }
 
             return ApiResponse.StatusCodeResponse(202);

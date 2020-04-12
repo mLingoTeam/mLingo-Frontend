@@ -5,17 +5,44 @@
     /// </summary>
     public class ErrorMessages
     {
-        public static string InvalidRegistration = "Please provide all required details in order to create an account!";
-        public static string InvalidLogin = "Please enter correct login credentials!";
-        public static string UsernameNotFound = "User with entered name does not exist!";
-        public static string UserEmailNotFound = "User with entered e-mail does not exist!";
-        public static string NoSuchCollection = "Collection not found";
-        public static string InvalidQuery = "Invalid query parameters";
-        public static string DbError = "Database query error";
-        public static string SetNotFound = "Set not found";
-        public static string InvalidProp = "Invalid prop";
-        public static string ChangeMailFail = "Failed to change email, please try again later";
-        public static string ChangePasswordFail = "Failed to change password, please try again later";
-        public static string ResetPasswordFail = "Failed to reset password, please try again later";
+        public struct AccountManager
+        {
+            public static string InvalidRegistrationCredentials { get; set; } =
+                "Please provide all required details to create an account";
+
+            public static string InvalidLoginCredentials { get; set; } =
+                "Incorrect login or password";
+
+            public static string InvalidChangeToken { get; set; } =
+                "Invalid token, it might have expired. Please try to issue new one.";
+
+            public static string UserNotFound(string query) => $"User: {query}, does not exist";
+
+            public static string ActionFail(string action) => $"Failed to {action}, please try again later";
+        }
+
+        public struct CollectionsManager
+        {
+            public static string CollectionNotFound(string query) => $"Collection: {query}, does not exist";
+
+            public static string UserHasNoCollections => "You have no collections";
+
+            public static string ActionFail(string action) => $"Failed to {action} collection. Please try again later";
+        }
+
+        public struct SetsManager
+        {
+            public static string SetNotFound(string query) => $"Set: {query}, does not exist";
+
+            public static string ActionFail(string action) => $"Failed to {action} set";
+
+            public static string UserHasNoSets => "You have no sets";
+        }
+
+        public struct Server
+        {
+            public static string ActionFail(string action) =>
+                $"Failed to {action}. This is just our internal problem. Please report your issues to support@mlingo.com";
+        }
     }
 }

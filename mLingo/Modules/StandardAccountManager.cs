@@ -37,7 +37,7 @@ namespace mLingo.Modules
         public async Task<ApiResponse> Register(RegisterFormModel form)
         {
             if (form == null || RegisterFormModel.ValidateForm(form) == false)
-                return ApiResponse.StandardErrorResponse(ErrorMessages.InvalidRegistration, 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidRegistrationCredentials, 403);
 
             var user = new AppUser
             {
@@ -57,12 +57,12 @@ namespace mLingo.Modules
             var result = await UserManager.CreateAsync(user, form.Password);
 
             if (!result.Succeeded)
-                return ApiResponse.StandardErrorResponse(ErrorMessages.InvalidRegistration, 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidRegistrationCredentials, 403);
 
             var addRoleResult = await UserManager.AddToRoleAsync(user, "Member");
 
             if (!addRoleResult.Succeeded) 
-                return ApiResponse.StandardErrorResponse(ErrorMessages.DbError, 500);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.Server.ActionFail("assign roles"), 500);
 
             var userIdentity = await UserManager.FindByNameAsync(user.UserName);
             var identityResponse = userIdentity.Credentials(await userIdentity.GenerateJwtToken(UserManager, Configuration));
@@ -76,7 +76,7 @@ namespace mLingo.Modules
         public async Task<ApiResponse> Login(LoginFormModel form)
         {
             if (form == null || LoginFormModel.ValidateForm(form) == false)
-                return ApiResponse.StandardErrorResponse(ErrorMessages.InvalidLogin, 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidLoginCredentials, 403);
 
             var isEmail = form.UserId.Contains("@");
 
@@ -85,16 +85,14 @@ namespace mLingo.Modules
                 : await UserManager.FindByNameAsync(form.UserId);
 
             if (user == null)
-            {
-                var errMsg = isEmail ? ErrorMessages.UserEmailNotFound : ErrorMessages.UsernameNotFound;
-                return ApiResponse.StandardErrorResponse(errMsg, 404);
-            }
+                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(form.UserId), 404);
+            
                 
 
             var isPasswordOk = await UserManager.CheckPasswordAsync(user, form.Password);
 
             if (!isPasswordOk)
-                return ApiResponse.StandardErrorResponse(ErrorMessages.InvalidLogin, 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidLoginCredentials, 403);
 
             var userCredentials = user.Credentials(await user.GenerateJwtToken(UserManager, Configuration));
             return ApiResponse.StandardSuccessResponse(userCredentials, 200);
@@ -107,7 +105,7 @@ namespace mLingo.Modules
         {
             var user = await UserManager.FindByNameAsync(username);
 
-            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
 
             var credentials = user.CredentialsNoToken();
             return ApiResponse.StandardSuccessResponse(credentials, 200);
@@ -117,7 +115,7 @@ namespace mLingo.Modules
         {
             var user = await UserManager.FindByIdAsync(id);
 
-            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(id), 404);
 
             var credentials = user.CredentialsNoToken();
             return ApiResponse.StandardSuccessResponse(credentials, 200);
@@ -129,11 +127,11 @@ namespace mLingo.Modules
         public async Task<ApiResponse> Delete(string username)
         {
             var user = await UserManager.FindByNameAsync(username);
-            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
             var res = await UserManager.DeleteAsync(user);
             return res.Succeeded
                 ? ApiResponse.StandardSuccessResponse(null, 200)
-                : ApiResponse.StandardErrorResponse(ErrorMessages.DbError, 500);
+                : ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.ActionFail("delete and account"), 500);
         }
 
         /// <summary>
@@ -142,7 +140,7 @@ namespace mLingo.Modules
         public async Task<ApiResponse> EditInformation(string username, EditInformationForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
-            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
 
             try
             {
@@ -159,7 +157,7 @@ namespace mLingo.Modules
             }
             catch(Exception e)
             {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("update your information"), e.StackTrace, 500);
             }
         }
 
@@ -169,9 +167,9 @@ namespace mLingo.Modules
         public async Task<ApiResponse> RequestChangeToken(string username, string prop, EditMailForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
-            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
 
-            if (prop == null) return ApiResponse.StandardErrorResponse(ErrorMessages.InvalidProp, 403);
+            if (prop == null) return ApiResponse.StandardErrorResponse(ErrorMessages.Server.ActionFail("request change token"), 403);
 
             var token = prop switch
             {
@@ -194,7 +192,7 @@ namespace mLingo.Modules
         public async Task<ApiResponse> ChangeEmail(string username, string token, EditMailForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
-            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
 
             IdentityResult res;
             try
@@ -204,11 +202,11 @@ namespace mLingo.Modules
             }
             catch(Exception e)
             {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("change email"), e.StackTrace, 500);
             }
             return res.Succeeded 
                 ? ApiResponse.StandardSuccessResponse(null, 200) 
-                : ApiResponse.StandardErrorResponse(ErrorMessages.ChangeMailFail, 403);
+                : ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidChangeToken, 403);
         }
 
         /// <summary>
@@ -217,7 +215,7 @@ namespace mLingo.Modules
         public async Task<ApiResponse> ChangePassword(string username, ResetPasswordForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
-            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
 
             IdentityResult res;
             try
@@ -227,11 +225,11 @@ namespace mLingo.Modules
             }
             catch (Exception e)
             {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("change password"), e.StackTrace, 500);
             }
             return res.Succeeded
                 ? ApiResponse.StandardSuccessResponse(null, 200)
-                : ApiResponse.StandardErrorResponse(ErrorMessages.ChangePasswordFail, 403);
+                : ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidChangeToken, 403);
         }
 
         /// <summary>
@@ -240,7 +238,7 @@ namespace mLingo.Modules
         public async Task<ApiResponse> ResetPassword(string username, string token, ResetPasswordForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
-            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 404);
+            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
 
             IdentityResult res;
             try
@@ -250,11 +248,11 @@ namespace mLingo.Modules
             }
             catch (Exception e)
             {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.DbError, e.StackTrace, 500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("reset password"), e.StackTrace, 500);
             }
             return res.Succeeded
                 ? ApiResponse.StandardSuccessResponse(null, 200)
-                : ApiResponse.StandardErrorResponse(ErrorMessages.ResetPasswordFail, 403);
+                : ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidChangeToken, 403);
         }
 
         #endregion
