@@ -178,6 +178,7 @@ namespace mLingo.Modules
             var details = new CollectionDetails
             {
                 Id = detailsId,
+                Description = newCollectionData.Description,
                 PlayCount = 0,
                 Rating = 0,
                 BaseLanguage = baseLang,
@@ -226,10 +227,11 @@ namespace mLingo.Modules
             // update name
             collectionToUpdate.Name = updatedCollection.Name;
 
-            //updated details
+            //update details
             var details = DbContext.CollectionDetails.Find(collectionToUpdate.DetailsId);
             details.BaseLanguage = updatedCollection.BaseLanguage;
             details.SecondLanguage = updatedCollection.SecondLanguage;
+            details.Description = updatedCollection.Description;
 
             // normalize and sort updated cards
             var cardsToAdd = new List<Card>();
