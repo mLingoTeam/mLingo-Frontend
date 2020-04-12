@@ -36,7 +36,7 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="SetsController"/>
         /// </summary>
-        public ApiResponse Find(string id, string name)
+        public ApiResponse Find(string id, string name, string range)
         {
             if (name == null && id == null) return ApiResponse.StatusCodeResponse(403);
 
@@ -76,7 +76,23 @@ namespace mLingo.Modules
             {
                 try
                 {
-                    var sets = DbContext.Sets.Where(s => s.Name.Equals(name)).ToList();
+                    List<Set> sets;
+                    if (range != null)
+                    {
+                        var split = range.Split('-');
+                        var start = int.Parse(split[0]);
+                        var end = int.Parse(split[1]);
+                        sets = DbContext.Sets
+                            .Where(s => s.Name.ToUpper().Contains(name.ToUpper()))
+                            .Skip(start).Take(end - start).ToList();
+                    }
+                    else
+                    {
+                        sets = DbContext.Sets
+                            .Where(s => s.Name.ToUpper().Contains(name.ToUpper()))
+                            .Take(10).ToList();
+                    }
+
                     var res = sets.Select(s => new SetOverviewResponse
                     {
                         Name = s.Name,

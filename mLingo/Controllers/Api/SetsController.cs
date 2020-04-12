@@ -126,13 +126,14 @@ namespace mLingo.Controllers.Api
         /// </summary>
         /// <param name="id">Id of the set to find</param>
         /// <param name="name">Name of the set(s) to find</param>
+        /// <param name="range">Range of elements to retrieve from query</param>
         /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
         [Route("find")]
-        public IActionResult Find([FromQuery] string id = null, [FromQuery] string name = null)
+        public IActionResult Find([FromQuery] string id = null, [FromQuery] string name = null, [FromQuery] string range = null)
         {
-            var res = _setManager.Find(id, name);
+            var res = _setManager.Find(id, name, range);
             return this.HandleManagerResponse(res);
         }
 

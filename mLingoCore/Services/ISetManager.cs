@@ -10,7 +10,7 @@ namespace mLingoCore.Services
     /// </summary>
     public interface ISetManager
     {
-        ApiResponse Find(string id, string name);
+        ApiResponse Find(string id, string name, string range);
 
         Task<ApiResponse> UserSets(string username);
 

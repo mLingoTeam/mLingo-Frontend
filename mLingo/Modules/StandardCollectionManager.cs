@@ -66,17 +66,21 @@ namespace mLingo.Modules
                 List<Collection> collections;
                 try
                 {
-                    collections = DbContext.Collections.Where(c => c.Name.ToUpper().Contains(name.ToUpper())).ToList();
+                    
                     if (range != null)
                     {
                         var split = range.Split('-');
                         var start = int.Parse(split[0]);
                         var end = int.Parse(split[1]);
-                        collections = collections.Skip(start).Take(end).ToList();
+                        collections = DbContext.Collections
+                            .Where(c => c.Name.ToUpper().Contains(name.ToUpper()))
+                            .Skip(start).Take(end - start).ToList();
                     }
-                    else if(collections.Count > 10)
+                    else 
                     {
-                        collections = collections.Take(10).ToList();
+                        collections = DbContext.Collections
+                            .Where(c => c.Name.ToUpper().Contains(name.ToUpper()))
+                            .Take(10).ToList();
                     }
                     
                 }
