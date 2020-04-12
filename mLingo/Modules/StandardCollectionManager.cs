@@ -66,7 +66,7 @@ namespace mLingo.Modules
                 List<Collection> collections;
                 try
                 {
-                    collections = DbContext.Collections.Where(c => c.Name.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
+                    collections = DbContext.Collections.Where(c => c.Name.ToUpper().Contains(name.ToUpper())).ToList();
                     if (range != null)
                     {
                         var split = range.Split('-');
