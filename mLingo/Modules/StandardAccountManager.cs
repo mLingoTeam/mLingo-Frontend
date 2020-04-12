@@ -37,7 +37,7 @@ namespace mLingo.Modules
         public async Task<ApiResponse> Register(RegisterFormModel form)
         {
             if (form == null || RegisterFormModel.ValidateForm(form) == false)
-                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidRegistrationCredentials, 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidRegistrationCredentials, 400);
 
             var user = new AppUser
             {
@@ -57,7 +57,7 @@ namespace mLingo.Modules
             var result = await UserManager.CreateAsync(user, form.Password);
 
             if (!result.Succeeded)
-                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidRegistrationCredentials, 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidRegistrationCredentials, 400);
 
             var addRoleResult = await UserManager.AddToRoleAsync(user, "Member");
 
@@ -76,7 +76,7 @@ namespace mLingo.Modules
         public async Task<ApiResponse> Login(LoginFormModel form)
         {
             if (form == null || LoginFormModel.ValidateForm(form) == false)
-                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidLoginCredentials, 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidLoginCredentials, 400);
 
             var isEmail = form.UserId.Contains("@");
 
@@ -85,14 +85,14 @@ namespace mLingo.Modules
                 : await UserManager.FindByNameAsync(form.UserId);
 
             if (user == null)
-                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(form.UserId), 404);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidLoginCredentials, 400);
             
                 
 
             var isPasswordOk = await UserManager.CheckPasswordAsync(user, form.Password);
 
             if (!isPasswordOk)
-                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidLoginCredentials, 403);
+                return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidLoginCredentials, 400);
 
             var userCredentials = user.Credentials(await user.GenerateJwtToken(UserManager, Configuration));
             return ApiResponse.StandardSuccessResponse(userCredentials, 200);
@@ -153,7 +153,7 @@ namespace mLingo.Modules
                 }
 
                 DbContext.SaveChanges();
-                return ApiResponse.StandardSuccessResponse(null, 200);
+                return ApiResponse.StatusCodeResponse(200);
             }
             catch(Exception e)
             {
@@ -169,7 +169,7 @@ namespace mLingo.Modules
             var user = await UserManager.FindByNameAsync(username);
             if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
 
-            if (prop == null) return ApiResponse.StandardErrorResponse(ErrorMessages.Server.ActionFail("request change token"), 403);
+            if (prop == null) return ApiResponse.StandardErrorResponse(ErrorMessages.Server.ActionFail("request change token"), 400);
 
             var token = prop switch
             {
@@ -181,7 +181,7 @@ namespace mLingo.Modules
             };
 
             if (token == "Invalid prop" || token == "No email")
-                return ApiResponse.StandardErrorResponse(token, 403);
+                return ApiResponse.StandardErrorResponse(token, 400);
 
             return ApiResponse.StandardSuccessResponse(token, 200);
         }
@@ -206,7 +206,7 @@ namespace mLingo.Modules
             }
             return res.Succeeded 
                 ? ApiResponse.StandardSuccessResponse(null, 200) 
-                : ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidChangeToken, 403);
+                : ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidChangeToken, 400);
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace mLingo.Modules
             }
             return res.Succeeded
                 ? ApiResponse.StandardSuccessResponse(null, 200)
-                : ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidChangeToken, 403);
+                : ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidChangeToken, 400);
         }
 
         /// <summary>
@@ -252,7 +252,7 @@ namespace mLingo.Modules
             }
             return res.Succeeded
                 ? ApiResponse.StandardSuccessResponse(null, 200)
-                : ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidChangeToken, 403);
+                : ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidChangeToken, 400);
         }
 
         #endregion
