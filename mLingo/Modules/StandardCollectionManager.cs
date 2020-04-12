@@ -36,7 +36,7 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="CollectionsController"/>
         /// </summary>
-        public ApiResponse Find(string id, string name)
+        public ApiResponse Find(string id, string name, string range=null)
         {
             if (!id.IsNullOrEmpty())
             {
@@ -66,7 +66,19 @@ namespace mLingo.Modules
                 List<Collection> collections;
                 try
                 {
-                    collections = DbContext.Collections.Where(c => c.Name.Equals(name)).ToList();
+                    collections = DbContext.Collections.Where(c => c.Name.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
+                    if (range != null)
+                    {
+                        var split = range.Split('-');
+                        var start = int.Parse(split[0]);
+                        var end = int.Parse(split[1]);
+                        collections = collections.Skip(start).Take(end).ToList();
+                    }
+                    else if(collections.Count > 10)
+                    {
+                        collections = collections.Take(10).ToList();
+                    }
+                    
                 }
                 catch (ArgumentNullException)
                 {
@@ -205,9 +217,7 @@ namespace mLingo.Modules
 
             // check if user trying to update collection is its owner
             var user = await UserManager.FindByNameAsync(username);
-            if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.UsernameNotFound, 401);
-            var uid = user.Id;
-            if (!uid.Equals(collectionToUpdate.OwnerId)) return ApiResponse.StatusCodeResponse(401);
+            if (!user.Id.Equals(collectionToUpdate.OwnerId)) return ApiResponse.StatusCodeResponse(401);
 
             // update name
             collectionToUpdate.Name = updatedCollection.Name;

@@ -61,13 +61,14 @@ namespace mLingo.Controllers.Api
         /// </summary>
         /// <param name="id">Optional id of collection to find</param>
         /// <param name="name">Optional name of collection to find</param>
+        /// <param name="range">Optional range of elements to get</param>
         /// <returns>for id: <see cref="CollectionFullResponse"/> and for name: <see cref="CollectionOverviewResponse"/></returns>
         [HttpGet]
         [AllowAnonymous]
         [Route("find")]
-        public IActionResult Find([FromQuery] string id = null, [FromQuery] string name = null)
+        public IActionResult Find([FromQuery] string id = null, [FromQuery] string name = null, [FromQuery] string range = null)
         {
-            var res = _collectionManager.Find(id, name);
+            var res = _collectionManager.Find(id, name, range);
             return this.HandleManagerResponse(res);
         }
 
