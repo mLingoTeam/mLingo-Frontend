@@ -110,7 +110,7 @@ namespace mLingo
             services.AddTransient<ILanguageDetector, LanguageDetector>();
             services.AddTransient<ISetManager, StandardSetManager>();
 
-            
+            services.AddSwaggerDocs();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
@@ -123,6 +123,12 @@ namespace mLingo
             {
                 app.UseExceptionHandler("/Error");
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "mLingoAPI");
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

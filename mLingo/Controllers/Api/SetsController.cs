@@ -16,6 +16,7 @@ namespace mLingo.Controllers.Api
     /// Controller that handles any action related to sets
     /// </summary>
     [AuthorizeToken]
+    [Route("api/sets")]
     public class SetsController : Controller
     {
         #region PrivateFields
@@ -66,6 +67,7 @@ namespace mLingo.Controllers.Api
         /// <param name="setInfo">Information about set from request body</param>
         /// <returns></returns>
         [HttpPost]
+        [Route("create")]
         public IActionResult Create([FromBody] CreateSetForm setInfo)
         {
             var res = _setManager.CreateSet(HttpContext.User.Identity.Name, setInfo);
@@ -78,7 +80,8 @@ namespace mLingo.Controllers.Api
         /// <param name="id">Id of set to delete</param>
         /// <returns></returns>
         [HttpDelete]
-        public IActionResult Delete(string id)
+        [Route("delete")]
+        public IActionResult Delete([FromQuery] string id)
         {
             var res = _setManager.DeleteSet(id);
             return this.HandleManagerResponse(res);
@@ -91,7 +94,8 @@ namespace mLingo.Controllers.Api
         /// <param name="collectionId">Target collection id</param>
         /// <returns></returns>
         [HttpPut]
-        public IActionResult Add(string setId, string collectionId)
+        [Route("add")]
+        public IActionResult Add([FromQuery] string setId, [FromQuery] string collectionId)
         {
             var res = _setManager.Add(setId, collectionId);
             return this.HandleManagerResponse(res);
@@ -104,7 +108,8 @@ namespace mLingo.Controllers.Api
         /// <param name="collectionId">Target collection id</param>
         /// <returns></returns>
         [HttpDelete]
-        public IActionResult Remove(string setId, string collectionId)
+        [Route("remove")]
+        public IActionResult Remove([FromQuery] string setId, [FromQuery] string collectionId)
         {
             var res = _setManager.Remove(setId, collectionId);
             return this.HandleManagerResponse(res);
@@ -124,7 +129,8 @@ namespace mLingo.Controllers.Api
         /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Find(string id = null, string name = null)
+        [Route("find")]
+        public IActionResult Find([FromQuery] string id = null, [FromQuery] string name = null)
         {
             var res = _setManager.Find(id, name);
             return this.HandleManagerResponse(res);
@@ -137,7 +143,8 @@ namespace mLingo.Controllers.Api
         /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> UserSets(string username)
+        [Route("usersets")]
+        public async Task<IActionResult> UserSets([FromQuery] string username)
         {
             var res = await _setManager.UserSets(username);
             return this.HandleManagerResponse(res);
