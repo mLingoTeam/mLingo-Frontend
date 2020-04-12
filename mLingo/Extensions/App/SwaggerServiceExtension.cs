@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
 namespace mLingo.Extensions.App
@@ -37,6 +41,10 @@ namespace mLingo.Extensions.App
                         new string[] { }
                     }
                 });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+                c.ResolveConflictingActions(apiDesc => apiDesc.First());
             });
         }
     }

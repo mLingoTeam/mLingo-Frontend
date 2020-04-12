@@ -18,6 +18,7 @@ namespace mLingo.Controllers.Api
     /// Controller that handle any action related with collections
     /// </summary>
     [AuthorizeToken]
+    [Route("api/collections")]
     public class CollectionsController : Controller
     {
         #region PrivateFields
@@ -56,29 +57,29 @@ namespace mLingo.Controllers.Api
 
         #region Searching
         /// <summary>
-        /// HTTP GET endpoint that finds collection either by its name or id.
-        /// Id query returns full information about collection, including all the card data
-        /// Name query returns overall collection data without cards about every collection with that name
+        /// Finds collection either by its name or id.
         /// </summary>
         /// <param name="id">Optional id of collection to find</param>
         /// <param name="name">Optional name of collection to find</param>
         /// <returns>for id: <see cref="CollectionFullResponse"/> and for name: <see cref="CollectionOverviewResponse"/></returns>
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Find(string id = null, string name = null)
+        [Route("find")]
+        public IActionResult Find([FromQuery] string id = null, [FromQuery] string name = null)
         {
             var res = _collectionManager.Find(id, name);
             return this.HandleManagerResponse(res);
         }
 
         /// <summary>
-        /// HTTP GET endpoint that returns information about all collections that specified user owns/>
+        /// Returns information about all collections that specified user owns
         /// </summary>
         /// <param name="username">Username of user whose collections we want to fetch</param>
         /// <returns>List of <see cref="CollectionOverviewResponse"/></returns>
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult UserCollections(string username)
+        [Route("usercollections")]
+        public IActionResult UserCollections([FromQuery] string username)
         {
             var res = _collectionManager.UserCollections(username);
             return this.HandleManagerResponse(res);
@@ -89,7 +90,7 @@ namespace mLingo.Controllers.Api
         #region Manipulating
 
         /// <summary>
-        /// HTTP POST endpoint that creates new collection in the database.
+        /// Creates new collection 
         /// This method automatically generates all ids and assigns owner id based on user token
         /// </summary>
         /// <remarks>
@@ -110,6 +111,7 @@ namespace mLingo.Controllers.Api
         /// <param name="newCollectionData"><see cref="CreateCollectionFormModel"/></param>
         /// <returns>Http status code</returns>
         [HttpPost]
+        [Route("create")]
         public async Task<IActionResult> Create([FromBody] CreateCollectionFormModel newCollectionData)
         {
             var res = await _collectionManager.Create(HttpContext.User.Identity.Name, newCollectionData);
@@ -117,7 +119,7 @@ namespace mLingo.Controllers.Api
         }
 
         /// <summary>
-        /// HTTP PUT endpoint that updates collection data, add/removes cards etc.
+        /// Updates collection data, add/removes cards etc.
         /// </summary>
         /// <remarks>
         /// {
@@ -150,6 +152,7 @@ namespace mLingo.Controllers.Api
         /// <param name="updatedCollection"><see cref="UpdateCollectionFormModel"/> with new collection data</param>
         /// <returns>Http response code</returns>
         [HttpPut]
+        [Route("update")]
         public async Task<IActionResult> Update([FromQuery] string id, [FromBody] UpdateCollectionFormModel updatedCollection)
         {
             var res = await _collectionManager.Update(id, HttpContext.User.Identity.Name, updatedCollection);
@@ -157,11 +160,12 @@ namespace mLingo.Controllers.Api
         }
 
         /// <summary>
-        /// HTTP DELETE endpoint that cascade deletes collection from database
+        /// Deletes collection from database
         /// </summary>
         /// <param name="id">Id of collection to delete</param>
         /// <returns>Http response code</returns>
         [HttpDelete]
+        [Route("delete")]
         public IActionResult Delete([FromQuery] string id)
         {
             var res = _collectionManager.Delete(id);
@@ -169,12 +173,13 @@ namespace mLingo.Controllers.Api
         }
 
         /// <summary>
-        /// HTTP PUT endpoint that detects collection languages with <see cref="ILanguageDetector"/> and updates collection information
+        /// Detects collection languages with <see cref="ILanguageDetector"/> and updates collection information
         /// </summary>
         /// <param name="collectionId"></param>
         /// <returns>Http response code</returns>
         [HttpPut]
-        public async Task<IActionResult> DetectLanguage(string collectionId)
+        [Route("detectlanguage")]
+        public async Task<IActionResult> DetectLanguage([FromQuery] string collectionId)
         {
             var res = await _collectionManager.DetectLanguage(collectionId, HttpContext.User.Identity.Name);
             return this.HandleManagerResponse(res);

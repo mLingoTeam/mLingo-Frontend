@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -21,6 +20,7 @@ namespace mLingo.Controllers.Api
     /// Controller that handles any action connected with user account
     /// </summary>
     [AuthorizeToken]
+    [Route("api/account")]
     public class AccountController : Controller
     {
         #region PrivateFields
@@ -69,6 +69,7 @@ namespace mLingo.Controllers.Api
         /// <returns>returns appropriate <see cref="ApiResponse"/></returns>
         [HttpPost]
         [AllowAnonymous]
+        [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterFormModel registerForm)
         {
             var res = await accountManager.Register(registerForm);
@@ -86,9 +87,10 @@ namespace mLingo.Controllers.Api
         /// }
         /// </remarks>
         /// <param name="loginForm">User information passed through request body</param>
-        /// <returns>returns appropriate <see cref="ApiResponse{T}"/></returns>
+        /// <returns>returns appropriate <see cref="ApiResponse"/></returns>
         [HttpPost]
         [AllowAnonymous]
+        [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginFormModel loginForm)
         {
             var res = await accountManager.Login(loginForm);
@@ -102,7 +104,9 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Returns all the account details based on current user context
         /// </summary>
-        /// <returns>returns approperiate <see cref="ApiResponse{T}"/></returns>
+        /// <returns>returns approperiate <see cref="ApiResponse"/></returns>
+        [HttpGet]
+        [Route("details")]
         public async Task<IActionResult> Details()
         {
             var res = await accountManager.Details(HttpContext.User.Identity.Name);
@@ -118,6 +122,7 @@ namespace mLingo.Controllers.Api
         /// </summary>
         /// <returns>Http status code</returns>
         [HttpDelete]
+        [Route("delete")]
         public async Task<IActionResult> Delete()
         {
             var res = await accountManager.Delete(HttpContext.User.Identity.Name);
@@ -139,6 +144,7 @@ namespace mLingo.Controllers.Api
         /// <param name="newInformation">updated information</param>
         /// <returns>Http status code</returns>
         [HttpPut]
+        [Route("editinformation")]
         public async Task<IActionResult> EditInformation([FromBody] EditInformationForm newInformation)
         {
             var res = await accountManager.EditInformation(HttpContext.User.Identity.Name, newInformation);
@@ -158,7 +164,8 @@ namespace mLingo.Controllers.Api
         /// <param name="newEmail">Parameter required to generate token for email change</param>
         /// <returns><see cref="ApiResponse"/> with token string</returns>
         [HttpGet]
-        public async Task<IActionResult> RequestChangeToken(string prop, [FromBody]EditMailForm newEmail = null)
+        [Route("requestchangetoken")]
+        public async Task<IActionResult> RequestChangeToken([FromQuery] string prop, [FromBody]EditMailForm newEmail = null)
         {
             var res = await accountManager.RequestChangeToken(HttpContext.User.Identity.Name, prop, newEmail);
             return this.HandleManagerResponse(res);
@@ -177,7 +184,8 @@ namespace mLingo.Controllers.Api
         /// <param name="newEmail"></param>
         /// <returns>Http status code</returns>
         [HttpPut]
-        public async Task<IActionResult> ChangeEmail(string token, [FromBody]EditMailForm newEmail)
+        [Route("changeemail")]
+        public async Task<IActionResult> ChangeEmail([FromQuery] string token, [FromBody]EditMailForm newEmail)
         {
             var res = await accountManager.ChangeEmail(HttpContext.User.Identity.Name, token, newEmail);
             return this.HandleManagerResponse(res);
@@ -197,7 +205,8 @@ namespace mLingo.Controllers.Api
         /// <param name="newPassword"></param>
         /// <returns>Http status code</returns>
         [HttpPut]
-        public async Task<IActionResult> ResetPassword(string token, [FromBody] ResetPasswordForm newPassword)
+        [Route("resetpassword")]
+        public async Task<IActionResult> ResetPassword([FromQuery] string token, [FromBody] ResetPasswordForm newPassword)
         {
             var res = await accountManager.ResetPassword(HttpContext.User.Identity.Name, token, newPassword);
             return this.HandleManagerResponse(res);
@@ -210,6 +219,7 @@ namespace mLingo.Controllers.Api
         /// <param name="resetPasswordForm">Information required to change password <see cref="ResetPasswordForm"/></param>
         /// <returns>Http status code</returns>
         [HttpPut]
+        [Route("changepassword")]
         public async Task<IActionResult> ChangePassword([FromBody] ResetPasswordForm resetPasswordForm)
         {
             var res = await accountManager.ChangePassword(HttpContext.User.Identity.Name, resetPasswordForm);
