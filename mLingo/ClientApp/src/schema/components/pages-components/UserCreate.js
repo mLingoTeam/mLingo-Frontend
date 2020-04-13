@@ -17,7 +17,7 @@ class UserCreate extends React.Component {
             this.props.history.push("/");
         }
 
-        this.state = { collectionTitle: "", cards: [ { term: "", definition: "" } ], loading: false, edit: false }
+        this.state = { collectionTitle: "", collectionDescription:"", cards: [ { term: "", definition: "" } ], loading: false, edit: false }
 
 
         this.submit = this.submit.bind(this);
@@ -78,7 +78,8 @@ class UserCreate extends React.Component {
     }
 
     handleChange(event) {
-        this.setState({ ...this.state, [event.target.name]: event.target.value });
+        this.setState({ ...this.state, [event.target.name]: event.target.value }, console.log(this.state));
+
     }
 
     submit(){
@@ -114,7 +115,7 @@ class UserCreate extends React.Component {
                 return
             }
             else{
-                await authenticationService.createCollection(this.state.collectionTitle, this.state.cards, localStorage.getItem("ID"), localStorage.getItem("Token"));
+                await authenticationService.createCollection(this.state.collectionTitle, this.state.collectionDescription, this.state.cards, localStorage.getItem("Token"));
                 this.setState({ collectionTitle: "", cards: [] });
             }
         }
