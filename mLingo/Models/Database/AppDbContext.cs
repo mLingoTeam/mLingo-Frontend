@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using mLingo.Models.Database.Collections;
 using mLingo.Models.Database.JoinTables;
+using mLingo.Models.Database.Newsletter;
 using mLingo.Models.Database.Sets;
 using mLingo.Models.Database.User;
 
@@ -37,6 +38,8 @@ namespace mLingo.Models.Database
         public virtual DbSet<Set> Sets { get; set; }
 
         public virtual DbSet<SetCollection> SetCollectionJoinTable { get; set; }
+
+        public virtual DbSet<MailingInformation> MailingList { get; set; }
 
         #endregion
 
@@ -110,6 +113,9 @@ namespace mLingo.Models.Database
                 .HasForeignKey(t => t.CollectionId)
                 .OnDelete(DeleteBehavior.ClientNoAction);
 
+            // Configure mailing list
+            builder.Entity<MailingInformation>().HasKey(t => t.Id);
+
             // Create tables
             builder.Entity<UserInformation>().ToTable("UserInformation");
             builder.Entity<Collection>().ToTable("Collections");
@@ -117,6 +123,7 @@ namespace mLingo.Models.Database
             builder.Entity<CollectionDetails>().ToTable("CollectionDetails");
             builder.Entity<Set>().ToTable("Sets");
             builder.Entity<SetCollection>().ToTable("SetCollectionJoinTable");
+            builder.Entity<MailingInformation>().ToTable("MailingList");
         }
 
         #endregion
