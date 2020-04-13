@@ -38,6 +38,7 @@ function login(userid, password) {
 function logout() {
   localStorage.removeItem("currentUser");
   localStorage.removeItem("Token");
+  localStorage.clear();
 }
 
 function setIntoLocalStorage({ name = "null", value = "null" }) {
