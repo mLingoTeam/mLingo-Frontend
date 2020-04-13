@@ -29,15 +29,19 @@ class UserCreate extends React.Component {
         this.addCard = this.addCard.bind(this);
         this.removeCard = this.removeCard.bind(this);
 
+
+        // editing mode
         if ( localStorage.getItem("editCollection") ){
             this.mount();
         }
     }
 
     async mount(){
+
         this.setState({ ...this.state, loading: true });
             const req = await requests.mountEditCollection();
-            this.setState({ ...this.state, cards: req.response.cards, collectionTitle: req.response.name, loading: false, edit: true });
+            console.log(req);
+            this.setState({ ...this.state, cards: req.response.cards, collectionTitle: req.response.name, collectionDescription: req.response.description, loading: false, edit: true });
     }
 
     addCard() {
@@ -110,7 +114,6 @@ class UserCreate extends React.Component {
             if( this.state.cards.length <= 1 ){
                 alert("Add more cards")
                 this.setState({ collectionTitle: "",collectionDescription:"", cards: [{ term: "", definition: "" }]});
-                return
             }
             else{
                 await authenticationService.createCollection(this.state.collectionTitle, this.state.collectionDescription, this.state.cards, localStorage.getItem("Token"));
@@ -121,6 +124,7 @@ class UserCreate extends React.Component {
     }
 
     componentWillUnmount(){
+        // editing mode
         localStorage.removeItem("editCollection")
     }
 
