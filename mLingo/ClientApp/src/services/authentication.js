@@ -6,7 +6,8 @@ export const authenticationService = {
   requestCollection,
   createCollection,
   removeCollection,
-  updateCollection
+  updateCollection,
+  register_newsletter,
 };
 
 function register(username, email, password) {
@@ -37,6 +38,7 @@ function login(userid, password) {
 function logout() {
   localStorage.removeItem("currentUser");
   localStorage.removeItem("Token");
+  localStorage.clear();
 }
 
 function setIntoLocalStorage({ name = "null", value = "null" }) {
@@ -58,12 +60,14 @@ function requestCollection(type, name) {
     .then(result => result.json())
 }
 
-function createCollection(name, cards, OwnerId, Token) {
+function createCollection(name, description, cards, Token) {
+
+  console.log(JSON.stringify({ name, description, cards }))
 
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json", "Authorization": `Bearer ${Token}` },
-    body: JSON.stringify({ Name: name, OwnerId: OwnerId, Cards: cards })
+    body: JSON.stringify({ name, description, cards })
   };
 
   return fetch(`http://localhost:5000/api/collections/create`, requestOptions)
@@ -85,9 +89,6 @@ function removeCollection(id, token) {
 
 function updateCollection({ id, token, cards, name }) {
 
-  console.log(id)
-  console.log(cards)
-
   const requestOptions = {
     method: "PUT",
     headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
@@ -97,4 +98,16 @@ function updateCollection({ id, token, cards, name }) {
   return fetch(`http://localhost:5000/api/collections/update?id=${id}`, requestOptions)
     .then(result => result.json())
     .catch(err => console.log(err))
+}
+
+function register_newsletter(email){
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email })
+  }
+
+  return fetch('https://mlingo.azurewebsites.net/api/newsletter/signup', requestOptions)
+  .then( result => result)
+  .catch( err => console.log(err))
 }

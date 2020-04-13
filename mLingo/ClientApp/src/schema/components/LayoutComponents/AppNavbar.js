@@ -17,9 +17,9 @@ const AppNavbar = props => {
         <img src={logo} className="img-fluid" />
       </Link>
       <div className="navbar__buttons">
-        <SearchInput />
         {
           localStorage.getItem("currentUser") ? <div className="navbar__buttons">
+          <SearchInput />
             <div>
               <Link className="signinbutton" to="/head">learn</Link>
             </div>

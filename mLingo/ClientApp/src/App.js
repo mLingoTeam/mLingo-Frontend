@@ -5,9 +5,11 @@ import { createBrowserHistory } from "history";
 import PrivateRoute from "./services/PrivateRoute";
 
 
+import RegisterPage from "./schema/pages/RegisterPage";
+import TemporaryPage from './schema/pages/TemporaryPage'
+
 import MainPage from "./schema/pages/MainPage";
 import LoginPage from "./schema/pages/LoginPage";
-import RegisterPage from "./schema/pages/RegisterPage";
 import UserPanelHead from "./schema/pages/UserPanelHead";
 import UserPanelCreate from "./schema/pages/UserPanelCreate";
 import CollectionPage from "./schema/pages/CollectionPage";
@@ -24,7 +26,7 @@ export default class App extends Component {
         <div>
           <Route exact path="/" component={MainPage} />
           <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/register" component={RegisterPage} />
+          <Route exact path="/register" component={TemporaryPage} />
           <Route exact path="/collection" component={CollectionPage} />
           <Route exact path="/search" component={SearchPage} />
           <PrivateRoute exact path="/head" component={UserPanelHead} />
