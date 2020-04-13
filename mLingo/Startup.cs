@@ -32,6 +32,8 @@ namespace mLingo
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             services.AddRouting(options => options.LowercaseUrls = true);
 
             services.AddLogging(options => { options.AddConsole(); });
@@ -124,6 +126,12 @@ namespace mLingo
             {
                 app.UseExceptionHandler("/Error");
             }
+
+            app.UseCors(options =>
+            {
+                options.AllowAnyOrigin();
+                options.AllowAnyMethod();
+            });
 
             app.UseSwagger();
             app.UseSwaggerUI(options =>
