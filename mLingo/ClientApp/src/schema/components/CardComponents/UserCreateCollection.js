@@ -15,7 +15,7 @@ const UserCreateCollection = (props) => {
                         <CardTitle> Title </CardTitle>
                         <input name="collectionTitle" type="text" size="45" placeholder="Type here" value={props.set.collectionTitle} onChange={props.handleChange} required />
                         <CardTitle> Description </CardTitle>
-                        <textarea name="collectionDescription"  rows="5" cols="45" placeholder="Type here" onChange={props.set.functioni} required />
+                        <textarea name="collectionDescription"  rows="5" cols="45" placeholder="Type here" onChange={props.handleChange} required />
                         <div>
                             <button onClick={props.set.functionii} class="green-button"> { props.edit ? "edit collection" : "create collection" } </button>
                             <button className="green-button"> add to the study set </button>

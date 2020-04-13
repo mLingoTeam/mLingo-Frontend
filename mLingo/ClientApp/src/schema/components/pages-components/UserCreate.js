@@ -37,7 +37,6 @@ class UserCreate extends React.Component {
     async mount(){
         this.setState({ ...this.state, loading: true });
             const req = await requests.mountEditCollection();
-            console.log(req.response);
             this.setState({ ...this.state, cards: req.response.cards, collectionTitle: req.response.name, loading: false, edit: true });
     }
 
@@ -78,7 +77,7 @@ class UserCreate extends React.Component {
     }
 
     handleChange(event) {
-        this.setState({ ...this.state, [event.target.name]: event.target.value }, console.log(this.state));
+        this.setState({ ...this.state, [event.target.name]: event.target.value });
 
     }
 
@@ -98,7 +97,6 @@ class UserCreate extends React.Component {
     async createCollection() {
 
         let title = this.state.collectionTitle;
-        console.log(title)
         if(title.trim() === ""){
             alert('Name your collection!')
         }
@@ -111,12 +109,12 @@ class UserCreate extends React.Component {
             })
             if( this.state.cards.length <= 1 ){
                 alert("Add more cards")
-                this.setState({ collectionTitle: "", cards: [{ term: "", definition: "" }]});
+                this.setState({ collectionTitle: "",collectionDescription:"", cards: [{ term: "", definition: "" }]});
                 return
             }
             else{
                 await authenticationService.createCollection(this.state.collectionTitle, this.state.collectionDescription, this.state.cards, localStorage.getItem("Token"));
-                this.setState({ collectionTitle: "", cards: [] });
+                this.setState({ collectionTitle: "", collectionDescription:"", cards: [] });
             }
         }
 
