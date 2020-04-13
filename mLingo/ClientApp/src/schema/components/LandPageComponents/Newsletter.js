@@ -1,14 +1,34 @@
 import React from 'react';
 import left from '../../../img/leftsquare.svg';
 import right from '../../../img/rightsquare.svg'
-import FormField from '../FormComponents/FormField';
+
+import helpers from '../../../services/helpers'
+import { authenticationService } from '../../../services/authentication';
 
 class Newsletter extends React.Component {
 
     constructor(props){
         super(props);
-        this.state = {};
+        this.state = { email: "", err: false};
+
+        this.handleChange = this.handleChange.bind(this);
+        this.register = this.register.bind(this);
     }
+
+
+    handleChange(event){
+
+        this.setState({
+                ...this.state,
+                [event.target.name]: event.target.value
+        })
+    }
+
+    register(){
+        const mail = this.state.email;
+        helpers.validateEmail(mail) ? authenticationService.register_newsletter(mail) : this.setState({...this.state, err: " Invalid Email "})
+    }
+
 
 
     render(){
@@ -21,9 +41,12 @@ class Newsletter extends React.Component {
                     <h2 className="main-page-h2 mb-5">newsletter</h2>
                     <p>awesome content once a week.</p>
                     <p>{"No spam, we promise :)"}</p>
-                    <input type="email" className="text my-5" placeholder="email"/>
+                    <input type="email" className="text my-5" placeholder="email@email.com" name="email" value={this.state.email} onChange={this.handleChange} required/>
+                    {
+                        this.state.err ? <div>{this.state.err}</div> : null
+                    }
                     <br/>
-                    <button className="green-button px-5">sign me up</button>
+                    <input type="submit" className="green-button px-5" onClick={this.register} value="sign me up"/>
                 </div>
                 <div className="right-circle-container col-6">
                     <img src={right} className="right-circle img-fluid"/>

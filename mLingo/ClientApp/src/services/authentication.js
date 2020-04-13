@@ -6,7 +6,8 @@ export const authenticationService = {
   requestCollection,
   createCollection,
   removeCollection,
-  updateCollection
+  updateCollection,
+  register_newsletter,
 };
 
 function register(username, email, password) {
@@ -85,9 +86,6 @@ function removeCollection(id, token) {
 
 function updateCollection({ id, token, cards, name }) {
 
-  console.log(id)
-  console.log(cards)
-
   const requestOptions = {
     method: "PUT",
     headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
@@ -97,4 +95,16 @@ function updateCollection({ id, token, cards, name }) {
   return fetch(`http://localhost:5000/api/collections/update?id=${id}`, requestOptions)
     .then(result => result.json())
     .catch(err => console.log(err))
+}
+
+function register_newsletter(email){
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email })
+  }
+
+  return fetch('https://mlingo.azurewebsites.net/api/newsletter/signup', requestOptions)
+  .then( result => console.log(result))
+  .catch( err => console.log(err))
 }
