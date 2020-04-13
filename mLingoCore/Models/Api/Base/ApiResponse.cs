@@ -1,7 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-
-namespace mLingoCore.Models.Api.Base
+﻿namespace mLingoCore.Models.Api.Base
 {
     /// <summary>
     /// Standard response model for API calls
