@@ -108,6 +108,6 @@ function register_newsletter(email){
   }
 
   return fetch('https://mlingo.azurewebsites.net/api/newsletter/signup', requestOptions)
-  .then( result => console.log(result))
+  .then( result => result)
   .catch( err => console.log(err))
 }

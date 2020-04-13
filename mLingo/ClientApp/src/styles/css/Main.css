@@ -747,6 +747,11 @@ div.welcome-section > div p {
   }
 }
 
+#newsletter-section .newsletter-thanks {
+  padding: 20vh 0;
+  text-align: center;
+}
+
 #newsletter-section .left-circle-container, #newsletter-section .right-circle-container {
   position: relative;
   overflow: hidden;
