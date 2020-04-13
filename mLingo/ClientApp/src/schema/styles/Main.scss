@@ -605,17 +605,28 @@ div.welcome-section{
 
 
   .left-circle-container, .right-circle-container{
-    position: absolute;
+    position: relative;
     overflow: hidden;
     height: auto;
     width: auto;
-    max-width: 50vw;
+    max-width: 50%;
   }
   .left-circle-container{
-    left: -25%;
+    position: absolute;
+    left: -200px;
   }
   .right-circle-container{
-    right: -25%;
+    position: absolute;
+    right: -200px;
+  }
+
+  @media(max-width: $mobile-res){
+    .right-circle-container{
+      right: -100px;
+    }
+    .left-circle-container{
+      left: -100px;
+    }
   }
 
   .newsletter-subscribe{
