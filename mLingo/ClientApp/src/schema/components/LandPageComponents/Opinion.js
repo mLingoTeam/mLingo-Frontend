@@ -4,9 +4,9 @@ const Opinion = ( {set, index}) => {
 
 
     return(
-        <div className="Opinion offset-3 col-8" key={index}>
+        <div className="Opinion offset-md-3  col-md-8" key={index}>
             <img src={set.photo} />
-            <p className="col-7">{set.opinion}</p>
+            <p className="col-md-7">{set.opinion}</p>
         </div>
     )
 }

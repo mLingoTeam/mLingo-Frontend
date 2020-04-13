@@ -5,7 +5,6 @@ import { FaTrash } from 'react-icons/fa'
 
 const AddFlashcard = ({ set, remove, index, functioni }) => {
 
-    console.log(set)
 
     let isFirst = index;
     index++;

@@ -747,20 +747,35 @@ div.welcome-section > div p {
   }
 }
 
+#newsletter-section .newsletter-thanks {
+  padding: 20vh 0;
+  text-align: center;
+}
+
 #newsletter-section .left-circle-container, #newsletter-section .right-circle-container {
-  position: absolute;
+  position: relative;
   overflow: hidden;
   height: auto;
   width: auto;
-  max-width: 50vw;
 }
 
 #newsletter-section .left-circle-container {
-  left: -25%;
+  position: absolute;
+  left: -20%;
 }
 
 #newsletter-section .right-circle-container {
-  right: -25%;
+  position: absolute;
+  right: -20%;
+}
+
+@media (max-width: 576px) {
+  #newsletter-section .right-circle-container {
+    right: -100px;
+  }
+  #newsletter-section .left-circle-container {
+    left: -100px;
+  }
 }
 
 #newsletter-section .newsletter-subscribe {
@@ -832,6 +847,12 @@ div.welcome-section > div p {
   }
 }
 
+@media (min-width: 576px) and (max-width: 991px) {
+  #Steps h2 {
+    font-size: 26px !important;
+  }
+}
+
 .Step {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -865,7 +886,16 @@ div.welcome-section > div p {
   margin: 0 20px;
 }
 
-@media (max-width: 576px) {
+@media (min-width: 1200px) {
+  .Step > div h2 {
+    font-size: 17px;
+  }
+  .Step div {
+    margin: 0 0px;
+  }
+}
+
+@media (max-width: 991px) {
   .Step {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
@@ -880,6 +910,12 @@ div.welcome-section > div p {
 #Opinions h2 {
   text-align: center;
   margin-bottom: 10vh;
+}
+
+@media (max-width: 576px) {
+  #Opinions {
+    padding: 20px;
+  }
 }
 
 .Opinion {
@@ -902,8 +938,8 @@ div.welcome-section > div p {
   -webkit-transform: scale(0.8);
           transform: scale(0.8);
   position: absolute;
-  top: -50%;
-  left: -10%;
+  top: -70px;
+  left: -70px;
 }
 
 .Opinion::after {
@@ -911,7 +947,7 @@ div.welcome-section > div p {
   -webkit-transform: scale(0.8);
           transform: scale(0.8);
   position: absolute;
-  bottom: -40%;
+  bottom: -70px;
   left: 0;
 }
 
@@ -919,6 +955,35 @@ div.welcome-section > div p {
   font-size: 16px;
   color: #000536;
   word-spacing: 2px;
+}
+
+@media (max-width: 991px) {
+  .Opinion {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .Opinion p {
+    margin-top: 20px;
+    font-size: 12px;
+  }
+  .Opinion::before {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    top: -50px;
+    left: -10px;
+  }
+  .Opinion::after {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    bottom: -60px;
+    right: -50px;
+  }
 }
 
 /* Layout Components */
