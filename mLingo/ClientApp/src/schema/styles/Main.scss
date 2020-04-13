@@ -609,15 +609,14 @@ div.welcome-section{
     overflow: hidden;
     height: auto;
     width: auto;
-    max-width: 50%;
   }
   .left-circle-container{
     position: absolute;
-    left: -200px;
+    left: -20%;
   }
   .right-circle-container{
     position: absolute;
-    right: -200px;
+    right: -20%;
   }
 
   @media(max-width: $mobile-res){
@@ -682,6 +681,15 @@ div.welcome-section{
       flex-wrap: wrap;
     }
   }
+
+}
+
+#Steps{
+  @media( min-width:$mobile-res) and (max-width: $tablet-res){
+    h2{
+      font-size: 26px !important;
+    }
+  }
 }
 
 .Step{
@@ -706,13 +714,28 @@ div.welcome-section{
     margin:  0 20px;
   }
 
-  @media(max-width: $mobile-res){
+  @media(min-width: 1200px){
+    &{
+      >div h2{
+      font-size: 17px;
+    }
+
+    div{
+      margin: 0 0px;
+    }
+
+  }
+  }
+
+  @media(max-width: $tablet-res){
     &{
       flex-wrap: wrap;
       text-align: center;
       img{
         margin-bottom: 20px;
       }
+
+
     }
   }
 }
@@ -726,6 +749,10 @@ div.welcome-section{
   h2{
     text-align: center;
     margin-bottom: 10vh;
+  }
+
+  @media(max-width: $mobile-res){
+    padding: 20px;
   }
 
 }
@@ -745,14 +772,14 @@ div.welcome-section{
     content: url("../../img/bubbles-newsletter-01.svg");
     transform: scale(0.8);
     position: absolute;
-    top:-50%;
-    left:-10%;
+    top:-70px;
+    left:-70px;
   }
   &::after{
     content: url("../../img/bubbles-newsletter-02.svg");
     transform: scale(0.8);
     position: absolute;
-    bottom:-40%;
+    bottom:-70px;
     left:0;
   }
 
@@ -760,6 +787,30 @@ div.welcome-section{
     font-size: 16px;
     color: $dark-blue;
     word-spacing: 2px;
+  }
+
+  @media(max-width: $tablet-res){
+    &{
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+
+      p{
+        margin-top: 20px;
+        font-size: 12px;
+      }
+
+      &::before{
+        transform: scale(0.5);
+        top:-50px;
+        left:-10px;
+      }
+      &::after{
+        transform: scale(0.5);
+        bottom:-60px;
+        right: -50px;
+      }
+    }
   }
 }
 

@@ -13,11 +13,11 @@ class Newsletter extends React.Component {
 
     render(){
         return(
-            <section id="newsletter-section">
-                <div className="left-circle-container">
+            <section id="newsletter-section" className="col-12">
+                <div className="left-circle-container col-6">
                     <img src={left} className="left-circle img-fluid"/>
                 </div>
-                <div className="newsletter-subscribe">
+                <div className="newsletter-subscribe col-sm-10 col-md-4">
                     <h2 className="main-page-h2 mb-5">newsletter</h2>
                     <p>awesome content once a week.</p>
                     <p>{"No spam, we promise :)"}</p>
@@ -25,7 +25,7 @@ class Newsletter extends React.Component {
                     <br/>
                     <button className="green-button px-5">sign me up</button>
                 </div>
-                <div className="right-circle-container">
+                <div className="right-circle-container col-6">
                     <img src={right} className="right-circle img-fluid"/>
                 </div>
             </section>
