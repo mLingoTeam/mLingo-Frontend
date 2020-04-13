@@ -16,5 +16,7 @@ namespace mLingoCore.Models.Api.ResponseModels.Collections
         public int PlayCount { get; set; }
 
         public float Rating { get; set; }
+
+        public string Description { get; set; }
     }
 }

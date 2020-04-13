@@ -57,7 +57,8 @@ namespace mLingo.Modules
                     BaseLanguage = collection.Details.BaseLanguage,
                     SecondLanguage = collection.Details.SecondLanguage,
                     PlayCount = collection.Details.PlayCount,
-                    Rating = collection.Details.Rating
+                    Rating = collection.Details.Rating,
+                    Description = collection.Details.Description
                 }, 200);
             }
 
@@ -98,7 +99,8 @@ namespace mLingo.Modules
                     BaseLanguage = c.Details.BaseLanguage,
                     SecondLanguage = c.Details.SecondLanguage,
                     PlayCount = c.Details.PlayCount,
-                    Rating = c.Details.Rating
+                    Rating = c.Details.Rating,
+                    Description = c.Details.Description
                 })
                 .ToList();
 
@@ -136,7 +138,8 @@ namespace mLingo.Modules
                     BaseLanguage = c.Details.BaseLanguage,
                     SecondLanguage = c.Details.SecondLanguage,
                     PlayCount = c.Details.PlayCount,
-                    Rating = c.Details.Rating
+                    Rating = c.Details.Rating,
+                    Description = c.Details.Description
                 })
                 .ToList();
 

@@ -32,6 +32,8 @@ namespace mLingo
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             services.AddRouting(options => options.LowercaseUrls = true);
 
             services.AddLogging(options => { options.AddConsole(); });
@@ -109,6 +111,7 @@ namespace mLingo
             services.AddTransient<ICollectionManager, StandardCollectionManager>();
             services.AddTransient<ILanguageDetector, LanguageDetector>();
             services.AddTransient<ISetManager, StandardSetManager>();
+            services.AddTransient<INewsletterManager, StandardNewsletterManager>();
 
             services.AddSwaggerDocs();
         }
@@ -123,6 +126,13 @@ namespace mLingo
             {
                 app.UseExceptionHandler("/Error");
             }
+
+            app.UseCors(options =>
+            {
+                options.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
 
             app.UseSwagger();
             app.UseSwaggerUI(options =>
