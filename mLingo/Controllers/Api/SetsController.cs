@@ -54,17 +54,6 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Creates set based on submitted form
         /// </summary>
-        /// <remarks>
-        /// {
-        ///     "Id": null,
-        ///     "Name": "TestSet",
-        ///     "CollectionIds": [
-        ///         "182bd798-64b1-404f-b52f-63dc7163eaf2",
-        ///         "582bdas8-64b1-404f-b5sd-63dc7163eaf2",
-        ///         "122bd798-63b1-404f-b52f-64356163eaf2"
-        ///     ]
-        /// }
-        /// </remarks>
         /// <param name="setInfo">Information about set from request body</param>
         /// <response code="200">Successful, set created</response>
         /// <response code="500">Set creation failed, server fault. Check <see cref="ErrorRapport"/> for details.</response>

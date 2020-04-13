@@ -131,8 +131,7 @@ namespace mLingo
             {
                 options.AllowAnyOrigin()
                     .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials();
+                    .AllowAnyHeader();
             });
 
             app.UseSwagger();

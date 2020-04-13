@@ -37,11 +37,6 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Adds submitted email to mLingo mailing list
         /// </summary>
-        /// <remarks>
-        /// {
-        ///     "Email": "example@email.com"
-        /// }
-        /// </remarks>
         /// <param name="form">Form with required information</param>
         /// <response code="200">Successful, address added to mailing list</response>
         /// <response code="500">Filed to add address to mailing list, server fault. Please check <see cref="ErrorRapport"/> for details</response>

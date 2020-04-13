@@ -58,19 +58,6 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Registers new user account.
         /// </summary>
-        /// <remarks>
-        /// Sample request
-        /// POST /api/account/register
-        /// {
-        ///     "Username": "example1",
-        ///     "Password": "zaq1@WSX",
-        ///     "Email": "email@example1.com",
-        ///     "FirstName": "John",
-        ///     "LastName": "Doe",
-        ///     "DateOfBirth": "iso-formatted-timestamp",
-        ///     "PhoneNo": "123456789"
-        /// } 
-        /// </remarks>
         /// <param name="registerForm">User information passed through request body</param>
         /// <response code="200">Returns newly created user credentials <see cref="CredentialsResponse"/></response>
         /// <response code="400">If user credentials are invalid</response>
@@ -88,12 +75,6 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Logs user in.
         /// </summary>
-        /// <remarks>
-        /// {
-        ///     "Username": "example1",
-        ///     "Password": "zaq1@WSX"
-        /// }
-        /// </remarks>
         /// <param name="loginForm">User information passed through request body</param>
         /// <response code="200">Returns user credentials with access token <see cref="CredentialsResponse"/></response>
         /// <response code="400">If login credentials are incorrect</response>
@@ -157,14 +138,6 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Edit accounts <see cref="UserInformation"/>
         /// </summary>
-        /// <remarks>
-        /// {
-        ///     "FirstName": "edited_firstname",
-        ///     "LastName": "edited_lastname",
-        ///     "DateOfBirth": "iso_formatted_timestamp",
-        ///     "Age": 0
-        /// }
-        /// </remarks>
         /// <param name="newInformation">updated information</param>
         /// <response code="200">If information updated successfully</response>
         /// <response code="500">Server error. Returns <see cref="ErrorRapport"/> in response body</response>
@@ -179,11 +152,6 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Generates token to change email / password
         /// </summary>
-        /// <remarks>
-        /// {
-        ///     "Email": "new@mail.com"
-        /// }
-        /// </remarks>
         /// <param name="prop">Property user wants to change (email / password)</param>
         /// <param name="newEmail">Parameter required to generate token for email change</param>
         /// <response code="200">Token string in response body</response>
@@ -200,11 +168,6 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Changes email of an account
         /// </summary>
-        /// <remarks>
-        /// {
-        ///     "Email": "new@email.com"
-        /// }
-        /// </remarks>
         /// <param name="token">Email change token generated via <see cref="RequestChangeToken"/></param>
         /// <param name="newEmail"></param>
         /// <response code="200">Email changed successfully</response>
@@ -221,12 +184,6 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Resets password for the account
         /// </summary>
-        /// <remarks>
-        /// {
-        ///     "OldPassword": "old_password",
-        ///     "NewPassword": "new_password"
-        /// }
-        /// </remarks>
         /// <param name="token">reset password token generated via <see cref="RequestChangeToken"/></param>
         /// <param name="newPassword"></param>
         /// <response code="200">Password reset successfully.</response>
