@@ -129,8 +129,10 @@ namespace mLingo
 
             app.UseCors(options =>
             {
-                options.AllowAnyOrigin();
-                options.AllowAnyMethod();
+                options.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
             });
 
             app.UseSwagger();
