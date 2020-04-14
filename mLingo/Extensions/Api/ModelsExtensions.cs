@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using mLingo.Models.Database.Collections;
+using mLingo.Models.Database.Sets;
 using mLingoCore.Models.Api.ResponseModels.Collections;
+using mLingoCore.Models.Api.ResponseModels.Sets;
 
 namespace mLingo.Extensions.Api
 {
@@ -45,6 +47,27 @@ namespace mLingo.Extensions.Api
                 Definition = card.Definition,
                 Term = card.Term,
                 Id = card.Id
+            };
+        }
+
+        public static SetOverviewResponse AsOverviewResponse(this Set set)
+        {
+            return new SetOverviewResponse
+            {
+                Id = set.Id,
+                Name = set.Name,
+                OwnerId = set.OwnerId
+            };
+        }
+
+        public static SetFullResponse AsFullResponse(this Set set)
+        {
+            return new SetFullResponse
+            {
+                Id = set.Id,
+                Name = set.Name,
+                OwnerId = set.OwnerId,
+                Collections = set.Collections.Select(sc => sc.Collection.AsOverviewResponse()).ToList()
             };
         }
     }
