@@ -8,7 +8,7 @@ class User_Head extends React.Component {
   render() {
     return (
       <UserLayout>
-        <UserHead />
+          <UserHead />
       </UserLayout>
     )
   }
