@@ -1,14 +1,9 @@
 import React from "react";
-import StudySetsSection from '../user_components/Sections/StudySetsSection'
 import Newsletter from '../landpage_components/Newsletter';
 
-class UserHead extends React.Component {
+class Temporary_Register_Component extends React.Component {
     constructor(props) {
         super(props);
-
-        if (localStorage.getItem("currentUser")) {
-            this.props.history.push("/head");
-        }
     }
 
     render() {
@@ -23,4 +18,4 @@ class UserHead extends React.Component {
     }
 }
 
-export default UserHead;
+export default Temporary_Register_Component;

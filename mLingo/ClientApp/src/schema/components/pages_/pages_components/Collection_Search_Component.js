@@ -1,10 +1,10 @@
 import React from "react";
 import StudySetCardComponent from '../collection_components/StudySetCardComponent'
-import SearchInput from '../../layout_/search_components/SearchInput'
+import Search_Input from '../../layout_/search_components/Search_Input'
 
 import { authenticationService } from "../../../../services/authentication";
 
-class UserHead extends React.Component {
+class Collection_Search_Component extends React.Component {
     constructor(props) {
         super(props);
 
@@ -36,12 +36,6 @@ class UserHead extends React.Component {
         }
     }
 
-    logout = () => {
-        authenticationService.logout();
-        //it works because localStorage is empty imidiately
-        window.location.reload();
-    };
-
     componentDidMount() {
         this.findcollection();
     }
@@ -51,9 +45,8 @@ class UserHead extends React.Component {
             <div>
                 <div>
                     <h3>You have searched for : {localStorage.getItem("request")} </h3>
-                    <SearchInput />
+                    <Search_Input />
                     <button onClick={this.findcollection}>Find</button>
-                    <button onClick={this.logout}>Logout</button>
                 </div>
                 {
                     this.state.exist ? this.state.fields.map(element => (
@@ -65,4 +58,4 @@ class UserHead extends React.Component {
     }
 }
 
-export default UserHead;
+export default Collection_Search_Component;

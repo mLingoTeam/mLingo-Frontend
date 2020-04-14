@@ -2,7 +2,7 @@ import React from "react";
 import StudySetsSection from '../user_components/Sections/StudySetsSection'
 import CollectionSection from '../user_components/Sections/CollectionSection'
 
-class UserHead extends React.Component {
+class User_Head_Component extends React.Component {
     constructor(props) {
         super(props);
 
@@ -23,4 +23,4 @@ class UserHead extends React.Component {
     }
 }
 
-export default UserHead;
+export default User_Head_Component;

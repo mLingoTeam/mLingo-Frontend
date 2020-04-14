@@ -9,7 +9,7 @@ import AddFlashcard from '../collection_components/AddFlashcard';
 
 import { FaPlus } from 'react-icons/fa'
 
-class UserCreate extends React.Component {
+class User_Create_Collection_Component extends React.Component {
     constructor(props) {
         super(props);
 
@@ -152,4 +152,4 @@ class UserCreate extends React.Component {
     }
 }
 
-export default UserCreate;
+export default User_Create_Collection_Component;
