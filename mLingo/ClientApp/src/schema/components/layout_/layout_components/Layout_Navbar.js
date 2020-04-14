@@ -1,7 +1,7 @@
 import React from "react";
-import SearchInput from '../search_components/SearchInput';
+import Search_Input from '../search_components/Search_Input';
 import { Link } from "react-router-dom";
-import logo from '../../../img/Kompozycja 2.svg'
+import logo from '../../../../img/Kompozycja 2.svg'
 import { authentication_service } from "../../../../services/authentication";
 
 const logout = () => {
@@ -10,7 +10,7 @@ const logout = () => {
   window.location.reload();
 };
 
-const AppNavbar = props => {
+const Layout_Navbar = props => {
   return (
     <div className="navbar--dark">
       <Link className="navbar__brand" to="/">
@@ -19,7 +19,7 @@ const AppNavbar = props => {
       <div className="navbar__buttons">
         {
           localStorage.getItem("currentUser") ? <div className="navbar__buttons">
-          <SearchInput />
+          <Search_Input />
             <div>
               <Link className="signinbutton" to="/head">learn</Link>
             </div>
@@ -39,4 +39,4 @@ const AppNavbar = props => {
   );
 };
 
-export default AppNavbar;
+export default Layout_Navbar;

@@ -1,8 +1,8 @@
 import React from "react";
 import { FaYoutube, FaPodcast, FaFacebook, FaInstagram } from 'react-icons/fa';
-import mlingo from '../../../img/logo-wjite.svg'
+import mlingo from '../../../../img/logo-wjite.svg'
 
-const Footer = props => {
+const Layout_Footer = props => {
   return (
     <div className="footer container">
       <div>
@@ -26,4 +26,4 @@ const Footer = props => {
   );
 };
 
-export default Footer;
+export default Layout_Footer;
