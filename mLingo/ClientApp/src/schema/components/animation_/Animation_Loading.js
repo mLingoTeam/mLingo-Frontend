@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Loading = () => {
+const Animation_Loading = () => {
     return(
         <div className="loader introLoader">
             <span className="introSpan "></span>
@@ -11,4 +11,4 @@ const Loading = () => {
     )
 }
 
-export default Loading;
+export default Animation_Loading;

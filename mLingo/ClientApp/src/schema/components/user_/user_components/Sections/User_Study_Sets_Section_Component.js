@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-import UserSection from '../UserSection';
-import StudySetCardComponent from '../../collection_components/StudySetCardComponent';
+import User_Section_Component from '../User_Section_Component';
+import Study_Sets_Card_Component from '../../study_sets_/study_sets_components/Study_Sets_Card_Component';
+
 import Loading from '../../animation_components/Loading'
 
 import { authenticationService } from "../../../../services/authentication";
@@ -35,13 +36,13 @@ class User_Study_Sets_Section_Component extends React.Component {
 
     render() {
         return (
-            <UserSection title="study sets" description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.">
+            <User_Section_Component title="study sets" description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.">
                 {
                     this.state.loading ? <div className="position-relative"><Loading/></div> : <div>
                         <div className="yourstudysets">
                             {
                                 this.state.exist ? this.state.fields.map(element => (
-                                    <StudySetCardComponent set={element} />
+                                    <Study_Sets_Card_Component set={element} />
                                 )) : <div className="text-center col-12"><h2> You have no collection! &nbsp; </h2></div>
                             }
                             {
@@ -53,7 +54,7 @@ class User_Study_Sets_Section_Component extends React.Component {
                         </div>
                     </div>
                 }
-            </UserSection>
+            </User_Section_Component>
         );
     }
 }
