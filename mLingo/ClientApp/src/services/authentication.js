@@ -1,3 +1,6 @@
+import Newsletter from './authentication_classes/newsletter'
+
+
 export const authenticationService = {
   register,
   login,
@@ -7,11 +10,18 @@ export const authenticationService = {
   createCollection,
   removeCollection,
   updateCollection,
-  register_newsletter,
+
+  newsletter
 };
+
+
+
 
 const host = 'http://localhost:5000';
 const newsletter_host = "https://mlingo.azurewebsites.net";
+
+
+const newsletter = new Newsletter( newsletter_host )
 
 function register(username, email, password) {
   const requestOptions = {
@@ -48,69 +58,3 @@ function setIntoLocalStorage({ name = "null", value = "null" }) {
   localStorage.setItem(`${name}`, value);
 }
 
-function requestCollection(type, name) {
-
-  let rqtype;
-
-  type === 'name' ? rqtype = 'find' : type === 'id' ? rqtype = 'find' : rqtype = "usercollections";
-
-  const requestOptions = {
-    method: "GET",
-    headers: { "Content-Type": "application/json" }
-  };
-
-  return fetch(`${host}/api/collections/${rqtype}?${type}=${name}`, requestOptions)
-    .then(result => result.json())
-}
-
-function createCollection(name, description, cards, Token) {
-
-  console.log(JSON.stringify({ name, description, cards }))
-
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "Authorization": `Bearer ${Token}` },
-    body: JSON.stringify({ name, description, cards })
-  };
-
-  return fetch(`${host}/api/collections/create`, requestOptions)
-    .then(result => result.json())
-    .catch(err => console.log(err))
-}
-
-function removeCollection(id, token) {
-
-  const requestOptions = {
-    method: "DELETE",
-    headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
-  }
-
-  return fetch(`${host}/api/collections/delete?id=${id}`, requestOptions)
-    .then(result => result.json())
-    .catch(err => console.log(err))
-}
-
-function updateCollection({ id, token, cards, name }) {
-
-  const requestOptions = {
-    method: "PUT",
-    headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
-    body: JSON.stringify({ Name: name, Cards: cards, BaseLanguage: null, SecondLanguage: null })
-  }
-
-  return fetch(`${host}/api/collections/update?id=${id}`, requestOptions)
-    .then(result => result.json())
-    .catch(err => console.log(err))
-}
-
-function register_newsletter(email){
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email })
-  }
-
-  return fetch(`${newsletter_host}/api/newsletter/signup`, requestOptions)
-  .then( result => result)
-  .catch( err => console.log(err))
-}
