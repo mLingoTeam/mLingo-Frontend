@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import WelcomeSection from '../components/LandPageComponents/WelcomeSection'
+import WelcomeSection from '../components/landpage_components/WelcomeSection'
 
 import Layout from '../layouts/LandpageLayout'
-import Newsletter from "../components/LandPageComponents/Newsletter";
-import Steps from '../components/LandPageComponents/Steps';
-import Opinions from '../components/LandPageComponents/Opinions';
+import Newsletter from "../components/landpage_components/Newsletter";
+import Steps from '../components/landpage_components/Steps';
+import Opinions from '../components/landpage_components/Opinions';
 
 export default class Landpage extends Component {
 

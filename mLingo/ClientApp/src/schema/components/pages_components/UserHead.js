@@ -1,6 +1,6 @@
 import React from "react";
-import StudySetsSection from '../UserHeadComponents/Sections/StudySetsSection'
-import CollectionSection from '../UserHeadComponents/Sections/CollectionSection'
+import StudySetsSection from '../user_components/Sections/StudySetsSection'
+import CollectionSection from '../user_components/Sections/CollectionSection'
 
 class UserHead extends React.Component {
     constructor(props) {

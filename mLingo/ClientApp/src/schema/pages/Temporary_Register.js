@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from '../layouts/Layout'
-import TemporaryRegister from '../components/pages-components/TemporaryRegister'
+import TemporaryRegister from '../components/pages_components/TemporaryRegister'
 
 class Temporary_Register extends React.Component {
 

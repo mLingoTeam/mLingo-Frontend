@@ -1,7 +1,7 @@
 import React from "react";
-import UserSection from '../components/UserHeadComponents/UserSection'
+import UserSection from '../components/user_components/UserSection'
 import UserLayout from '../layouts/UserLayout'
-import Collectionscontent from '../components/UserHeadComponents/PagesContent/CollectionsContent'
+import Collectionscontent from '../components/user_components/PagesContent/CollectionsContent'
 
 class User_Collection extends React.Component {
 

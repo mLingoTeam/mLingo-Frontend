@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 import  requests  from '../../../services/requests'
 import { authenticationService } from "../../../services/authentication";
-import UserCreateCollection from '../CardComponents/UserCreateCollection'
-import AddFlashcard from '../CardComponents/AddFlashcard';
+import UserCreateCollection from '../collection_components/UserCreateCollection'
+import AddFlashcard from '../collection_components/AddFlashcard';
 
 
 import { FaPlus } from 'react-icons/fa'

@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 import UserSection from '../UserSection';
-import CollectionCardComponent from '../../CardComponents/CollectionCardComponent';
-import Loading from '../../Animations/Loading'
+import CollectionCardComponent from '../../collection_components/CollectionCardComponent';
+import Loading from '../../animation_components/Loading'
 
 import { authenticationService } from "../../../../services/authentication";
 

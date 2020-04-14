@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Login from '../components/FormComponents/Login'
+import Login from '../components/form_components/Login'
 
 import Layout from '../layouts/Layout'
 

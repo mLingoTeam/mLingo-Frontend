@@ -1,5 +1,5 @@
-import React from 'react'
-import { FaTrash } from 'react-icons/fa'
+import React from './node_modules/react'
+import { FaTrash } from './node_modules/react-icons/fa'
 
 
 

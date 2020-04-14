@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Register from '../components/FormComponents/Register'
+import Register from '../components/form_components/Register'
 
 import Layout from '../layouts/Layout'
 

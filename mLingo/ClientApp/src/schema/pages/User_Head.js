@@ -1,6 +1,6 @@
 import React from "react";
 import UserLayout from '../layouts/UserLayout'
-import UserHead from '../components/pages-components/UserHead'
+import UserHead from '../components/pages_components/UserHead'
 
 class User_Head extends React.Component {
 

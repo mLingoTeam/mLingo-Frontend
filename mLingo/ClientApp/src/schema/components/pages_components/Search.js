@@ -1,6 +1,6 @@
 import React from "react";
-import StudySetCardComponent from '../CardComponents/StudySetCardComponent'
-import SearchInput from '../SearchComponents/SearchInput'
+import StudySetCardComponent from '../collection_components/StudySetCardComponent'
+import SearchInput from '../search_components/SearchInput'
 
 import { authenticationService } from "../../../services/authentication";
 

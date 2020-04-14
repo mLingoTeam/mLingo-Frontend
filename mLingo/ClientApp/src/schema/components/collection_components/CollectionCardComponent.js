@@ -1,9 +1,9 @@
-import React from 'react'
+import React from './node_modules/react'
 import {
     Card, CardBody,
     CardTitle, CardSubtitle
-} from 'reactstrap';
-import { Link } from 'react-router-dom'
+} from './node_modules/reactstrap';
+import { Link } from './node_modules/react-router-dom'
 import { authenticationService } from '../../../services/authentication';
 
 const StudySetCardComponent = ({ set }) => {

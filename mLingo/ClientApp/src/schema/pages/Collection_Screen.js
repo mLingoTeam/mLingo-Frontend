@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from '../layouts/Layout'
 import UserLayout from '../layouts/UserLayout'
-import Collection from '../components/CardComponents/Collection'
+import Collection from '../components/collection_components/Collection'
 
 class Show_Collection extends React.Component {
 

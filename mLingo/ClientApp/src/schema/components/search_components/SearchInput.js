@@ -1,6 +1,6 @@
-import React from "react";
-import { FaSearch } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import React from "./node_modules/react";
+import { FaSearch } from './node_modules/react-icons/fa';
+import { Link } from './node_modules/react-router-dom';
 import { authenticationService } from '../../../services/authentication';
 
 
