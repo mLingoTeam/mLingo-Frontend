@@ -5,7 +5,8 @@ import User from './authentication_classes/user'
 export const authenticationService = {
   newsletter,
   collection,
-  user
+  user,
+  setIntoLocalStorage
 };
 
 
