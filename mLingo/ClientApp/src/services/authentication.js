@@ -10,6 +10,9 @@ export const authenticationService = {
   register_newsletter,
 };
 
+const host = 'http://localhost:5000';
+const newsletter_host = "https://mlingo.azurewebsites.net";
+
 function register(username, email, password) {
   const requestOptions = {
     method: "POST",
@@ -17,7 +20,7 @@ function register(username, email, password) {
     body: JSON.stringify({ username, email, password })
   };
 
-  return fetch(`http://localhost:5000/api/account/register`, requestOptions)
+  return fetch(`${host}/api/account/register`, requestOptions)
     .then(result => result.json())
 }
 
@@ -30,7 +33,7 @@ function login(userid, password) {
   };
 
 
-  return fetch(`http://localhost:5000/api/account/login`, requestOptions)
+  return fetch(`${host}/api/account/login`, requestOptions)
     .then(result => result.json())
 
 }
@@ -56,7 +59,7 @@ function requestCollection(type, name) {
     headers: { "Content-Type": "application/json" }
   };
 
-  return fetch(`http://localhost:5000/api/collections/${rqtype}?${type}=${name}`, requestOptions)
+  return fetch(`${host}/api/collections/${rqtype}?${type}=${name}`, requestOptions)
     .then(result => result.json())
 }
 
@@ -70,7 +73,7 @@ function createCollection(name, description, cards, Token) {
     body: JSON.stringify({ name, description, cards })
   };
 
-  return fetch(`http://localhost:5000/api/collections/create`, requestOptions)
+  return fetch(`${host}/api/collections/create`, requestOptions)
     .then(result => result.json())
     .catch(err => console.log(err))
 }
@@ -82,7 +85,7 @@ function removeCollection(id, token) {
     headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
   }
 
-  return fetch(`http://localhost:5000/api/collections/delete?id=${id}`, requestOptions)
+  return fetch(`${host}/api/collections/delete?id=${id}`, requestOptions)
     .then(result => result.json())
     .catch(err => console.log(err))
 }
@@ -95,7 +98,7 @@ function updateCollection({ id, token, cards, name }) {
     body: JSON.stringify({ Name: name, Cards: cards, BaseLanguage: null, SecondLanguage: null })
   }
 
-  return fetch(`http://localhost:5000/api/collections/update?id=${id}`, requestOptions)
+  return fetch(`${host}/api/collections/update?id=${id}`, requestOptions)
     .then(result => result.json())
     .catch(err => console.log(err))
 }
@@ -107,7 +110,7 @@ function register_newsletter(email){
     body: JSON.stringify({ email })
   }
 
-  return fetch('https://mlingo.azurewebsites.net/api/newsletter/signup', requestOptions)
+  return fetch(`${newsletter_host}/api/newsletter/signup`, requestOptions)
   .then( result => result)
   .catch( err => console.log(err))
 }
