@@ -2,10 +2,10 @@ import React from "react";
 import SearchInput from '../search_components/SearchInput';
 import { Link } from "react-router-dom";
 import logo from '../../../img/Kompozycja 2.svg'
-import { authenticationService } from "../../../../services/authentication";
+import { authentication_service } from "../../../../services/authentication";
 
 const logout = () => {
-  authenticationService.logout();
+  authentication_service.user.logout();
   //it works because localStorage is empty imidiately
   window.location.reload();
 };

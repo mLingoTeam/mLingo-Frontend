@@ -1,7 +1,7 @@
 import React from "react";
 import { FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { authenticationService } from '../../../../services/authentication';
+import { authentication_service } from '../../../../services/authentication';
 
 
 
@@ -20,7 +20,7 @@ class SearchInput extends React.Component {
     }
 
     findcollection() {
-        authenticationService.setIntoLocalStorage({ name: 'request', value: this.state.request })
+        authentication_service.setIntoLocalStorage({ name: 'request', value: this.state.request })
     }
 
     render() {

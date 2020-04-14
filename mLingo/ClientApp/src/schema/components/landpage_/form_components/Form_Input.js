@@ -1,7 +1,7 @@
 import React from "react";
 import { FormGroup, Label } from "reactstrap";
 
-const FormField = ({ set }) => {
+const Form_Input = ({ set }) => {
   return (
     <FormGroup className="col-12 mb-3">
       <Label for={set.id}>
@@ -21,4 +21,4 @@ const FormField = ({ set }) => {
   );
 };
 
-export default FormField;
+export default Form_Input;
