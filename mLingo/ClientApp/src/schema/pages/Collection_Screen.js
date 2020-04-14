@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout'
 import UserLayout from '../layouts/UserLayout'
 import Collection from '../components/collection_components/Collection'
 
-class Show_Collection extends React.Component {
+class Collection_Screen extends React.Component {
 
     constructor() {
         super();
@@ -24,4 +24,4 @@ class Show_Collection extends React.Component {
     }
 }
 
-export default Show_Collection;
+export default Collection_Screen;

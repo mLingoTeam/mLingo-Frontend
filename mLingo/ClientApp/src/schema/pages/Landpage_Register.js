@@ -3,7 +3,7 @@ import Register from '../components/form_components/Register'
 
 import Layout from '../layouts/Layout'
 
-export default class Register extends Component {
+export default class Landpage_Register extends Component {
 
     render() {
         if (localStorage.getItem("currentUser")) {

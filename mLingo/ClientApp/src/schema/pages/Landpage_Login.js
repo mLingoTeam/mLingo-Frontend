@@ -3,7 +3,7 @@ import Login from '../components/form_components/Login'
 
 import Layout from '../layouts/Layout'
 
-export default class LoginPage extends Component {
+export default class Landpage_Login extends Component {
 
     render() {
         if (localStorage.getItem("currentUser")) {

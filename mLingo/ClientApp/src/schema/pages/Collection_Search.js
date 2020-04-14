@@ -2,7 +2,7 @@ import React from "react";
 import Layout from '../layouts/Layout'
 import Search from '../components/pages_components/Search'
 
-class Search_Collection extends React.Component {
+class Collection_Search extends React.Component {
 
 
     render() {
@@ -14,4 +14,4 @@ class Search_Collection extends React.Component {
     }
 }
 
-export default Search_Collection;
+export default Collection_Search;
