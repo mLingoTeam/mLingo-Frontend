@@ -15,8 +15,6 @@ function find({type, name}) {
 
   function create({name, description, cards, Token}) {
 
-    console.log(JSON.stringify({ name, description, cards }))
-
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json", "Authorization": `Bearer ${Token}` },
