@@ -5,7 +5,7 @@ import { authentication_service } from '../../../../services/authentication';
 
 
 
-class SearchInput extends React.Component {
+class Search_Input extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -28,4 +28,4 @@ class SearchInput extends React.Component {
     }
 };
 
-export default SearchInput;
+export default Search_Input;

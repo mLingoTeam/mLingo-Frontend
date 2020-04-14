@@ -1,15 +1,15 @@
 import React from 'react';
-import AppNavbar from '../components/layout_components/AppNavbar'
-import Footer from '../components/layout_components/Footer'
+import Layout_Navbar from '../components/layout_/layout_components/Layout_Navbar'
+import Layout_Footer from '../components/layout_/layout_components/Layout_Footer'
 
 const Layout = ({ children }) => {
 
 
     return (
         <div className="app--background">
-            <AppNavbar />
+            <Layout_Navbar />
                 <main className="container">{children}</main>
-            <Footer />
+            <Layout_Footer />
         </div>
     )
 }
