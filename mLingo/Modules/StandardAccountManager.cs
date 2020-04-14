@@ -11,6 +11,7 @@ using mLingoCore.Models.Forms;
 using mLingoCore.Models.Forms.Accounts;
 using mLingoCore.Services;
 using mLingo.Controllers.Api;
+using mLingoCore.Models.UserData;
 
 namespace mLingo.Modules
 {
@@ -164,7 +165,7 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="AccountController"/>
         /// </summary>
-        public async Task<ApiResponse> RequestChangeToken(string username, string prop, EditMail form)
+        public async Task<ApiResponse> RequestChangeToken(string username, string prop, EmailData form)
         {
             var user = await UserManager.FindByNameAsync(username);
             if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
@@ -189,7 +190,7 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="AccountController"/>
         /// </summary>
-        public async Task<ApiResponse> ChangeEmail(string username, string token, EditMail form)
+        public async Task<ApiResponse> ChangeEmail(string username, string token, EmailData form)
         {
             var user = await UserManager.FindByNameAsync(username);
             if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);

@@ -1,4 +1,4 @@
-﻿namespace mLingoCore.Models.Api
+﻿namespace mLingoCore.Models.Api.Base
 {
     /// <summary>
     /// Data class for static error messages

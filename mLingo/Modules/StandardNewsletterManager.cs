@@ -3,7 +3,7 @@ using mLingo.Models.Database;
 using mLingo.Models.Database.Newsletter;
 using mLingoCore.Models.Api;
 using mLingoCore.Models.Api.Base;
-using mLingoCore.Models.Forms.Newsletter;
+using mLingoCore.Models.UserData;
 using mLingoCore.Services;
 
 namespace mLingo.Modules
@@ -12,7 +12,7 @@ namespace mLingo.Modules
     {
         public AppDbContext DbContext { get; set; }
 
-        public ApiResponse SignUp(RegisterForNewsletterForm form)
+        public ApiResponse SignUp(EmailData form)
         {
             try
             {

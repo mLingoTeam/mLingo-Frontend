@@ -13,6 +13,7 @@ using mLingo.Models.Database.User;
 using mLingo.Modules;
 using mLingoCore.Models.Api.ResponseModels;
 using mLingoCore.Models.Forms.Accounts;
+using mLingoCore.Models.UserData;
 using mLingoCore.Services;
 
 namespace mLingo.Controllers.Api
@@ -159,7 +160,7 @@ namespace mLingo.Controllers.Api
         /// <response code="404">User not found</response>
         [HttpGet]
         [Route("requestchangetoken")]
-        public async Task<IActionResult> RequestChangeToken([FromQuery] string prop, [FromBody]EditMail newEmail = null)
+        public async Task<IActionResult> RequestChangeToken([FromQuery] string prop, [FromBody]EmailData newEmail = null)
         {
             var res = await accountManager.RequestChangeToken(HttpContext.User.Identity.Name, prop, newEmail);
             return this.HandleManagerResponse(res);
@@ -175,7 +176,7 @@ namespace mLingo.Controllers.Api
         /// <response code="404">User does not exist</response>
         [HttpPut]
         [Route("changeemail")]
-        public async Task<IActionResult> ChangeEmail([FromQuery] string token, [FromBody]EditMail newEmail)
+        public async Task<IActionResult> ChangeEmail([FromQuery] string token, [FromBody]EmailData newEmail)
         {
             var res = await accountManager.ChangeEmail(HttpContext.User.Identity.Name, token, newEmail);
             return this.HandleManagerResponse(res);
