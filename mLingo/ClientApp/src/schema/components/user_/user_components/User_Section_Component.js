@@ -1,6 +1,6 @@
 import React from "react";
 
-const UserSection = props => {
+const User_Section_Component = props => {
 
     return (
         <section class="UserSection">
@@ -11,4 +11,4 @@ const UserSection = props => {
     );
 }
 
-export default UserSection;
+export default User_Section_Component;

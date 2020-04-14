@@ -2,14 +2,14 @@ import React from "react";
 import { Link } from 'react-router-dom';
 
 import UserSection from '../UserSection';
-import CollectionCardComponent from '../../collection_components/CollectionCardComponent';
+import StudySetCardComponent from '../../collection_components/StudySetCardComponent';
 import Loading from '../../animation_components/Loading'
 
 import { authenticationService } from "../../../../services/authentication";
 
 import { FaPlus } from 'react-icons/fa'
 
-class CollectionSection extends React.Component {
+class User_Study_Sets_Section_Component extends React.Component {
     constructor(props) {
         super(props);
 
@@ -35,20 +35,20 @@ class CollectionSection extends React.Component {
 
     render() {
         return (
-            <UserSection title="collections" description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.">
+            <UserSection title="study sets" description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.">
                 {
-                    this.state.loading ? <div className="position-relative"><Loading/></div>  : <div>
-                        <div className="yourcollections">
+                    this.state.loading ? <div className="position-relative"><Loading/></div> : <div>
+                        <div className="yourstudysets">
                             {
                                 this.state.exist ? this.state.fields.map(element => (
-                                    <CollectionCardComponent set={element} />
+                                    <StudySetCardComponent set={element} />
                                 )) : <div className="text-center col-12"><h2> You have no collection! &nbsp; </h2></div>
                             }
                             {
                                 this.state.exist ? <button class="green-button">Load more</button> : null
                             }
                         </div>
-                        <div className="d-flex justify-content-center">
+                        <div className="d-flex justify-content-center align-items-center">
                             <Link to="/create" className="plus-button"><FaPlus /></Link>
                         </div>
                     </div>
@@ -58,4 +58,4 @@ class CollectionSection extends React.Component {
     }
 }
 
-export default CollectionSection;
+export default User_Study_Sets_Section_Component;
