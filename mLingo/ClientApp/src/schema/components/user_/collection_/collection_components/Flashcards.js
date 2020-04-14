@@ -3,13 +3,13 @@ import { FaTrash } from './node_modules/react-icons/fa'
 
 
 
-const AddFlashcard = ({ set, remove, index, functioni }) => {
+const Flashcards = ({ set, remove, index, method = () => null, create = false  }) => {
 
 
     let isFirst = index;
     index++;
 
-    if(index < 10 ){index = `0${index}`} ;
+    if( index < 10 ){index = `0${index}`} ;
 
     const removeCard = () => {
         remove(set);
@@ -23,7 +23,7 @@ const AddFlashcard = ({ set, remove, index, functioni }) => {
                     <h5>front</h5>
                 </div>
                 <div className="flashcard--body">
-                    <input type="text" name='term' alt={isFirst} value={set.term} className="flashcard--def" placeholder="Term" onChange={functioni}></input>
+                    <input type="text" name='term' alt={isFirst} value={set.term} className="flashcard--def" placeholder="Term" onChange={method}></input>
                 </div>
             </div>
             <div className="flashcard col-5">
@@ -32,15 +32,15 @@ const AddFlashcard = ({ set, remove, index, functioni }) => {
                     <h5>back</h5>
                 </div>
                 <div className="flashcard--body">
-                    <input type="text" alt={isFirst}  value={set.definition} name='definition' className="flashcard--def" placeholder="Definiton" onChange={functioni}></input>
+                    <input type="text" alt={isFirst}  value={set.definition} name='definition' className="flashcard--def" placeholder="Definiton" onChange={method}></input>
                 </div>
             </div>
             {
-                isFirst === 0 ?  null: <button onClick={removeCard}  className="remove-button"><FaTrash onClick={removeCard}/></button>
+                create ? ( isFirst === 0 ?  null: <button onClick={removeCard}  className="remove-button"><FaTrash onClick={removeCard}/></button> ) : null
             }
 
         </div >
     );
 };
 
-export default AddFlashcard;
+export default Flashcards;
