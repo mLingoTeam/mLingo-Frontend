@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using mLingoCore.Models.Api.Base;
-using mLingoCore.Models.Forms;
 using mLingoCore.Models.Forms.Accounts;
+using mLingoCore.Models.UserData;
 
 namespace mLingoCore.Services
 {
@@ -22,9 +22,9 @@ namespace mLingoCore.Services
 
         Task<ApiResponse> EditInformation(string username, EditInformationForm form);
 
-        Task<ApiResponse> RequestChangeToken(string username, string prop, EditMail form);
+        Task<ApiResponse> RequestChangeToken(string username, string prop, EmailData form);
 
-        Task<ApiResponse> ChangeEmail(string username, string token, EditMail form);
+        Task<ApiResponse> ChangeEmail(string username, string token, EmailData form);
 
         Task<ApiResponse> ChangePassword(string username, ResetPasswordForm form);
 
