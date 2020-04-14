@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import WelcomeSection from '../components/landpage_components/WelcomeSection'
 
-import Layout from '../layouts/LandpageLayout'
-import Newsletter from "../components/landpage_components/Newsletter";
-import Steps from '../components/landpage_components/Steps';
-import Opinions from '../components/landpage_components/Opinions';
+import Layout from '../layouts/Layout'
+
+import Landpage_Welcome from '../components/landpage_/landpage_components/Landpage_Welcome'
+import Landpage_Newsletter from "../components/landpage_/landpage_components/Landpage_Newsletter";
+import Landpage_Steps from '../components/landpage_/landpage_components/Landpage_Steps';
+import Landpage_Opinions from '../components/landpage_/landpage_components/Landpage_Opinions';
 
 export default class Landpage extends Component {
 
@@ -14,10 +15,10 @@ export default class Landpage extends Component {
     }
     return (
       <Layout>
-        <WelcomeSection />
-        <Steps/>
-        <Opinions/>
-        <Newsletter/>
+        <Landpage_Welcome />
+        <Landpage_Steps/>
+        <Landpage_Opinions/>
+        <Landpage_Newsletter/>
       </Layout>
     );
   }

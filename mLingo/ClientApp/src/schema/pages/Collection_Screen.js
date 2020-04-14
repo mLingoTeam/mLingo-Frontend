@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from '../layouts/Layout'
-import UserLayout from '../layouts/UserLayout'
-import Collection from '../components/collection_components/Collection'
+import UserLayout from '../layouts/User_Layout'
+import Collection from '../components/user_/collection_/collection_components/Collection'
 
 class Collection_Screen extends React.Component {
 

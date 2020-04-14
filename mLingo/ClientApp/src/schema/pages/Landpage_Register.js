@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Register from '../components/form_components/Register'
+
+import Form_Register from '../components/landpage_/form_components/Form_Register'
 
 import Layout from '../layouts/Layout'
 
@@ -11,7 +12,7 @@ export default class Landpage_Register extends Component {
         }
         return (
             <Layout>
-                <Register />
+                <Form_Register />
             </Layout>
         );
     }

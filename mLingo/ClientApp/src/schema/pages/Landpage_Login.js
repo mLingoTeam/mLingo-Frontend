@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Login from '../components/form_components/Login'
+import Layout from '../layouts/Layout';
 
-import Layout from '../layouts/Layout'
+import Form_Login from '../components/landpage_/form_components/Form_Login';
 
 export default class Landpage_Login extends Component {
 
@@ -11,7 +11,7 @@ export default class Landpage_Login extends Component {
         }
         return (
             <Layout>
-                <Login />
+                <Form_Login />
             </Layout>
         );
     }

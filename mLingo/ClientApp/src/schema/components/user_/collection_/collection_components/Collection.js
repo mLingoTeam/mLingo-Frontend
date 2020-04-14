@@ -1,7 +1,7 @@
 import React from './node_modules/react'
 import { Link } from './node_modules/react-router-dom';
 
-import { authenticationService } from '../../../../../services/authentication';
+import { authentication_service } from '../../../../../services/authentication';
 import  requests  from '../../../../../services/requests';
 import Collection_Flashcard_Component from './Collection_Flashcard_Component';
 

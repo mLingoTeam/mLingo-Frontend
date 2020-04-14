@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from '../layouts/Layout'
-import Search from '../components/pages_components/Search'
+import Collection_Search_Component from '../components/pages_/pages_components/Collection_Search_Component'
 
 class Collection_Search extends React.Component {
 
@@ -8,7 +8,7 @@ class Collection_Search extends React.Component {
     render() {
         return (
             <Layout>
-                <Search />
+                <Collection_Search_Component />
             </Layout>
         )
     }
