@@ -1,11 +1,11 @@
 import React from 'react';
-import left from '../../../img/leftsquare.svg';
-import right from '../../../img/rightsquare.svg'
+import left from '../../../../img/leftsquare.svg';
+import right from '../../../../img/rightsquare.svg'
 
-import helpers from '../../../services/helpers'
-import { authenticationService } from '../../../services/authentication';
+import helpers from '../../../../services/helpers'
+import { authenticationService } from '../../../../services/authentication';
 
-class Newsletter extends React.Component {
+class Landpage_Newsletter extends React.Component {
 
     constructor(props){
         super(props);
@@ -84,4 +84,4 @@ class Newsletter extends React.Component {
     }
 }
 
-export default Newsletter;
+export default Landpage_Newsletter;

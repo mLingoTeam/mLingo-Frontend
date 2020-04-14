@@ -1,10 +1,10 @@
 import React from 'react';
-import community from '../../../img/icon-community.svg'
-import collection from '../../../img/icon-collections.svg'
-import plan from '../../../img/icon-plan.svg'
-import Step from './Step'
+import community from '../../../../img/icon-community.svg'
+import collection from '../../../../img/icon-collections.svg'
+import plan from '../../../../img/icon-plan.svg'
+import Landpage_Step from './Landpage_Step'
 
-const Steps = () => {
+const Landpage_Steps = () => {
 
     const steps = [
         {
@@ -25,7 +25,7 @@ const Steps = () => {
     ]
 
     const steps_set = steps.map( el => {
-        return <Step props={el}/>
+        return <Landpage_Step props={el}/>
     })
 
     return(
@@ -38,4 +38,4 @@ const Steps = () => {
     )
 }
 
-export default Steps;
+export default Landpage_Steps;
