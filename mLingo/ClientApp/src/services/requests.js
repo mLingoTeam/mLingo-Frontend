@@ -1,4 +1,4 @@
-import {authenticationService} from './authentication';
+import { authentication_service } from './authentication';
 
  const requests = {
     async mountCollection() {

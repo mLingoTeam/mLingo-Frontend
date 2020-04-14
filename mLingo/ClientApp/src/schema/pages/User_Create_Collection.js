@@ -2,7 +2,7 @@ import React from "react";
 import UserLayout from '../layouts/UserLayout'
 import UserCreate from '../components/pages-components/UserCreate'
 
-class UserPanelCreate extends React.Component {
+class User_Create_Collection extends React.Component {
 
 
     render() {
@@ -14,4 +14,4 @@ class UserPanelCreate extends React.Component {
     }
 }
 
-export default UserPanelCreate;
+export default User_Create_Collection;

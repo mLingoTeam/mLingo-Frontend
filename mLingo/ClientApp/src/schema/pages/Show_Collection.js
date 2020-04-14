@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout'
 import UserLayout from '../layouts/UserLayout'
 import Collection from '../components/CardComponents/Collection'
 
-class UserPanelCollection extends React.Component {
+class Show_Collection extends React.Component {
 
     constructor() {
         super();
@@ -24,4 +24,4 @@ class UserPanelCollection extends React.Component {
     }
 }
 
-export default UserPanelCollection;
+export default Show_Collection;

@@ -2,7 +2,7 @@ import React from "react";
 import Layout from '../layouts/Layout'
 import Search from '../components/pages-components/Search'
 
-class UserPanel extends React.Component {
+class Search_Collection extends React.Component {
 
 
     render() {
@@ -14,4 +14,4 @@ class UserPanel extends React.Component {
     }
 }
 
-export default UserPanel;
+export default Search_Collection;

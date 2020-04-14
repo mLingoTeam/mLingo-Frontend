@@ -3,7 +3,7 @@ import UserSection from '../components/UserHeadComponents/UserSection'
 import UserLayout from '../layouts/UserLayout'
 import Collectionscontent from '../components/UserHeadComponents/PagesContent/CollectionsContent'
 
-class UserPanelCollection extends React.Component {
+class User_Collection extends React.Component {
 
     constructor() {
         super();
@@ -21,4 +21,4 @@ class UserPanelCollection extends React.Component {
     }
 }
 
-export default UserPanelCollection;
+export default User_Collection;

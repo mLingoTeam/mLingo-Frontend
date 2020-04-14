@@ -49,7 +49,8 @@ function find({type, name}) {
     return fetch(`${this.host}/api/collections/update?id=${id}`, requestOptions)
       .then(result => result.json())
       .catch(err => console.log(err))
-  }
+}
+
 
 
   export class Collection {

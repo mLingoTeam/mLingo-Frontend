@@ -5,16 +5,17 @@ import { createBrowserHistory } from "history";
 import PrivateRoute from "./services/PrivateRoute";
 
 
-import RegisterPage from "./schema/pages/RegisterPage";
-import TemporaryPage from './schema/pages/TemporaryPage'
+//import Register from "./schema/pages/Register";
+import Temporary_Register from './schema/pages/Temporary_Register'
 
-import MainPage from "./schema/pages/MainPage";
-import LoginPage from "./schema/pages/LoginPage";
-import UserPanelHead from "./schema/pages/UserPanelHead";
-import UserPanelCreate from "./schema/pages/UserPanelCreate";
-import CollectionPage from "./schema/pages/CollectionPage";
-import SearchPage from './schema/pages/SearchPage';
-import UserCollections from './schema/pages/UserCollections'
+import Landpage from "./schema/pages/Landpage";
+import Login from "./schema/pages/Login";
+import User_Head from "./schema/pages/User_Head";
+import User_Create_Collection from "./schema/pages/User_Create_Collection";
+import Show_Collection from "./schema/pages/Show_Collection";
+import User_Collections from './schema/pages/User_Collections'
+import Search_Collection from "./schema/pages/Search_Collection";
+
 import './styles/css/Main.css';
 
 export const history = createBrowserHistory();
@@ -24,14 +25,14 @@ export default class App extends Component {
     return (
       <Router history={history}>
         <div>
-          <Route exact path="/" component={MainPage} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/register" component={TemporaryPage} />
-          <Route exact path="/collection" component={CollectionPage} />
-          <Route exact path="/search" component={SearchPage} />
-          <PrivateRoute exact path="/head" component={UserPanelHead} />
-          <PrivateRoute exact path="/create" component={UserPanelCreate} />
-          <PrivateRoute exact path="/collections" component={UserCollections} />
+          <Route exact path="/" component={Landpage} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Temporary_Register} />
+          <Route exact path="/collection" component={Show_Collection} />
+          <Route exact path="/search" component={Search_Collection} />
+          <PrivateRoute exact path="/head" component={User_Head} />
+          <PrivateRoute exact path="/create" component={User_Create_Collection} />
+          <PrivateRoute exact path="/collections" component={User_Collections} />
         </div>
       </Router>
     );

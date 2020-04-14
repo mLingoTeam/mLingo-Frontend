@@ -6,7 +6,7 @@ import Newsletter from "../components/LandPageComponents/Newsletter";
 import Steps from '../components/LandPageComponents/Steps';
 import Opinions from '../components/LandPageComponents/Opinions';
 
-export default class MainPage extends Component {
+export default class Landpage extends Component {
 
   render() {
     if (localStorage.getItem("currentUser")) {

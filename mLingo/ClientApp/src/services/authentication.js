@@ -1,8 +1,8 @@
-import Newsletter from './authentication_classes/newsletter'
-import Collection from './authentication_classes/collection'
-import User from './authentication_classes/user'
+import Newsletter from './authentication_classes/newsletter';
+import Collection from './authentication_classes/collection';
+import User from './authentication_classes/user';
 
-export const authenticationService = {
+export const authentication_service = {
   newsletter,
   collection,
   user,
@@ -20,9 +20,9 @@ const host = 'http://localhost:5000';
 const newsletter_host = "https://mlingo.azurewebsites.net";
 
 
-const newsletter = new Newsletter( newsletter_host )
-const collection = new Collection( host )
-const user = new User( host )
+const newsletter = new Newsletter( newsletter_host );
+const collection = new Collection( host );
+const user = new User( host );
 
 
 

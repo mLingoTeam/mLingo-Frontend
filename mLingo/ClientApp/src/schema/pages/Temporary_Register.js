@@ -2,7 +2,7 @@ import React from "react";
 import Layout from '../layouts/Layout'
 import TemporaryRegister from '../components/pages-components/TemporaryRegister'
 
-class UserPanel extends React.Component {
+class Temporary_Register extends React.Component {
 
 
     render() {
@@ -14,4 +14,4 @@ class UserPanel extends React.Component {
     }
 }
 
-export default UserPanel;
+export default Temporary_Register;
