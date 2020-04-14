@@ -1,10 +1,10 @@
 import React from "react";
 import { Form } from "reactstrap";
 import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
 
 import Form_Input from "./Form_Input";
-import { authentication_service } from "../../../../services/authentication";
+
+import {account_helpers} from './account_helpers'
 
 class Login extends React.Component {
   constructor(props) {
@@ -39,41 +39,13 @@ class Login extends React.Component {
 
 
     this.handleChange = this.handleChange.bind(this);
+
+    this.account_login = this.account_helpers.account_login.bind(this);
   }
 
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
-  }
-
-  async sendRequest() {
-    const resolved = await authentication_service.user.login({username: this.state.username, password: this.state.password});
-
-    //if there is not such an user
-    const resstatus = (JSON.stringify(resolved.successful));
-
-    if (resstatus == 'false') {
-      const err = (JSON.stringify(resolved.errorMessage));
-      this.setState({ ...this.state, err: err })
-    } // if the user exist save they into the web
-    else {
-      authentication_service.setIntoLocalStorage({ name: "currentUser", value: resolved.response.username });
-      authentication_service.setIntoLocalStorage({ name: "ID", value: resolved.response.id });
-      authentication_service.setIntoLocalStorage({ name: "Token", value: resolved.response.token });
-    }
-
-    // TO RERENDER WHEN THE ITEM IS SET IN THE LOCALSTORAGE
-    this.setState({
-      ...this.state,
-      isLoading: true
-    })
-    setTimeout(() => {
-      this.setState({
-        ...this.state,
-        isLoading: false
-      })
-    }, 1000);
-
   }
 
   render() {
@@ -84,7 +56,7 @@ class Login extends React.Component {
             className="col-12 offset-lg-3 col-lg-6"
             onSubmit={e => {
               e.preventDefault();
-              this.sendRequest();
+              this.account_login();
             }}
           >
             <h1 className="col-12 mb-5">sign in</h1>
@@ -93,7 +65,7 @@ class Login extends React.Component {
             ))}
 
             {
-              this.state.err != false ? <p>{this.state.err}</p> : undefined
+              this.state.err != false ? <p>{this.state.err}</p> : null
             }
 
             <div className="col-12 remember">

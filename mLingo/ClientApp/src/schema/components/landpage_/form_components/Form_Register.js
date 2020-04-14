@@ -1,8 +1,6 @@
 import React from "react";
 import { Form } from "reactstrap";
 import Form_Input from "./Form_Input";
-import { withRouter } from 'react-router-dom';
-import { authenticationService } from "../../../../services/authentication";
 import { Link } from 'react-router-dom'
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
 
@@ -45,58 +43,17 @@ class Register extends React.Component {
     ];
 
     this.handleChange = this.handleChange.bind(this);
+
+
+    this.account_login = this.account_helpers.account_login.bind(this);
+    this.account_register = this.account_helpers.account_register.bind(this);
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  async sendLoginRequest() {
-    const resolved = await authenticationService.login(this.state.username, this.state.password);
-
-    //if there is not such an user
-    const resstatus = (JSON.stringify(resolved.successful));
-
-    if (resstatus == 'false') {
-      const err = (JSON.stringify(resolved.errorMessage));
-      alert(err);
-    } // if the user exist save they into the web
-    else {
-      authenticationService.setIntoLocalStorage({ name: "currentUser", value: resolved.response.username });
-      authenticationService.setIntoLocalStorage({ name: "ID", value: resolved.response.id });
-      authenticationService.setIntoLocalStorage({ name: "Token", value: resolved.response.token });
-    }
-
-
-
-    // TO RERENDER WHEN THE ITEM IS SET IN THE LOCALSTORAGE
-    this.setState({
-      ...this.state,
-      isLoading: true
-    })
-    setTimeout(() => {
-      this.setState({
-        ...this.state,
-        isLoading: false
-      })
-    }, 1000);
-
-  }
-
-  async sendRequest() {
-    const req = await authenticationService.register(
-      this.state.username,
-      this.state.email,
-      this.state.password
-    );
-
-    this.sendLoginRequest();
-  }
-
   render() {
-    if (localStorage.getItem("currentUser")) {
-      this.props.history.push('/head');
-    }
 
     return (
       <div>
@@ -104,13 +61,13 @@ class Register extends React.Component {
           <Form
             className="col-12 offset-lg-3 col-lg-6"
             onSubmit={e => {
-              this.sendRequest();
+              this.register_account();
               e.preventDefault();
             }}
           >
             <h1 className="col-12 mb-5">sign up</h1>
             {this.fields.map(element => (
-              <FormField set={element} />
+              <Form_Input set={element} />
             ))}
 
             <button className="col-12 offset-lg-4 col-lg-4 btn green-button registerbutton">
@@ -130,4 +87,4 @@ class Register extends React.Component {
   }
 }
 
-export default withRouter(Register);
+export default Register;
