@@ -5,7 +5,7 @@ import {
 } from './node_modules/reactstrap';
 import Square from '../../../img/collection.svg'
 
-const UserCreateCollection = (props) => {
+const Collection_Details_Component = (props) => {
     return (
         <div className="createCollection col-12">
             <div>
@@ -27,4 +27,4 @@ const UserCreateCollection = (props) => {
     );
 };
 
-export default UserCreateCollection;
+export default Collection_Details_Component;

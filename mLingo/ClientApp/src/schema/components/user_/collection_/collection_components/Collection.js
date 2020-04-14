@@ -3,7 +3,7 @@ import { Link } from './node_modules/react-router-dom';
 
 import { authenticationService } from '../../../services/authentication';
 import  requests  from '../../../services/requests';
-import Flashcard from './Flashcard';
+import Collection_Flashcard_Component from './Collection_Flashcard_Component';
 
 
 class Collection extends React.Component {
@@ -61,7 +61,7 @@ class Collection extends React.Component {
                 Collection
                 {
                     this.state.loaded ? this.state.collection ? this.state.collection.map((element, index) => (
-                        <Flashcard set={element} remove={this.removeCard} index={index}/>
+                        <Collection_Flashcard_Component set={element} remove={this.removeCard} index={index}/>
                     )) : <h1>Collection removed!</h1> : <h1>loading</h1>
                 }
                 <Link to='/head' className="green-button">go back</Link>

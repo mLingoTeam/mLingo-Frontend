@@ -3,7 +3,7 @@ import { FaTrash } from './node_modules/react-icons/fa'
 
 
 
-const Flashcards = ({ set, remove, index, method = () => null, create = false  }) => {
+const Collection_Flashcard_Component = ({ set, remove, index, method = () => null, create = false  }) => {
 
 
     let isFirst = index;
@@ -43,4 +43,4 @@ const Flashcards = ({ set, remove, index, method = () => null, create = false  }
     );
 };
 
-export default Flashcards;
+export default Collection_Flashcard_Component;
