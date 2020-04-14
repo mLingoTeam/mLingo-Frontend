@@ -149,7 +149,7 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="CollectionsController"/>
         /// </summary>
-        public async Task<ApiResponse> Create(string username, CreateCollectionFormModel newCollectionData)
+        public async Task<ApiResponse> Create(string username, CreateCollectionForm newCollectionData)
         {
             var user = await UserManager.FindByNameAsync(username);
             if(user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
@@ -215,7 +215,7 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="CollectionsController"/>
         /// </summary>
-        public async Task<ApiResponse> Update(string id, string username, UpdateCollectionFormModel updatedCollection)
+        public async Task<ApiResponse> Update(string id, string username, UpdateCollectionForm updatedCollection)
         {
             // find collection to update
             var collectionToUpdate = DbContext.Collections.Find(id);

@@ -34,9 +34,9 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="AccountController"/>
         /// </summary>
-        public async Task<ApiResponse> Register(RegisterFormModel form)
+        public async Task<ApiResponse> Register(RegisterForm form)
         {
-            if (form == null || RegisterFormModel.ValidateForm(form) == false)
+            if (form == null || RegisterForm.ValidateForm(form) == false)
                 return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidRegistrationCredentials, 400);
 
             var user = new AppUser
@@ -73,9 +73,9 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="AccountController"/>
         /// </summary>
-        public async Task<ApiResponse> Login(LoginFormModel form)
+        public async Task<ApiResponse> Login(LoginForm form)
         {
-            if (form == null || LoginFormModel.ValidateForm(form) == false)
+            if (form == null || LoginForm.ValidateForm(form) == false)
                 return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidLoginCredentials, 400);
 
             var isEmail = form.UserId.Contains("@");
@@ -164,7 +164,7 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="AccountController"/>
         /// </summary>
-        public async Task<ApiResponse> RequestChangeToken(string username, string prop, EditMailForm form)
+        public async Task<ApiResponse> RequestChangeToken(string username, string prop, EditMail form)
         {
             var user = await UserManager.FindByNameAsync(username);
             if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
@@ -189,7 +189,7 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="AccountController"/>
         /// </summary>
-        public async Task<ApiResponse> ChangeEmail(string username, string token, EditMailForm form)
+        public async Task<ApiResponse> ChangeEmail(string username, string token, EditMail form)
         {
             var user = await UserManager.FindByNameAsync(username);
             if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);

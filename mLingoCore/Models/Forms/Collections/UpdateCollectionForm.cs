@@ -5,7 +5,7 @@ namespace mLingoCore.Models.Forms.Collections
     /// <summary>
     /// Model used for serialization of updated collection data
     /// </summary>
-    public class UpdateCollectionFormModel
+    public class UpdateCollectionForm
     {
         public string Name { get; set; }
 
@@ -15,6 +15,6 @@ namespace mLingoCore.Models.Forms.Collections
 
         public string SecondLanguage { get; set; }
         
-        public List<CardUpdateModel> Cards { get; set; }
+        public List<CardUpdateForm> Cards { get; set; }
     }
 }

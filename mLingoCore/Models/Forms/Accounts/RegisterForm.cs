@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace mLingoCore.Models.Forms
+﻿namespace mLingoCore.Models.Forms.Accounts
 {
     /// <summary>
     /// Model that holds data that user submits during registration for an account.
     /// </summary>
-    public class RegisterFormModel
+    public class RegisterForm
     {
         public string Username { get; set; }
 
@@ -27,12 +25,9 @@ namespace mLingoCore.Models.Forms
         /// </summary>
         /// <param name="form">Form submitted by user</param>
         /// <returns>If user form is valid</returns>
-        public static bool ValidateForm(RegisterFormModel form)
+        public static bool ValidateForm(RegisterForm form)
         {
-            if (string.IsNullOrEmpty(form.Username) ||
-                string.IsNullOrEmpty(form.Password) ||
-                string.IsNullOrEmpty(form.Email)) return false;
-            return true;
+            return !string.IsNullOrEmpty(form.Username) && !string.IsNullOrEmpty(form.Password) && !string.IsNullOrEmpty(form.Email);
         }
     }
 }
