@@ -14,8 +14,6 @@ function setIntoLocalStorage({ name = "null", value = "null" }) {
   localStorage.setItem(`${name}`, value);
 }
 
-
-
 const host = 'http://localhost:5000';
 const newsletter_host = "https://mlingo.azurewebsites.net";
 

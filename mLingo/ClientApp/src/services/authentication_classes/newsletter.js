@@ -13,7 +13,7 @@ function subscribe({email}){
 
 
 
-export class Newsletter {
+export default class Newsletter {
     constructor(host){
         this.host = host;
 

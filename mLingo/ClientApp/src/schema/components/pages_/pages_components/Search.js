@@ -1,8 +1,8 @@
 import React from "react";
 import StudySetCardComponent from '../collection_components/StudySetCardComponent'
-import SearchInput from '../search_components/SearchInput'
+import SearchInput from '../../layout_/search_components/SearchInput'
 
-import { authenticationService } from "../../../services/authentication";
+import { authenticationService } from "../../../../services/authentication";
 
 class UserHead extends React.Component {
     constructor(props) {

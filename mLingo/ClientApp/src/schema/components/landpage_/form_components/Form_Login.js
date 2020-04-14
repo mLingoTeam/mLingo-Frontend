@@ -1,10 +1,10 @@
 import React from "react";
 import { Form } from "reactstrap";
-import FormField from "./FormField";
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
-import { authenticationService } from "../../../services/authentication";
+import Form_Input from "./Form_Input";
+import { authentication_service } from "../../../../services/authentication";
 
 class Login extends React.Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class Login extends React.Component {
   }
 
   async sendRequest() {
-    const resolved = await authenticationService.login(this.state.username, this.state.password);
+    const resolved = await authentication_service.user.login({username: this.state.username, password: this.state.password});
 
     //if there is not such an user
     const resstatus = (JSON.stringify(resolved.successful));
@@ -57,12 +57,10 @@ class Login extends React.Component {
       this.setState({ ...this.state, err: err })
     } // if the user exist save they into the web
     else {
-      authenticationService.setIntoLocalStorage({ name: "currentUser", value: resolved.response.username });
-      authenticationService.setIntoLocalStorage({ name: "ID", value: resolved.response.id });
-      authenticationService.setIntoLocalStorage({ name: "Token", value: resolved.response.token });
+      authentication_service.setIntoLocalStorage({ name: "currentUser", value: resolved.response.username });
+      authentication_service.setIntoLocalStorage({ name: "ID", value: resolved.response.id });
+      authentication_service.setIntoLocalStorage({ name: "Token", value: resolved.response.token });
     }
-
-
 
     // TO RERENDER WHEN THE ITEM IS SET IN THE LOCALSTORAGE
     this.setState({
@@ -79,9 +77,6 @@ class Login extends React.Component {
   }
 
   render() {
-    if (localStorage.getItem("currentUser")) {
-      this.props.history.push('/head');
-    }
     return (
       <div>
         <div className="registerForm2 col-12 d-flex jusify-content-center flex-wrap">
@@ -94,7 +89,7 @@ class Login extends React.Component {
           >
             <h1 className="col-12 mb-5">sign in</h1>
             {this.fields.map(element => (
-              <FormField set={element} />
+              <Form_Input set={element} />
             ))}
 
             {
@@ -127,4 +122,4 @@ class Login extends React.Component {
   }
 }
 
-export default withRouter(Login);
+export default Login;

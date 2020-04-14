@@ -17,12 +17,12 @@ function logout() {
     localStorage.clear();
 }
 
-function login({userid, password}) {
+function login({username, password}) {
 
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userid, password })
+      body: JSON.stringify({ username, password })
     };
 
 
@@ -32,7 +32,7 @@ function login({userid, password}) {
   }
 
 
-export class User {
+export default class User {
 
     constructor(host){
         this.host = host;

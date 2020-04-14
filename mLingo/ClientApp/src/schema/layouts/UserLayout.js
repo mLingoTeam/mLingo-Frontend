@@ -1,6 +1,6 @@
 import React from 'react';
-import AppNavbar from '../components/layout_components/AppNavbar'
-import Footer from '../components/layout_components/Footer'
+import AppNavbar from '../components/layout_/layout_components/AppNavbar'
+import Footer from '../components/layout_/layout_components/Footer'
 import UserMenu from '../components/user_components/UserMenu';
 
 const Layout = ({ children }) => {

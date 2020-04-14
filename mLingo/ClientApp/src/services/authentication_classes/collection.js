@@ -53,7 +53,7 @@ function find({type, name}) {
 
 
 
-  export class Collection {
+  export default class Collection {
 
     constructor(host){
         this.host = host;

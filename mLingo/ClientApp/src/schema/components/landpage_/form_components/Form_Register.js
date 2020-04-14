@@ -1,8 +1,8 @@
 import React from "react";
 import { Form } from "reactstrap";
-import FormField from "./FormField";
+import Form_Input from "./Form_Input";
 import { withRouter } from 'react-router-dom';
-import { authenticationService } from "../../../services/authentication";
+import { authenticationService } from "../../../../services/authentication";
 import { Link } from 'react-router-dom'
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
 
