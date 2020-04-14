@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using mLingo.Models.Database.Collections;
+using mLingo.Models.Database.Sets;
 using mLingoCore.Models.Forms.Collections;
+using mLingoCore.Models.Forms.Sets;
 
 namespace mLingo.Extensions.Api
 {
@@ -43,6 +45,16 @@ namespace mLingo.Extensions.Api
                     Term = c.Term,
                     Definition = c.Definition
                 }).ToList();
+        }
+
+        public static Set AsSet(this CreateSetForm form, string ownerId)
+        {
+            return new Set
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = form.Name,
+                OwnerId = ownerId
+            };
         }
     }
 }
