@@ -4,14 +4,14 @@ import {
     CardTitle, CardSubtitle
 } from './node_modules/reactstrap';
 import { Link } from './node_modules/react-router-dom'
-import { authenticationService } from '../../../services/authentication';
+import { authentication_service } from '../../../../../services/authentication';
 
 const Study_Sets_Card_Component = ({ set }) => {
     return (
         <div>
             <Link to="/studyset/" onClick={
                 () => {
-                    authenticationService.setIntoLocalStorage({ name: "studysetid", value: set.id })
+                    authentication_service.setIntoLocalStorage({ name: "studysetid", value: set.id })
                 }
             }>
                 <Card>

@@ -1,8 +1,8 @@
 import React from './node_modules/react'
 import { Link } from './node_modules/react-router-dom';
 
-import { authenticationService } from '../../../services/authentication';
-import  requests  from '../../../services/requests';
+import { authenticationService } from '../../../../../services/authentication';
+import  requests  from '../../../../../services/requests';
 import Collection_Flashcard_Component from './Collection_Flashcard_Component';
 
 
@@ -42,11 +42,11 @@ class Collection extends React.Component {
     }
 
     modifyCollection() {
-        authenticationService.updateCollection({ id: localStorage.getItem("collectionid"), token: localStorage.getItem("Token"), cards: this.state.collection })
+        authentication_service.collection.update({ id: localStorage.getItem("collectionid"), token: localStorage.getItem("Token"), cards: this.state.collection })
     }
 
     removeCollection() {
-        authenticationService.removeCollection(localStorage.getItem("collectionid"), localStorage.getItem("Token"));
+        authentication_service.collection.remove(localStorage.getItem("collectionid"), localStorage.getItem("Token"));
         localStorage.removeItem("collectionid");
         this.setState({ ...this.state, "collection": false });
     }

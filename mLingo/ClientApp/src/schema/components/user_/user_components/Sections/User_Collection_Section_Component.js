@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 
 import UserSection from '../UserSection';
 import CollectionCardComponent from '../../collection_components/CollectionCardComponent';
-import Loading from '../../animation_components/Loading'
+import Animation_Loading from '../../../animation_/Animation_Loading'
 
-import { authenticationService } from "../../../../services/authentication";
+import { authentication_service } from "../../../../../services/authentication";
 
 import { FaPlus } from 'react-icons/fa'
 
 class User_Collection_Section_Component extends React.Component {
+
     constructor(props) {
         super(props);
 
@@ -19,7 +20,7 @@ class User_Collection_Section_Component extends React.Component {
     }
 
     async findcollection() {
-        const collectiondata = await authenticationService.requestCollection(this.state.type, this.state.request);
+        const collectiondata = await authentication_service.collection.find({type: this.state.type, name: this.state.request});
 
         if (collectiondata.successful === true) {
             this.setState({ "fields": collectiondata.response, "exist": true, "loading": false });
@@ -37,7 +38,7 @@ class User_Collection_Section_Component extends React.Component {
         return (
             <UserSection title="collections" description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.">
                 {
-                    this.state.loading ? <div className="position-relative"><Loading/></div>  : <div>
+                    this.state.loading ? <div className="position-relative"><Animation_Loading/></div>  : <div>
                         <div className="yourcollections">
                             {
                                 this.state.exist ? this.state.fields.map(element => (

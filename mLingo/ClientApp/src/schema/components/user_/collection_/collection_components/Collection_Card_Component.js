@@ -4,14 +4,14 @@ import {
     CardTitle, CardSubtitle
 } from './node_modules/reactstrap';
 import { Link } from './node_modules/react-router-dom'
-import { authenticationService } from '../../../services/authentication';
+import { authentication_service } from '../../../../../services/authentication';
 
 const Collection_Card_Component = ({ set }) => {
     return (
         <div>
             <Link to="/collection/" onClick={
                 () => {
-                    authenticationService.setIntoLocalStorage({ name: "collectionid", value: set.id })
+                    authentication_service.setIntoLocalStorage({ name: "collectionid", value: set.id })
                 }
             }>
                 <Card>

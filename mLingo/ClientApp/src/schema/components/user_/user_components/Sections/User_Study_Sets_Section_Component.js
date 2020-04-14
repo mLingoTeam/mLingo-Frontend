@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import User_Section_Component from '../User_Section_Component';
 import Study_Sets_Card_Component from '../../study_sets_/study_sets_components/Study_Sets_Card_Component';
 
-import Loading from '../../animation_components/Loading'
+import Animation_Loading from '../../animation_components/Animation_Loading'
 
-import { authenticationService } from "../../../../services/authentication";
+import { authentication_service } from "../../../../../services/authentication";
 
 import { FaPlus } from 'react-icons/fa'
 
@@ -20,7 +20,7 @@ class User_Study_Sets_Section_Component extends React.Component {
     }
 
     async findcollection() {
-        const collectiondata = await authenticationService.requestCollection(this.state.type, this.state.request);
+        const collectiondata = await authentication_service.collection.find({type: this.state.type, name: this.state.request});
 
         if (collectiondata.successful === true) {
             this.setState({ "fields": collectiondata.response, "exist": true, "loading": false });
@@ -38,7 +38,7 @@ class User_Study_Sets_Section_Component extends React.Component {
         return (
             <User_Section_Component title="study sets" description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.">
                 {
-                    this.state.loading ? <div className="position-relative"><Loading/></div> : <div>
+                    this.state.loading ? <div className="position-relative"><Animation_Loading/></div> : <div>
                         <div className="yourstudysets">
                             {
                                 this.state.exist ? this.state.fields.map(element => (
