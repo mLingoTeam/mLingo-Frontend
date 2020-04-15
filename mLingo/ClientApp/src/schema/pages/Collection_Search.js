@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from '../layouts/Layout'
-import Collection_Search_Component from '../components/pages_/pages_components/Collection_Search_Component'
+import Collection_Search_Component from '../components/user_/collection_/collection_components/Collection_Search_Component'
 
 class Collection_Search extends React.Component {
 

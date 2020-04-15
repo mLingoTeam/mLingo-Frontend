@@ -5,7 +5,7 @@ import { authentication_service } from './authentication';
         const collid = localStorage.getItem("collectionid");
 
         if (collid) {
-            const collectioni = await authenticationService.requestCollection("id", collid);
+            const collectioni = await authentication_service.collection.find({type: "id", name: collid} );
 
             this.setState({ ...this.state, "collection": collectioni.response.cards });
             this.setState({ ...this.state, "loaded": true });
@@ -19,7 +19,7 @@ import { authentication_service } from './authentication';
     async mountEditCollection() {
              const collid = localStorage.getItem("editCollection");
 
-                const collectioni = await authenticationService.requestCollection("id", collid);
+                const collectioni = await authentication_service.collection.find({ type: "id", name: collid});
 
                return collectioni;
         }

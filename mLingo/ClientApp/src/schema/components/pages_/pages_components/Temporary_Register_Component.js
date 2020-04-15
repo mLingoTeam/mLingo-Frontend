@@ -1,5 +1,5 @@
 import React from "react";
-import Newsletter from '../landpage_components/Newsletter';
+import Landpage_Newsletter from '../../landpage_/landpage_components/Landpage_Newsletter';
 
 class Temporary_Register_Component extends React.Component {
     constructor(props) {
@@ -12,7 +12,7 @@ class Temporary_Register_Component extends React.Component {
                 <div>
                     <h2 className="text-center pt-5 mt-5"> For this moment unavailable, but you can follow our newsletter and social media {":)"} </h2>
                 </div>
-                <Newsletter/>
+                <Landpage_Newsletter/>
             </div>
         );
     }

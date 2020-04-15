@@ -1,15 +1,15 @@
 import React from "react";
-import UserLayout from '../layouts/UserLayout'
-import UserHead from '../components/pages_components/UserHead'
+import User_Layout from '../layouts/User_Layout'
+import User_Head_Component from '../components/user_/user_components/User_Head_Component';
 
 class User_Head extends React.Component {
 
 
   render() {
     return (
-      <UserLayout>
-          <UserHead />
-      </UserLayout>
+      <User_Layout>
+          <User_Head_Component />
+      </User_Layout>
     )
   }
 }

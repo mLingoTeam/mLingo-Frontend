@@ -1,9 +1,9 @@
-import React from './node_modules/react'
+import React from 'react'
 import {
     Card, CardBody,
     CardTitle, CardSubtitle
-} from './node_modules/reactstrap';
-import { Link } from './node_modules/react-router-dom'
+} from 'reactstrap';
+import { Link } from 'react-router-dom'
 import { authentication_service } from '../../../../../services/authentication';
 
 const Collection_Card_Component = ({ set }) => {

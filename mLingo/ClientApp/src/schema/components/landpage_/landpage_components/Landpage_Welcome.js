@@ -1,5 +1,5 @@
 import React from "react";
-import backgroundimg from '../../../img/landpage1.png'
+import backgroundimg from '../../../../img/landpage1.png'
 
 const Landpage_Welcome = props => {
     return (

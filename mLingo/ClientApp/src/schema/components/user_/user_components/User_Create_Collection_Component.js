@@ -2,10 +2,9 @@ import React from "react";
 import { Link } from 'react-router-dom'
 
 import  requests  from '../../../../services/requests'
-import { authenticationService } from "../../../../services/authentication";
-import UserCreateCollection from '../collection_components/UserCreateCollection'
-import AddFlashcard from '../collection_components/AddFlashcard';
-
+import { authentication_service } from "../../../../services/authentication";
+import Collection_Details_Component from '../collection_/collection_components/Collection_Details_Component'
+import Collection_Flashcard_Component from '../collection_/collection_components/Collection_Flashcard_Component';
 
 import { FaPlus } from 'react-icons/fa'
 
@@ -95,7 +94,7 @@ class User_Create_Collection_Component extends React.Component {
     }
 
     modifyCollection() {
-        authenticationService.updateCollection({ id: localStorage.getItem("editCollection"), token: localStorage.getItem("Token"), cards: this.state.cards, name: this.state.collectionTitle })
+        authentication_service.collection.update({ id: localStorage.getItem("editCollection"), token: localStorage.getItem("Token"), cards: this.state.cards, name: this.state.collectionTitle })
     }
 
     async createCollection() {
@@ -116,7 +115,7 @@ class User_Create_Collection_Component extends React.Component {
                 this.setState({ collectionTitle: "",collectionDescription:"", cards: [{ term: "", definition: "" }]});
             }
             else{
-                await authenticationService.createCollection(this.state.collectionTitle, this.state.collectionDescription, this.state.cards, localStorage.getItem("Token"));
+                await authentication_service.collection.create(this.state.collectionTitle, this.state.collectionDescription, this.state.cards, localStorage.getItem("Token"));
                 this.setState({ collectionTitle: "", collectionDescription:"", cards: [] });
             }
         }
@@ -135,10 +134,10 @@ class User_Create_Collection_Component extends React.Component {
         else{
             return (
                 <div className="d-flex justify-content-center flex-wrap p-5">
-                    <UserCreateCollection set={this.state} handleChange={this.handleChange} edit={this.state.edit}/>
+                    <Collection_Details_Component set={this.state} handleChange={this.handleChange} edit={this.state.edit}/>
                     {
                         this.state.cards.map((element, index) => {
-                            return <AddFlashcard set={element} remove={this.removeCard} index={index} functioni={this.handleCardChange} functionii={this.addCard}/>
+                            return <Collection_Flashcard_Component set={element} remove={this.removeCard} index={index} functioni={this.handleCardChange} functionii={this.addCard}/>
                         })
                     }
                     <div className="col-12 d-flex justify-content-center flex-wrap align-items-center m-5">

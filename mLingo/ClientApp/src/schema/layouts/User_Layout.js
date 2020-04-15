@@ -1,12 +1,12 @@
 import React from 'react';
 import Layout from './Layout'
-import UserMenu from '../components/user_components/UserMenu';
+import User_Menu from '../components/layout_/user_layout_components/User_Menu';
 
 const User_Layout = ({ children }) => {
 
     return (
         <Layout>
-            <UserMenu />
+            <User_Menu />
             {children}
         </Layout>
     )

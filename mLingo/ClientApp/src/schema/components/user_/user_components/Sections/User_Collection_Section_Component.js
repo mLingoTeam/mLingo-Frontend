@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-import UserSection from '../UserSection';
-import CollectionCardComponent from '../../collection_components/CollectionCardComponent';
+import User_Section_Component from '../User_Section_Component';
+import Collection_Card_Component from '../../collection_/collection_components/Collection_Card_Component';
 import Animation_Loading from '../../../animation_/Animation_Loading'
 
 import { authentication_service } from "../../../../../services/authentication";
@@ -36,13 +36,13 @@ class User_Collection_Section_Component extends React.Component {
 
     render() {
         return (
-            <UserSection title="collections" description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.">
+            <User_Section_Component title="collections" description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.">
                 {
                     this.state.loading ? <div className="position-relative"><Animation_Loading/></div>  : <div>
                         <div className="yourcollections">
                             {
                                 this.state.exist ? this.state.fields.map(element => (
-                                    <CollectionCardComponent set={element} />
+                                    <Collection_Card_Component set={element} />
                                 )) : <div className="text-center col-12"><h2> You have no collection! &nbsp; </h2></div>
                             }
                             {
@@ -54,7 +54,7 @@ class User_Collection_Section_Component extends React.Component {
                         </div>
                     </div>
                 }
-            </UserSection>
+            </User_Section_Component>
         );
     }
 }

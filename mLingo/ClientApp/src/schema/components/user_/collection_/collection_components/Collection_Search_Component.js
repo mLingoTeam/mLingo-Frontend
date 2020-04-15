@@ -1,8 +1,8 @@
 import React from "react";
-import StudySetCardComponent from '../collection_components/StudySetCardComponent'
-import Search_Input from '../../layout_/search_components/Search_Input'
+import Collection_Card_Component from './Collection_Card_Component'
+import Search_Input from '../../../layout_/search_components/Search_Input'
 
-import { authenticationService } from "../../../../services/authentication";
+import { authentication_service } from "../../../../../services/authentication";
 
 class Collection_Search_Component extends React.Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class Collection_Search_Component extends React.Component {
 
 
     async findcollection() {
-        const collectiondata = await authenticationService.requestCollection(this.state.type, this.state.request);
+        const collectiondata = await authentication_service.collection.find({type: this.state.type, name: this.state.request});
 
         if (collectiondata.successful === true) {
             this.setState({ "fields": collectiondata.response, "exist": true });
@@ -50,7 +50,7 @@ class Collection_Search_Component extends React.Component {
                 </div>
                 {
                     this.state.exist ? this.state.fields.map(element => (
-                        <StudySetCardComponent set={element} />
+                        <Collection_Card_Component set={element} />
                     )) : this.state.exist ? <div className="text-center"><h2> No collection found </h2></div> : <div className="text-center"><h2> No collection found </h2></div>
                 }
             </div>

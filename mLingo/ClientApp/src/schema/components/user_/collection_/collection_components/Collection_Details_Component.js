@@ -1,8 +1,8 @@
-import React from './node_modules/react'
+import React from 'react'
 import {
  CardBody, CardTitle
 
-} from './node_modules/reactstrap';
+} from 'reactstrap';
 import Square from '../../../../../img/collection.svg'
 
 const Collection_Details_Component = (props) => {

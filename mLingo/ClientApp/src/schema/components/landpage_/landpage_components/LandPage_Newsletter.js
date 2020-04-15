@@ -2,8 +2,8 @@ import React from 'react';
 import left from '../../../../img/leftsquare.svg';
 import right from '../../../../img/rightsquare.svg'
 
-import helpers from '../../../../services/helpers'
-import { authenticationService } from '../../../../services/authentication';
+import validate from '../../../../services/validate'
+import { authentication_service } from '../../../../services/authentication';
 
 class Landpage_Newsletter extends React.Component {
 
@@ -26,8 +26,8 @@ class Landpage_Newsletter extends React.Component {
 
     async register(){
         const mail = this.state.email;
-        if(helpers.validateEmail(mail)){
-           const resp = await authenticationService.register_newsletter(mail)
+        if(validate.email(mail)){
+           const resp = await authentication_service.newsletter.subscribe({email: mail})
             if(resp.status == 200){
                 this.setState({
                     ...this.state,

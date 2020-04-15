@@ -1,6 +1,6 @@
 import { authentication_service } from "../../../../services/authentication";
 
-export default account_helpers = {
+const account_helpers = {
     account_login,
     account_register
 }
@@ -49,3 +49,5 @@ async function account_register() {
 
     this.sendLoginRequest();
 }
+
+export default account_helpers;

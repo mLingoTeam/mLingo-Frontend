@@ -1,7 +1,7 @@
 import React from "react";
-import UserSection from '../components/user_components/UserSection'
-import UserLayout from '../layouts/UserLayout'
-import Collectionscontent from '../components/user_components/PagesContent/CollectionsContent'
+import User_Section_Component from '../components/user_/user_components/User_Section_Component'
+import User_Layout from '../layouts/User_Layout'
+import User_Collection_Section_Component from '../components/user_/user_components/Sections/User_Collection_Section_Component'
 
 class User_Collection extends React.Component {
 
@@ -11,11 +11,11 @@ class User_Collection extends React.Component {
     render() {
         return (
 
-                <UserLayout>
-                    <UserSection>
-                        <Collectionscontent/>
-                    </UserSection>
-                </UserLayout>
+                <User_Layout>
+                    <User_Section_Component>
+                        <User_Collection_Section_Component/>
+                    </User_Section_Component>
+                </User_Layout>
 
         )
     }

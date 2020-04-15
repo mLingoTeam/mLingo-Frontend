@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import User_Section_Component from '../User_Section_Component';
 import Study_Sets_Card_Component from '../../study_sets_/study_sets_components/Study_Sets_Card_Component';
 
-import Animation_Loading from '../../animation_components/Animation_Loading'
+import Animation_Loading from '../../../animation_/Animation_Loading'
 
 import { authentication_service } from "../../../../../services/authentication";
 

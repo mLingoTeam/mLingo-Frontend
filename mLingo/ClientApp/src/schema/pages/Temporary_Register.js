@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from '../layouts/Layout'
-import TemporaryRegister from '../components/pages_components/TemporaryRegister'
+import Temporary_Register_Component from '../components/pages_/pages_components/Temporary_Register_Component'
 
 class Temporary_Register extends React.Component {
 
@@ -8,7 +8,7 @@ class Temporary_Register extends React.Component {
     render() {
         return (
             <Layout>
-                <TemporaryRegister history={this.props.history}/>
+                <Temporary_Register_Component history={this.props.history}/>
             </Layout>
         )
     }

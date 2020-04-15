@@ -2,13 +2,6 @@ import Newsletter from './authentication_classes/newsletter';
 import Collection from './authentication_classes/collection';
 import User from './authentication_classes/user';
 
-export const authentication_service = {
-  newsletter,
-  collection,
-  user,
-  setIntoLocalStorage
-};
-
 
 function setIntoLocalStorage({ name = "null", value = "null" }) {
   localStorage.setItem(`${name}`, value);
@@ -26,3 +19,9 @@ const user = new User( host );
 
 
 
+export const authentication_service = {
+  newsletter,
+  collection,
+  user,
+  setIntoLocalStorage
+};
