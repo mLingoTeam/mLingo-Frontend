@@ -59,9 +59,9 @@ namespace mLingo.Controllers.Api
         /// <response code="500">Set creation failed, server fault. Check <see cref="ErrorRapport"/> for details.</response>
         [HttpPost]
         [Route("create")]
-        public IActionResult Create([FromBody] CreateSetForm setInfo)
+        public async Task<IActionResult> Create([FromBody] CreateSetForm setInfo)
         {
-            var res = _setManager.CreateSet(HttpContext.User.Identity.Name, setInfo);
+            var res = await _setManager.CreateSet(HttpContext.User.Identity.Name, setInfo);
             return this.HandleManagerResponse(res);
         }
 
