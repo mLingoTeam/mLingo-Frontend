@@ -79,6 +79,13 @@ namespace mLingo.Controllers.Api
             return this.HandleManagerResponse(res);
         }
 
+        /// <summary>
+        /// Edits set
+        /// </summary>
+        /// <param name="id">Id of set to edit</param>
+        /// <param name="form">New set data</param>
+        /// <response code="200">Set edited successfully</response>
+        /// <response code="503">Set edit failed, server fault. See <see cref="ErrorRapport"/> for details.</response>
         public async Task<IActionResult> Edit([FromQuery]string id, [FromBody] UpdateSetForm form)
         {
             var res = await _setManager.EditSet(id, HttpContext.User.Identity.Name, form);
