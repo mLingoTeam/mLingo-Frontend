@@ -79,9 +79,9 @@ namespace mLingo.Controllers.Api
             return this.HandleManagerResponse(res);
         }
 
-        public IActionResult Edit([FromQuery]string id, [FromBody] UpdateSetForm form)
+        public async Task<IActionResult> Edit([FromQuery]string id, [FromBody] UpdateSetForm form)
         {
-            var res = _setManager.EditSet(id, form);
+            var res = await _setManager.EditSet(id, HttpContext.User.Identity.Name, form);
             return this.HandleManagerResponse(res);
         }
 

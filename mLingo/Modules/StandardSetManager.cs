@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IvanAkcheurov.Commons;
 using Microsoft.AspNetCore.Identity;
 using mLingo.Models.Database;
 using mLingo.Models.Database.Collections;
@@ -168,9 +169,44 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="SetsController"/>
         /// </summary>
-        public ApiResponse EditSet(string id, UpdateSetForm editedData)
+        public async Task<ApiResponse> EditSet(string id, string username, UpdateSetForm editedData)
         {
-            throw new System.NotImplementedException();
+            var set = DbContext.Sets.Find(id);
+            if(set == null) return ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.SetNotFound(id), 404);
+            var user = await UserManager.FindByNameAsync(username);
+            if(set.OwnerId != user.Id) return ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.ActionFail("edit set"), 400);
+
+            // update name
+            set.Name = editedData.Name;
+
+            try
+            {
+                // update set-collections
+                var setCollections = DbContext.SetCollectionJoinTable.Where(sc => sc.SetId.Equals(id));
+                var updatedSetCollections = editedData.CollectionIds.Select(cId => new SetCollection
+                {
+                    SetId = id,
+                    CollectionId = cId
+                });
+
+                var toRemove = setCollections
+                    .Where(setCollection =>
+                        !updatedSetCollections.Any(sc => sc.CollectionId.Equals(setCollection.CollectionId)));
+
+                var toAdd = updatedSetCollections
+                    .Where(setCollection =>
+                        !setCollections.Any(sc => sc.CollectionId.Equals(setCollection.CollectionId)));
+
+                DbContext.SetCollectionJoinTable.RemoveRange(toRemove);
+                DbContext.SetCollectionJoinTable.AddRange(toAdd);
+                DbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("update set"), e.StackTrace, 503);
+            }
+
+            return ApiResponse.StatusCodeResponse(200);
         }
 
         #endregion
