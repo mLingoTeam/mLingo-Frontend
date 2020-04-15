@@ -173,59 +173,6 @@ namespace mLingo.Modules
             throw new System.NotImplementedException();
         }
 
-        /// <summary>
-        /// For documentation <see cref="SetsController"/>
-        /// </summary>
-        public ApiResponse Add(string setId, string collectionId)
-        {
-            try
-            {
-                var set = DbContext.Sets.Find(setId);
-                var collection = DbContext.Collections.Find(collectionId);
-                if (set == null || collection == null)
-                    return ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.ActionFail("add"), 400);
-                
-
-                var setCollection = new SetCollection
-                {
-                    Set = set,
-                    Collection = collection,
-                    SetId = set.Id,
-                    CollectionId = collection.Id
-                };
-                DbContext.SetCollectionJoinTable.Add(setCollection);
-                DbContext.SaveChanges();
-            }
-            catch(Exception e)
-            {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("add collection to set"), e.StackTrace, 500);
-            }
-
-            return ApiResponse.StatusCodeResponse(200);
-        }
-
-        /// <summary>
-        /// For documentation <see cref="SetsController"/>
-        /// </summary>
-        public ApiResponse Remove(string setId, string collectionId)
-        {
-            var key = new { setId, collectionId };
-            try
-            {
-                var sc = DbContext.SetCollectionJoinTable.Find(key);
-                if(sc == null) 
-                    return ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.ActionFail("delete"), 400);
-                DbContext.SetCollectionJoinTable.Remove(sc);
-                DbContext.SaveChanges();
-            }
-            catch(Exception e)
-            {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("remove collection from set"), e.StackTrace, 500);
-            }
-
-            return ApiResponse.StatusCodeResponse(202);
-        }
-
         #endregion
     }
 }

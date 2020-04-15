@@ -18,9 +18,5 @@ namespace mLingoCore.Services
         ApiResponse DeleteSet(string id);
 
         ApiResponse EditSet(string id, object editedData);
-
-        ApiResponse Add(string setId, string collectionId);
-
-        ApiResponse Remove(string setId, string collectionId);
     }
 }
