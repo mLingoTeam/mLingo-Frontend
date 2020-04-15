@@ -16,9 +16,6 @@ const collection = new Collection( host );
 const user = new User( host );
 
 
-
-
-
 export const authentication_service = {
   newsletter,
   collection,
