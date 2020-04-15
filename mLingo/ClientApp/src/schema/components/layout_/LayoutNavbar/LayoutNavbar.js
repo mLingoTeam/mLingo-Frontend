@@ -10,7 +10,7 @@ const logout = () => {
   window.location.reload();
 };
 
-const Layout_Navbar = props => {
+const LayoutNavbar = props => {
   return (
     <div className="navbar--dark">
       <Link className="navbar__brand" to="/">
@@ -39,4 +39,4 @@ const Layout_Navbar = props => {
   );
 };
 
-export default Layout_Navbar;
+export default LayoutNavbar;

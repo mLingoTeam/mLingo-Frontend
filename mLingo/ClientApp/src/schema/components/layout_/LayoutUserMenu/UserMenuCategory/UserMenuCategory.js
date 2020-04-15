@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const User_Menu_Category = (props) => {
+const UserMenuCategory = (props) => {
 
     return (
         <div class="category" key={props.text}>
@@ -11,4 +11,4 @@ const User_Menu_Category = (props) => {
     )
 }
 
-export default User_Menu_Category;
+export default UserMenuCategory;

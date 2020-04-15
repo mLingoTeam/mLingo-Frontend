@@ -1,17 +1,17 @@
 import React from 'react';
-import Layout_Navbar from '../components/layout_/layout_components/Layout_Navbar'
-import Layout_Footer from '../components/layout_/layout_components/Layout_Footer'
+import LayoutNavbar from '../components/layout_/LayoutNavbar/LayoutNavbar'
+import LayoutFooter from '../components/layout_/LayoutFooter/LayoutFooter'
 
-const Layout = ({ children }) => {
+const LayoutLandpage = ({ children }) => {
 
 
     return (
         <div className="app--background">
-            <Layout_Navbar />
+            <LayoutNavbar />
                 <main className="container">{children}</main>
-            <Layout_Footer />
+            <LayoutFooter />
         </div>
     )
 }
 
-export default Layout;
+export default LayoutLandpage;

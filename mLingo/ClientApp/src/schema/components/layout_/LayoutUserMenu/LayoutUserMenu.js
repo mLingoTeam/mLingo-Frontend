@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { FaBookOpen, FaFolder, FaHouzz, FaRegFile, FaRegChartBar, FaCog } from 'react-icons/fa';
-import User_Menu_Category from './UserMenuComponents/User_Menu_Category'
+import UserMenuCategory from './UserMenuCategory/UserMenuCategory'
 import { Collapse, NavbarToggler} from 'reactstrap';
 
 
-const UserMenu = props => {
+const LayoutUserMenu = props => {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -20,7 +20,7 @@ const UserMenu = props => {
         { "icon": FaCog, "text": "settings", "link": "/head" },
     ]
 
-    const categoriesmapped = categories.map(el => <User_Menu_Category icon={el.icon} text={el.text} link={el.link} />)
+    const categoriesmapped = categories.map(el => <UserMenuCategory icon={el.icon} text={el.text} link={el.link} />)
 
     return (
         <div className="usermenu">
@@ -34,4 +34,4 @@ const UserMenu = props => {
     );
 };
 
-export default UserMenu;
+export default LayoutUserMenu;
