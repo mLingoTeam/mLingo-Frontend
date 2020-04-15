@@ -1,5 +1,4 @@
 import React from 'react';
-import Layout from './Layout'
 import User_Menu from '../components/layout_/user_layout_components/User_Menu';
 import Layout_Navbar from '../components/layout_/layout_components/Layout_Navbar'
 import Layout_Footer from '../components/layout_/layout_components/Layout_Footer'
