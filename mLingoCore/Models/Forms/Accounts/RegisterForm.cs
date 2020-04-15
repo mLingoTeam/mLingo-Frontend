@@ -1,14 +1,19 @@
-﻿namespace mLingoCore.Models.Forms.Accounts
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace mLingoCore.Models.Forms.Accounts
 {
     /// <summary>
     /// Model that holds data that user submits during registration for an account.
     /// </summary>
     public class RegisterForm
     {
+        [Required]
         public string Username { get; set; }
 
+        [Required]
         public string Password { get; set; }
 
+        [Required]
         public string Email { get; set; }
 
         public string FirstName { get; set; }

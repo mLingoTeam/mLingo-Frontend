@@ -1,12 +1,16 @@
-﻿namespace mLingoCore.Models.Forms.Accounts
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace mLingoCore.Models.Forms.Accounts
 {
     /// <summary>
     /// Data model that holds information that user submits when logging in
     /// </summary>
     public class LoginForm
     {
+        [Required]
         public string UserId { get; set; }
 
+        [Required]
         public string Password { get; set; }
 
         /// <summary>
