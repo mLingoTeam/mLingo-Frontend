@@ -79,7 +79,7 @@ namespace mLingo.Controllers.Api
             return this.HandleManagerResponse(res);
         }
 
-        public IActionResult Edit([FromQuery]string id, [FromBody] object form)
+        public IActionResult Edit([FromQuery]string id, [FromBody] UpdateSetForm form)
         {
             var res = _setManager.EditSet(id, form);
             return this.HandleManagerResponse(res);

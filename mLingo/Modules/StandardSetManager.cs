@@ -168,7 +168,7 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="SetsController"/>
         /// </summary>
-        public ApiResponse EditSet(string id, object editedData)
+        public ApiResponse EditSet(string id, UpdateSetForm editedData)
         {
             throw new System.NotImplementedException();
         }
