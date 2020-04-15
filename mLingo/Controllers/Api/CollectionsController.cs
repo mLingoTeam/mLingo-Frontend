@@ -97,13 +97,13 @@ namespace mLingo.Controllers.Api
         /// Creates new collection 
         /// This method automatically generates all ids and assigns owner id based on user token
         /// </summary>
-        /// <param name="newCollectionData"><see cref="CreateCollectionFormModel"/></param>
+        /// <param name="newCollectionData"><see cref="CreateCollectionForm"/></param>
         /// <response code="200">Successful, collection created</response>
         /// <response code="400">Authorization issues, should not ever happen</response>
         /// <response code="500">Creation failed, server fault. Check <see cref="ErrorRapport"/> for details</response>
         [HttpPost]
         [Route("create")]
-        public async Task<IActionResult> Create([FromBody] CreateCollectionFormModel newCollectionData)
+        public async Task<IActionResult> Create([FromBody] CreateCollectionForm newCollectionData)
         {
             var res = await _collectionManager.Create(HttpContext.User.Identity.Name, newCollectionData);
             return this.HandleManagerResponse(res);
@@ -113,7 +113,7 @@ namespace mLingo.Controllers.Api
         /// Updates collection data, add/removes cards etc.
         /// </summary>
         /// <param name="id">Id of collection to be updated</param>
-        /// <param name="updatedCollection"><see cref="UpdateCollectionFormModel"/> with new collection data</param>
+        /// <param name="updatedCollection"><see cref="UpdateCollectionForm"/> with new collection data</param>
         /// <response code="200">Successful, collection updated</response>
         /// <response code="400">Authorization issues, should not ever happen</response>
         /// <response code="401">User trying to update collection is not its owner</response>
@@ -121,7 +121,7 @@ namespace mLingo.Controllers.Api
         /// <response code="500">Failed to create collection, server fault. Check <see cref="ErrorRapport"/> for details.</response>
         [HttpPut]
         [Route("update")]
-        public async Task<IActionResult> Update([FromQuery] string id, [FromBody] UpdateCollectionFormModel updatedCollection)
+        public async Task<IActionResult> Update([FromQuery] string id, [FromBody] UpdateCollectionForm updatedCollection)
         {
             var res = await _collectionManager.Update(id, HttpContext.User.Identity.Name, updatedCollection);
             return this.HandleManagerResponse(res);

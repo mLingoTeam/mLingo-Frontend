@@ -14,9 +14,9 @@ namespace mLingoCore.Services
 
         ApiResponse UserCollections(string username);
 
-        Task<ApiResponse> Create(string username, CreateCollectionFormModel newCollectionData);
+        Task<ApiResponse> Create(string username, CreateCollectionForm newCollectionData);
 
-        Task<ApiResponse> Update(string id, string username, UpdateCollectionFormModel updatedCollection);
+        Task<ApiResponse> Update(string id, string username, UpdateCollectionForm updatedCollection);
 
         Task<ApiResponse> DetectLanguage(string collectionId, string username);
 

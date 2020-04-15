@@ -1,12 +1,16 @@
-﻿namespace mLingoCore.Models.Forms
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace mLingoCore.Models.Forms.Accounts
 {
     /// <summary>
     /// Data model that holds information that user submits when logging in
     /// </summary>
-    public class LoginFormModel
+    public class LoginForm
     {
+        [Required]
         public string UserId { get; set; }
 
+        [Required]
         public string Password { get; set; }
 
         /// <summary>
@@ -14,7 +18,7 @@
         /// </summary>
         /// <param name="form">Form submitted by the user</param>
         /// <returns>If passed form is valid</returns>
-        public static bool ValidateForm(LoginFormModel form)
+        public static bool ValidateForm(LoginForm form)
         {
             if (string.IsNullOrEmpty(form.UserId) || string.IsNullOrEmpty(form.Password)) return false;
             return true;

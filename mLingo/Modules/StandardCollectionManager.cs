@@ -7,12 +7,11 @@ using Microsoft.AspNetCore.Identity;
 using mLingo.Models.Database;
 using mLingo.Models.Database.Collections;
 using mLingo.Models.Database.User;
-using mLingoCore.Models.Api;
 using mLingoCore.Models.Api.Base;
-using mLingoCore.Models.Api.ResponseModels.Collections;
 using mLingoCore.Models.Forms.Collections;
 using mLingoCore.Services;
 using mLingo.Controllers.Api;
+using mLingo.Extensions.Api;
 
 namespace mLingo.Modules
 {
@@ -41,25 +40,9 @@ namespace mLingo.Modules
             if (id != null)
             {
                 var collection = DbContext.Collections.Find(id);
-                if (collection == null)
-                    return ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.CollectionNotFound(id), 404);
-
-                var cards = collection.Cards
-                    .Select(card => new CardResponse { CollectionId = card.CollectionId, Definition = card.Definition, Term = card.Term, Id = card.Id })
-                    .ToList();
-
-                return ApiResponse.StandardSuccessResponse(new CollectionFullResponse
-                {
-                    Id = collection.Id,
-                    Name = collection.Name,
-                    OwnerId = collection.OwnerId,
-                    Cards = cards,
-                    BaseLanguage = collection.Details.BaseLanguage,
-                    SecondLanguage = collection.Details.SecondLanguage,
-                    PlayCount = collection.Details.PlayCount,
-                    Rating = collection.Details.Rating,
-                    Description = collection.Details.Description
-                }, 200);
+                return collection == null ? 
+                    ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.CollectionNotFound(id), 404) : 
+                    ApiResponse.StandardSuccessResponse(collection.AsFullResponse(), 200);
             }
 
             if (name == null) return ApiResponse.StandardErrorResponse(ErrorMessages.Server.ActionFail("search for collection"), 400);
@@ -90,22 +73,7 @@ namespace mLingo.Modules
                 return ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.CollectionNotFound(name), 404);
             }
 
-            var colls = collections
-                .Select(c => new CollectionOverviewResponse
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                    OwnerId = c.OwnerId,
-                    BaseLanguage = c.Details.BaseLanguage,
-                    SecondLanguage = c.Details.SecondLanguage,
-                    PlayCount = c.Details.PlayCount,
-                    Rating = c.Details.Rating,
-                    Description = c.Details.Description
-                })
-                .ToList();
-
-            return ApiResponse.StandardSuccessResponse(colls, 200);
-
+            return ApiResponse.StandardSuccessResponse(collections.Select(c => c.AsOverviewResponse()).ToList(), 200);
         }
 
         /// <summary>
@@ -123,51 +91,27 @@ namespace mLingo.Modules
             }
             catch (ArgumentNullException)
             {
-                collections = new List<Collection>();
+                collections = null;
             }
 
-            if (collections.Count == 0) 
-                return ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.UserHasNoCollections, 404);
-
-            var collectionsNormalized = collections
-                .Select(c => new CollectionOverviewResponse
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                    OwnerId = c.OwnerId,
-                    BaseLanguage = c.Details.BaseLanguage,
-                    SecondLanguage = c.Details.SecondLanguage,
-                    PlayCount = c.Details.PlayCount,
-                    Rating = c.Details.Rating,
-                    Description = c.Details.Description
-                })
-                .ToList();
-
-            return ApiResponse.StandardSuccessResponse(collectionsNormalized, 200);
+            return collections == null ? 
+                ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.UserHasNoCollections, 404) :
+                ApiResponse.StandardSuccessResponse(collections.Select(c => c.AsOverviewResponse()).ToList(), 200);
         }
 
         /// <summary>
         /// For documentation <see cref="CollectionsController"/>
         /// </summary>
-        public async Task<ApiResponse> Create(string username, CreateCollectionFormModel newCollectionData)
+        public async Task<ApiResponse> Create(string username, CreateCollectionForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
             if(user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
 
-            var colId = Guid.NewGuid().ToString();
-            var detailsId = Guid.NewGuid().ToString();
-            var collection = new Collection
-            {
-                Id = colId,
-                Name = newCollectionData.Name,
-                OwnerId = user.Id,
-                DetailsId = detailsId,
-                Sets = null
-            };
+            var collection = form.AsCollection(user.Id);
 
             var testBaseLangStr = "";
             var testSecondLangStr = "";
-            newCollectionData.Cards.ForEach(c =>
+            form.Cards.ForEach(c =>
             {
                 testBaseLangStr += $" {c.Definition}";
                 testSecondLangStr += $" {c.Term}";
@@ -177,25 +121,8 @@ namespace mLingo.Modules
             var secondLang = LanguageDetector.DetectLanguage(testSecondLangStr.Trim());
 
 
-            var details = new CollectionDetails
-            {
-                Id = detailsId,
-                Description = newCollectionData.Description,
-                PlayCount = 0,
-                Rating = 0,
-                BaseLanguage = baseLang,
-                SecondLanguage = secondLang
-            };
-
-            var cards = newCollectionData.Cards.Select(c => new Card
-            {
-                Id = Guid.NewGuid().ToString(),
-                Collection = collection,
-                CollectionId = collection.Id,
-                Term = c.Term,
-                Definition = c.Definition
-            })
-                .ToList();
+            var details = form.AsCollectionDetails(collection.DetailsId, baseLang, secondLang);
+            var cards = form.GetNormalizedCards(collection);
 
             try
             {
@@ -206,7 +133,7 @@ namespace mLingo.Modules
             }
             catch(Exception e)
             {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("create collection"), e.StackTrace, 500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("create collection"), e.StackTrace, 503);
             }
 
             return ApiResponse.StatusCodeResponse(200);
@@ -215,7 +142,7 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="CollectionsController"/>
         /// </summary>
-        public async Task<ApiResponse> Update(string id, string username, UpdateCollectionFormModel updatedCollection)
+        public async Task<ApiResponse> Update(string id, string username, UpdateCollectionForm updatedCollection)
         {
             // find collection to update
             var collectionToUpdate = DbContext.Collections.Find(id);
@@ -287,7 +214,7 @@ namespace mLingo.Modules
             }
             catch(Exception e)
             {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("edit collection"), e.StackTrace, 500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("edit collection"), e.StackTrace, 503);
             }
 
             return ApiResponse.StatusCodeResponse(200);
@@ -313,9 +240,17 @@ namespace mLingo.Modules
             var baseLang = LanguageDetector.DetectLanguage(testBaseStr);
             var secondLang = LanguageDetector.DetectLanguage(testSecondStr);
 
-            var details = DbContext.CollectionDetails.Find(collection.DetailsId);
-            details.BaseLanguage = baseLang;
-            details.SecondLanguage = secondLang;
+            try
+            {
+                var details = DbContext.CollectionDetails.Find(collection.DetailsId);
+                details.BaseLanguage = baseLang;
+                details.SecondLanguage = secondLang;
+                DbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("detect language"), e.StackTrace, 503);
+            }
 
             return ApiResponse.StatusCodeResponse(200);
         }

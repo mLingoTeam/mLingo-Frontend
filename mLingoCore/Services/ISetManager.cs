@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using mLingoCore.Models.Api.Base;
 using mLingoCore.Models.Forms.Sets;
 
@@ -14,7 +13,7 @@ namespace mLingoCore.Services
 
         Task<ApiResponse> UserSets(string username);
 
-        ApiResponse CreateSet(string username, CreateSetForm newSetData);
+        Task<ApiResponse> CreateSet(string username, CreateSetForm newSetData);
 
         ApiResponse DeleteSet(string id);
 

@@ -1,4 +1,6 @@
-﻿namespace mLingoCore.Models.FlashCards.Base
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace mLingoCore.Models.FlashCards.Base
 {
     /// <summary>
     /// Class holding base properties of Study Set
@@ -7,6 +9,7 @@
     {
         #region PublicFields
 
+        [Required]
         public string Name { get; set; }
 
         public string OwnerId { get; set; }

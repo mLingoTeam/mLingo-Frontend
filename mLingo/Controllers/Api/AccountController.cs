@@ -13,6 +13,7 @@ using mLingo.Models.Database.User;
 using mLingo.Modules;
 using mLingoCore.Models.Api.ResponseModels;
 using mLingoCore.Models.Forms.Accounts;
+using mLingoCore.Models.UserData;
 using mLingoCore.Services;
 
 namespace mLingo.Controllers.Api
@@ -65,7 +66,7 @@ namespace mLingo.Controllers.Api
         [HttpPost]
         [AllowAnonymous]
         [Route("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterFormModel registerForm)
+        public async Task<IActionResult> Register([FromBody] RegisterForm registerForm)
         {
             var res = await accountManager.Register(registerForm);
             return this.HandleManagerResponse(res);
@@ -81,7 +82,7 @@ namespace mLingo.Controllers.Api
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
-        public async Task<IActionResult> Login([FromBody] LoginFormModel loginForm)
+        public async Task<IActionResult> Login([FromBody] LoginForm loginForm)
         {
             var res = await accountManager.Login(loginForm);
             return this.HandleManagerResponse(res);
@@ -159,7 +160,7 @@ namespace mLingo.Controllers.Api
         /// <response code="404">User not found</response>
         [HttpGet]
         [Route("requestchangetoken")]
-        public async Task<IActionResult> RequestChangeToken([FromQuery] string prop, [FromBody]EditMailForm newEmail = null)
+        public async Task<IActionResult> RequestChangeToken([FromQuery] string prop, [FromBody]EmailData newEmail = null)
         {
             var res = await accountManager.RequestChangeToken(HttpContext.User.Identity.Name, prop, newEmail);
             return this.HandleManagerResponse(res);
@@ -175,7 +176,7 @@ namespace mLingo.Controllers.Api
         /// <response code="404">User does not exist</response>
         [HttpPut]
         [Route("changeemail")]
-        public async Task<IActionResult> ChangeEmail([FromQuery] string token, [FromBody]EditMailForm newEmail)
+        public async Task<IActionResult> ChangeEmail([FromQuery] string token, [FromBody]EmailData newEmail)
         {
             var res = await accountManager.ChangeEmail(HttpContext.User.Identity.Name, token, newEmail);
             return this.HandleManagerResponse(res);
@@ -200,7 +201,7 @@ namespace mLingo.Controllers.Api
         /// <summary>
         /// Changes password for the account
         /// </summary>
-        /// <param name="resetPasswordForm">Information required to change password <see cref="ResetPasswordForm"/></param>
+        /// <param name="resetPasswordForm">Information required to change password <see cref="mLingoCore.Models.Forms.Accounts.ResetPasswordForm"/></param>
         /// <response code="200">Password changed successfully</response>
         /// <response code="400">Invalid/expired token. <see cref="ErrorRapport"/> in response body.</response>
         /// <response code="404">User does not exist</response>

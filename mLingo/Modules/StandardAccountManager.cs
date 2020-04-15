@@ -11,6 +11,7 @@ using mLingoCore.Models.Forms;
 using mLingoCore.Models.Forms.Accounts;
 using mLingoCore.Services;
 using mLingo.Controllers.Api;
+using mLingoCore.Models.UserData;
 
 namespace mLingo.Modules
 {
@@ -34,9 +35,9 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="AccountController"/>
         /// </summary>
-        public async Task<ApiResponse> Register(RegisterFormModel form)
+        public async Task<ApiResponse> Register(RegisterForm form)
         {
-            if (form == null || RegisterFormModel.ValidateForm(form) == false)
+            if (form == null || RegisterForm.ValidateForm(form) == false)
                 return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidRegistrationCredentials, 400);
 
             var user = new AppUser
@@ -73,9 +74,9 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="AccountController"/>
         /// </summary>
-        public async Task<ApiResponse> Login(LoginFormModel form)
+        public async Task<ApiResponse> Login(LoginForm form)
         {
-            if (form == null || LoginFormModel.ValidateForm(form) == false)
+            if (form == null || LoginForm.ValidateForm(form) == false)
                 return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.InvalidLoginCredentials, 400);
 
             var isEmail = form.UserId.Contains("@");
@@ -164,7 +165,7 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="AccountController"/>
         /// </summary>
-        public async Task<ApiResponse> RequestChangeToken(string username, string prop, EditMailForm form)
+        public async Task<ApiResponse> RequestChangeToken(string username, string prop, EmailData form)
         {
             var user = await UserManager.FindByNameAsync(username);
             if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);
@@ -189,7 +190,7 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="AccountController"/>
         /// </summary>
-        public async Task<ApiResponse> ChangeEmail(string username, string token, EditMailForm form)
+        public async Task<ApiResponse> ChangeEmail(string username, string token, EmailData form)
         {
             var user = await UserManager.FindByNameAsync(username);
             if (user == null) return ApiResponse.StandardErrorResponse(ErrorMessages.AccountManager.UserNotFound(username), 404);

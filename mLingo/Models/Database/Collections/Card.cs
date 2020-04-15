@@ -16,7 +16,7 @@ namespace mLingo.Models.Database.Collections
 
         }
 
-        public Card(CardUpdateModel card)
+        public Card(CardUpdateForm card)
         {
             Term = card.Term;
             Definition = card.Definition;
