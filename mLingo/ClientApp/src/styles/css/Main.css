@@ -329,6 +329,18 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
           transform: scale(0.99);
 }
 
+.flex--center, .create__container, .create--collection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .card__container {
   width: 150px;
   height: 150px;
@@ -380,6 +392,12 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
 .card__title {
   font-size: 1.2rem;
   font-weight: 900;
+}
+
+.create__container, .create--collection {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 1rem;
 }
 
 /* MENU */
