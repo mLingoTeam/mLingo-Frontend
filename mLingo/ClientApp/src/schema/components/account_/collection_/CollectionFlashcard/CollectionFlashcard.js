@@ -6,8 +6,6 @@ import { FaTrash } from 'react-icons/fa'
 const CollectionFlashcardComponent = ({ set, remove, index, method, create = false  }) => {
 
     let isFirst = index;
-    console.log("isFirst" + isFirst)
-    console.log(create)
     index++;
 
     if( index < 10 ){index = `0${index}`} ;

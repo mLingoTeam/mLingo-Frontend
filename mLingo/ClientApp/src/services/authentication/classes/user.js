@@ -19,10 +19,11 @@ function logout() {
 
 function login({username, password}) {
 
+  console.log(JSON.stringify({ userId: username, password }))
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password })
+      body: JSON.stringify({ userId: username, password })
     };
 
 

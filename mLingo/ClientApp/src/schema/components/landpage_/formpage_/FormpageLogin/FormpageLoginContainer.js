@@ -35,10 +35,13 @@ class FormpageLoginContainer extends React.Component {
       }
     ];
 
-
     this.handleChange = this.handleChange.bind(this);
-
     this.account_login = this.account_login.bind(this);
+
+    this.functions = {
+      account_login: this.account_login,
+      handleChange: this.handleChange
+    }
   }
 
 
@@ -59,9 +62,9 @@ class FormpageLoginContainer extends React.Component {
 
     } // if the user exist save they into the web
     else {
-      authentication_service.setIntoLocalStorage({ name: "currentUser", value: resolved.response.username });
-      authentication_service.setIntoLocalStorage({ name: "ID", value: resolved.response.id });
-      authentication_service.setIntoLocalStorage({ name: "Token", value: resolved.response.token });
+      localStorage.setItem("currentUser", resolved.response.username);
+      localStorage.setItem("ID", resolved.response.id);
+      localStorage.setItem("Token", resolved.response.token);
     }
 
     // TO RERENDER WHEN THE ITEM IS SET IN THE LOCALSTORAGE
@@ -81,7 +84,7 @@ class FormpageLoginContainer extends React.Component {
 
 
   render() {
-    return  <View state={this.state} fields={this.fields}/>
+    return  <View state={this.state} fields={this.fields} functions={this.functions}/>
   }
 }
 

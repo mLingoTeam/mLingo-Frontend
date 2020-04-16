@@ -13,7 +13,9 @@ function find({type, name}) {
       .then(result => result.json())
   }
 
-  function create({name, description, cards, Token}) {
+  function create({name, description = "No description", cards, Token}) {
+
+    console.log(JSON.stringify({ name, description, cards }))
 
     const requestOptions = {
       method: "POST",
@@ -39,6 +41,8 @@ function find({type, name}) {
   }
 
   function update({ id, token, cards, name }) {
+
+    console.log('upd!ating')
 
     const requestOptions = {
       method: "PUT",

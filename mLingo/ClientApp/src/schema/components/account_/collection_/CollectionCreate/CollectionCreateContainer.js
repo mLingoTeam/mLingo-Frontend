@@ -120,7 +120,7 @@ class CollectionCreateContainer extends React.Component {
                 this.setState({ collectionTitle: "",collectionDescription:"", cards: [{ term: "", definition: "" }]});
             }
             else{
-                await authentication_service.collection.create(this.state.collectionTitle, this.state.collectionDescription, this.state.cards, localStorage.getItem("Token"));
+                await authentication_service.collection.create({name: this.state.collectionTitle, description: this.state.collectionDescription,cards: this.state.cards, Token: localStorage.getItem("Token")});
                 this.setState({ collectionTitle: "", collectionDescription:"", cards: [] });
             }
         }
