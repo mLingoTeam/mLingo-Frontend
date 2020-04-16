@@ -89,9 +89,11 @@ class CollectionCreateContainer extends React.Component {
 
     submit(){
         if( this.state.edit){
+            console.log('modify!')
             this.modifyCollection()
         }
         else{
+            console.log('create!')
             this.createCollection()
         }
     }

@@ -16,6 +16,15 @@ class Collection extends React.Component {
         this.removeCollection = this.removeCollection.bind(this);
         this.removeCard = this.removeCard.bind(this);
         this.modifyCollection = this.modifyCollection.bind(this);
+        this.editCollection = this.editCollection.bind(this)
+
+        this.functions = {
+            mountCollection: this.mountCollection,
+            removeCollection: this.removeCollection,
+            removeCard: this.removeCard,
+            modifyCollection: this.modifyCollection,
+            editCollection: this.editCollection
+        }
     }
 
 
@@ -55,7 +64,7 @@ class Collection extends React.Component {
     }
 
     render() {
-        return <View that={this.state} />
+        return <View state={this.state} functions={this.functions}/>
     }
 };
 
