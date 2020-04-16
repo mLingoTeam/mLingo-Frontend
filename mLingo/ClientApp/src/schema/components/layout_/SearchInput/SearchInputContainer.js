@@ -1,11 +1,10 @@
 import React from "react";
-import { FaSearch } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
 import { authentication_service } from '../../../../services/authentication';
 
+import View from './SearchInputView'
 
 
-class Search_Input extends React.Component {
+class SearchInputContainer extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -24,8 +23,8 @@ class Search_Input extends React.Component {
     }
 
     render() {
-        return <div><input type="text" className="searchbuttontext" name="request" onChange={this.handleChange} /><Link className="searchbutton" to="/search"><FaSearch onClick={this.findcollection} /></Link></div>
+        return <View state={this.state}/>
     }
 };
 
-export default Search_Input;
+export default SearchInputContainer;
