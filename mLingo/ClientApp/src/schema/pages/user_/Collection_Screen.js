@@ -1,7 +1,7 @@
 import React from "react";
-import Layout from '../layouts/Layout'
-import UserLayout from '../layouts/User_Layout'
-import Collection from '../components/user_/collection_/collection_components/Collection'
+import LayoutLandpage from '../../layouts/LayoutLandpage'
+import LayoutUser from '../../layouts/LayoutUser'
+import CollectionScreenContainer from '../../components/account_/collection_/CollectionScreen/CollectionScreenContainer'
 
 class Collection_Screen extends React.Component {
 
@@ -13,12 +13,12 @@ class Collection_Screen extends React.Component {
         return (
 
             this.state ?
-                <UserLayout>
-                    <Collection />
-                </UserLayout> :
-                <Layout>
-                    <Collection />
-                </Layout>
+                <LayoutUser>
+                    <CollectionScreenContainer />
+                </LayoutUser> :
+                <LayoutLandpage>
+                    <CollectionScreenContainer />
+                </LayoutLandpage>
 
         )
     }

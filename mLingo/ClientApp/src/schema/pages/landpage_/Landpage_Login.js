@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Layout from '../layouts/Layout';
+import LayoutLandpage from '../../layouts/LayoutLandpage';
 
-import Form_Login from '../components/landpage_/form_components/Form_Login';
+import FormpageLoginContainer from '../../components/landpage_/formpage_/FormpageLogin/FormpageLoginContainer';
 
 export default class Landpage_Login extends Component {
 
@@ -10,9 +10,9 @@ export default class Landpage_Login extends Component {
             this.props.history.push('/head');
         }
         return (
-            <Layout>
-                <Form_Login />
-            </Layout>
+            <LayoutLandpage>
+                <FormpageLoginContainer />
+            </LayoutLandpage>
         );
     }
 }

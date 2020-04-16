@@ -1,6 +1,6 @@
-import Newsletter from './authentication_classes/newsletter';
-import Collection from './authentication_classes/collection';
-import User from './authentication_classes/user';
+import Newsletter from './classes/newsletter';
+import Collection from './classes/collection';
+import User from './classes/user';
 
 
 const host = 'http://localhost:5000';

@@ -1,15 +1,15 @@
 import React from "react";
-import User_Layout from '../layouts/User_Layout'
-import User_Create_Collection_Component from '../components/user_/user_components/User_Create_Collection_Component'
+import LayoutUser from '../../layouts/LayoutUser'
+import User_Create_Collection_Component from '../../components/account_/collection_/User_Create_Collection_Component'
 
 class User_Create_Collection extends React.Component {
 
 
     render() {
         return (
-            <User_Layout>
+            <LayoutUser>
                 <User_Create_Collection_Component />
-            </User_Layout>
+            </LayoutUser>
         )
     }
 }
