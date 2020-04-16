@@ -13,6 +13,11 @@ class Collection_Search_Component extends React.Component {
         this.changeRequest = this.changeRequest.bind(this);
         this.changeRequestType = this.changeRequestType.bind(this);
 
+        this.functions = {
+            findcollection: this.findcollection,
+            changeRequest: this.changeRequest,
+            changeRequestType: this.changeRequestType
+        }
     }
 
     changeRequest(event) {
@@ -40,7 +45,7 @@ class Collection_Search_Component extends React.Component {
     }
 
     render() {
-        return <View that={this.state} />
+        return <View state={this.state} functions={this.functions} />
     }
 }
 
