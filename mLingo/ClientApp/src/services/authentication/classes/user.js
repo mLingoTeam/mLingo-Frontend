@@ -1,3 +1,5 @@
+import handleRaw from '../handleRaw';
+
 function register({username, email, password}) {
     const requestOptions = {
       method: "POST",
@@ -28,7 +30,7 @@ function login({username, password}) {
 
 
     return fetch(`${this.host}/api/account/login`, requestOptions)
-      .then(result => result.json())
+      .then(result => handleRaw(result) )
 
   }
 

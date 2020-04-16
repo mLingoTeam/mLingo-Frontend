@@ -1,4 +1,4 @@
-function find({type, name}) {
+function find({ type , name }) {
 
     let rqtype;
 
