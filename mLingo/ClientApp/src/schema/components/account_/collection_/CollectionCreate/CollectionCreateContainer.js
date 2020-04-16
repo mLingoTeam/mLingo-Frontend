@@ -1,14 +1,10 @@
 import React from "react";
-import { Link } from 'react-router-dom'
 
 import  requests  from '../CollectionScreen/requests'
 import { authentication_service } from "../../../../services/authentication";
-import Collection_Details_Component from './Collection_Details_Component'
-import Collection_Flashcard_Component from '../CollectionFlashcard/CollectionFlashcard';
+import View from  './CollectionCreateView'
 
-import { FaPlus } from 'react-icons/fa'
-
-class User_Create_Collection_Component extends React.Component {
+class CollectionCreateContainer extends React.Component {
     constructor(props) {
         super(props);
 
@@ -124,27 +120,14 @@ class User_Create_Collection_Component extends React.Component {
     }
 
     render() {
+
         if(this.state.loading){
             return <div>loading</div>
         }
         else{
-            return (
-                <div className="d-flex justify-content-center flex-wrap p-5">
-                    <Collection_Details_Component set={this.state} handleChange={this.handleChange} edit={this.state.edit}/>
-                    {
-                        this.state.cards.map((element, index) => {
-                            return <Collection_Flashcard_Component set={element} remove={this.removeCard} index={index} functioni={this.handleCardChange} functionii={this.addCard}/>
-                        })
-                    }
-                    <div className="col-12 d-flex justify-content-center flex-wrap align-items-center m-5">
-                            <button onClick={this.addCard} className="plus-button m-5"><FaPlus /></button>
-                            <h3 className="text-center color-dark-blue">add more cards</h3>
-                    </div>
-                    <Link to="/head" onClick={this.submit}  className="green-button"> {this.state.edit ? "edit collection" : "create collection"} </Link>
-                </div >
-            );
+            return <View that={this.state}/>
         }
     }
 }
 
-export default User_Create_Collection_Component;
+export default CollectionCreateContainer;

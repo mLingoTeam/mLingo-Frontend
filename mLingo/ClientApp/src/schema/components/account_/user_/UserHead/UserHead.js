@@ -1,5 +1,5 @@
 import React from "react";
-import User_Collection_Section_Component from '../UserSection/Sections/CollectionSection/User_Collection_Section_Component'
+import User_Collection_Section_Component from '../UserSection/Sections/SectionCollection/SectionCollectionContainer'
 
 class UserHead extends React.Component {
     constructor(props) {

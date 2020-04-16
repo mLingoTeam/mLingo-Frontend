@@ -1,11 +1,9 @@
 import React from 'react'
 import {
- CardBody, CardTitle
-
-} from 'reactstrap';
+ CardBody, CardTitle } from 'reactstrap';
 import Square from '../../../../../img/collection.svg'
 
-const Collection_Details_Component = (props) => {
+const CollectionCreateDetails = (props) => {
     return (
         <div className="createCollection col-12">
             <div>
@@ -27,4 +25,4 @@ const Collection_Details_Component = (props) => {
     );
 };
 
-export default Collection_Details_Component;
+export default CollectionCreateDetails;

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { authentication_service } from "../../../../../services/authentication";
+import View from './CollectionSearchView'
 
 class Collection_Search_Component extends React.Component {
     constructor(props) {

@@ -5,7 +5,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
-const CollectionCardComponent = ({ set }) => {
+const CollectionCard = ({ set }) => {
     return (
         <div>
             <Link to="/collection/" onClick={ () => { localStorage.setItem("collectionid", set.id )} }>
@@ -20,4 +20,4 @@ const CollectionCardComponent = ({ set }) => {
     );
 };
 
-export default CollectionCardComponent;
+export default CollectionCard;
