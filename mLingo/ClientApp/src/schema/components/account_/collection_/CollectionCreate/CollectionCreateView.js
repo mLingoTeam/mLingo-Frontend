@@ -2,24 +2,25 @@ import React from "react";
 import { Link } from 'react-router-dom'
 
 import CollectionCreateDetails from './CollectionCreateDetails/CollectionCreateDetails'
-import Collection_Flashcard_Component from '../CollectionFlashcard/CollectionFlashcard';
+import CollectionFlashcard from '../CollectionFlashcard/CollectionFlashcard';
 import { FaPlus } from 'react-icons/fa'
 
-const CollectionCreateView = ( { that } ) => {
+const CollectionCreateView = ( { state, functions } ) => {
 
+    console.log(state)
     return (
         <div className="d-flex justify-content-center flex-wrap p-5">
-            <CollectionCreateDetails set={this.state} handleChange={this.handleChange} edit={this.state.edit}/>
+            <CollectionCreateDetails set={state} handleChange={functions.handleChange} edit={state.edit}/>
             {
-                this.state.cards.map((element, index) => {
-                    return <Collection_Flashcard_Component set={element} remove={this.removeCard} index={index} functioni={this.handleCardChange} functionii={this.addCard}/>
+                state.cards.map((element, index) => {
+                    return <CollectionFlashcard set={element} remove={functions.removeCard} index={index} functioni={functions.handleCardChange} functionii={functions.addCard}/>
                 })
             }
             <div className="col-12 d-flex justify-content-center flex-wrap align-items-center m-5">
-                    <button onClick={this.addCard} className="plus-button m-5"><FaPlus /></button>
+                    <button onClick={functions.addCard} className="plus-button m-5"><FaPlus /></button>
                     <h3 className="text-center color-dark-blue">add more cards</h3>
             </div>
-            <Link to="/head" onClick={this.submit}  className="green-button"> {this.state.edit ? "edit collection" : "create collection"} </Link>
+            <Link to="/head" onClick={functions.submit}  className="green-button"> {state.edit ? "edit collection" : "create collection"} </Link>
         </div >
     )
 }

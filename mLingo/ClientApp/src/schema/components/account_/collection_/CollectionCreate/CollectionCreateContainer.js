@@ -20,6 +20,17 @@ class CollectionCreateContainer extends React.Component {
         this.addCard = this.addCard.bind(this);
         this.removeCard = this.removeCard.bind(this);
 
+        this.functions = {
+        submit:   this.submit,
+        modifyCollection: this.modifyCollection,
+        mount: this.mount,
+        createCollection: this.createCollection,
+        handleChange: this.handleChange,
+        handleCardChange: this.handleCardChange,
+        addCard: this.addCard,
+        removeCard: this.removeCard,
+        }
+
 
         // editing mode
         if ( localStorage.getItem("editCollection") ){
@@ -125,7 +136,7 @@ class CollectionCreateContainer extends React.Component {
             return <div>loading</div>
         }
         else{
-            return <View that={this.state}/>
+            return <View state={this.state} functions={this.functions}/>
         }
     }
 }

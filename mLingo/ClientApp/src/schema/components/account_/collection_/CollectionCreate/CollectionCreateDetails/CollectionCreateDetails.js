@@ -3,7 +3,8 @@ import {
  CardBody, CardTitle } from 'reactstrap';
 import Square from '../../../../../../img/collection.svg';
 
-const CollectionCreateDetails = (props) => {
+const CollectionCreateDetails = ( props ) => {
+    console.log(props)
     return (
         <div className="createCollection col-12">
             <div>
