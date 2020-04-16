@@ -1,7 +1,7 @@
 import React from "react";
-import Landpage_Newsletter from './mainpage_/MainpageNewsletter/MainpageNewsletterContainer';
+import Landpage_Newsletter from './MainpageNewsletter/MainpageNewsletterContainer';
 
-class Temporary_Register_Component extends React.Component {
+class TemporaryRegister extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -18,4 +18,4 @@ class Temporary_Register_Component extends React.Component {
     }
 }
 
-export default Temporary_Register_Component;
+export default TemporaryRegister;

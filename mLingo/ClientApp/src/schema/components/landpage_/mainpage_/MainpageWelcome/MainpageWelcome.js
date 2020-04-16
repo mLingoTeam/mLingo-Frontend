@@ -1,7 +1,7 @@
 import React from "react";
 import backgroundimg from '../../../../img/landpage1.png'
 
-const Landpage_Welcome = props => {
+const MainpageWelcome = props => {
     return (
         <div className="welcome-section">
             <img src={backgroundimg} className="img-fluid"/>
@@ -14,4 +14,4 @@ const Landpage_Welcome = props => {
     );
 };
 
-export default Landpage_Welcome;
+export default MainpageWelcome;

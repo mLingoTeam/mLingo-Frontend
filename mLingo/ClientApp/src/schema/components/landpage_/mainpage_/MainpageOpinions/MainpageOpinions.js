@@ -1,8 +1,8 @@
 import React from 'react';
-import Landpage_Opinion from './MainpageOpinion';
+import Landpage_Opinion from './Opinion';
 import photo1 from '../../../../img/brown-haired-girl-in-white-sleeveless-dress-standing-beside-756453@2x.png'
 
-class Landpage_Opinions extends React.Component {
+class MainpageOpinions extends React.Component {
 
     constructor(props){
         super(props);
@@ -32,4 +32,4 @@ class Landpage_Opinions extends React.Component {
     }
 }
 
-export default Landpage_Opinions;
+export default MainpageOpinions;

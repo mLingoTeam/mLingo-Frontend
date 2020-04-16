@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Landpage_Step = ( {props}) => {
+const Step = ( {props}) => {
 
 
     return(
@@ -14,4 +14,4 @@ const Landpage_Step = ( {props}) => {
     )
 }
 
-export default Landpage_Step;
+export default Step;
