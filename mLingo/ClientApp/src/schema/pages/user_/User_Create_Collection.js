@@ -1,6 +1,6 @@
 import React from "react";
 import LayoutUser from '../../layouts/LayoutUser'
-import User_Create_Collection_Component from '../../components/account_/collection_/User_Create_Collection_Component'
+import CollectionCreateContainer from '../../components/account_/collection_/CollectionCreate/CollectionCreateContainer'
 
 class User_Create_Collection extends React.Component {
 
@@ -8,7 +8,7 @@ class User_Create_Collection extends React.Component {
     render() {
         return (
             <LayoutUser>
-                <User_Create_Collection_Component />
+                <CollectionCreateContainer />
             </LayoutUser>
         )
     }

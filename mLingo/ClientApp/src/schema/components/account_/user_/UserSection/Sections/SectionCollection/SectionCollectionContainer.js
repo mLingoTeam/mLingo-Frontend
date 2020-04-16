@@ -1,5 +1,6 @@
 import React from "react";
-import { authentication_service } from "../../../../../../../services/authentication";
+import { authentication_service } from "../../../../../../../services/authentication/authentication";
+import View from './SectionCollectionView';
 
 class User_Collection_Section_Component extends React.Component {
 

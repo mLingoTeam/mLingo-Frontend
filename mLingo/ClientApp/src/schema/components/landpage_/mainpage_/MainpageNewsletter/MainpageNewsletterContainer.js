@@ -1,7 +1,7 @@
 import React from 'react';
 
 import validate from '../../../../../services/validate'
-import { authentication_service } from '../../../../../services/authentication';
+import { authentication_service } from '../../../../../services/authentication/authentication';
 
 import View from './MainpageNewsletterView';
 

@@ -1,7 +1,7 @@
 import React from "react";
 import UserSectionContainer from '../../components/account_/user_/UserSection/UserSectionContainer'
 import LayoutUser from '../../layouts/LayoutUser'
-import User_Collection_Section_Component from '../../components/account_/user_/Sections/User_Collection_Section_Component'
+import SectionCollectionContainer from '../../components/account_/user_/UserSection/Sections/SectionCollection/SectionCollectionContainer'
 
 class User_Collection extends React.Component {
 
@@ -13,7 +13,7 @@ class User_Collection extends React.Component {
 
                 <LayoutUser>
                     <UserSectionContainer>
-                        <User_Collection_Section_Component/>
+                        <SectionCollectionContainer/>
                     </UserSectionContainer>
                 </LayoutUser>
 

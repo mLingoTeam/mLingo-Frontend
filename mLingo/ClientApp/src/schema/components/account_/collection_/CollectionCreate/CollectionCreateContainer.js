@@ -1,7 +1,7 @@
 import React from "react";
 
 import  requests  from '../CollectionScreen/requests'
-import { authentication_service } from "../../../../services/authentication";
+import { authentication_service } from "../../../../../services/authentication/authentication";
 import View from  './CollectionCreateView'
 
 class CollectionCreateContainer extends React.Component {

@@ -1,7 +1,7 @@
 import React from 'react'
 import {
  CardBody, CardTitle } from 'reactstrap';
-import Square from '../../../../../img/collection.svg'
+import Square from '../../../../../../img/collection.svg';
 
 const CollectionCreateDetails = (props) => {
     return (

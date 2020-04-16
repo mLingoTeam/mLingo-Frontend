@@ -1,6 +1,6 @@
 import React from "react";
 import CollectionCardComponent from '../CollectionCard/CollectionCard';
-import SearchInput from '../../../layout_/search_components/SearchInput';
+import SearchInputContainer from '../../../layout_/SearchInput/SearchInputContainer';
 
 const CollectionSearchView =  ( { that }) => {
 
@@ -8,7 +8,7 @@ const CollectionSearchView =  ( { that }) => {
         <div>
             <div>
                 <h3>You have searched for : {localStorage.getItem("request")} </h3>
-                <SearchInput />
+                <SearchInputContainer />
                 <button onClick={that.findcollection}>Find</button>
             </div>
             {

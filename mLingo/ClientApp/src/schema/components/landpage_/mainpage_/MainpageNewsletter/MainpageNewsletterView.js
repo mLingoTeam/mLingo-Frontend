@@ -1,6 +1,6 @@
 import React from 'react';
-import left from '../../../../img/leftsquare.svg';
-import right from '../../../../img/rightsquare.svg'
+import left from '../../../../../img/leftsquare.svg';
+import right from '../../../../../img/rightsquare.svg'
 
 const MainpageNewsletterView = ({ that }) => {
 

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import View from './CollectionScreenView'
-import { authentication_service } from '../../../../../services/authentication';
+import { authentication_service } from '../../../../../services/authentication/authentication';
 import  requests  from './requests';
 
 

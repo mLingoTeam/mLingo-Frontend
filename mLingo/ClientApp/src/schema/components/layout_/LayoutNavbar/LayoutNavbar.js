@@ -1,8 +1,8 @@
 import React from "react";
-import Search_Input from '../search_components/Search_Input';
+import SearchInputContainer from '../SearchInput/SearchInputContainer';
 import { Link } from "react-router-dom";
 import logo from '../../../../img/Kompozycja 2.svg'
-import { authentication_service } from "../../../../services/authentication";
+import { authentication_service } from "../../../../services/authentication/authentication";
 
 const logout = () => {
   authentication_service.user.logout();
@@ -19,7 +19,7 @@ const LayoutNavbar = props => {
       <div className="navbar__buttons">
         {
           localStorage.getItem("currentUser") ? <div className="navbar__buttons">
-          <Search_Input />
+          <SearchInputContainer />
             <div>
               <Link className="signinbutton" to="/head">learn</Link>
             </div>

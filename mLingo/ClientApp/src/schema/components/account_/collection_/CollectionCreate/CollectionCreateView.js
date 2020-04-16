@@ -23,3 +23,5 @@ const CollectionCreateView = ( { that } ) => {
         </div >
     )
 }
+
+export default CollectionCreateView;
