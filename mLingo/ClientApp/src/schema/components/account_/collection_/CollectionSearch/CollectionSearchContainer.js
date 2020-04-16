@@ -1,6 +1,4 @@
 import React from "react";
-import CollectionCardComponent from '../CollectionCard/CollectionCard'
-import Search_Input from '../../../layout_/search_components/Search_Input'
 
 import { authentication_service } from "../../../../../services/authentication";
 
@@ -41,20 +39,7 @@ class Collection_Search_Component extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                <div>
-                    <h3>You have searched for : {localStorage.getItem("request")} </h3>
-                    <Search_Input />
-                    <button onClick={this.findcollection}>Find</button>
-                </div>
-                {
-                    this.state.exist ? this.state.fields.map(element => (
-                        <CollectionCardComponent set={element} />
-                    )) : this.state.exist ? <div className="text-center"><h2> No collection found </h2></div> : <div className="text-center"><h2> No collection found </h2></div>
-                }
-            </div>
-        );
+        return <View that={this.state} />
     }
 }
 

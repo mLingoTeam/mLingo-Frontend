@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "reactstrap";
 import { Link } from 'react-router-dom';
-import Form_Input from "../FormInput/FormInput";
+import FormInput from "../FormInput/FormInput";
 
 const FormpageLoginView = ( { that } ) => {
 
@@ -17,7 +17,7 @@ const FormpageLoginView = ( { that } ) => {
           >
             <h1 className="col-12 mb-5">sign in</h1>
             {that.fields.map(element => (
-              <Form_Input set={element} />
+              <FormInput set={element} />
             ))}
 
             {

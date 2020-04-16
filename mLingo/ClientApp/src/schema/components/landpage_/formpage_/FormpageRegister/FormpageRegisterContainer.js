@@ -1,4 +1,7 @@
 import React from "react";
+import View from './FormpageRegisterView'
+
+import { authentication_service } from '../../../../../services/authentication/authentication'
 
 class Register extends React.Component {
   constructor(props) {

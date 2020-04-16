@@ -1,6 +1,6 @@
 import React from "react";
 import { Form } from "reactstrap";
-import Form_Input from "../FormInput/FormInput";
+import FormInput from "../FormInput/FormInput";
 import { Link } from 'react-router-dom'
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
 
@@ -18,7 +18,7 @@ const FormpageRegisterView = ( { that }) => {
           >
             <h1 className="col-12 mb-5">sign up</h1>
             {that.fields.map(element => (
-              <Form_Input set={element} />
+              <FormInput set={element} />
             ))}
 
             <button className="col-12 offset-lg-4 col-lg-4 btn green-button registerbutton">

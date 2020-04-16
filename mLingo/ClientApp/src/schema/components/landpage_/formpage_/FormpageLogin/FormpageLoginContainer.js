@@ -1,4 +1,7 @@
 import React from "react";
+import View from './FormpageLoginView'
+
+import { authentication_service } from '../../../../../services/authentication/authentication'
 
 class FormpageLoginContainer extends React.Component {
 

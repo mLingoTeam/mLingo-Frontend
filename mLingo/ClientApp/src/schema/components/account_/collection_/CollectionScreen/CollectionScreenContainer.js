@@ -1,9 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 
+import View from './CollectionScreenView'
 import { authentication_service } from '../../../../../services/authentication';
 import  requests  from './requests';
-import Collection_Flashcard_Component from '../CollectionFlashcard/CollectionFlashcard';
 
 
 class Collection extends React.Component {
@@ -56,25 +55,7 @@ class Collection extends React.Component {
     }
 
     render() {
-        return (
-            <div className="col-9">
-                Collection
-                {
-                    this.state.loaded ? this.state.collection ? this.state.collection.map((element, index) => (
-                        <Collection_Flashcard_Component set={element} remove={this.removeCard} index={index}/>
-                    )) : <h1>Collection removed!</h1> : <h1>loading</h1>
-                }
-                <Link to='/head' className="green-button">go back</Link>
-                {
-                    this.state.collection ? <div>
-                        <button className="green-button" onClick={this.removeCollection}>Remove Collection</button>
-                        <button className="green-button" onClick={this.modifyCollection}>Remove Cards</button>
-                        <Link className="green-button" onClick={this.editCollection} to="/create" >Edit Collection</Link>
-                    </div> : null
-                }
-            </div>
-
-        )
+        return <View that={this.state} />
     }
 };
 

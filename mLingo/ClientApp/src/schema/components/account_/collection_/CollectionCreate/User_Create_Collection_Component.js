@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from 'react-router-dom'
 
-import  requests  from './CollectionScreen/requests'
+import  requests  from '../CollectionScreen/requests'
 import { authentication_service } from "../../../../services/authentication";
-import Collection_Details_Component from './CollectionScreen/Collection_Details_Component'
-import Collection_Flashcard_Component from './CollectionFlashcard/CollectionFlashcard';
+import Collection_Details_Component from './Collection_Details_Component'
+import Collection_Flashcard_Component from '../CollectionFlashcard/CollectionFlashcard';
 
 import { FaPlus } from 'react-icons/fa'
 

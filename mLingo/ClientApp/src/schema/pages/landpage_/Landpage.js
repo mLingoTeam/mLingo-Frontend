@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import Layout from '../layouts/Layout'
 
-import MainpageNewsletterContainer from '../../components/landpage_/mainpage_/MainpageNewsletter/MainpageNewsletterContainer'
+import MainpageWelcome from '../../components/landpage_/mainpage_/MainpageNewsletter/MainpageWelcome'
 //import Landpage_Newsletter from "../components/landpage_/landpage_components/Landpage_Newsletter";
 //import Landpage_Steps from '../components/landpage_/landpage_components/Landpage_Steps';
 //import Landpage_Opinions from '../components/landpage_/landpage_components/Landpage_Opinions';
@@ -15,7 +15,7 @@ export default class Landpage extends Component {
     }
     return (
       <Layout>
-        <Landpage_Welcome />
+        <MainpageWelcome />
       </Layout>
     );
   }
