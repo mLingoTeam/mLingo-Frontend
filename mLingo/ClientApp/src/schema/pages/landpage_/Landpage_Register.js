@@ -1,0 +1,17 @@
+import React, { Component } from "react";
+import LayoutLandpage from '../../layouts/LayoutLandpage';
+import FormpageRegisterContainer from '../../components/landpage_/formpage_/FormpageRegister/FormpageRegisterContainer';
+
+export default class Landpage_Register extends Component {
+
+    render() {
+        if (localStorage.getItem("currentUser")) {
+            this.props.history.push('/head');
+        }
+        return (
+            <LayoutLandpage>
+                <FormpageRegisterContainer />
+            </LayoutLandpage>
+        );
+    }
+}
