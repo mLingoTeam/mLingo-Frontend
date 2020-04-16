@@ -4,56 +4,7 @@ import Form_Input from "../FormInput/FormInput";
 import { Link } from 'react-router-dom'
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
 
-class Register extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      username: "",
-      email: "",
-      password: "",
-      isLoading: false
-    };
-
-    this.fields = [
-      {
-        type: "text",
-        name: "username",
-        label: "username",
-        function: this.handleChange.bind(this),
-        placeholder: "Jake the dog",
-        id: "Username"
-      },
-      {
-        type: "email",
-        name: "email",
-        label: "email",
-        function: this.handleChange.bind(this),
-        placeholder: "Jake@dogmail.com",
-        id: "Email"
-      },
-      {
-        type: "password",
-        name: "password",
-        label: "password",
-        function: this.handleChange.bind(this),
-        placeholder: "admin",
-        id: "Password"
-      }
-    ];
-
-    this.handleChange = this.handleChange.bind(this);
-
-
-    this.account_login = this.account_helpers.account_login.bind(this);
-    this.account_register = this.account_helpers.account_register.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
-  render() {
+const FormpageRegisterView = ( { that }) => {
 
     return (
       <div>
@@ -61,12 +12,12 @@ class Register extends React.Component {
           <Form
             className="col-12 offset-lg-3 col-lg-6"
             onSubmit={e => {
-              this.register_account();
+              that.register_account();
               e.preventDefault();
             }}
           >
             <h1 className="col-12 mb-5">sign up</h1>
-            {this.fields.map(element => (
+            {that.fields.map(element => (
               <Form_Input set={element} />
             ))}
 
@@ -83,8 +34,7 @@ class Register extends React.Component {
           </Form>
         </div>
       </div>
-    );
-  }
+    )
 }
 
-export default Register;
+export default FormpageRegisterView;

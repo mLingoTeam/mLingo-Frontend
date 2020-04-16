@@ -1,71 +1,27 @@
 import React from "react";
 import { Form } from "reactstrap";
 import { Link } from 'react-router-dom';
-
 import Form_Input from "../FormInput/FormInput";
 
-import {account_helpers} from '../FormContainer/FormContainer'
+const FormpageLoginView = ( { that } ) => {
 
-class Login extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      username: "",
-      email: "",
-      password: "",
-      isLoading: false,
-      err: false
-    };
-
-    this.fields = [
-      {
-        type: "text",
-        name: "username",
-        label: "username/email",
-        function: this.handleChange.bind(this),
-        placeholder: "Jake the dog",
-        id: "Username"
-      },
-      {
-        type: "password",
-        name: "password",
-        label: "password",
-        function: this.handleChange.bind(this),
-        placeholder: "admin",
-        id: "Password"
-      }
-    ];
-
-
-    this.handleChange = this.handleChange.bind(this);
-
-    this.account_login = this.account_helpers.account_login.bind(this);
-  }
-
-
-  handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
-  render() {
-    return (
+  return (
       <div>
         <div className="registerForm2 col-12 d-flex jusify-content-center flex-wrap">
           <Form
             className="col-12 offset-lg-3 col-lg-6"
             onSubmit={e => {
               e.preventDefault();
-              this.account_login();
+              that.account_login();
             }}
           >
             <h1 className="col-12 mb-5">sign in</h1>
-            {this.fields.map(element => (
+            {that.fields.map(element => (
               <Form_Input set={element} />
             ))}
 
             {
-              this.state.err != false ? <p>{this.state.err}</p> : null
+              that.state.err != false ? <p>{that.state.err}</p> : null
             }
 
             <div className="col-12 remember">
@@ -89,9 +45,7 @@ class Login extends React.Component {
           </Form>
         </div>
       </div>
-    );
-
-  }
+  )
 }
 
-export default Login;
+export default FormpageLoginView;
