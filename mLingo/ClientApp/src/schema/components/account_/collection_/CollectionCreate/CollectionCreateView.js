@@ -13,7 +13,7 @@ const CollectionCreateView = ( { state, functions } ) => {
             <CollectionCreateDetails set={state} handleChange={functions.handleChange} edit={state.edit}/>
             {
                 state.cards.map((element, index) => {
-                    return <CollectionFlashcard set={element} remove={functions.removeCard} index={index} functioni={functions.handleCardChange} functionii={functions.addCard}/>
+                    return <CollectionFlashcard set={element} remove={functions.removeCard} index={index} method={functions.handleCardChange}/>
                 })
             }
             <div className="col-12 d-flex justify-content-center flex-wrap align-items-center m-5">
