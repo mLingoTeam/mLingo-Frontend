@@ -4,7 +4,7 @@ import FormInput from "../FormInput/FormInput";
 import { Link } from 'react-router-dom'
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
 
-const FormpageRegisterView = ( { that }) => {
+const FormpageRegisterView = ( { state, fields }) => {
 
     return (
       <div>
@@ -12,12 +12,12 @@ const FormpageRegisterView = ( { that }) => {
           <Form
             className="col-12 offset-lg-3 col-lg-6"
             onSubmit={e => {
-              that.register_account();
+              state.register_account();
               e.preventDefault();
             }}
           >
             <h1 className="col-12 mb-5">sign up</h1>
-            {that.fields.map(element => (
+            {fields.map(element => (
               <FormInput set={element} />
             ))}
 

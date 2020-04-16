@@ -81,7 +81,7 @@ class FormpageLoginContainer extends React.Component {
 
 
   render() {
-    return  <View that={this.state}/>
+    return  <View state={this.state} fields={this.fields}/>
   }
 }
 

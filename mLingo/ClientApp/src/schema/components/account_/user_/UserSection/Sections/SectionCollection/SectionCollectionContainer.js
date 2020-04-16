@@ -28,7 +28,7 @@ class User_Collection_Section_Component extends React.Component {
     }
 
     render() {
-        return <View that={this.state} />
+        return <View state={this.state} />
     }
 }
 

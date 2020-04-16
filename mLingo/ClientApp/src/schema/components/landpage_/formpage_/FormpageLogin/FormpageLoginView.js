@@ -3,7 +3,7 @@ import { Form } from "reactstrap";
 import { Link } from 'react-router-dom';
 import FormInput from "../FormInput/FormInput";
 
-const FormpageLoginView = ( { that } ) => {
+const FormpageLoginView = ( { state, fields } ) => {
 
   return (
       <div>
@@ -12,16 +12,16 @@ const FormpageLoginView = ( { that } ) => {
             className="col-12 offset-lg-3 col-lg-6"
             onSubmit={e => {
               e.preventDefault();
-              that.account_login();
+              state.account_login();
             }}
           >
             <h1 className="col-12 mb-5">sign in</h1>
-            {that.fields.map(element => (
+            {fields.map(element => (
               <FormInput set={element} />
             ))}
 
             {
-              that.state.err != false ? <p>{that.state.err}</p> : null
+              state.err != false ? <p>{state.err}</p> : null
             }
 
             <div className="col-12 remember">

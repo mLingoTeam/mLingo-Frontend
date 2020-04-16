@@ -52,7 +52,7 @@ class MainpageNewsletterContainer extends React.Component {
     render(){
 
         return(
-            <View that={this.state}/>
+            <View state={this.state}/>
         )
     }
 }

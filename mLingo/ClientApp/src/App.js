@@ -5,11 +5,11 @@ import { createBrowserHistory } from "history";
 import PrivateRoute from "./services/PrivateRoute";
 
 
-import Temporary_Register from './schema/pages/landpage_/Temporary_Register'
+//import Temporary_Register from './schema/pages/landpage_/Temporary_Register'
 
 import Landpage from "./schema/pages/landpage_/Landpage";
 import Landpage_Login from "./schema/pages/landpage_/Landpage_Login";
-//import Landpage_Register from "./schema/pages/Landpage_Register";
+import Landpage_Register from "./schema/pages/landpage_/Landpage_Register";
 
 import User_Head from "./schema/pages/user_/User_Head";
 import User_Create_Collection from "./schema/pages/user_/User_Create_Collection";
@@ -29,7 +29,7 @@ export default class App extends Component {
         <div>
           <Route exact path="/" component={Landpage} />
           <Route exact path="/login" component={Landpage_Login} />
-          <Route exact path="/register" component={Temporary_Register} />
+          <Route exact path="/register" component={Landpage_Register} />
 
           <Route exact path="/collection" component={Collection_Screen} />
           <Route exact path="/search" component={Collection_Search} />
