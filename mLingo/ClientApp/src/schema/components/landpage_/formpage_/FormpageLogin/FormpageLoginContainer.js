@@ -74,7 +74,7 @@ class FormpageLoginContainer extends React.Component {
         })
       }, 1000);
 
-}
+ }
 
 
 }

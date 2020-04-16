@@ -1,23 +1,21 @@
 import React from 'react'
-import {
-    Card, CardBody,
-    CardTitle, CardSubtitle
-} from 'reactstrap';
 import { Link } from 'react-router-dom'
 
 const CollectionCard = ({ set }) => {
     return (
-        <div>
+        <React.Fragment>
             <Link to="/collection/" onClick={ () => { localStorage.setItem("collectionid", set.id )} }>
-                <Card>
-                    <CardBody>
-                        <CardTitle>{set.name}</CardTitle>
-                        <CardSubtitle>Play Count: {set.playCount}</CardSubtitle>
-                    </CardBody>
-                </Card>
+                <div className="card__container card--collection">
+                    <div className="card__body">
+                        <div className="card__title">{set.name}</div>
+                        <div className="card__subtitle">Play Count: {set.playCount}</div>
+                    </div>
+                </div>
             </Link>
-        </div>
+        </React.Fragment>
     );
 };
+
+
 
 export default CollectionCard;
