@@ -15,6 +15,7 @@
 // --- --- 1.1.1 CollectionCard
 // --- --- 1.1.2 CollectionCreate
 // --- --- 1.1.3 CollectionFlashcard
+/* --- --- 1.1.4 CollectionScreen
 // --- 1.2 set_
 // --- 1.3 user_
 
@@ -180,7 +181,7 @@
 }
 
 //////////////////////////////////////////////////////
-/* --- --- 1.1.4 CollectionFlashcard */
+/* --- --- 1.1.4 CollectionScreen */
 //////////////////////////////////////////////////////
 
 .collection__container{
@@ -204,4 +205,16 @@
 
 .collection__title{
     font-weight: bold;
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 1.1.5 CollectionSearch */
+//////////////////////////////////////////////////////
+
+.search__container{
+    //
+}
+.search__title, .search__nofound{
+    font-size: 1.5em;
+    color: $dark-blue;
 }

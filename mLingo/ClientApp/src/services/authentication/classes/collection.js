@@ -1,7 +1,6 @@
 function find({ type , name }) {
 
-    let rqtype;
-
+    let rqtype = "usercollections";
     type === 'name' ? rqtype = 'find' : type === 'id' ? rqtype = 'find' : rqtype = "usercollections";
 
     const requestOptions = {
