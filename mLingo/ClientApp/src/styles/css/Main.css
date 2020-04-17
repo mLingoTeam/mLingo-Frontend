@@ -11578,6 +11578,12 @@ a.text-dark:hover, a.text-dark:focus {
   margin: 20px;
 }
 
+.section__title {
+  color: #000536;
+  font-weight: 900;
+  font-size: 2em;
+}
+
 /* MENU */
 /* Components */
 /* Form Components */
