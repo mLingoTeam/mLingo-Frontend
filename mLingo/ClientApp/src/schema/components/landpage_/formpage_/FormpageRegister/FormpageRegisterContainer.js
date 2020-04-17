@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from 'react-router-dom';
 import View from './FormpageRegisterView'
 
 import { authentication_service } from '../../../../../services/authentication/authentication'
@@ -99,8 +100,11 @@ class FormpageRegisterContainer extends React.Component {
     /////////////////////////////////////////
 
   render() {
+    if (localStorage.getItem("currentUser")) {
+      this.props.history.push('/head');
+    }
     return <View state={this.state} fields={this.fields}/>
   }
 }
 
-export default FormpageRegisterContainer;
+export default withRouter(FormpageRegisterContainer);

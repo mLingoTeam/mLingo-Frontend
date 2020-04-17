@@ -11,7 +11,6 @@ const description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up gre
 
 const SectionCollectionView = ( { state } ) => {
 
-    console.log(state)
     return (
         <UserSectionView title={title} description={description}>    {
                 state.loading ? <div>Loading...</div>  : <div>

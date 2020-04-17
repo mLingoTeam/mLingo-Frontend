@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from 'react-router-dom';
 import View from './FormpageLoginView'
 
 import { authentication_service } from '../../../../../services/authentication/authentication'
@@ -82,8 +83,12 @@ class FormpageLoginContainer extends React.Component {
 
 
   render() {
+    if (localStorage.getItem("currentUser")) {
+      this.props.history.push('/head');
+    }
+
     return  <View state={this.state} fields={this.fields} functions={this.functions}/>
   }
 }
 
-export default FormpageLoginContainer;
+export default withRouter(FormpageLoginContainer);
