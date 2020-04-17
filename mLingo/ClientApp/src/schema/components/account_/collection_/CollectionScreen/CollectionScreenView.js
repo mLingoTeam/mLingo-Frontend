@@ -21,11 +21,13 @@ const CollectionSectionView = ( { state, functions } ) => {
 
                 </div> : <h1>Collection removed!</h1> : <h1>loading</h1>
             }
-            <Link to='/head' className="green--button">go back</Link>
+            <div>
+                <Link to='/head' className="green--button">go back</Link>
+            </div>
             {
-                state.collection ? <div>
-                    <button className="green-button" onClick={functions.removeCollection}>Remove Collection</button>
-                    <Link className="green-button" onClick={functions.editCollection} to="/create" >Edit Collection</Link>
+                state.collection ? <div className="flex--around">
+                    <button className="green--button" onClick={functions.removeCollection}>Remove Collection</button>
+                    <Link className="green--button" onClick={functions.editCollection} to="/create" >Edit Collection</Link>
                 </div> : null
             }
         </div>

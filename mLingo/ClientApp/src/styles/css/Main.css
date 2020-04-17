@@ -11518,6 +11518,10 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 /* --- --- 1.1.4 CollectionFlashcard */
+.collection__container {
+  padding: 20px;
+}
+
 .collection__info {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;

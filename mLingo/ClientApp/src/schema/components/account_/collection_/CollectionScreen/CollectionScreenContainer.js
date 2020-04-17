@@ -37,7 +37,7 @@ class Collection extends React.Component {
     }
 
     removeCollection() {
-        authentication_service.collection.remove(localStorage.getItem("collectionid"), localStorage.getItem("Token"));
+        authentication_service.collection.remove({id: localStorage.getItem("collectionid"), token: localStorage.getItem("Token")});
         localStorage.removeItem("collectionid");
         this.setState({ ...this.state, "collection": false });
     }
