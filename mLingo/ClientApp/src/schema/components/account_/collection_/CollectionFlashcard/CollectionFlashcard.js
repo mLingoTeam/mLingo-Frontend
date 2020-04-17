@@ -9,29 +9,26 @@ const CollectionFlashcardComponent = ({ set, remove, index, method, create = fal
     index++;
 
     if( index < 10 ){index = `0${index}`} ;
-
-    const removeCard = () => {
-        remove(set);
-    }
+    const removeCard = () => remove(set);
 
     return (
-        <div key={index} className="col-12 d-flex">
-            <div className="flashcard col-5">
-                <div className="flashcard--title">
-                    <h2>card {index}</h2>
-                    <h5>front</h5>
+        <div key={index} className="flashcard__container">
+            <div className="flashcard__card">
+                <div className="flashcard__info">
+                    <div className="flashcard__number">card {index}</div>
+                    <div className="flashcard__side">front</div>
                 </div>
-                <div className="flashcard--body">
-                    <input type="text" name='term' alt={isFirst} value={set.term} className="flashcard--def" placeholder="Term" onChange={method}></input>
+                <div className="flashcard__body">
+                    <input className="flashcard__definition" type="text" name='term' alt={isFirst} value={set.term} placeholder="Term" onChange={method}></input>
                 </div>
             </div>
-            <div className="flashcard col-5">
-                <div className="flashcard--title">
-                    <h2>card {index}</h2>
-                    <h5>back</h5>
+            <div className="flashcard__card">
+                <div className="flashcard__info">
+                    <div className="flashcard__number">card {index}</div>
+                    <div className="flashcard__side">back</div>
                 </div>
-                <div className="flashcard--body">
-                    <input type="text" alt={isFirst}  value={set.definition} name='definition' className="flashcard--def" placeholder="Definiton" onChange={method}></input>
+                <div className="flashcard__body">
+                    <input className="flashcard__definition" type="text" alt={isFirst}  value={set.definition} name='definition' placeholder="Definiton" onChange={method}></input>
                 </div>
             </div>
             {

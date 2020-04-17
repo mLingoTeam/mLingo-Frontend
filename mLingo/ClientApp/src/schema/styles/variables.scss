@@ -15,14 +15,12 @@ $desktop-res: 992px;
 a:link,
 a:visited,
 a:hover,
-a:active {
+a:active,
+a:focus,
+a:checked {
   text-decoration: none;
-  border-bottom: 0;
 }
 
-a:hover, a:focus, a:checked{
-  text-decoration: none;
-}
 
 @mixin mobile {
   @media (max-width: 991px) {

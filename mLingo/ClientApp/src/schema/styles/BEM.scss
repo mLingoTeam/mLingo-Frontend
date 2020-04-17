@@ -14,6 +14,7 @@
 // --- 1.1 collection_
 // --- --- 1.1.1 CollectionCard
 // --- --- 1.1.2 CollectionCreate
+// --- --- 1.1.3 CollectionFlashcard
 // --- 1.2 set_
 // --- 1.3 user_
 
@@ -121,4 +122,47 @@
 
 .create__button{
     margin: 20px 0;
+}
+
+// --- --- 1.1.3 CollectionFlashcard
+
+.flashcard__container{
+    @extend .col-12, .flex--around;
+}
+
+.flashcard__card{
+  @extend .col-5;
+  height: 200px;
+  padding: 20px;
+  background: white;
+  border-radius: 25px;
+  box-shadow: 0px 6px 8px #00000029;
+  margin: 20px;
+}
+
+.flashcard__info{
+    @extend .flex--between;
+    align-items: center;
+}
+
+
+.flashcard__number{
+    color: $dark-blue;
+    font-size: 16px;
+    font-weight: bold;
+}
+.flashcard__side{
+    color: $light-green;
+    font-size:12px;
+}
+
+.flashcard__definition{
+    color: #B2B2B2;
+    font-size: 16px;
+    border: 0;
+    border-bottom: 1px solid #B2B2B2;
+
+    &:focus{
+        outline: none;
+    }
 }
