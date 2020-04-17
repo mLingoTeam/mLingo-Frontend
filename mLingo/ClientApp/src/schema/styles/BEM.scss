@@ -2,7 +2,7 @@
 @import './mLingo.scss';
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
-#all__containers__in__user__section{
+.all__containers__in__user__section{
     flex: 0 0 79%;
     max-width: 79%;
 }
@@ -82,8 +82,11 @@
     padding: 1rem;
 
     @media(min-width: $tablet-res){
-        flex: 0 0 79%;
-        max-width: 79%;
+        &{
+            flex: 0 0 79%;
+            max-width: 79%;
+        }
+
     }
 }
 
@@ -174,4 +177,30 @@
     &:focus{
         outline: none;
     }
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 1.1.4 CollectionFlashcard */
+//////////////////////////////////////////////////////
+
+.collection__container{
+  @extend .all__containers__in__user__section;
+}
+
+.collection__info{
+    @extend .flex--around;
+    flex-wrap: wrap;
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 25px;
+}
+
+.collection__title, .collection__description{
+    font-size: 1.5em;
+    color: $dark-blue;
+}
+
+.collection__title{
+    font-weight: bold;
 }

@@ -360,7 +360,7 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
           justify-content: space-between;
 }
 
-.flex--around, .flashcard__container {
+.flex--around, .flashcard__container, .collection__info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11206,7 +11206,7 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
-#all__containers__in__user__section {
+.all__containers__in__user__section, .collection__container {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 79%;
           flex: 0 0 79%;
@@ -11355,5 +11355,24 @@ a.text-dark:hover, a.text-dark:focus {
 
 .flashcard__definition:focus {
   outline: none;
+}
+
+/* --- --- 1.1.4 CollectionFlashcard */
+.collection__info {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 25px;
+}
+
+.collection__title, .collection__description {
+  font-size: 1.5em;
+  color: #000536;
+}
+
+.collection__title {
+  font-weight: bold;
 }
 /*# sourceMappingURL=BEM.css.map */

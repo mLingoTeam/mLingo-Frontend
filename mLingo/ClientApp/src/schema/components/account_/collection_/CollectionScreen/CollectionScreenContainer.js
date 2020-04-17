@@ -27,7 +27,7 @@ class Collection extends React.Component {
         if (collection_id) {
             const collection = await authentication_service.collection.find({type: "id", name: collection_id} );
 
-            this.setState({ ...this.state, "collection": collection.response.cards });
+            this.setState({ ...this.state, "collection": collection.response });
             this.setState({ ...this.state, "loaded": true });
         }
         else {
