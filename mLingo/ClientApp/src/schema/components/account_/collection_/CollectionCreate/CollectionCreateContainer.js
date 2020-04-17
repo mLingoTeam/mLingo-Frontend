@@ -71,16 +71,17 @@ class CollectionCreateContainer extends React.Component {
         let title = this.state.collectionTitle;
         if(title.trim() === ""){ alert('Name your collection!'); return false; }
         else{
-             this.setState( state => { return { ...state, cards: state.cards.filter(el => (el.term.trim() != '' && el.definition.trim() != '')) } })
+             this.setState( state => { return { ...this.state, cards: this.state.cards.filter(el => (el.term.trim() != '' && el.definition.trim() != '')) } }, () => {
+                if( this.state.cards.length <= 1 ){
+                    alert("Add more cards")
 
-            if( this.state.cards.length <= 1 ){
-                alert("Add more cards")
-                this.setState({ collectionTitle: this.state.collectionTitle, collectionDescription: this.state.collectionDescription , cards: this.state.cards});
-                return false;
-            }
-            else{
-                return true;
-            }
+                    this.setState({ ...this.state, cards: [...this.state.cards, { term: "", definition: "" }] });
+                    return false;
+                }
+                else{
+                    return true;
+                }
+             })
         }
     }
 
