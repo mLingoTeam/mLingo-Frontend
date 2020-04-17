@@ -8,12 +8,12 @@ const helper = {
         return collectioni;
     },
 
-    modifyCollection(cards, name, description) {
-        authentication_service.collection.update({ id: localStorage.getItem("editCollection"), token: localStorage.getItem("Token"), cards, name, description })
+    modifyCollection({ cards, name, description }) {
+        authentication_service.collection.update({ id: localStorage.getItem("editCollection"), token: localStorage.getItem("Token"), cards: cards, name: name, description: description })
     },
 
-    createCollection() {
-        authentication_service.collection.create({name: this.state.collectionTitle, description: this.state.collectionDescription,cards: this.state.cards, Token: localStorage.getItem("Token")});
+    createCollection({ cards, name, description }) {
+        authentication_service.collection.create({name, description, cards, Token: localStorage.getItem("Token")});
     }
 }
 

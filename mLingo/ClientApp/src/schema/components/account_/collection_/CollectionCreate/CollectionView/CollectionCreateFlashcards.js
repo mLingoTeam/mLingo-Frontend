@@ -14,11 +14,11 @@ const CollectionCreateFlashcards = ( { state, functions } ) => {
                 })
             }
             <div className="create__more">
-                    <button onClick={functions.addCard} className="plus--button"><FaPlus /></button>
+                    <button onClick={functions.addEmptyCard} className="plus--button"><FaPlus /></button>
                     <div className="action__description">add more cards</div>
             </div>
             <div className="element--center">
-                <div onClick={functions.submit}  className="create__button green--button"> {state.edit ? "edit collection" : "create collection"} </Link>
+                <button onClick={functions.submit}  className="create__button green--button"> {state.edit ? "edit collection" : "create collection"} </button>
             </div>
         </React.Fragment>
     );

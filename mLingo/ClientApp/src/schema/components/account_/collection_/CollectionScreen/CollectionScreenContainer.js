@@ -2,7 +2,6 @@ import React from 'react'
 
 import View from './CollectionScreenView'
 import { authentication_service } from '../../../../../services/authentication/authentication';
-import  requests  from './requests';
 
 
 class Collection extends React.Component {
@@ -12,7 +11,7 @@ class Collection extends React.Component {
 
         this.state = [{ "loaded": false }];
 
-        this.mountCollection = requests.mountCollection.bind(this);
+        this.mountCollection = this.mountCollection.bind(this);
         this.removeCollection = this.removeCollection.bind(this);
         this.removeCard = this.removeCard.bind(this);
         this.modifyCollection = this.modifyCollection.bind(this);

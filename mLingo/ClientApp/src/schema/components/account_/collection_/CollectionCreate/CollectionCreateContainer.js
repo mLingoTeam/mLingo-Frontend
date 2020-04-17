@@ -75,7 +75,7 @@ class CollectionCreateContainer extends React.Component {
 
             if( this.state.cards.length <= 1 ){
                 alert("Add more cards")
-                this.setState({ collectionTitle: "", collectionDescription: this.state.collectionDescription , cards: this.state.cards});
+                this.setState({ collectionTitle: this.state.collectionTitle, collectionDescription: this.state.collectionDescription , cards: this.state.cards});
                 return false;
             }
             else{
