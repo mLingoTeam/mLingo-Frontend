@@ -6,24 +6,28 @@ import UserSectionView from '../../UserSectionView';
 import SetCard from '../../../../set_/SetCard/SetCard';
 import { FaPlus } from 'react-icons/fa';
 
+const title = "study sets";
+const description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.";
+
 const SectionSetView = ( { state } ) => {
 
+    console.log(state)
     return (
-        <UserSectionView title="study sets" description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.">
-            {
-                state.loading ? <div className="position-relative">Loading...</div> : <div>
-                    <div className="yourstudysets">
+        <UserSectionView title={title} description={description}>
+        {
+                state.loading ? <div>Loading...</div> : <div>
+                    <div className="cards__container">
                         {
-                            state.exist ? state.fields.map(element => (
+                            !state.fields.errorMessage ? state.fields.map(element => (
                                 <SetCard set={element} />
-                            )) : <div className="text-center col-12"><h2> You have no collection! &nbsp; </h2></div>
+                            )) : <div className="section__title"> {state.fields.errorMessage} &nbsp; </div>
                         }
                         {
-                            state.exist ? <button class="green-button">Load more</button> : null
+                            !state.fields.errorMessage ? <button class="green--button">Load more</button> : null
                         }
                     </div>
-                    <div className="d-flex justify-content-center align-items-center">
-                        <Link to="/create" className="plus-button"><FaPlus /></Link>
+                    <div className="element--center">
+                        <Link to="/create" className="plus--button"><FaPlus /></Link>
                     </div>
                 </div>
             }

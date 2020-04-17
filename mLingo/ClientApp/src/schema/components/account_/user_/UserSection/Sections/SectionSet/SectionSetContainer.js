@@ -1,5 +1,6 @@
 import React from "react";
 import { authentication_service } from "../../../../../../../services/authentication/authentication";
+import handleResponse from '../../../../../../../services/handleResponse';
 import View from './SectionSetView'
 
 class SectionSetContainer extends React.Component {
@@ -12,13 +13,13 @@ class SectionSetContainer extends React.Component {
     }
 
     async findcollection() {
-        const collectiondata = await authentication_service.collection.find({type: this.state.type, name: this.state.request});
+        const collectiondata = await handleResponse({ request: authentication_service.collection.find({type: this.state.type, name: this.state.request})});
 
-        if (collectiondata.successful === true) {
-            this.setState({ "fields": collectiondata.response, "exist": true, "loading": false });
+        if (collectiondata == false ) {
+            this.setState({ "fields": [], "exist": false, "loading": false });
         }
         else {
-            this.setState({ "fields": [], "exist": false, "loading": false });
+            this.setState({ "fields": collectiondata.response, "exist": true, "loading": false });
         }
     }
 

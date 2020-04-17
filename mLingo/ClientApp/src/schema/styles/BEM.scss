@@ -142,7 +142,8 @@
 //////////////////////////////////////////////////////
 
 .flashcard__container{
-    @extend .col-12, .flex--around;
+    @extend .col-12;
+    display: flex;
 }
 
 .flashcard__card{
@@ -255,4 +256,26 @@
 
 .section__description{
     //
+}
+
+// sections
+.cards__container{
+padding: 50px 0;
+display: flex;
+text-align: center;
+align-items: center;
+flex-wrap: nowrap;
+overflow-x: auto;
+overflow-y: hidden;
+
+/* hide scrollbar */
+
+&::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+&::-webkit-scrollbar-thumb {
+    background: transparent;
+}
 }

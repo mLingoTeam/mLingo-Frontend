@@ -360,7 +360,7 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
           justify-content: space-between;
 }
 
-.flex--around, .flashcard__container, .collection__info {
+.flex--around, .collection__info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11324,6 +11324,12 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 /* --- --- 1.1.3 CollectionFlashcard */
+.flashcard__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .flashcard__card {
   height: 200px;
   padding: 20px;
@@ -11422,5 +11428,33 @@ a.text-dark:hover, a.text-dark:focus {
   color: #000536;
   font-weight: 900;
   font-size: 2em;
+}
+
+.cards__container {
+  padding: 50px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* hide scrollbar */
+  /* Optional: show position indicator in red */
+}
+
+.cards__container::-webkit-scrollbar {
+  width: 0px;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+
+.cards__container::-webkit-scrollbar-thumb {
+  background: transparent;
 }
 /*# sourceMappingURL=BEM.css.map */
