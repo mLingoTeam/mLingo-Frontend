@@ -395,3 +395,27 @@ overflow-y: hidden;
 .remember__label{
     font-weight: 400 !important;
 }
+
+.register--button{
+    margin: 48px 0 85px 0;
+}
+
+.formsocials__container{
+    @extend .col-12;
+}
+.fbconnect__button,.ggconnect__button{
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 5px 0;
+    margin: 5px 0;
+    @extend .col-12;
+}
+
+.fbconnect__button{
+    background-color: #3b5998;
+}
+
+.ggconnect__button{
+    background-color:#DB4437;
+}
