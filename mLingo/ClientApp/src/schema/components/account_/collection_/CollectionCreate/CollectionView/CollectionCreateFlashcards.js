@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaPlus } from 'react-icons/fa';
 
 import CollectionFlashcard from '../../CollectionFlashcard/CollectionFlashcard';
-import { FaPlus } from 'react-icons/fa'
 
 const CollectionCreateFlashcards = ( { state, functions } ) => {
 
@@ -18,7 +18,7 @@ const CollectionCreateFlashcards = ( { state, functions } ) => {
                     <div className="action__description">add more cards</div>
             </div>
             <div className="element--center">
-                <Link to="/head" onClick={functions.submit}  className="create__button green--button"> {state.edit ? "edit collection" : "create collection"} </Link>
+                <div onClick={functions.submit}  className="create__button green--button"> {state.edit ? "edit collection" : "create collection"} </Link>
             </div>
         </React.Fragment>
     );
