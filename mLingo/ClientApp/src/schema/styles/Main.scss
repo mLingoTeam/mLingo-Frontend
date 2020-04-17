@@ -27,8 +27,6 @@
 /* 4.2 Footer.js */
 
 /* Pages Components */
-/* 5.1 Search.js */
-/* 5.2 UserCreate.js */
 /* 5.3 UserHead.js */
 
 /* Search Components */
@@ -57,122 +55,8 @@
 //////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////
-/* 2.1 FormField.js */ /* & */ /* 2.2 Login.js */ /* & */ /* 2.3 Register.js */
-//////////////////////////////////////////////////////
-
-.registerForm2 form div{
-  margin: 9px 0;
-}
-
-.registerForm2 input[type="text"], .registerForm2 input[type="password"], .registerForm2 input[type="email"] {
-  height: 40px;
-  font-size: 18px;
-  border: 1px solid #707070;
-  border-radius: 10px;
-
-}
-
-.registerForm2 input[type="text"]:focus, .registerForm2 input[type="password"]:focus, .registerForm2 input[type="email"]:focus {
-  outline: none !important;
-
-}
-
-.registerForm2 {
-  padding: 10vh 0;
-
-  h1 {
-    font-size: 32px;
-    font-weight: 900;
-  }
-
-  form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  p{
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  input[type="checkbox"] { display: none; }
-
-  input[type="checkbox"] + label {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 20px;
-    font: 14px/20px 'Open Sans', Arial, sans-serif;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-  }
-
-  input[type="checkbox"] + label:last-child { margin-bottom: 0; }
-
-  input[type="checkbox"] + label:before {
-    content: '';
-    display: block;
-    width: 20px;
-    height: 20px;
-    border: 1px solid $dark-blue;
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: .6;
-    -webkit-transition: all .12s, border-color .08s;
-    transition: all .12s, border-color .08s;
-  }
-
-  input[type="checkbox"]:checked + label:before {
-    width: 10px;
-    top: -5px;
-    left: 5px;
-    border-radius: 0;
-    opacity: 1;
-    border-top-color: transparent;
-    border-left-color: transparent;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-  }
-
-}
-
-.alreadyaccount{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  margin-top: 28px !important;
-
-  a{
-    color: $dark-blue;
-    text-decoration: underline $dark-blue;
-    font-weight: bold;
-  }
-}
-
-//////////////////////////////////////////////////////
 /* 2.2 Login.js */
 //////////////////////////////////////////////////////
-
-.remember{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-  color: $dark-green;
-  margin-bottom: 88px !important;
-
-  label{
-    font-weight: 400 !important;
-  }
-
-  a{
-    color: $dark-green;
-  }
-}
 
 //////////////////////////////////////////////////////
 /* 2.3 Register.js */
@@ -945,32 +829,11 @@ div.welcome-section{
 //////////////////////////////////////////////////////
 
 
-
-//////////////////////////////////////////////////////
-/* 5.1 Search.js */
-//////////////////////////////////////////////////////
-
-
-
-//////////////////////////////////////////////////////
-/* 5.2 UserCreate.js */
-//////////////////////////////////////////////////////
-
-input[name=collectionName]{
-  padding: 5px;
-  font-size: 14px;
-  border-radius: 5px;
-  border: 1px solid $dark-blue;
-}
-
 //////////////////////////////////////////////////////
 /* 5.3 UserHead.js */
 //////////////////////////////////////////////////////
 
 // Max-width: 100% - because of overflow-x: auto //
-
-.mainpanel__userbase{
-}
 
 @media (max-width: $mobile-res) {
   .mainpanel{
@@ -1123,30 +986,6 @@ input[name=collectionName]{
       top: 20px;
     }
   }
-}
-
-//////////////////////////////////////////////////////////////////
-/* 7.1 UserSection.js */
-//////////////////////////////////////////////////////////////////
-
-.UserSection{
-  margin: 0px 0px 120px 0px;
-  h2{
-    color: $dark-blue;
-    font-weight: bold;
-  }
-}
-
-//////////////////////////////////////////////////////////////////
-/* 7.2 StudySetsSection.js */
-//////////////////////////////////////////////////////////////////
-// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& BOTH &&&&&&&&&&&&&&&&&//////
-//////////////////////////////////////////////////////////////////
-/* 7.3 CollectionSection.js */
-//////////////////////////////////////////////////////////////////
-
-.yourcollections, .yourstudysets{
-
 }
 
 //////////////////////////////////////////////////////////////////

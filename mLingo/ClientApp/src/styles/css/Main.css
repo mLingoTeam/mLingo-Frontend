@@ -511,7 +511,7 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
           align-items: center;
 }
 
-.flex--between, .details__buttons, .flashcard__info {
+.flex--between, .details__buttons, .flashcard__info, .form__remember {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -537,7 +537,7 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
           justify-content: flex-start;
 }
 
-.flex--complet, .element--center, .create__more, .userhead__container {
+.flex--complet, .element--center, .create__more, .userhead__container, .form__alreadyaccount {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1230,7 +1230,7 @@ pre code {
   padding-left: 0;
 }
 
-.col-1, .col-2, .col-3, .col-4, .col-5, .flashcard__card, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .create__details, .flashcard__container, .col,
+.col-1, .col-2, .col-3, .col-4, .col-5, .flashcard__card, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .create__details, .flashcard__container, .forminput__container, .forminput__input, .form__title, .form__form, .form__alreadyaccount, .form__getstarted, .form__remember, .col,
 .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .create__container, .create--collection, .col-sm,
 .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md,
 .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg,
@@ -1378,7 +1378,7 @@ pre code {
   max-width: 91.66667%;
 }
 
-.col-12, .create__details, .flashcard__container {
+.col-12, .create__details, .flashcard__container, .forminput__container, .forminput__input, .form__title, .form__form, .form__alreadyaccount, .form__getstarted, .form__remember {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 100%;
           flex: 0 0 100%;
@@ -2063,7 +2063,7 @@ pre code {
             flex: 0 0 25%;
     max-width: 25%;
   }
-  .col-lg-4 {
+  .col-lg-4, .form__getstarted {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 33.33333%;
             flex: 0 0 33.33333%;
@@ -2075,7 +2075,7 @@ pre code {
             flex: 0 0 41.66667%;
     max-width: 41.66667%;
   }
-  .col-lg-6 {
+  .col-lg-6, .form__form {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 50%;
             flex: 0 0 50%;
@@ -2201,7 +2201,7 @@ pre code {
   .offset-lg-2 {
     margin-left: 16.66667%;
   }
-  .offset-lg-3 {
+  .offset-lg-3, .form__form {
     margin-left: 25%;
   }
   .offset-lg-4 {
@@ -9329,7 +9329,7 @@ button.bg-dark:focus {
   margin-right: 1rem !important;
 }
 
-.mb-3,
+.mb-3, .forminput__container,
 .my-3 {
   margin-bottom: 1rem !important;
 }
@@ -9367,7 +9367,7 @@ button.bg-dark:focus {
   margin: 3rem !important;
 }
 
-.mt-5,
+.mt-5, .form__getstarted,
 .my-5 {
   margin-top: 3rem !important;
 }
@@ -9377,7 +9377,7 @@ button.bg-dark:focus {
   margin-right: 3rem !important;
 }
 
-.mb-5,
+.mb-5, .form__title, .form__remember,
 .my-5 {
   margin-bottom: 3rem !important;
 }
@@ -11377,6 +11377,7 @@ a.text-dark:hover, a.text-dark:focus {
 // --- 1.2 set_
 /* --- --- 1.2.1 SetCard */
 /* --- --- 1.3.1 UserHead */
+/* --- --- 1.3.2 UserHead Section */
 /* --- --- 1.1.1 CollectionCard */
 /* --- --- 1.2.1 SetCard */
 .card__container {
@@ -11584,6 +11585,7 @@ a.text-dark:hover, a.text-dark:focus {
   margin: 20px;
 }
 
+/* --- --- 1.3.2 UserHead Section */
 .section__title {
   color: #000536;
   font-weight: 900;
@@ -11618,6 +11620,117 @@ a.text-dark:hover, a.text-dark:focus {
   background: transparent;
 }
 
+.forminput__container {
+  margin: 9px 0;
+}
+
+.forminput__input {
+  height: 40px;
+  font-size: 18px;
+  border: 1px solid #707070;
+  border-radius: 10px;
+}
+
+.forminput__input:focus {
+  outline: none !important;
+}
+
+.form__checkbox {
+  display: none;
+}
+
+.form__checkbox + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  font: 14px/20px 'Open Sans', Arial, sans-serif;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.form__checkbox + label:last-child {
+  margin-bottom: 0;
+}
+
+.form__checkbox + label:before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000536;
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .6;
+  -webkit-transition: all .12s, border-color .08s;
+  transition: all .12s, border-color .08s;
+}
+
+.form__checkbox:checked + label:before {
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.form__title {
+  font-size: 32px;
+  font-weight: 900;
+}
+
+.form__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.form__alreadyaccount {
+  font-size: 14px;
+  margin-top: 28px !important;
+}
+
+.form__alreadyaccount a {
+  color: #000536;
+  -webkit-text-decoration: underline #000536;
+          text-decoration: underline #000536;
+  font-weight: bold;
+}
+
+.form__remember {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #A1D218;
+}
+
+.remember__forgotpassword {
+  color: #A1D218;
+  font-size: 13px;
+}
+
+.remember__forgotpassword:hover {
+  text-decoration: none;
+  color: #A1D218;
+}
+
+.remember__label {
+  font-weight: 400 !important;
+}
+
 /* MENU */
 /* Components */
 /* Form Components */
@@ -11638,8 +11751,6 @@ a.text-dark:hover, a.text-dark:focus {
 /* 4.1 AppNavbar.js */
 /* 4.2 Footer.js */
 /* Pages Components */
-/* 5.1 Search.js */
-/* 5.2 UserCreate.js */
 /* 5.3 UserHead.js */
 /* Search Components */
 /* 6.1 SearchInput.js */
@@ -11653,142 +11764,7 @@ a.text-dark:hover, a.text-dark:focus {
 /* 9.1 Loading.js */
 /* Components */
 /* Form Components */
-/* 2.1 FormField.js */
-/* & */
 /* 2.2 Login.js */
-/* & */
-/* 2.3 Register.js */
-.registerForm2 form div {
-  margin: 9px 0;
-}
-
-.registerForm2 input[type="text"], .registerForm2 input[type="password"], .registerForm2 input[type="email"] {
-  height: 40px;
-  font-size: 18px;
-  border: 1px solid #707070;
-  border-radius: 10px;
-}
-
-.registerForm2 input[type="text"]:focus, .registerForm2 input[type="password"]:focus, .registerForm2 input[type="email"]:focus {
-  outline: none !important;
-}
-
-.registerForm2 {
-  padding: 10vh 0;
-}
-
-.registerForm2 h1 {
-  font-size: 32px;
-  font-weight: 900;
-}
-
-.registerForm2 form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.registerForm2 p {
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.registerForm2 input[type="checkbox"] {
-  display: none;
-}
-
-.registerForm2 input[type="checkbox"] + label {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 20px;
-  font: 14px/20px 'Open Sans', Arial, sans-serif;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-}
-
-.registerForm2 input[type="checkbox"] + label:last-child {
-  margin-bottom: 0;
-}
-
-.registerForm2 input[type="checkbox"] + label:before {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 20px;
-  border: 1px solid #000536;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: .6;
-  -webkit-transition: all .12s, border-color .08s;
-  transition: all .12s, border-color .08s;
-}
-
-.registerForm2 input[type="checkbox"]:checked + label:before {
-  width: 10px;
-  top: -5px;
-  left: 5px;
-  border-radius: 0;
-  opacity: 1;
-  border-top-color: transparent;
-  border-left-color: transparent;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.alreadyaccount {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-size: 14px;
-  margin-top: 28px !important;
-}
-
-.alreadyaccount a {
-  color: #000536;
-  -webkit-text-decoration: underline #000536;
-          text-decoration: underline #000536;
-  font-weight: bold;
-}
-
-/* 2.2 Login.js */
-.remember {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-size: 14px;
-  color: #A1D218;
-  margin-bottom: 88px !important;
-}
-
-.remember label {
-  font-weight: 400 !important;
-}
-
-.remember a {
-  color: #A1D218;
-}
-
 /* 2.3 Register.js */
 .fbconnect, .ggconnect {
   color: white;
@@ -12620,15 +12596,6 @@ div.welcome-section > div p {
 }
 
 /* Pages Components */
-/* 5.1 Search.js */
-/* 5.2 UserCreate.js */
-input[name=collectionName] {
-  padding: 5px;
-  font-size: 14px;
-  border-radius: 5px;
-  border: 1px solid #000536;
-}
-
 /* 5.3 UserHead.js */
 @media (max-width: 576px) {
   .mainpanel {
@@ -12790,18 +12757,6 @@ input[name=collectionName] {
   }
 }
 
-/* 7.1 UserSection.js */
-.UserSection {
-  margin: 0px 0px 120px 0px;
-}
-
-.UserSection h2 {
-  color: #000536;
-  font-weight: bold;
-}
-
-/* 7.2 StudySetsSection.js */
-/* 7.3 CollectionSection.js */
 /* layouts */
 /* 8.1 Layout.js */
 /* App Background and Bootstrap overwrites */
