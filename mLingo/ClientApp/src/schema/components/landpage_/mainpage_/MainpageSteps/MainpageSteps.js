@@ -1,7 +1,7 @@
 import React from 'react';
-import community from '../../../../img/icon-community.svg'
-import collection from '../../../../img/icon-collections.svg'
-import plan from '../../../../img/icon-plan.svg'
+import community from '../../../../../img/icon-community.svg'
+import collection from '../../../../../img/icon-collections.svg'
+import plan from '../../../../../img/icon-plan.svg'
 import Landpage_Step from './MainpageStep'
 
 const Landpage_Steps = () => {

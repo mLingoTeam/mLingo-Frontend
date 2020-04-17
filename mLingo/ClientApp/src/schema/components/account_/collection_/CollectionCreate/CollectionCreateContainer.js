@@ -21,6 +21,7 @@ class CollectionCreateContainer extends React.Component {
 
         this.submit = this.submit.bind(this);
 
+        this.checkCardsLength = this.checkCardsLength.bind(this);
 
         this.functions = {
             submit:   this.submit,
@@ -67,21 +68,21 @@ class CollectionCreateContainer extends React.Component {
         this.setState({ ...this.state, [event.target.name]: event.target.value });
     }
 
+    checkCardsLength(cards){
+        if( cards.length <= 1 ){
+            alert("Add more cards")
+            this.setState({ ...this.state, cards: [...this.state.cards, { term: "", definition: "" }] });
+            return false;
+        }
+        else return true
+    }
+
     handleCreate(){
         let title = this.state.collectionTitle;
         if(title.trim() === ""){ alert('Name your collection!'); return false; }
         else{
-             this.setState( state => { return { ...this.state, cards: this.state.cards.filter(el => (el.term.trim() != '' && el.definition.trim() != '')) } }, () => {
-                if( this.state.cards.length <= 1 ){
-                    alert("Add more cards")
-
-                    this.setState({ ...this.state, cards: [...this.state.cards, { term: "", definition: "" }] });
-                    return false;
-                }
-                else{
-                    return true;
-                }
-             })
+            const cards_to_check = this.state.cards.filter(el => (el.term.trim() != '' && el.definition.trim() != ''));
+            return this.checkCardsLength(cards_to_check);
         }
     }
 
@@ -94,7 +95,8 @@ class CollectionCreateContainer extends React.Component {
         }
         else{
             if(this.handleCreate()){
-                helper.createCollection({cards: this.state.cards, name: this.state.collectionTitle, description: this.state.collectionDescription});
+                const cards = this.state.cards.filter(el => (el.term.trim() != '' && el.definition.trim() != ''));
+                helper.createCollection({cards: cards, name: this.state.collectionTitle, description: this.state.collectionDescription});
                 this.setState({ collectionTitle: "", collectionDescription: "" , cards: [ { term: "", definition: "" } ] });
             }
         }

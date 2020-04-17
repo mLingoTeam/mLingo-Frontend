@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Step = ( {props}) => {
+const MainpageStep = ( {props}) => {
 
 
     return(
@@ -14,4 +14,4 @@ const Step = ( {props}) => {
     )
 }
 
-export default Step;
+export default MainpageStep;

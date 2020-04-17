@@ -1,7 +1,7 @@
 import React from 'react';
-
 import validate from '../../../../../services/validate'
 import { authentication_service } from '../../../../../services/authentication/authentication';
+import handleResponse from '../../../../../services/handleResponse'
 
 import View from './MainpageNewsletterView';
 
@@ -13,6 +13,10 @@ class MainpageNewsletterContainer extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.register = this.register.bind(this);
+        this.functions = {
+            handleChange: this.handleChange,
+            register: this.register
+        }
     }
 
 
@@ -27,17 +31,17 @@ class MainpageNewsletterContainer extends React.Component {
     async register(){
         const mail = this.state.email;
         if(validate.email(mail)){
-           const resp = await authentication_service.newsletter.subscribe({email: mail})
-            if(resp.status == 200){
+           const resp = await handleResponse({request: authentication_service.newsletter.subscribe({email: mail})})
+            if(resp === false){
                 this.setState({
                     ...this.state,
-                    success: true
+                    err: " Error with our Newsletter... OOOPS :( "
                 })
             }
             else{
                 this.setState({
                     ...this.state,
-                    err: " Error with our Newsletter... OOOPS :( "
+                    success: true
                 })
             }
         }
@@ -50,9 +54,8 @@ class MainpageNewsletterContainer extends React.Component {
 
 
     render(){
-
         return(
-            <View state={this.state}/>
+            <View state={this.state} functions={this.functions}/>
         )
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Landpage_Opinion from './Opinion';
-import photo1 from '../../../../img/brown-haired-girl-in-white-sleeveless-dress-standing-beside-756453@2x.png'
+import photo1 from '../../../../../img/brown-haired-girl-in-white-sleeveless-dress-standing-beside-756453@2x.png'
 
 class MainpageOpinions extends React.Component {
 

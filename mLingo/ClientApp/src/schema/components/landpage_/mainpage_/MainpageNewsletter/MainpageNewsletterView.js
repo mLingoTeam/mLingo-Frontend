@@ -2,7 +2,7 @@ import React from 'react';
 import left from '../../../../../img/leftsquare.svg';
 import right from '../../../../../img/rightsquare.svg'
 
-const MainpageNewsletterView = ( { state } ) => {
+const MainpageNewsletterView = ( { state, functions } ) => {
 
     return(
         <section id="newsletter-section" className="col-12">
@@ -16,12 +16,12 @@ const MainpageNewsletterView = ( { state } ) => {
                             <h2 className="main-page-h2 mb-5">newsletter</h2>
                             <p>awesome content once a week.</p>
                             <p>{"No spam, we promise :)"}</p>
-                            <input type="email" className="text my-5" placeholder="email@email.com" name="email" value={state.email} onChange={state.handleChange} required/>
+                            <input type="email" className="text my-5" placeholder="email@email.com" name="email" value={state.email} onChange={functions.handleChange} required/>
                             {
                                 state.err ? <div>{state.err}</div> : null
                             }
                             <br/>
-                            <input type="submit" className="green-button px-5" onClick={state.register} value="sign me up"/>
+                            <input type="submit" className="green-button px-5" onClick={functions.register} value="sign me up"/>
                         </div>
 
                 }
