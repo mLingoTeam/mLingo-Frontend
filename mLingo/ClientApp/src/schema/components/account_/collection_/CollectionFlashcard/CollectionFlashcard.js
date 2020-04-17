@@ -3,7 +3,7 @@ import { FaTrash } from 'react-icons/fa'
 
 
 
-const CollectionFlashcardComponent = ({ set, remove, index, method, create = false  }) => {
+const CollectionFlashcardComponent = ({ set, remove = () => null, index, method, create = false  }) => {
 
     let isFirst = index;
     index++;
