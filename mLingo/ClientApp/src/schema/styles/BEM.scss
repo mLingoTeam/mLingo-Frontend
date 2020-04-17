@@ -2,8 +2,11 @@
 @import './mLingo.scss';
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
-
-
+#all__containers__in__user__section{
+    flex: 0 0 79%;
+    max-width: 79%;
+}
+// mainpanel
 
 //////////// Rebuild SCSS ////////////
 //////////// components ////////////
@@ -60,11 +63,43 @@
 
 // --- --- 1.1.2 CollectionCreate
 .create__container, .create--collection{
-    @extend .flex--center;
-    flex-wrap: wrap;
+    @extend .col-sm-12;
     padding: 1rem;
+
+    @media(min-width: $tablet-res){
+        flex: 0 0 79%;
+        max-width: 79%;
+    }
 }
 
 .create__details{
+    @extend .flex--center;
     @extend .col-12;
+}
+
+.details__img{
+    @extend .img-fluid;
+}
+
+.details__body{
+    margin: auto;
+}
+
+.details__description{
+    font-size: 14px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid $dark-blue;
+    border: 1px solid #B2B2B2;
+    border-radius: 10px;
+}
+
+.details__title{
+    color: $dark-blue;
+    font-size: 14px;
+}
+
+.details__buttons{
+    @extend .flex--between;
 }
