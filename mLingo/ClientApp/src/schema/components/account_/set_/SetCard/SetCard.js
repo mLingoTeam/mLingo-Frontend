@@ -1,28 +1,20 @@
 import React from 'react'
-import {
-    Card, CardBody,
-    CardTitle, CardSubtitle
-} from 'reactstrap';
 import { Link } from 'react-router-dom'
-import { authentication_service } from '../../../../../services/authentication';
+import { authentication_service } from '../../../../../services/authentication/authentication';
 
-const Study_Sets_Card_Component = ({ set }) => {
+const SetCard = ({ set }) => {
     return (
-        <div>
-            <Link to="/studyset/" onClick={
-                () => {
-                    authentication_service.setIntoLocalStorage({ name: "studysetid", value: set.id })
-                }
-            }>
-                <Card>
-                    <CardBody>
-                        <CardTitle>{set.name}</CardTitle>
-                        <CardSubtitle>Play Count: {set.playCount}</CardSubtitle>
-                    </CardBody>
-                </Card>
-            </Link>
+        <React.Fragment>
+            <Link to="/studyset/" onClick={ () => { authentication_service.setIntoLocalStorage({ name: "studysetid", value: set.id })}}>
+            <div className="card__container card--set">
+            <div className="card__body">
+                <div className="card__title">{set.name}</div>
+                <div className="card__subtitle">Play Count: {set.playCount}</div>
+            </div>
         </div>
+            </Link>
+        </React.Fragment>
     );
 };
 
-export default Study_Sets_Card_Component;
+export default SetCard;

@@ -1,8 +1,8 @@
 import React from "react";
-import { authentication_service } from "../../../../../../../services/authentication";
+import { authentication_service } from "../../../../../../../services/authentication/authentication";
 import View from './SectionSetView'
 
-class User_Study_Sets_Section_Component extends React.Component {
+class SectionSetContainer extends React.Component {
     constructor(props) {
         super(props);
 
@@ -27,8 +27,8 @@ class User_Study_Sets_Section_Component extends React.Component {
     }
 
     render() {
-        return <View that={this.state} />
+        return <View state={this.state} />
     }
 }
 
-export default User_Study_Sets_Section_Component;
+export default SectionSetContainer;
