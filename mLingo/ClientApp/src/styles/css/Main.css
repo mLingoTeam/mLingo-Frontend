@@ -2,6 +2,14 @@
   font-family: 'Poppins', sans-serif;
 }
 
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  border-bottom: 0;
+}
+
 a:hover, a:focus, a:checked {
   text-decoration: none;
 }
@@ -178,6 +186,14 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
   font-family: 'Poppins', sans-serif;
 }
 
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  border-bottom: 0;
+}
+
 a:hover, a:focus, a:checked {
   text-decoration: none;
 }
@@ -331,6 +347,14 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
 
 * {
   font-family: 'Poppins', sans-serif;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  border-bottom: 0;
 }
 
 a:hover, a:focus, a:checked {
@@ -11409,6 +11433,10 @@ a.text-dark:hover, a.text-dark:focus {
 .card__title {
   font-size: 1.2rem;
   font-weight: 900;
+}
+
+.card__link:hover {
+  text-decoration: none !important;
 }
 
 .create__container, .create--collection {

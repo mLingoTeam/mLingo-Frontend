@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const CollectionCard = ({ set }) => {
     return (
         <React.Fragment>
-            <Link to="/collection/" onClick={ () => { localStorage.setItem("collectionid", set.id )} }>
+            <Link className="card__link" to="/collection/" onClick={ () => { localStorage.setItem("collectionid", set.id )} } key={set.name}>
                 <div className="card__container card--collection">
                     <div className="card__body">
                         <div className="card__title">{set.name}</div>

@@ -12,6 +12,14 @@ $desktop-res: 992px;
   font-family: 'Poppins', sans-serif ;
 }
 
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+  border-bottom: 0;
+}
+
 a:hover, a:focus, a:checked{
   text-decoration: none;
 }

@@ -87,7 +87,9 @@ class CollectionCreateContainer extends React.Component {
     // Sendint the right request
     submit(){
         if(this.state.edit){
-            helper.modifyCollection({cards: this.state.cards, name: this.state.collectionTitle, description: this.state.collectionDescription})
+            helper.modifyCollection({ id: localStorage.getItem("editCollection"), cards: this.state.cards, name: this.state.collectionTitle, description: this.state.collectionDescription});
+            localStorage.removeItem("editCollection");
+            this.setState({ collectionTitle: "", collectionDescription: "" , cards: [ { term: "", definition: "" } ] });
         }
         else{
             if(this.handleCreate()){
@@ -98,7 +100,7 @@ class CollectionCreateContainer extends React.Component {
     }
 
     componentWillUnmount(){
-        localStorage.removeItem("editCollection")
+        localStorage.removeItem("editCollection");
     }
 
     render() {

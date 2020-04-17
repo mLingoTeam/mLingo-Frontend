@@ -8,8 +8,8 @@ const helper = {
         return collectioni;
     },
 
-    modifyCollection({ cards, name, description }) {
-        authentication_service.collection.update({ id: localStorage.getItem("editCollection"), token: localStorage.getItem("Token"), cards: cards, name: name, description: description })
+    modifyCollection({ cards, name, description, id }) {
+        authentication_service.collection.update({ id, token: localStorage.getItem("Token"), cards: cards, name: name, description: description })
     },
 
     createCollection({ cards, name, description }) {

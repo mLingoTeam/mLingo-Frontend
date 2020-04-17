@@ -4,7 +4,6 @@ import CollectionCreateContainer from '../../components/account_/collection_/Col
 
 class User_Create_Collection extends React.Component {
 
-
     render() {
         return (
             <LayoutUser>
