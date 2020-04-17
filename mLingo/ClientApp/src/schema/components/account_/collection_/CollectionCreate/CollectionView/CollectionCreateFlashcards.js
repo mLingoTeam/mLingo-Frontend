@@ -13,11 +13,13 @@ const CollectionCreateFlashcards = ( { state, functions } ) => {
                     return <CollectionFlashcard set={element} remove={functions.removeCard} index={index} method={functions.handleCardChange} create={true}/>
                 })
             }
-            <div className="col-12 d-flex justify-content-center flex-wrap align-items-center m-5">
-                    <button onClick={functions.addCard} className="plus-button m-5"><FaPlus /></button>
-                    <h3 className="text-center color-dark-blue">add more cards</h3>
+            <div className="create__more">
+                    <button onClick={functions.addCard} className="plus--button"><FaPlus /></button>
+                    <div className="action__description">add more cards</div>
             </div>
-            <Link to="/head" onClick={functions.submit}  className="green-button"> {state.edit ? "edit collection" : "create collection"} </Link>
+            <div className="element--center">
+                <Link to="/head" onClick={functions.submit}  className="create__button green--button"> {state.edit ? "edit collection" : "create collection"} </Link>
+            </div>
         </React.Fragment>
     );
 };

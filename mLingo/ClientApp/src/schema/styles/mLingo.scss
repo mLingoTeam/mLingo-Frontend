@@ -1,3 +1,4 @@
+@import './variables.scss';
 // Mlingo design classes library //
 
 .flex--center{
@@ -9,4 +10,70 @@
 .flex--between{
     display: flex;
     justify-content: space-between;
+}
+
+.flex--around{
+    display: flex;
+    justify-content: space-around;
+}
+
+.flex--start{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.flex--complet{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.green--button{
+font-size: 16px;
+  font-weight: 400;
+  background-color: inherit;
+  border: 0;
+  color: $dark-blue;
+  outline: none !important;
+  background: $light-green;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.5s;
+
+  &:hover {
+    color: $dark-blue;
+    text-decoration: none !important;
+  }
+
+  @media(max-width: $mobile-res){
+    &{
+      font-size: 12px !important;
+      padding: 5px 3px;
+    }
+  }
+}
+
+.plus--button{
+    background-color: $light-green;
+    color: $dark-blue;
+    border: 5px solid $dark-blue;
+    font-weight: 800;
+    font-size: 28px;
+    border-radius: 50%;
+    padding: 5px 12px;
+    transition: 0.5s;
+    &:focus {
+      outline: none;
+      outline-offset: -4px;
+    }
+    &:hover{
+        color: $dark-blue;
+        background-color: $dark-green;
+    }
+}
+
+.element--center{
+    @extend .flex--complet;
 }
