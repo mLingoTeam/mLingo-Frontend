@@ -9,8 +9,8 @@ class UserHead extends React.Component {
 
     render() {
         return (
-            <div className="mainpanel">
-                <div className="mainpanel__userbase">
+            <div className="userhead__container">
+                <div className="section__container">
                     <SectionSetContainer />
                     <SectionCollectionContainer />
                 </div>

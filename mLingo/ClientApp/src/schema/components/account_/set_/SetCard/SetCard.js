@@ -5,7 +5,7 @@ import { authentication_service } from '../../../../../services/authentication/a
 const SetCard = ({ set }) => {
     return (
         <React.Fragment>
-            <Link to="/studyset/" onClick={ () => { authentication_service.setIntoLocalStorage({ name: "studysetid", value: set.id })}}>
+            <Link className="card__link" to="/studyset/" onClick={ () => { authentication_service.setIntoLocalStorage({ name: "studysetid", value: set.id })}}>
             <div className="card__container card--set">
             <div className="card__body">
                 <div className="card__title">{set.name}</div>
