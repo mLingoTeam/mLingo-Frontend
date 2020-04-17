@@ -11,7 +11,7 @@ class Collection extends React.Component {
 
         this.state = [{ "loaded": false }];
 
-        this.mountCollection = this.mountCollection.bind(this);
+        this.getCollection = this.getCollection.bind(this);
         this.removeCollection = this.removeCollection.bind(this);
         this.editCollection = this.editCollection.bind(this)
 
@@ -51,7 +51,7 @@ class Collection extends React.Component {
     }
 
     componentDidMount() {
-        this.mountCollection();
+        this.getCollection();
     }
 
     render() {
