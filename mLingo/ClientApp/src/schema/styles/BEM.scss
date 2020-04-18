@@ -27,7 +27,7 @@
 // 3. layout
 /* --- --- 3.1.1  Layout Footer */
 /* --- --- 3.1.2  Layout Navbar */
-/* --- --- 3.1.3  Layout User Menu */
+/* --- --- 3.1.3  Layout SearchInput */
 /* --- --- 3.1.4  Layout User Menu */
 // 4. layouts
 /* --- --- 4.1.1  Layouts */
@@ -894,6 +894,185 @@ color: $light-green;
 cursor: pointer;
 }
 
+//////////////////////////////////////////////////////
+/* --- --- 3.1.2  Layout Footer */
+//////////////////////////////////////////////////////
+
+// NAVBAR CONTAINER SIZES //
+
+@media (min-width: 576px)
+{
+  .app__navbar {
+    max-width: 540px;
+
+  }
+}
+
+@media (min-width: 577px)
+{
+  .app__navbar {
+    max-width: 480px;
+    height: 80px;
+  }
+}
+
+@media (min-width: 768px)
+{
+  .app__navbar {
+    max-width: 600px;
+    height: 100px;
+  }
+}
+
+@media (min-width: 992px)
+{
+  .app__navbar {
+    max-width: 720px;
+    height: 100px;
+  }
+}
+@media (min-width: 1199px)
+{
+  .app__navbar{
+    max-width: 1000px;
+    height: 100px;
+  }
+}
+
+@media (max-width: $mobile-res) {
+
+  .app__navbar {
+    padding: 10px 5px;
+  }
+
+  .navbar__buttons {
+    width: 70%;
+  }
+
+  .navbar__brand{
+    transform: scale(0.8);
+  }
+
+}
+
+.navbar__buttons {
+  display: flex !important;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+
+
+  @media(min-width: $mobile-res){
+    & div{
+      margin: 0 0 0 18px ;
+    }
+  }
+}
+.navbar__brand{
+  position: relative;
+  height: 100%;
+  vertical-align: middle;
+  height: auto !important;
+  padding: 0 10px !important;
+  display: flex;
+  align-items: center;
+  max-width: 150px;
+}
+
+.app__navbar {
+  background: $dark-blue;
+  border: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+
+}
+
+.brand__img{
+    @extend .img-fluid;
+}
+
+.navbar__registerbutton {
+  @include outbutton("inherit");
+}
+
+.signin__button {
+  @include inbutton("inherit");
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/* 3.1.3 SearchInput.js */
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@media(max-width: $tablet-res){
+    .searchbutton__text{
+      display: none;
+    }
+  }
+
+  .search__button{
+    font-size: 24px;
+    color: white;
+    background: inherit;
+    border: none;
+    margin: 0 0 0 10px;
+    text-decoration: none;
+
+
+    /*for FireFox*/
+    &::-moz-focus-inner
+    {
+        border : 0;
+    }
+    /*for IE8 and below */
+    &:focus, &:focus
+    {
+        outline : none;
+    }
+
+    &:hover{
+      color: $light-green;
+      cursor: pointer;
+      outline: hidden;
+    }
+
+    &:focus{
+      outline: hidden;
+      color: $dark-green;
+      border: 0;
+      box-shadow: 0;
+      outline-offset: -4px;
+    }
+
+    &::-moz-focus-inner {
+      border: 0;
+      outline: none;
+    }
+
+  }
+
+  .searchbutton__text{
+      background: #FFFFFF 0% 0% no-repeat padding-box;
+      border: 1px solid #707070;
+      border-radius: 8px;
+      height: 40px;
+      max-width: 400px;
+      font-size: 22px;
+      padding: 0 10px;
+
+      @media(max-width: $tablet-res){
+        height: 30px !important;
+        font-size: 18px;
+      }
+
+      &:focus{
+        border: 1px solid $light-green;
+        outline: none !important;
+      }
+
+  }
 
 
 //////////////////////////////////////////////////////

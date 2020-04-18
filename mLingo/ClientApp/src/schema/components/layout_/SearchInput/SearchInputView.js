@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const SearchInputView = ( {state, functions} ) => {
 
-    return <div><input type="text" className="searchbuttontext" name="request" onChange={functions.handleChange} /><Link className="searchbutton" to="/search"><FaSearch onClick={functions.findcollection} /></Link></div>
+    return <div><input type="text" className="searchbutton__text" name="request" onChange={functions.handleChange} /><Link className="search__button" to="/search"><FaSearch onClick={functions.findcollection} /></Link></div>
 };
 
 export default SearchInputView;

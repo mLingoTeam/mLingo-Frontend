@@ -946,7 +946,7 @@ mark,
   content: "\2014\00A0";
 }
 
-.img-fluid, .details__img, .left__circle, .right__circle, .step__img, .welcome__img {
+.img-fluid, .details__img, .left__circle, .right__circle, .step__img, .welcome__img, .brand__img {
   max-width: 100%;
   height: auto;
 }
@@ -11252,7 +11252,7 @@ a.text-dark:hover, a.text-dark:focus {
 /* --- --- 2.2.4  Mainpage Welcome */
 /* --- --- 3.1.1  Layout Footer */
 /* --- --- 3.1.2  Layout Navbar */
-/* --- --- 3.1.3  Layout User Menu */
+/* --- --- 3.1.3  Layout SearchInput */
 /* --- --- 3.1.4  Layout User Menu */
 /* --- --- 4.1.1  Layouts */
 /* --- --- 1.1.1 CollectionCard */
@@ -12109,6 +12109,224 @@ a.text-dark:hover, a.text-dark:focus {
 .social__mlingo:hover {
   color: #B6EE1A;
   cursor: pointer;
+}
+
+/* --- --- 3.1.2  Layout Footer */
+@media (min-width: 576px) {
+  .app__navbar {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 577px) {
+  .app__navbar {
+    max-width: 480px;
+    height: 80px;
+  }
+}
+
+@media (min-width: 768px) {
+  .app__navbar {
+    max-width: 600px;
+    height: 100px;
+  }
+}
+
+@media (min-width: 992px) {
+  .app__navbar {
+    max-width: 720px;
+    height: 100px;
+  }
+}
+
+@media (min-width: 1199px) {
+  .app__navbar {
+    max-width: 1000px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 576px) {
+  .app__navbar {
+    padding: 10px 5px;
+  }
+  .navbar__buttons {
+    width: 70%;
+  }
+  .navbar__brand {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+  }
+}
+
+.navbar__buttons {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+@media (min-width: 576px) {
+  .navbar__buttons div {
+    margin: 0 0 0 18px;
+  }
+}
+
+.navbar__brand {
+  position: relative;
+  height: 100%;
+  vertical-align: middle;
+  height: auto !important;
+  padding: 0 10px !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 150px;
+}
+
+.app__navbar {
+  background: #000536;
+  border: 0 !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 auto;
+}
+
+.navbar__registerbutton {
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: #B6EE1A;
+  outline: none !important;
+  background: "inherit";
+  height: 60px;
+  border-radius: 5px;
+  text-decoration: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.navbar__registerbutton:hover, .navbar__registerbutton:focus, .navbar__registerbutton:active, .navbar__registerbutton:checked {
+  color: white;
+  text-decoration: none !important;
+}
+
+@media (max-width: 576px) {
+  .navbar__registerbutton {
+    font-size: 16px !important;
+  }
+}
+
+.signin__button {
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  outline: none !important;
+  background: "inherit";
+  height: 60px;
+  border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.signin__button:hover, .signin__button:focus, .signin__button:active, .signin__button:checked {
+  color: #B6EE1A;
+  text-decoration: none !important;
+}
+
+@media (max-width: 576px) {
+  .signin__button {
+    font-size: 16px !important;
+  }
+}
+
+/* 3.1.3 SearchInput.js */
+@media (max-width: 991px) {
+  .searchbutton__text {
+    display: none;
+  }
+}
+
+.search__button {
+  font-size: 24px;
+  color: white;
+  background: inherit;
+  border: none;
+  margin: 0 0 0 10px;
+  text-decoration: none;
+  /*for FireFox*/
+  /*for IE8 and below */
+}
+
+.search__button::-moz-focus-inner {
+  border: 0;
+}
+
+.search__button:focus, .search__button:focus {
+  outline: none;
+}
+
+.search__button:hover {
+  color: #B6EE1A;
+  cursor: pointer;
+  outline: hidden;
+}
+
+.search__button:focus {
+  outline: hidden;
+  color: #A1D218;
+  border: 0;
+  -webkit-box-shadow: 0;
+          box-shadow: 0;
+  outline-offset: -4px;
+}
+
+.search__button::-moz-focus-inner {
+  border: 0;
+  outline: none;
+}
+
+.searchbutton__text {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #707070;
+  border-radius: 8px;
+  height: 40px;
+  max-width: 400px;
+  font-size: 22px;
+  padding: 0 10px;
+}
+
+@media (max-width: 991px) {
+  .searchbutton__text {
+    height: 30px !important;
+    font-size: 18px;
+  }
+}
+
+.searchbutton__text:focus {
+  border: 1px solid #B6EE1A;
+  outline: none !important;
 }
 
 /* --- --- 4.1.1  Layouts */
