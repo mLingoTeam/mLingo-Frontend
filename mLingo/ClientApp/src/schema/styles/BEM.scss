@@ -26,6 +26,7 @@
 // --- mainpage_
 /* --- --- 2.2.1 Newsletter */
 /* --- --- 2.2.2 Opinions & Opinion */
+/* --- --- 2.2.3 Steps & Step */
 
 
 
@@ -603,4 +604,40 @@ overflow-y: hidden;
         margin-top: 20px;
         font-size: 12px;
    }
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 2.2.3 Steps & Step */
+//////////////////////////////////////////////////////
+
+.steps__container{
+    @extend .flex--center;
+    flex-direction: column;
+    color: $dark-blue;
+    padding-top: 0px !important;
+
+    @media(max-width: $mobile-res){
+        &{
+          padding: 0 !important;
+        }
+    }
+}
+
+.steps__title{
+    @extend .mt-5;
+
+    &::before{
+        content: url("../../img/bubbles-L.svg");
+        margin-right: 10px;
+    }
+    &::after{
+        content: url("../../img/bubbles-R.svg");
+        margin-left: 10px;
+    }
+
+    @media(max-width: $mobile-res){
+        &{
+            font-size: 20px !important;
+        }
+    }
 }

@@ -499,7 +499,7 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
           transform: scale(0.99);
 }
 
-.flex--center {
+.flex--center, .steps__container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9390,7 +9390,7 @@ button.bg-dark:focus {
   margin: 3rem !important;
 }
 
-.mt-5, .form__getstarted,
+.mt-5, .form__getstarted, .steps__title,
 .my-5,
 .newsletter__email {
   margin-top: 3rem !important;
@@ -11406,6 +11406,7 @@ a.text-dark:hover, a.text-dark:focus {
 /* --- --- 2.1.1 Formulars Login and Register */
 /* --- --- 2.2.1 Newsletter */
 /* --- --- 2.2.2 Opinions & Opinion */
+/* --- --- 2.2.3 Steps & Step */
 /* --- --- 1.1.1 CollectionCard */
 /* --- --- 1.2.1 SetCard */
 .card__container {
@@ -11960,6 +11961,38 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+/* --- --- 2.2.3 Steps & Step */
+.steps__container {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: #000536;
+  padding-top: 0px !important;
+}
+
+@media (max-width: 576px) {
+  .steps__container {
+    padding: 0 !important;
+  }
+}
+
+.steps__title::before {
+  content: url("../../img/bubbles-L.svg");
+  margin-right: 10px;
+}
+
+.steps__title::after {
+  content: url("../../img/bubbles-R.svg");
+  margin-left: 10px;
+}
+
+@media (max-width: 576px) {
+  .steps__title {
+    font-size: 20px !important;
+  }
+}
+
 * {
   font-family: 'Poppins', sans-serif;
 }
@@ -12120,7 +12153,7 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
           transform: scale(0.99);
 }
 
-.flex--center {
+.flex--center, .steps__container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12253,7 +12286,6 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
 /* 3.5 UserPromo.js */
 /* 3.6 WelcomeSection.js */
 /* 3.8 Steps.js & Step.js */
-/* 3.9 Opinions.js & Opinion.js */
 /* Layout Components */
 /* 4.1 AppNavbar.js */
 /* 4.2 Footer.js */
@@ -12532,43 +12564,6 @@ div.welcome-section > div p {
 }
 
 /* 3.8 Steps.js & Step.js */
-#Steps {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  color: #000536;
-  padding-top: 0px !important;
-}
-
-#Steps > h2::before {
-  content: url("../../img/bubbles-L.svg");
-  margin-right: 10px;
-}
-
-#Steps > h2::after {
-  content: url("../../img/bubbles-R.svg");
-  margin-left: 10px;
-}
-
-@media (max-width: 576px) {
-  #Steps {
-    padding: 0 !important;
-  }
-  #Steps > h2 {
-    font-size: 20px;
-  }
-}
-
 #Steps-container {
   display: -webkit-box;
   display: -ms-flexbox;

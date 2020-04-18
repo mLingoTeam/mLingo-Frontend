@@ -2,9 +2,9 @@ import React from 'react';
 import community from '../../../../../img/icon-community.svg'
 import collection from '../../../../../img/icon-collections.svg'
 import plan from '../../../../../img/icon-plan.svg'
-import Landpage_Step from './MainpageStep'
+import MainpageStep from './MainpageStep'
 
-const Landpage_Steps = () => {
+const MainpageSteps = () => {
 
     const steps = [
         {
@@ -25,12 +25,12 @@ const Landpage_Steps = () => {
     ]
 
     const steps_set = steps.map( el => {
-        return <Landpage_Step props={el}/>
+        return <MainpageStep props={el}/>
     })
 
     return(
-        <div id="Steps">
-            <h2 className="main-page-h2 mt-5">here's how it works!</h2>
+        <div id="Steps" className="steps__container">
+            <h2 className="steps__title mainpage--title">here's how it works!</h2>
             <div id="Steps-container" className="mt-5">
                 {steps_set}
             </div>
@@ -38,4 +38,4 @@ const Landpage_Steps = () => {
     )
 }
 
-export default Landpage_Steps;
+export default MainpageSteps;
