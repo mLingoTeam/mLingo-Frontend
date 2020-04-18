@@ -1095,7 +1095,7 @@ pre code {
 
 .col-1, .col-2, .col-3, .col-4, .col-5, .flashcard__card, .col-6, .leftcircle__container, .rightcircle__container, .col-7, .col-8, .col-9, .col-10, .newsletter__thanks, .col-11, .col-12, .create__details, .flashcard__container, .forminput__container, .forminput__input, .form__title, .form__form, .form__alreadyaccount, .form__getstarted, .form__remember, .formsocials__container, .fbconnect__button, .ggconnect__button, .newsletter__section, .col,
 .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .newsletter__subscribe, .col-sm-11, .col-sm-12, .create__container, .create--collection, .col-sm,
-.col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md,
+.col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .opinion__description, .col-md-8, .opinion__container, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md,
 .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg,
 .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl,
 .col-xl-auto {
@@ -1707,13 +1707,13 @@ pre code {
             flex: 0 0 50%;
     max-width: 50%;
   }
-  .col-md-7 {
+  .col-md-7, .opinion__description {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 58.33333%;
             flex: 0 0 58.33333%;
     max-width: 58.33333%;
   }
-  .col-md-8 {
+  .col-md-8, .opinion__container {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 66.66667%;
             flex: 0 0 66.66667%;
@@ -1827,7 +1827,7 @@ pre code {
   .offset-md-2 {
     margin-left: 16.66667%;
   }
-  .offset-md-3 {
+  .offset-md-3, .opinion__container {
     margin-left: 25%;
   }
   .offset-md-4 {
@@ -11727,5 +11727,76 @@ a.text-dark:hover, a.text-dark:focus {
 .opinions__title {
   text-align: center;
   margin-bottom: 10vh;
+}
+
+.opinion__container {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.opinion__container::before {
+  content: url("../../img/bubbles-newsletter-01.svg");
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+  position: absolute;
+  top: -70px;
+  left: -70px;
+}
+
+.opinion__container::after {
+  content: url("../../img/bubbles-newsletter-02.svg");
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+  position: absolute;
+  bottom: -70px;
+  left: 0;
+}
+
+@media (max-width: 991px) {
+  .opinion__container {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .opinion__container::before {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    top: -50px;
+    left: -10px;
+  }
+  .opinion__container::after {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+    bottom: -60px;
+    right: -50px;
+  }
+}
+
+.opinion__img {
+  width: 130px;
+  height: 130px;
+  border-radius: 100%;
+}
+
+.opinion__description {
+  font-size: 16px;
+  color: #000536;
+  word-spacing: 2px;
+}
+
+@media (max-width: 991px) {
+  .opinion__description {
+    margin-top: 20px;
+    font-size: 12px;
+  }
 }
 /*# sourceMappingURL=BEM.css.map */
