@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 const UserMenuCategory = (props) => {
 
     return (
-        <div class="category" key={props.text}>
+        <div className="usermenu__category" key={props.text}>
             <props.icon />
-            <Link to={props.link}>{props.text}</Link>
+            <Link className="usermenu__link" to={props.link}>{props.text}</Link>
         </div>
     )
 }
