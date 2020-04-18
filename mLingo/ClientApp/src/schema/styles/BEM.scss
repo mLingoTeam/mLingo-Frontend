@@ -27,6 +27,7 @@
 /* --- --- 2.2.1 Newsletter */
 /* --- --- 2.2.2 Opinions & Opinion */
 /* --- --- 2.2.3 Steps & Step */
+/* --- --- 2.2.4  Mainpage Welcome */
 
 
 
@@ -713,5 +714,129 @@ overflow-y: hidden;
         font-size: 14px;
 
     }
+    }
+}
+
+
+//////////////////////////////////////////////////////
+/* --- --- 2.2.4  Mainpage Welcome */
+//////////////////////////////////////////////////////
+
+.welcome__container{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+
+    @media(min-width: $tablet-res){
+        &{
+        min-height: 494px;
+        }
+    }
+
+    @media(min-width: 1200px){
+        &{
+        min-height: 618px;
+        }
+    }
+
+    @media(max-width:$tablet-res){
+        &{
+        height: 371px;
+        }
+    }
+
+
+
+
+    @media(max-width: $mobile-res){
+        &{
+        height: 297px;
+        }
+
+    }
+
+    // Iphone number Plus models and lower
+    @media(max-width:415px){
+        &{
+        height: 214px;
+        }
+    }
+}
+.welcome__img{
+    @extend .img-fluid;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 0;
+    object-fit: cover;
+}
+
+.welcome__details{
+    z-index: 1;
+    max-width:50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-right: 80px;
+
+    @media(max-width: $mobile-res){
+        &{
+            padding-right: 0px;
+        }
+    }
+}
+
+.welcome__title{
+    text-align: left;
+    color: $dark-blue;
+    font-size: 36px;
+    font-weight: 700;
+
+    @media(max-width:$tablet-res){
+        &{
+            font-size: 22px;
+        }
+    }
+
+    @media(max-width: $mobile-res){
+        &{
+        font-size: 18px;
+        }
+    }
+    @media(max-width:415px){
+        &{
+        font-size: 16px;
+        }
+    }
+}
+
+.welcome__description{
+    font-size: 16px;
+    max-width: 350px;
+    color: $light-blue;
+
+    @media(max-width:$tablet-res){
+            &{
+            font-size: 12px;
+            }
+        }
+
+
+    @media(max-width: $mobile-res){
+        &{
+        font-size: 10px;
+        }
+    }
+
+
+    // Iphone number Plus models and lower
+    @media(max-width:415px){
+        &{
+        font-size: 10px;
+        }
     }
 }
