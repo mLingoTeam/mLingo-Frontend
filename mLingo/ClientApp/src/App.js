@@ -4,9 +4,6 @@ import { createBrowserHistory } from "history";
 
 import PrivateRoute from "./services/PrivateRoute";
 
-
-//import Temporary_Register from './schema/pages/landpage_/Temporary_Register'
-
 import Landpage from "./schema/pages/landpage_/Landpage";
 import Landpage_Login from "./schema/pages/landpage_/Landpage_Login";
 import Landpage_Register from "./schema/pages/landpage_/Landpage_Register";

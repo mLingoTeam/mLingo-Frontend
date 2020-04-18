@@ -1,6 +1,6 @@
 import React from 'react';
-import Landpage_Opinion from './Opinion';
-import photo1 from '../../../../img/brown-haired-girl-in-white-sleeveless-dress-standing-beside-756453@2x.png'
+import MainpageOpinion from './MainpageOpinion';
+import photo1 from '../../../../../img/brown-haired-girl-in-white-sleeveless-dress-standing-beside-756453@2x.png'
 
 class MainpageOpinions extends React.Component {
 
@@ -20,13 +20,15 @@ class MainpageOpinions extends React.Component {
     render(){
 
         const opinions_render = this.state.opinions.map( (op, index) => {
-            return <Landpage_Opinion set={op} index={index}/>
+            return <MainpageOpinion set={op} index={index}/>
         })
 
         return(
-            <div id="Opinions">
-                <h2 className="main-page-h2">testimonials</h2>
-                {opinions_render}
+            <div className="opinions__container">
+                <h2 className="opinions__title mainpage--title">testimonials</h2>
+                <div>
+                    {opinions_render}
+                </div>
             </div>
         )
     }

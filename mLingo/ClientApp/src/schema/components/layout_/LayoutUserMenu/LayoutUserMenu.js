@@ -23,10 +23,10 @@ const LayoutUserMenu = props => {
     const categoriesmapped = categories.map(el => <UserMenuCategory icon={el.icon} text={el.text} link={el.link} />)
 
     return (
-        <div className="usermenu">
+        <div className="usermenu__container">
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
-                <h2>menu</h2>
+                <div className="usermenu__title">menu</div>
                 {categoriesmapped}
             </Collapse>
 

@@ -1,7 +1,6 @@
-function find({type, name}) {
+function find({ type , name }) {
 
-    let rqtype;
-
+    let rqtype = "usercollections";
     type === 'name' ? rqtype = 'find' : type === 'id' ? rqtype = 'find' : rqtype = "usercollections";
 
     const requestOptions = {
@@ -40,14 +39,14 @@ function find({type, name}) {
       .catch(err => console.log(err))
   }
 
-  function update({ id, token, cards, name }) {
+  function update({ id, token, cards, name, description }) {
 
     console.log('upd!ating')
 
     const requestOptions = {
       method: "PUT",
       headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
-      body: JSON.stringify({ Name: name, Cards: cards, BaseLanguage: null, SecondLanguage: null })
+      body: JSON.stringify({ Name: name, Cards: cards, Description: description, BaseLanguage: null, SecondLanguage: null })
     }
 
     return fetch(`${this.host}/api/collections/update?id=${id}`, requestOptions)

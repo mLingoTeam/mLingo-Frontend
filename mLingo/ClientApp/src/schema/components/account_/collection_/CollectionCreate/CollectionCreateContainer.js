@@ -1,8 +1,7 @@
 import React from "react";
 
-import  requests  from '../CollectionScreen/requests'
-import { authentication_service } from "../../../../../services/authentication/authentication";
-import View from  './CollectionCreateView'
+import helper from './CollectionCreateHelper';
+import View from  './CollectionCreateView';
 
 class CollectionCreateContainer extends React.Component {
     constructor(props) {
@@ -11,125 +10,100 @@ class CollectionCreateContainer extends React.Component {
         this.state = { collectionTitle: "", collectionDescription:"", cards: [ { term: "", definition: "" } ], loading: false, edit: false }
 
 
-        this.submit = this.submit.bind(this);
-        this.modifyCollection = this.modifyCollection.bind(this);
-        this.mount = this.mount.bind(this);
-        this.createCollection = this.createCollection.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleCardChange = this.handleCardChange.bind(this);
-        this.addCard = this.addCard.bind(this);
+        this.mountCollection = this.mountCollection.bind(this);
+
+        this.addEmptyCard = this.addEmptyCard.bind(this);
         this.removeCard = this.removeCard.bind(this);
 
-        this.functions = {
-        submit:   this.submit,
-        modifyCollection: this.modifyCollection,
-        mount: this.mount,
-        createCollection: this.createCollection,
-        handleChange: this.handleChange,
-        handleCardChange: this.handleCardChange,
-        addCard: this.addCard,
-        removeCard: this.removeCard,
-        }
+        this.handleCreate = this.handleCreate.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleCardChange = this.handleCardChange.bind(this);
 
+        this.submit = this.submit.bind(this);
+
+        this.checkCardsLength = this.checkCardsLength.bind(this);
+
+        this.functions = {
+            submit:   this.submit,
+            handleChange: this.handleChange,
+            handleCardChange: this.handleCardChange,
+            addEmptyCard: this.addEmptyCard,
+            removeCard: this.removeCard,
+        }
 
         // editing mode
         if ( localStorage.getItem("editCollection") ){
-            this.mount();
+            this.mountCollection();
         }
     }
 
-    async mount(){
-
+    async mountCollection(){
         this.setState({ ...this.state, loading: true });
-            const req = await requests.mountEditCollection();
-            console.log(req);
-            this.setState({ ...this.state, cards: req.response.cards, collectionTitle: req.response.name, collectionDescription: req.response.description, loading: false, edit: true });
+        const req = await helper.getCollection();
+        this.setState({ ...this.state, cards: req.response.cards, collectionTitle: req.response.name, collectionDescription: req.response.description, loading: false, edit: true });
     }
 
-    addCard() {
-            this.setState(state => {
-                return {
-                ...state,
-                 cards: [...state.cards, { term: "", definition: "" }]
-                }
-            })
+    addEmptyCard() {
+        this.setState(state => { return { ...state, cards: [...state.cards, { term: "", definition: "" }] }});
     }
 
+    //  this.state => state
     removeCard(set) {
         //only looking for the first card
         const searchedValue = this.state.cards.find(element => ((element.term == set.term) && (element.definition == set.definition)));
-        this.setState(() => {
-            return {
-                ...this.state,
-                cards: this.state.cards.filter(element => element !== searchedValue)
-            }
-        })
+        this.setState( state => { return { ...state, cards: state.cards.filter(element => element !== searchedValue)}});
     }
 
+    // Changing Card values
     handleCardChange(event) {
-
-        let items = this.state.cards
-
+        let items = this.state.cards;
         let item = items[event.target.alt];
-
         item = {...item, [event.target.name]: event.target.value}
-
         items[[event.target.alt]] = item;
 
-        this.setState({
-            ...this.state,
-            cards: items
-        });
+        this.setState({...this.state, cards: items });
     }
 
     handleChange(event) {
         this.setState({ ...this.state, [event.target.name]: event.target.value });
-
     }
 
-    submit(){
-        if( this.state.edit){
-            console.log('modify!')
-            this.modifyCollection()
+    checkCardsLength(cards){
+        if( cards.length <= 1 ){
+            alert("Add more cards")
+            this.setState({ ...this.state, cards: [...this.state.cards, { term: "", definition: "" }] });
+            return false;
         }
-        else{
-            console.log('create!')
-            this.createCollection()
-        }
+        else return true
     }
 
-    modifyCollection() {
-        authentication_service.collection.update({ id: localStorage.getItem("editCollection"), token: localStorage.getItem("Token"), cards: this.state.cards, name: this.state.collectionTitle })
-    }
-
-    async createCollection() {
-
+    handleCreate(){
         let title = this.state.collectionTitle;
-        if(title.trim() === ""){
-            alert('Name your collection!')
+        if(title.trim() === ""){ alert('Name your collection!'); return false; }
+        else{
+            const cards_to_check = this.state.cards.filter(el => (el.term.trim() != '' && el.definition.trim() != ''));
+            return this.checkCardsLength(cards_to_check);
+        }
+    }
+
+    // Sendint the right request
+    submit(){
+        if(this.state.edit){
+            helper.modifyCollection({ id: localStorage.getItem("editCollection"), cards: this.state.cards, name: this.state.collectionTitle, description: this.state.collectionDescription});
+            localStorage.removeItem("editCollection");
+            this.setState({ collectionTitle: "", collectionDescription: "" , cards: [ { term: "", definition: "" } ] });
         }
         else{
-            await this.setState((state)=>{
-                return{
-                    ...state,
-                    cards: state.cards.filter(el => (el.term.trim() != '' && el.definition.trim() != ''))
-                }
-            })
-            if( this.state.cards.length <= 1 ){
-                alert("Add more cards")
-                this.setState({ collectionTitle: "",collectionDescription:"", cards: [{ term: "", definition: "" }]});
-            }
-            else{
-                await authentication_service.collection.create({name: this.state.collectionTitle, description: this.state.collectionDescription,cards: this.state.cards, Token: localStorage.getItem("Token")});
-                this.setState({ collectionTitle: "", collectionDescription:"", cards: [] });
+            if(this.handleCreate()){
+                const cards = this.state.cards.filter(el => (el.term.trim() != '' && el.definition.trim() != ''));
+                helper.createCollection({cards: cards, name: this.state.collectionTitle, description: this.state.collectionDescription});
+                this.setState({ collectionTitle: "", collectionDescription: "" , cards: [ { term: "", definition: "" } ] });
             }
         }
-
     }
 
     componentWillUnmount(){
-        // editing mode
-        localStorage.removeItem("editCollection")
+        localStorage.removeItem("editCollection");
     }
 
     render() {

@@ -1,5 +1,4 @@
 import React from "react";
-import { authentication_service } from '../../../../services/authentication/authentication';
 
 import View from './SearchInputView'
 
@@ -12,6 +11,11 @@ class SearchInputContainer extends React.Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.findcollection = this.findcollection.bind(this);
+
+        this.functions = {
+            handleChange: this.handleChange,
+            findcollection: this.findcollection
+        }
     }
 
     handleChange(event) {
@@ -19,11 +23,11 @@ class SearchInputContainer extends React.Component {
     }
 
     findcollection() {
-        authentication_service.setIntoLocalStorage({ name: 'request', value: this.state.request })
+        localStorage.setItem( 'request', this.state.request )
     }
 
     render() {
-        return <View state={this.state}/>
+        return <View state={this.state} functions={this.functions}/>
     }
 };
 

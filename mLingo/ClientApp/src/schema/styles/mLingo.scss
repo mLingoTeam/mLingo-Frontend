@@ -1,1 +1,115 @@
+@import './variables.scss';
 // Mlingo design classes library //
+
+.flex--center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex--between{
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex--around{
+    display: flex;
+    justify-content: space-around;
+}
+
+.flex--start{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.flex--complet{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.green--button{
+font-size: 16px;
+  font-weight: 400;
+  background-color: inherit;
+  border: 0;
+  color: $dark-blue;
+  outline: none !important;
+  background: $light-green;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.5s;
+
+  &:hover {
+    color: $dark-blue;
+    text-decoration: none !important;
+  }
+
+  @media(max-width: $mobile-res){
+    &{
+      font-size: 12px !important;
+      padding: 5px 10px;
+    }
+  }
+}
+
+.plus--button{
+    background-color: $light-green;
+    color: $dark-blue;
+    border: 5px solid $dark-blue;
+    font-weight: 800;
+    font-size: 28px;
+    border-radius: 50%;
+    padding: 5px 12px;
+    transition: 0.5s;
+    &:focus {
+      outline: none;
+      outline-offset: -4px;
+    }
+    &:hover{
+        color: $dark-blue;
+        background-color: $dark-green;
+    }
+}
+
+.element--center{
+    @extend .flex--complet;
+}
+
+
+////////////// h1,h2,h3,h4,h5 //////////////////
+
+.mainpage--title{
+  color: $dark-blue;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+/////////////// input /////////////////
+.input--text{
+  border: 1px solid #B2B2B2;
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 10px 10px;
+
+  &:hover, &:focus, &:active, &:checked {
+    text-decoration: none !important;
+    outline: none;
+  }
+}
+
+.input--text{
+  &:hover, &:focus, &:active, &:checked {
+    text-decoration: none !important;
+    outline: none;
+  }
+}
+
+// container //
+
+.all__containers__in__user__section{
+  flex: 0 0 79%;
+  max-width: 79%;
+}

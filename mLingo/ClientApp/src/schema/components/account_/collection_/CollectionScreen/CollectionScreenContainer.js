@@ -2,7 +2,6 @@ import React from 'react'
 
 import View from './CollectionScreenView'
 import { authentication_service } from '../../../../../services/authentication/authentication';
-import  requests  from './requests';
 
 
 class Collection extends React.Component {
@@ -12,33 +11,39 @@ class Collection extends React.Component {
 
         this.state = [{ "loaded": false }];
 
-        this.mountCollection = requests.mountCollection.bind(this);
+        this.getCollection = this.getCollection.bind(this);
         this.removeCollection = this.removeCollection.bind(this);
-        this.removeCard = this.removeCard.bind(this);
-        this.modifyCollection = this.modifyCollection.bind(this);
         this.editCollection = this.editCollection.bind(this)
 
         this.functions = {
-            mountCollection: this.mountCollection,
             removeCollection: this.removeCollection,
-            removeCard: this.removeCard,
-            modifyCollection: this.modifyCollection,
             editCollection: this.editCollection
         }
     }
 
+    async getCollection() {
+        const collection_id = localStorage.getItem("collectionid");
 
+        if (collection_id) {
+            const collection = await authentication_service.collection.find({type: "id", name: collection_id} );
 
-    async removeCard(set) {
-        //only looking for the first card
-        const searchedValue = this.state.collection.find(element => ((element.term == set.term) && (element.definition == set.definition)));
-        const new_collection = this.state.collection.filter(element => element !== searchedValue);
-        this.setState(() => {
-            return {
-                ...this.state,
-                collection: new_collection
-            }
-        })
+            this.setState({ ...this.state, "collection": collection.response });
+            this.setState({ ...this.state, "loaded": true });
+        }
+        else {
+            this.setState({ ...this.state, "collection": false });
+            this.setState({ ...this.state, "loaded": true });
+        }
+    }
+
+    removeCollection() {
+        authentication_service.collection.remove({id: localStorage.getItem("collectionid"), token: localStorage.getItem("Token")});
+        localStorage.removeItem("collectionid");
+        this.setState({ ...this.state, "collection": false });
+    }
+
+    editCollection(){
+        localStorage.setItem("editCollection", localStorage.getItem("collectionid"))
     }
 
     componentWillUnmount() {
@@ -46,21 +51,7 @@ class Collection extends React.Component {
     }
 
     componentDidMount() {
-        this.mountCollection();
-    }
-
-    modifyCollection() {
-        authentication_service.collection.update({ id: localStorage.getItem("collectionid"), token: localStorage.getItem("Token"), cards: this.state.collection })
-    }
-
-    removeCollection() {
-        authentication_service.collection.remove(localStorage.getItem("collectionid"), localStorage.getItem("Token"));
-        localStorage.removeItem("collectionid");
-        this.setState({ ...this.state, "collection": false });
-    }
-
-    editCollection(){
-        localStorage.setItem("editCollection", localStorage.getItem("collectionid"))
+        this.getCollection();
     }
 
     render() {

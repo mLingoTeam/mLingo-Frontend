@@ -3,9 +3,9 @@ import React from "react";
 const User_Section_Component = props => {
 
     return (
-        <section class="UserSection">
-            <h2>{props.title}</h2>
-            <p>{props.description}</p>
+        <section className="userhead__section">
+            <div className="section__title">{props.title}</div>
+            <div className="section__description">{props.description}</div>
             {props.children}
         </section>
     );

@@ -1,7 +1,9 @@
 import React from "react";
+import { withRouter } from 'react-router-dom';
 import View from './FormpageLoginView'
 
 import { authentication_service } from '../../../../../services/authentication/authentication'
+import handleResponse from '../../../../../services/handleResponse';
 
 class FormpageLoginContainer extends React.Component {
 
@@ -51,41 +53,42 @@ class FormpageLoginContainer extends React.Component {
 
   /////////////////////////////////////////
   async account_login() {
-    const resolved = await authentication_service.user.login({username: this.state.username, password: this.state.password});
 
-    //if there is not such an user
-    const resstatus = (JSON.stringify(resolved.successful));
+    const resolved = await handleResponse( { request: authentication_service.user.login({username: this.state.username, password: this.state.password}), error_message: 'ooops something went wrong...' } )
 
-    if (resstatus == 'false') {
-      const err = (JSON.stringify(resolved.errorMessage));
-      this.setState({ ...this.state, err: err })
+    if( resolved !== false){
 
-    } // if the user exist save they into the web
-    else {
       localStorage.setItem("currentUser", resolved.response.username);
       localStorage.setItem("ID", resolved.response.id);
       localStorage.setItem("Token", resolved.response.token);
-    }
 
-    // TO RERENDER WHEN THE ITEM IS SET IN THE LOCALSTORAGE
-    this.setState({
-      ...this.state,
-      isLoading: true
-    })
-    setTimeout(() => {
+
+      // TO RERENDER WHEN THE ITEM IS SET IN THE LOCALSTORAGE
       this.setState({
         ...this.state,
-        isLoading: false
+        isLoading: true
       })
-    }, 1000);
+      setTimeout(() => {
+        this.setState({
+          ...this.state,
+          isLoading: false
+        })
+      }, 1000);
+
+ }
+
 
 }
   /////////////////////////////////////////
 
 
   render() {
+    if (localStorage.getItem("currentUser")) {
+      this.props.history.push('/head');
+    }
+
     return  <View state={this.state} fields={this.fields} functions={this.functions}/>
   }
 }
 
-export default FormpageLoginContainer;
+export default withRouter(FormpageLoginContainer);

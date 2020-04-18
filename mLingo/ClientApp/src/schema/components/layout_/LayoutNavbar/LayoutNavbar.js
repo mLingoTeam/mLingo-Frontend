@@ -12,29 +12,31 @@ const logout = () => {
 
 const LayoutNavbar = props => {
   return (
-    <div className="navbar--dark">
+    <div className="app__navbar">
       <Link className="navbar__brand" to="/">
-        <img src={logo} className="img-fluid" />
+        <img src={logo} className="brand__img" />
       </Link>
-      <div className="navbar__buttons">
         {
           localStorage.getItem("currentUser") ? <div className="navbar__buttons">
           <SearchInputContainer />
             <div>
-              <Link className="signinbutton" to="/head">learn</Link>
+              <Link className="signin__button" to="/head">learn</Link>
             </div>
             <div>
               <button className="navbar__registerbutton" onClick={logout} >logout</button>
             </div>
-          </div> : <div className="navbar__buttons"> <div>
-            <Link className="signinbutton" to="/Login">sign in</Link>
+          </div> : <div className="navbar__buttons">
+          <div>
+            <SearchInputContainer />
+          </div>
+          <div>
+            <Link className="signin__button" to="/Login">sign in</Link>
           </div>
               <div>
                 <Link className="navbar__registerbutton" to="/Register">sign up</Link>
               </div>
             </div>
         }
-      </div>
     </div >
   );
 };

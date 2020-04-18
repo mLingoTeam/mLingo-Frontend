@@ -1,7 +1,8 @@
 import React from "react";
 
 import { authentication_service } from "../../../../../services/authentication/authentication";
-import View from './CollectionSearchView'
+import View from './CollectionSearchView';
+
 
 class Collection_Search_Component extends React.Component {
     constructor(props) {
@@ -35,7 +36,6 @@ class Collection_Search_Component extends React.Component {
             this.setState({ "fields": collectiondata.response, "exist": true });
         }
         else {
-            console.log("false")
             this.setState({ "fields": [], "exist": false });
         }
     }
@@ -50,3 +50,8 @@ class Collection_Search_Component extends React.Component {
 }
 
 export default Collection_Search_Component;
+
+
+// ISSUE //
+// THE RENDERING FIRES ONLY ONES AFTER THE SEARCHING
+// I HAVE TO CHANGE THE STATE OF THIS COMPONENT

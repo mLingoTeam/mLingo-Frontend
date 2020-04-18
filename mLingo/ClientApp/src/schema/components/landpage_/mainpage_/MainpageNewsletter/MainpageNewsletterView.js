@@ -2,35 +2,35 @@ import React from 'react';
 import left from '../../../../../img/leftsquare.svg';
 import right from '../../../../../img/rightsquare.svg'
 
-const MainpageNewsletterView = ( { state } ) => {
+const MainpageNewsletterView = ( { state, functions } ) => {
 
     return(
-        <section id="newsletter-section" className="col-12">
-                <div className="left-circle-container col-6">
-                    <img src={left} className="left-circle img-fluid"/>
+        <div className="newsletter__section">
+                <div className="leftcircle__container">
+                    <img src={left} className="left__circle"/>
                 </div>
                 {
                     state.success ?
-                        <h2 className="newsletter-thanks col-10 col-sm-4">You have just registered successfully, Thank You!</h2> :
-                        <div className="newsletter-subscribe col-sm-10 col-md-4">
-                            <h2 className="main-page-h2 mb-5">newsletter</h2>
-                            <p>awesome content once a week.</p>
-                            <p>{"No spam, we promise :)"}</p>
-                            <input type="email" className="text my-5" placeholder="email@email.com" name="email" value={state.email} onChange={state.handleChange} required/>
+                        <div className="newsletter__thanks">You have just registered successfully, Thank You!</div> :
+                        <div className="newsletter__subscribe">
+                            <div className="newsletter__title mainpage--title">newsletter</div>
+                            <div className="newsletter__description">awesome content once a week.</div>
+                            <div className="newsletter__description">{"No spam, we promise :)"}</div>
+                            <input type="email" className="newsletter__email input--text" placeholder="email@email.com" name="email" value={state.email} onChange={functions.handleChange} required/>
                             {
                                 state.err ? <div>{state.err}</div> : null
                             }
                             <br/>
-                            <input type="submit" className="green-button px-5" onClick={state.register} value="sign me up"/>
+                            <input type="submit" className="green--button" onClick={functions.register} value="sign me up"/>
                         </div>
 
                 }
 
 
-                <div className="right-circle-container col-6">
-                    <img src={right} className="right-circle img-fluid"/>
+                <div className="rightcircle__container">
+                    <img src={right} className="right__circle"/>
                 </div>
-            </section>
+            </div>
     )
 }
 
