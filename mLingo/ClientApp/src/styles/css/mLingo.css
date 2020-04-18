@@ -239,7 +239,7 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
   color: #000536;
   outline: none !important;
   background: #B6EE1A;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 10px;
   text-decoration: none;
   -webkit-transition: 0.5s;
@@ -278,5 +278,28 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
 .plus--button:hover {
   color: #000536;
   background-color: #A1D218;
+}
+
+.mainpage--title {
+  color: #000536;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.input--text {
+  border: 1px solid #B2B2B2;
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 10px 10px;
+}
+
+.input--text:hover, .input--text:focus, .input--text:active, .input--text:checked {
+  text-decoration: none !important;
+  outline: none;
+}
+
+.input--text:hover, .input--text:focus, .input--text:active, .input--text:checked {
+  text-decoration: none !important;
+  outline: none;
 }
 /*# sourceMappingURL=mLingo.css.map */

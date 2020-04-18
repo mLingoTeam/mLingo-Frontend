@@ -537,7 +537,7 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
           justify-content: flex-start;
 }
 
-.flex--complet, .element--center, .create__more, .userhead__container, .form__alreadyaccount {
+.flex--complet, .element--center, .create__more, .userhead__container, .form__alreadyaccount, .newsletter__section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -559,7 +559,7 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
   color: #000536;
   outline: none !important;
   background: #B6EE1A;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 10px;
   text-decoration: none;
   -webkit-transition: 0.5s;
@@ -598,6 +598,29 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
 .plus--button:hover {
   color: #000536;
   background-color: #A1D218;
+}
+
+.mainpage--title {
+  color: #000536;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.input--text {
+  border: 1px solid #B2B2B2;
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 10px 10px;
+}
+
+.input--text:hover, .input--text:focus, .input--text:active, .input--text:checked {
+  text-decoration: none !important;
+  outline: none;
+}
+
+.input--text:hover, .input--text:focus, .input--text:active, .input--text:checked {
+  text-decoration: none !important;
+  outline: none;
 }
 
 /*!
@@ -1076,7 +1099,7 @@ mark,
   content: "\2014\00A0";
 }
 
-.img-fluid, .details__img {
+.img-fluid, .details__img, .left__circle, .right__circle {
   max-width: 100%;
   height: auto;
 }
@@ -1230,8 +1253,8 @@ pre code {
   padding-left: 0;
 }
 
-.col-1, .col-2, .col-3, .col-4, .col-5, .flashcard__card, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .create__details, .flashcard__container, .forminput__container, .forminput__input, .form__title, .form__form, .form__alreadyaccount, .form__getstarted, .form__remember, .formsocials__container, .fbconnect__button, .ggconnect__button, .col,
-.col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .create__container, .create--collection, .col-sm,
+.col-1, .col-2, .col-3, .col-4, .col-5, .flashcard__card, .col-6, .leftcircle__container, .rightcircle__container, .col-7, .col-8, .col-9, .col-10, .newsletter__thanks, .col-11, .col-12, .create__details, .flashcard__container, .forminput__container, .forminput__input, .form__title, .form__form, .form__alreadyaccount, .form__getstarted, .form__remember, .formsocials__container, .fbconnect__button, .ggconnect__button, .newsletter__section, .col,
+.col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .newsletter__subscribe, .col-sm-11, .col-sm-12, .create__container, .create--collection, .col-sm,
 .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md,
 .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg,
 .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl,
@@ -1336,7 +1359,7 @@ pre code {
   max-width: 41.66667%;
 }
 
-.col-6 {
+.col-6, .leftcircle__container, .rightcircle__container {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 50%;
           flex: 0 0 50%;
@@ -1364,7 +1387,7 @@ pre code {
   max-width: 75%;
 }
 
-.col-10 {
+.col-10, .newsletter__thanks {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 83.33333%;
           flex: 0 0 83.33333%;
@@ -1378,7 +1401,7 @@ pre code {
   max-width: 91.66667%;
 }
 
-.col-12, .create__details, .flashcard__container, .forminput__container, .forminput__input, .form__title, .form__form, .form__alreadyaccount, .form__getstarted, .form__remember, .formsocials__container, .fbconnect__button, .ggconnect__button {
+.col-12, .create__details, .flashcard__container, .forminput__container, .forminput__input, .form__title, .form__form, .form__alreadyaccount, .form__getstarted, .form__remember, .formsocials__container, .fbconnect__button, .ggconnect__button, .newsletter__section {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 100%;
           flex: 0 0 100%;
@@ -1589,7 +1612,7 @@ pre code {
             flex: 0 0 25%;
     max-width: 25%;
   }
-  .col-sm-4 {
+  .col-sm-4, .newsletter__thanks {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 33.33333%;
             flex: 0 0 33.33333%;
@@ -1625,7 +1648,7 @@ pre code {
             flex: 0 0 75%;
     max-width: 75%;
   }
-  .col-sm-10 {
+  .col-sm-10, .newsletter__subscribe {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 83.33333%;
             flex: 0 0 83.33333%;
@@ -1826,7 +1849,7 @@ pre code {
             flex: 0 0 25%;
     max-width: 25%;
   }
-  .col-md-4 {
+  .col-md-4, .newsletter__subscribe {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 33.33333%;
             flex: 0 0 33.33333%;
@@ -9368,7 +9391,8 @@ button.bg-dark:focus {
 }
 
 .mt-5, .form__getstarted,
-.my-5 {
+.my-5,
+.newsletter__email {
   margin-top: 3rem !important;
 }
 
@@ -9377,8 +9401,9 @@ button.bg-dark:focus {
   margin-right: 3rem !important;
 }
 
-.mb-5, .form__title, .form__remember,
-.my-5 {
+.mb-5, .form__title, .form__remember, .newsletter__title,
+.my-5,
+.newsletter__email {
   margin-bottom: 3rem !important;
 }
 
@@ -11755,6 +11780,370 @@ a.text-dark:hover, a.text-dark:focus {
   background-color: #DB4437;
 }
 
+/* --- --- 2.2.1 Newsletter */
+.newsletter__section {
+  position: relative;
+  color: #000536;
+}
+
+.leftcircle__container, .rightcircle__container {
+  position: relative;
+  overflow: hidden;
+  height: auto;
+  width: auto;
+}
+
+.leftcircle__container {
+  position: absolute;
+  left: -20%;
+}
+
+.rightcircle__container {
+  position: absolute;
+  right: -20%;
+}
+
+@media (max-width: 576px) {
+  .rightcircle__container {
+    right: -100px;
+  }
+  .leftcircle__container {
+    left: -100px;
+  }
+}
+
+.newsletter__thanks {
+  padding: 20vh 0;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 900;
+}
+
+.newsletter__subscribe {
+  padding: 200px 0;
+  text-align: center;
+}
+
+@media (max-width: 576px) {
+  .newsletter__subscribe {
+    padding: 150px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .newsletter__title {
+    font-size: 20px;
+  }
+}
+
+.newsletter__description {
+  font-size: 18px;
+  margin: 0 !important;
+}
+
+@media (max-width: 576px) {
+  .newsletter__description {
+    font-size: 12px;
+    margin: 0 !important;
+  }
+}
+
+.newsletter__email {
+  width: 200px;
+}
+
+@media (max-width: 576px) {
+  .newsletter__email {
+    margin: 10px 0 !important;
+    font-size: 12px;
+    width: 150px;
+  }
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus,
+a:checked {
+  text-decoration: none;
+}
+
+.green-button {
+  font-size: 16px;
+  font-weight: 400;
+  background-color: inherit;
+  border: 0;
+  color: #000536;
+  outline: none !important;
+  background: #B6EE1A;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.green-button:hover {
+  color: #000536;
+  text-decoration: none !important;
+}
+
+@media (max-width: 576px) {
+  .green-button {
+    font-size: 12px !important;
+    padding: 5px 3px;
+  }
+}
+
+.green-button:active {
+  background: -webkit-gradient(linear, left top, left bottom, from(#A1D218), to(#B6EE1A));
+  background: linear-gradient(#A1D218, #B6EE1A);
+}
+
+.blue-button {
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  outline: none !important;
+  background: #000536;
+  height: 60px;
+  border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.blue-button:hover, .blue-button:focus, .blue-button:active, .blue-button:checked {
+  color: #B6EE1A;
+  text-decoration: none !important;
+}
+
+@media (max-width: 576px) {
+  .blue-button {
+    font-size: 16px !important;
+  }
+}
+
+.in-button {
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  outline: none !important;
+  background: inherit;
+  height: 60px;
+  border-radius: 5px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.in-button:hover, .in-button:focus, .in-button:active, .in-button:checked {
+  color: #B6EE1A;
+  text-decoration: none !important;
+}
+
+@media (max-width: 576px) {
+  .in-button {
+    font-size: 16px !important;
+  }
+}
+
+input.text {
+  border: 1px solid #B2B2B2;
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 10px 10px;
+}
+
+input.text:hover, input.text:focus, input.text:active, input.text:checked {
+  text-decoration: none !important;
+  outline: none;
+}
+
+input[type='text']:hover, input[type='text']:focus, input[type='text']:active, input[type='text']:checked, textarea:hover, textarea:focus, textarea:active, textarea:checked {
+  text-decoration: none !important;
+  outline: none;
+}
+
+.color-dark-blue {
+  color: #000536 !important;
+}
+
+@keyframes navbar-monkey-bounce {
+  0% {
+    bottom: 10%;
+  }
+  25% {
+    bottom: 7%;
+  }
+  65% {
+    bottom: 26%;
+  }
+  70% {
+    bottom: 26%;
+  }
+  90% {
+    bottom: 7%;
+  }
+  100% {
+    bottom: 10%;
+  }
+}
+
+.remove-button {
+  font-size: 24px;
+  color: #000536;
+  background-color: #F8F8F8;
+  border: 0;
+}
+
+.remove-button:hover, .remove-button:focus {
+  background: #F8F8F8;
+}
+
+.remove-button:focus {
+  outline: 1px solid #F8F8F8;
+  outline-offset: -4px;
+}
+
+.remove-button:active {
+  -webkit-transform: scale(0.99);
+          transform: scale(0.99);
+}
+
+.flex--center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.flex--between, .details__buttons, .flashcard__info, .form__remember {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.flex--around, .collection__info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.flex--start, .create__details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.flex--complet, .element--center, .create__more, .userhead__container, .form__alreadyaccount, .newsletter__section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.green--button {
+  font-size: 16px;
+  font-weight: 400;
+  background-color: inherit;
+  border: 0;
+  color: #000536;
+  outline: none !important;
+  background: #B6EE1A;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.green--button:hover {
+  color: #000536;
+  text-decoration: none !important;
+}
+
+@media (max-width: 576px) {
+  .green--button {
+    font-size: 12px !important;
+    padding: 5px 3px;
+  }
+}
+
+.plus--button {
+  background-color: #B6EE1A;
+  color: #000536;
+  border: 5px solid #000536;
+  font-weight: 800;
+  font-size: 28px;
+  border-radius: 50%;
+  padding: 5px 12px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.plus--button:focus {
+  outline: none;
+  outline-offset: -4px;
+}
+
+.plus--button:hover {
+  color: #000536;
+  background-color: #A1D218;
+}
+
+.mainpage--title {
+  color: #000536;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.input--text {
+  border: 1px solid #B2B2B2;
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 10px 10px;
+}
+
+.input--text:hover, .input--text:focus, .input--text:active, .input--text:checked {
+  text-decoration: none !important;
+  outline: none;
+}
+
+.input--text:hover, .input--text:focus, .input--text:active, .input--text:checked {
+  text-decoration: none !important;
+  outline: none;
+}
+
 /* MENU */
 /* LandPage Components */
 /* 3.1 Formular.js */
@@ -11763,7 +12152,6 @@ a.text-dark:hover, a.text-dark:focus {
 /* 3.4 Slider.js */
 /* 3.5 UserPromo.js */
 /* 3.6 WelcomeSection.js */
-/* 3.7 Newsletter */
 /* 3.8 Steps.js & Step.js */
 /* 3.9 Opinions.js & Opinion.js */
 /* Layout Components */
@@ -12040,89 +12428,6 @@ div.welcome-section > div p {
   }
   div.welcome-section > div p {
     font-size: 10px;
-  }
-}
-
-/* 3.7 Newsletter */
-#newsletter-section {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  position: relative;
-  color: #000536;
-}
-
-#newsletter-section p {
-  font-size: 18px;
-  margin: 0 !important;
-}
-
-#newsletter-section input {
-  width: 200px;
-}
-
-@media (max-width: 576px) {
-  #newsletter-section h2 {
-    font-size: 20px;
-  }
-  #newsletter-section p {
-    font-size: 12px;
-    margin: 0 !important;
-  }
-  #newsletter-section input {
-    margin: 10px 0 !important;
-    font-size: 12px;
-    width: 150px;
-  }
-}
-
-#newsletter-section .newsletter-thanks {
-  padding: 20vh 0;
-  text-align: center;
-}
-
-#newsletter-section .left-circle-container, #newsletter-section .right-circle-container {
-  position: relative;
-  overflow: hidden;
-  height: auto;
-  width: auto;
-}
-
-#newsletter-section .left-circle-container {
-  position: absolute;
-  left: -20%;
-}
-
-#newsletter-section .right-circle-container {
-  position: absolute;
-  right: -20%;
-}
-
-@media (max-width: 576px) {
-  #newsletter-section .right-circle-container {
-    right: -100px;
-  }
-  #newsletter-section .left-circle-container {
-    left: -100px;
-  }
-}
-
-#newsletter-section .newsletter-subscribe {
-  padding: 200px 0;
-  text-align: center;
-}
-
-@media (max-width: 576px) {
-  #newsletter-section .newsletter-subscribe {
-    padding: 150px 0;
   }
 }
 

@@ -37,7 +37,7 @@ font-size: 16px;
   color: $dark-blue;
   outline: none !important;
   background: $light-green;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 10px;
   text-decoration: none;
   transition: 0.5s;
@@ -76,4 +76,33 @@ font-size: 16px;
 
 .element--center{
     @extend .flex--complet;
+}
+
+
+////////////// h1,h2,h3,h4,h5 //////////////////
+
+.mainpage--title{
+  color: $dark-blue;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+/////////////// input /////////////////
+.input--text{
+  border: 1px solid #B2B2B2;
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 10px 10px;
+
+  &:hover, &:focus, &:active, &:checked {
+    text-decoration: none !important;
+    outline: none;
+  }
+}
+
+.input--text{
+  &:hover, &:focus, &:active, &:checked {
+    text-decoration: none !important;
+    outline: none;
+  }
 }

@@ -426,3 +426,91 @@ overflow-y: hidden;
 //////////////////////////////////////////////////////
 /* --- --- 2.2.1 Newsletter */
 //////////////////////////////////////////////////////
+
+.newsletter__section{
+    @extend .col-12, .flex--complet;
+    position: relative;
+    color: $dark-blue;
+}
+
+.leftcircle__container, .rightcircle__container{
+    @extend .col-6;
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    width: auto;
+}
+
+.leftcircle__container{
+    position: absolute;
+    left: -20%;
+}
+.rightcircle__container{
+    position: absolute;
+    right: -20%;
+}
+
+@media(max-width: $mobile-res){
+    .rightcircle__container{
+      right: -100px;
+    }
+    .leftcircle__container{
+      left: -100px;
+    }
+}
+
+.left__circle{
+    @extend .img-fluid;
+}
+.right__circle{
+    @extend .img-fluid;
+}
+
+.newsletter__thanks{
+    @extend .col-10, .col-sm-4;
+    padding: 20vh 0;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 900;
+}
+
+.newsletter__subscribe{
+    @extend .col-sm-10, .col-md-4;
+    padding: 200px 0;
+    text-align:center;
+
+    @media(max-width: $mobile-res){
+      padding: 150px 0;
+    }
+}
+
+.newsletter__title{
+    @extend .mb-5;
+
+    @media(max-width: $mobile-res){
+        font-size: 20px;
+    }
+}
+
+.newsletter__description{
+    font-size: 18px;
+    margin: 0 !important;
+
+    @media(max-width: $mobile-res){
+        font-size: 12px;
+        margin: 0 !important;
+    }
+}
+
+.newsletter__email{
+    @extend .my-5;
+    width: 200px;
+
+    @media(max-width: $mobile-res){
+        &{
+            margin: 10px 0 !important;
+            font-size: 12px;
+            width: 150px;
+        }
+    }
+}

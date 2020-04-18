@@ -1,5 +1,6 @@
 @import "./variables.scss";
 @import "./BEM.scss";
+@import "./mLingo.scss";
 
 
 /* MENU */
@@ -11,7 +12,6 @@
 /* 3.4 Slider.js */
 /* 3.5 UserPromo.js */
 /* 3.6 WelcomeSection.js */
-/* 3.7 Newsletter */
 /* 3.8 Steps.js & Step.js */
 /* 3.9 Opinions.js & Opinion.js */
 
@@ -307,84 +307,7 @@ div.welcome-section{
   }
 }
 
-//////////////////////////////////////////////////////
-/* 3.7 Newsletter */
-//////////////////////////////////////////////////////
 
-#newsletter-section{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  color: $dark-blue;
-
-  p{
-    font-size: 18px;
-    margin: 0 !important;
-  }
-  input{
-    width: 200px;
-  }
-
-
-  @media(max-width: $mobile-res){
-    &{
-      h2{
-        font-size: 20px;
-      }
-      p{
-        font-size: 12px;
-        margin: 0 !important;
-      }
-      input{
-        margin: 10px 0 !important;
-        font-size: 12px;
-        width: 150px;
-      }
-    }
-  }
-
-  .newsletter-thanks{
-    padding: 20vh 0;
-    text-align: center;
-  }
-
-
-
-  .left-circle-container, .right-circle-container{
-    position: relative;
-    overflow: hidden;
-    height: auto;
-    width: auto;
-  }
-  .left-circle-container{
-    position: absolute;
-    left: -20%;
-  }
-  .right-circle-container{
-    position: absolute;
-    right: -20%;
-  }
-
-  @media(max-width: $mobile-res){
-    .right-circle-container{
-      right: -100px;
-    }
-    .left-circle-container{
-      left: -100px;
-    }
-  }
-
-  .newsletter-subscribe{
-    padding: 200px 0;
-    text-align:center;
-
-    @media(max-width: $mobile-res){
-      padding: 150px 0;
-    }
-  }
-}
 
 //////////////////////////////////////////////////////
 /* 3.8 Steps.js & Step.js */
