@@ -1,197 +1,320 @@
-@import "./variables.scss";
+@import './variables.scss';
+@import './mLingo.scss';
+@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
 
-/* MENU */
+//////////// Rebuild SCSS ////////////
+//////////// components ////////////
+// 1. account_
+// --- 1.1 collection_
+// --- --- 1.1.1 CollectionCard
+// --- --- 1.1.2 CollectionCreate
+// --- --- 1.1.3 CollectionFlashcard
+/* --- --- 1.1.4 CollectionScreen
+// --- 1.2 set_
+/* --- --- 1.2.1 SetCard */
+// --- 1.3 user_
+/* --- --- 1.3.1 UserHead */
+/* --- --- 1.3.2 UserHead Section */
+// 2. landpage
+// --- formpage_
+/* --- --- 2.1.1 Formulars Login and Register */
+// --- mainpage_
+/* --- --- 2.2.1 Newsletter */
+/* --- --- 2.2.2 Opinions & Opinion */
+/* --- --- 2.2.3 Steps & Step */
+/* --- --- 2.2.4  Mainpage Welcome */
+// 3. layout
+/* --- --- 3.1.1  Layout Footer */
+/* --- --- 3.1.2  Layout Navbar */
+/* --- --- 3.1.3  Layout SearchInput */
+/* --- --- 3.1.4  Layout User Menu */
+// 4. layouts
+/* --- --- 4.1.1  Layouts */
 
-/* Components */
-
-/* Card Components */
-/* 1.1 CardComponent.js */
-/* 1.2 Collection.js */
-/* 1.3 Flashcard.js */
-/* 1.4 UserCreateCollection.js */
-
-/* Form Components */
-/* 2.1 FormField.js */
-/* 2.2 Login.js */
-/* 2.3 Register.js */
-
-/* LandPage Components */
-/* 3.1 Formular.js */
-/* 3.2 Promo.js */
-/* 3.3 SignInModal.js */
-/* 3.4 Slider.js */
-/* 3.5 UserPromo.js */
-/* 3.6 WelcomeSection.js */
-/* 3.7 Newsletter */
-/* 3.8 Steps.js & Step.js */
-/* 3.9 Opinions.js & Opinion.js */
-
-/* Layout Components */
-/* 4.1 AppNavbar.js */
-/* 4.2 Footer.js */
-
-/* Pages Components */
-/* 5.1 Search.js */
-/* 5.2 UserCreate.js */
-/* 5.3 UserHead.js */
-
-/* Search Components */
-/* 6.1 SearchInput.js */
-
-/* UserBase Components */
-/* 7.1 UserSection.js */
-/* 7.2 StudySetsSection.js */
-/* 7.3 CollectionSection */
-
-
-/* layouts */
-/* 8.1 Layout.js */
-
-
-/* Animations */
-/* 9.1 Loading.js */
 
 
 //////////////////////////////////////////////////////
-/* Components */
+/* --- --- 1.1.1 CollectionCard */
+/* --- --- 1.2.1 SetCard */
 //////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////
-/* Card Components */
-//////////////////////////////////////////////////////
+.card__container{
+    width: 150px;
+    height: 150px;
+    margin: 0 55px 0 0 ;
+    border-radius: 25px;
+    border: 0;
+
+    display:flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.card__body{
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.card--collection{
+    background: url('../../img/collection.svg');
+    background-size: cover;
+}
+
+.card--set{
+    background: url('../../img/studyset.png');
+    background-size: cover;
+}
+
+.card__title, .card__subtitle {
+    color: $dark-blue;
+}
+
+.card__title{
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+.card__link{
+    &:hover{
+        text-decoration: none !important;
+    }
+}
 
 //////////////////////////////////////////////////////
-/* 1.1 CardComponent.js */
+/* --- --- 1.1.2 CollectionCreate */
 //////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////
-/* 1.2 Collection.js */
-//////////////////////////////////////////////////////
+.create__container, .create--collection{
+    @extend .col-sm-12;
+    padding: 1rem;
+
+    @media(min-width: $tablet-res){
+        &{
+            flex: 0 0 79%;
+            max-width: 79%;
+        }
+
+    }
+}
+
+.create__details{
+    @extend .flex--start;
+    @extend .col-12;
+}
+
+.details__img{
+    @extend .img-fluid;
+    margin: 0 25px;
+}
+
+.details__description{
+    font-size: 14px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid $dark-blue;
+    border: 1px solid #B2B2B2;
+    border-radius: 10px;
+}
+
+.details__title{
+    color: $dark-blue;
+    font-size: 14px;
+}
+
+.details__buttons{
+    @extend .flex--between;
+}
+
+.create__more{
+    @extend  .flex--complet;
+    margin: 1rem;
+}
+
+.action__description{
+    margin-left: 15px;
+    color: $dark-blue;
+    font-size: 1.75em;
+}
+
+.create__button{
+    margin: 20px 0;
+}
 
 //////////////////////////////////////////////////////
-/* 1.3 Flashcard.js */
+/* --- --- 1.1.3 CollectionFlashcard */
 //////////////////////////////////////////////////////
 
-.flashcard{
+.flashcard__container{
+    @extend .col-12;
+    display: flex;
+}
 
+.flashcard__card{
+  @extend .col-5;
   height: 200px;
   padding: 20px;
   background: white;
   border-radius: 25px;
   box-shadow: 0px 6px 8px #00000029;
   margin: 20px;
+}
 
-
-  .flashcard--title{
-    display: flex;
-    justify-content: space-between;
+.flashcard__info{
+    @extend .flex--between;
     align-items: center;
-  }
+}
 
-  .flashcard--def{
+
+.flashcard__number{
+    color: $dark-blue;
+    font-size: 16px;
+    font-weight: bold;
+}
+.flashcard__side{
+    color: $light-green;
+    font-size:12px;
+}
+
+.flashcard__definition{
     color: #B2B2B2;
     font-size: 16px;
     border: 0;
     border-bottom: 1px solid #B2B2B2;
 
     &:focus{
-      outline: none;
+        outline: none;
     }
-  }
-
-
-  h2{
-    color: $dark-blue;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  h5{
-    color: $light-green;
-    font-size:12px;
-  }
-
 }
 
 //////////////////////////////////////////////////////
-/* 1.4 UserCreateCollection.js */
+/* --- --- 1.1.4 CollectionScreen */
 //////////////////////////////////////////////////////
 
-.createCollection{
-
-  .flashsquare{
-    transform: scale(0.8);
-  }
-
-  button{
-    margin: 0 10px 0 0 ;
-  }
-
-  h5{
-    color: $dark-blue;
-    font-size: 14px;
-  }
-
-  & {
-    input[type=text], textarea[name=collectionDescription]{
-      font-size: 14px;
-      margin-bottom: 10px;
-      border-radius: 5px;
-      padding: 5px;
-      border: 1px solid $dark-blue;
-      border: 1px solid #B2B2B2;
-      border-radius: 10px;
-    }
-  }
-
+.collection__container{
+  @extend .all__containers__in__user__section;
+  padding: 20px;
 }
 
-//////////////////////////////////////////////////////
-/* Form Components */
-//////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////
-/* 2.1 FormField.js */ /* & */ /* 2.2 Login.js */ /* & */ /* 2.3 Register.js */
-//////////////////////////////////////////////////////
-
-.registerForm2 form div{
-  margin: 9px 0;
-}
-
-.registerForm2 input[type="text"], .registerForm2 input[type="password"], .registerForm2 input[type="email"] {
-  height: 40px;
-  font-size: 18px;
-  border: 1px solid #707070;
-  border-radius: 10px;
-
-}
-
-.registerForm2 input[type="text"]:focus, .registerForm2 input[type="password"]:focus, .registerForm2 input[type="email"]:focus {
-  outline: none !important;
-
-}
-
-.registerForm2 {
-  padding: 10vh 0;
-
-  h1 {
-    font-size: 32px;
-    font-weight: 900;
-  }
-
-  form {
-    display: flex;
+.collection__info{
+    @extend .flex--around;
     flex-wrap: wrap;
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 25px;
+}
+
+.collection__title, .collection__description{
+    font-size: 1.5em;
+    color: $dark-blue;
+}
+
+.collection__title{
+    font-weight: bold;
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 1.1.5 CollectionSearch */
+//////////////////////////////////////////////////////
+
+.search__container{
+    //
+}
+.search__title, .search__nofound{
+    font-size: 1.5em;
+    color: $dark-blue;
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 1.3.1 UserHead */
+//////////////////////////////////////////////////////
+
+.userhead__container{
+    @extend .all__containers__in__user__section, .flex--complet;
+}
+
+.section__container{
+    max-width: 100%;
+    display: flex;
     justify-content: center;
-  }
-  p{
-    padding: 0 !important;
-    margin: 0 !important;
-  }
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 50px;
+}
 
-  input[type="checkbox"] { display: none; }
+.userhead__section{
+    max-width: 100%;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0px 6px 8px #00000029;
+    border-radius: 25px;
+    margin: 20px;
+}
 
-  input[type="checkbox"] + label {
+//////////////////////////////////////////////////////
+/* --- --- 1.3.2 UserHead Section */
+//////////////////////////////////////////////////////
+
+.section__title{
+    color:$dark-blue;
+    font-weight: 900;
+    font-size: 2em;
+}
+
+.section__description{
+    //
+}
+
+// sections
+.cards__container{
+padding: 50px 0;
+display: flex;
+text-align: center;
+align-items: center;
+flex-wrap: nowrap;
+overflow-x: auto;
+overflow-y: hidden;
+
+/* hide scrollbar */
+
+&::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+&::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 2.1.1 Formulars Login and Register */
+//////////////////////////////////////////////////////
+
+.forminput__container{
+    @extend .col-12, .mb-3;
+    margin: 9px 0;
+}
+.forminput__input{
+    @extend .col-12;
+    height: 40px;
+    font-size: 18px;
+    border: 1px solid #707070;
+    border-radius: 10px;
+    &:focus{
+        outline: none !important;
+    }
+}
+
+.form__checkbox{
+    display: none;
+
+    & + label {
     display: block;
     position: relative;
     padding-left: 35px;
@@ -203,14 +326,15 @@
     -ms-user-select: none;
   }
 
-  input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+  & + label:last-child { margin-bottom: 0; }
 
-  input[type="checkbox"] + label:before {
+  & + label:before {
     content: '';
     display: block;
     width: 20px;
     height: 20px;
     border: 1px solid $dark-blue;
+    border-radius: 5px;
     position: absolute;
     left: 0;
     top: 0;
@@ -219,7 +343,7 @@
     transition: all .12s, border-color .08s;
   }
 
-  input[type="checkbox"]:checked + label:before {
+  &:checked + label:before {
     width: 10px;
     top: -5px;
     left: 5px;
@@ -230,15 +354,26 @@
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
   }
-
 }
 
-.alreadyaccount{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
-  margin-top: 28px !important;
+.form__title{
+    @extend .col-12, .mb-5;
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.form__form{
+    @extend .col-12, .offset-lg-3, .col-lg-6;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10vh 0;
+}
+
+.form__alreadyaccount{
+    font-size: 14px;
+    margin-top: 28px !important;
+    @extend .col-12, .flex--complet ;
 
   a{
     color: $dark-blue;
@@ -247,239 +382,402 @@
   }
 }
 
-//////////////////////////////////////////////////////
-/* 2.2 Login.js */
-//////////////////////////////////////////////////////
+.form__getstarted{
+    @extend .col-12, .col-lg-4, .mt-5;
+}
 
-.remember{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-  color: $dark-green;
-  margin-bottom: 88px !important;
-
-  label{
-    font-weight: 400 !important;
-  }
-
-  a{
+.form__remember{
+    @extend .col-12, .flex--between, .mb-5;
+    align-items: center;
     color: $dark-green;
-  }
 }
 
-//////////////////////////////////////////////////////
-/* 2.3 Register.js */
-//////////////////////////////////////////////////////
+.remember__forgotpassword{
+    color: $dark-green;
+    font-size: 13px;
 
-.fbconnect,.ggconnect{
-  color: white;
-  border-radius: 5px;
-  font-size: 14px;
-  padding: 5px 0;
-  margin: 5px 0;
-}
-.fbconnect{
-  background-color: #3b5998;
-
-}
-.ggconnect{
-  background-color:#DB4437;
-}
-
-.registerbutton{
-  margin: 48px 0 85px 0;
-}
-
-//////////////////////////////////////////////////////
-// REMOVE UNUSED COMPONENTS FIRST
-//////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////
-/* LandPage Components */
-//////////////////////////////////////////////////////
-
-.main-page-h2{
-  color: $dark-blue;
-  font-size: 36px;
-  font-weight: bold;
-}
-
-//////////////////////////////////////////////////////
-/* 3.1 Formular.js */
-//////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////
-/* 3.2 Promo.js */
-//////////////////////////////////////////////////////
-
-.help-others {
-  margin: 0 auto;
-  width: 100%;
-  height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: url("../../img/slid3.jpg") fixed;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  filter: brightness(0.5);
-  position: relative;
-  z-index: -1;
-}
-
-.img-media {
-  max-width: 128px;
-}
-
-.Promo {
-  padding: 5vh 0;
-}
-
-@media (min-width: $desktop-res) {
-  .Promo h1 {
-    font-size: 48px;
-  }
-  .help-others-text h1 {
-    font-size: 52px;
-  }
-  .help-others-text h3 {
-    font-size: 24px;
-  }
-}
-
-@media (max-width: $mobile-res) {
-  .Promo h1 {
-    margin-bottom: 20px;
-  }
-}
-
-.Promo h1 {
-  text-align: center;
-  font-size: 28px;
-}
-
-li.media {
-  padding: 3vh 0;
-  border-bottom: 1px solid gray;
-  font-size: 16px;
-}
-
-li.media h4 {
-  font-size: 32px;
-}
-
-
-/* 3.3 SignInModal.js */
-/* 3.4 Slider.js */
-
-/* UNUSED */
-
-/*  Slider.js */
-
-.carousel-sign-in {
-  position: absolute;
-  width: 30vw;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-@media (min-width: $desktop-res) {
-  .carousel-caption {
-    p {
-      font-size: 18px;
+    &:hover{
+        text-decoration: none;
+        color: $dark-green;
     }
-    h3 {
-      font-size: 32px;
+}
+
+.remember__label{
+    font-weight: 400 !important;
+}
+
+.register--button{
+    margin: 48px 0 85px 0;
+}
+
+.formsocials__container{
+    @extend .col-12;
+}
+.fbconnect__button,.ggconnect__button{
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 5px 0;
+    margin: 5px 0;
+    @extend .col-12;
+}
+
+.fbconnect__button{
+    background-color: #3b5998;
+}
+
+.ggconnect__button{
+    background-color:#DB4437;
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 2.2.1 Newsletter */
+//////////////////////////////////////////////////////
+
+.newsletter__section{
+    @extend .col-12, .flex--complet;
+    position: relative;
+    color: $dark-blue;
+}
+
+.leftcircle__container, .rightcircle__container{
+    @extend .col-6;
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    width: auto;
+}
+
+.leftcircle__container{
+    position: absolute;
+    left: -20%;
+}
+.rightcircle__container{
+    position: absolute;
+    right: -20%;
+}
+
+@media(max-width: $mobile-res){
+    .rightcircle__container{
+      right: -100px;
     }
-  }
+    .leftcircle__container{
+      left: -100px;
+    }
 }
 
-.slider {
-  padding: 0px !important;
-  object-fit: cover;
-  box-sizing: border-box;
-  position: relative;
+.left__circle{
+    @extend .img-fluid;
 }
-.carousel-item {
-  background: $dark-blue;
+.right__circle{
+    @extend .img-fluid;
+}
 
-  img {
-    object-fit: cover;
+.newsletter__thanks{
+    @extend .col-10, .col-sm-4;
+    padding: 20vh 0;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 900;
+}
+
+.newsletter__subscribe{
+    @extend .col-sm-10, .col-md-4;
+    padding: 200px 0;
+    text-align:center;
+
+    @media(max-width: $mobile-res){
+      padding: 150px 0;
+    }
+}
+
+.newsletter__title{
+    @extend .mb-5;
+
+    @media(max-width: $mobile-res){
+        font-size: 20px;
+    }
+}
+
+.newsletter__description{
+    font-size: 18px;
+    margin: 0 !important;
+
+    @media(max-width: $mobile-res){
+        font-size: 12px;
+        margin: 0 !important;
+    }
+}
+
+.newsletter__email{
+    @extend .my-5;
+    width: 200px;
+
+    @media(max-width: $mobile-res){
+        &{
+            margin: 10px 0 !important;
+            font-size: 12px;
+            width: 150px;
+        }
+    }
+}
+
+
+//////////////////////////////////////////////////////
+/* --- --- 2.2.2 Opinions & Opinion */
+//////////////////////////////////////////////////////
+
+.opinions__container{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+
+      @media(max-width: $mobile-res){
+        &{
+            padding: 20px;
+        }
+      }
+}
+
+.opinions__title{
+    text-align: center;
+    margin-bottom: 10vh;
+}
+
+
+.opinion__container{
+    @extend .offset-md-3,  .col-md-8;
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+
+    &::before{
+      content: url("../../img/bubbles-newsletter-01.svg");
+      transform: scale(0.8);
+      position: absolute;
+      top:-70px;
+      left:-70px;
+    }
+    &::after{
+      content: url("../../img/bubbles-newsletter-02.svg");
+      transform: scale(0.8);
+      position: absolute;
+      bottom:-70px;
+      left:0;
+    }
+
+    @media(max-width: $tablet-res){
+      &{
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+
+        &::before{
+          transform: scale(0.5);
+          top:-50px;
+          left:-10px;
+        }
+        &::after{
+          transform: scale(0.5);
+          bottom:-60px;
+          right: -50px;
+        }
+      }
+    }
+}
+
+.opinion__img{
+    width: 130px;
+    height: 130px;
+    border-radius: 100%;
+}
+
+.opinion__description{
+   @extend .col-md-7;
+
+
+   font-size: 16px;
+   color: $dark-blue;
+   word-spacing: 2px;
+
+   @media(max-width: $tablet-res){
+        margin-top: 20px;
+        font-size: 12px;
+   }
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 2.2.3 Steps & Step */
+//////////////////////////////////////////////////////
+
+.steps__container{
+    @extend .flex--center;
+    flex-direction: column;
+    color: $dark-blue;
+    padding-top: 0px !important;
+
+    @media(max-width: $mobile-res){
+        &{
+          padding: 0 !important;
+        }
+    }
+}
+
+.steps__title{
+    @extend .mt-5;
+
+    &::before{
+        content: url("../../img/bubbles-L.svg");
+        margin-right: 10px;
+    }
+    &::after{
+        content: url("../../img/bubbles-R.svg");
+        margin-left: 10px;
+    }
+
+    @media(max-width: $mobile-res){
+        &{
+            font-size: 20px !important;
+        }
+    }
+    @media( min-width:$mobile-res) and (max-width: $tablet-res){
+        &{
+          font-size: 26px !important;
+        }
+    }
+}
+
+.steps__list{
+    @extend .mt-5;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
+    @media(max-width: 1200px){
+        &{
+        flex-wrap: wrap;
+        }
+    }
+}
+
+.step__element{
+    @extend .col-lg-7, .col-xl-4, .my-5, .flex--around;
+
+    flex-wrap: nowrap;
+    align-items: center;
+
+
+    @media(max-width: 1200px){
+        &{
+            justify-content: space-around;
+        }
+    }
+    @media(max-width: $tablet-res){
+        &{
+          flex-wrap: wrap;
+          text-align: center;
+        }
+    }
+}
+
+.step__img{
+    @extend .img-fluid;
+    transform: scale(0.8);
+
+    @media(max-width: $tablet-res){
+        &{
+            margin-bottom: 20px;
+        }
+      }
+}
+
+.step__details{
+    @extend .col-sm-12, .col-md-8;
+    margin:  0 20px;
+
+    @media(min-width: 1200px){
+        &{
+          margin: 0 0px;
+        }
+      }
+}
+
+.step__title{
+    font-weight: bold;
+    font-size: 1.5em;
+
+    @media(min-width: 1200px){
+    &{
+        font-size: 14px;
+
+    }
+    }
+}
+
+
+//////////////////////////////////////////////////////
+/* --- --- 2.2.4  Mainpage Welcome */
+//////////////////////////////////////////////////////
+
+.welcome__container{
+    position: relative;
     width: 100%;
-    height: 80vh;
-    filter: brightness(0.5);
-  }
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+
+    @media(min-width: $tablet-res){
+        &{
+        min-height: 494px;
+        }
+    }
+
+    @media(min-width: 1200px){
+        &{
+        min-height: 618px;
+        }
+    }
+
+    @media(max-width:$tablet-res){
+        &{
+        height: 371px;
+        }
+    }
+
+
+
+
+    @media(max-width: $mobile-res){
+        &{
+        height: 297px;
+        }
+
+    }
+
+    // Iphone number Plus models and lower
+    @media(max-width:415px){
+        &{
+        height: 214px;
+        }
+    }
 }
-
-.carousel-indicators {
-  width: auto !important;
-  margin-left: 0px !important;
-  margin-right: 0px !important;
-
-  .active {
-    width: 45px !important;
-    height: 3px !important;
-    transition: 0.7s;
-  }
-  li {
-    background-clip: unset !important;
-    border: 0px !important;
-  }
-}
-
-//////////////////////////////////////////////////////
-/* 3.5 UserPromo.js */
-//////////////////////////////////////////////////////
-
-.help-others-text {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  color: white;
-  text-shadow: 0.1em 0.1em 0.2em black;
-
-  h1 {
-    text-align: center;
-  }
-
-  h3 {
-    line-height: 1.6;
-    text-align: center;
-  }
-}
-
-//////////////////////////////////////////////////////
-/* 3.6 WelcomeSection.js */
-//////////////////////////////////////////////////////
-
-
-
-div.welcome-section{
-  position: relative;
-
-  img{
+.welcome__img{
+    @extend .img-fluid;
     position: absolute;
     top:0;
     left:0;
     z-index: 0;
     object-fit: cover;
-  }
+}
 
-
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-
-  &>div{
-
+.welcome__details{
     z-index: 1;
     max-width:50%;
     display: flex;
@@ -488,352 +786,123 @@ div.welcome-section{
     flex-direction: column;
     padding-right: 80px;
 
-  h2{
+    @media(max-width: $mobile-res){
+        &{
+            padding-right: 0px;
+        }
+    }
+}
+
+.welcome__title{
     text-align: left;
-  }
-  p{
+    color: $dark-blue;
+    font-size: 36px;
+    font-weight: 700;
+
+    @media(max-width:$tablet-res){
+        &{
+            font-size: 22px;
+        }
+    }
+
+    @media(max-width: $mobile-res){
+        &{
+        font-size: 18px;
+        }
+    }
+    @media(max-width:415px){
+        &{
+        font-size: 16px;
+        }
+    }
+}
+
+.welcome__description{
     font-size: 16px;
     max-width: 350px;
     color: $light-blue;
-  }
-  }
 
-}
+    @media(max-width:$tablet-res){
+            &{
+            font-size: 12px;
+            }
+        }
 
-
-
-@media(min-width: $tablet-res){
-  div.welcome-section{
-    min-height: 494px;
-  }
-}
-
-@media(min-width: 1200px){
-  div.welcome-section{
-    min-height: 618px;
-  }
-}
-
-@media(max-width:$tablet-res){
-  div.welcome-section{
-    height: 371px;
-
-    &>div h2{
-      font-size: 22px;
-    }
-    &>div p{
-      font-size: 12px;
-    }
-  }
-}
-
-
-@media(max-width: $mobile-res){
-  div.welcome-section{
-    height: 297px;
-
-    &>div{
-      padding-right: 0px;
-    }
-
-    &>div h2{
-      font-size: 18px;
-    }
-    &>div p{
-      font-size: 10px;
-    }
-  }
-
-}
-
-// Iphone number Plus models and lower
-@media(max-width:415px){
-  div.welcome-section{
-    height: 214px;
-
-    &>div{
-      padding-right: 0px;
-    }
-
-    &>div h2{
-      font-size: 16px;
-    }
-    &>div p{
-      font-size: 10px;
-    }
-  }
-}
-
-//////////////////////////////////////////////////////
-/* 3.7 Newsletter */
-//////////////////////////////////////////////////////
-
-#newsletter-section{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  color: $dark-blue;
-
-  p{
-    font-size: 18px;
-    margin: 0 !important;
-  }
-  input{
-    width: 200px;
-  }
-
-
-  @media(max-width: $mobile-res){
-    &{
-      h2{
-        font-size: 20px;
-      }
-      p{
-        font-size: 12px;
-        margin: 0 !important;
-      }
-      input{
-        margin: 10px 0 !important;
-        font-size: 12px;
-        width: 150px;
-      }
-    }
-  }
-
-  .newsletter-thanks{
-    padding: 20vh 0;
-    text-align: center;
-  }
-
-
-
-  .left-circle-container, .right-circle-container{
-    position: relative;
-    overflow: hidden;
-    height: auto;
-    width: auto;
-  }
-  .left-circle-container{
-    position: absolute;
-    left: -20%;
-  }
-  .right-circle-container{
-    position: absolute;
-    right: -20%;
-  }
-
-  @media(max-width: $mobile-res){
-    .right-circle-container{
-      right: -100px;
-    }
-    .left-circle-container{
-      left: -100px;
-    }
-  }
-
-  .newsletter-subscribe{
-    padding: 200px 0;
-    text-align:center;
 
     @media(max-width: $mobile-res){
-      padding: 150px 0;
+        &{
+        font-size: 10px;
+        }
     }
-  }
+
+
+    // Iphone number Plus models and lower
+    @media(max-width:415px){
+        &{
+        font-size: 10px;
+        }
+    }
 }
 
 //////////////////////////////////////////////////////
-/* 3.8 Steps.js & Step.js */
+/* --- --- 3.1.1  Layout Footer */
 //////////////////////////////////////////////////////
 
-#Steps{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: $dark-blue;
-  padding-top: 0px !important;
-
-  >h2::before{
-    content: url("../../img/bubbles-L.svg");
-    margin-right: 10px;
-  }
-  >h2::after{
-    content: url("../../img/bubbles-R.svg");
-    margin-left: 10px;
-  }
-
-  @media(max-width: $mobile-res){
-    &{
-      padding: 0 !important;
-
-      >h2{
-        font-size: 20px;
-      }
-    }
-  }
-
+.footer__container {
+    @extend .container;
+    background: $dark-blue;
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    color: white;
 }
-#Steps-container{
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
+.footer__details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  @media(max-width: 1200px){
-    &{
-      flex-wrap: wrap;
+    &>div{
+    padding: 0 10px;
     }
-  }
 
+    &>div:nth-child(2),&>div:nth-child(3){
+    border-left: 2px solid white;
+    }
+
+    @media(max-width: 767px){
+    &>div:nth-child(2),&>div:nth-child(3){
+        display: none;
+    }
+    }
+
+    p{
+    margin: 0 !important;
+    }
 }
 
-#Steps{
-  @media( min-width:$mobile-res) and (max-width: $tablet-res){
-    h2{
-      font-size: 26px !important;
-    }
-  }
+.social__mlingo {
+color: white;
+font-size: 24px;
+margin: 0 12px;
+transition: 0.5s;
 }
-
-.Step{
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-around;
-
-  @media(max-width: 1200px){
-    &{
-      justify-content: space-around;
-    }
-  }
-
-  img{
-    transform: scale(0.8);
-  }
-  h2{
-    font-weight: bold;
-  }
-  div{
-    margin:  0 20px;
-  }
-
-  @media(min-width: 1200px){
-    &{
-      >div h2{
-      font-size: 17px;
-    }
-
-    div{
-      margin: 0 0px;
-    }
-
-  }
-  }
-
-  @media(max-width: $tablet-res){
-    &{
-      flex-wrap: wrap;
-      text-align: center;
-      img{
-        margin-bottom: 20px;
-      }
-
-
-    }
-  }
+.social__mlingo:hover{
+color: $light-green;
+cursor: pointer;
 }
 
 //////////////////////////////////////////////////////
-/* 3.9 Opinions.js & Opinion.js */
-//////////////////////////////////////////////////////
-
-#Opinions{
-
-  h2{
-    text-align: center;
-    margin-bottom: 10vh;
-  }
-
-  @media(max-width: $mobile-res){
-    padding: 20px;
-  }
-
-}
-
-.Opinion{
-  position: relative;
-  display: flex;
-  flex-wrap: nowrap;
-
-
-  img{
-    width: 130px;
-    height: 130px;
-    border-radius: 100%;
-  }
-  &::before{
-    content: url("../../img/bubbles-newsletter-01.svg");
-    transform: scale(0.8);
-    position: absolute;
-    top:-70px;
-    left:-70px;
-  }
-  &::after{
-    content: url("../../img/bubbles-newsletter-02.svg");
-    transform: scale(0.8);
-    position: absolute;
-    bottom:-70px;
-    left:0;
-  }
-
-  p{
-    font-size: 16px;
-    color: $dark-blue;
-    word-spacing: 2px;
-  }
-
-  @media(max-width: $tablet-res){
-    &{
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-
-      p{
-        margin-top: 20px;
-        font-size: 12px;
-      }
-
-      &::before{
-        transform: scale(0.5);
-        top:-50px;
-        left:-10px;
-      }
-      &::after{
-        transform: scale(0.5);
-        bottom:-60px;
-        right: -50px;
-      }
-    }
-  }
-}
-
-
-
-//////////////////////////////////////////////////////
-/* Layout Components */
-//////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////
-/* 4.1 AppNavbar.js */
+/* --- --- 3.1.2  Layout Footer */
 //////////////////////////////////////////////////////
 
 // NAVBAR CONTAINER SIZES //
 
 @media (min-width: 576px)
 {
-  .navbar--dark {
+  .app__navbar {
     max-width: 540px;
 
   }
@@ -841,7 +910,7 @@ div.welcome-section{
 
 @media (min-width: 577px)
 {
-  .navbar--dark {
+  .app__navbar {
     max-width: 480px;
     height: 80px;
   }
@@ -849,7 +918,7 @@ div.welcome-section{
 
 @media (min-width: 768px)
 {
-  .navbar--dark {
+  .app__navbar {
     max-width: 600px;
     height: 100px;
   }
@@ -857,29 +926,22 @@ div.welcome-section{
 
 @media (min-width: 992px)
 {
-  .navbar--dark {
+  .app__navbar {
     max-width: 720px;
     height: 100px;
   }
 }
 @media (min-width: 1199px)
 {
-  .navbar--dark{
+  .app__navbar{
     max-width: 1000px;
     height: 100px;
   }
 }
-/* MODAL */
-.show {
-  opacity: 1;
-}
 
 @media (max-width: $mobile-res) {
-  .navbar__brand--text {
-    font-size: 14px !important;
-  }
 
-  .navbar--dark {
+  .app__navbar {
     padding: 10px 5px;
   }
 
@@ -890,12 +952,7 @@ div.welcome-section{
   .navbar__brand{
     transform: scale(0.8);
   }
-}
 
-@media (min-width: $desktop-res) {
-  .modal-dialog {
-    max-width: 60vw;
-  }
 }
 
 .navbar__buttons {
@@ -910,35 +967,6 @@ div.welcome-section{
       margin: 0 0 0 18px ;
     }
   }
-
-  input[type="text"]{
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: 1px solid #707070;
-    border-radius: 8px;
-    height: 40px;
-    max-width: 400px;
-    font-size: 22px;
-    padding: 0 10px;
-
-    @media(max-width: $tablet-res){
-      height: 30px !important;
-      font-size: 18px;
-    }
-
-    &:focus{
-      border: 1px solid $light-green;
-      outline: none !important;
-    }
-
-  }
-}
-
-.navbar__brand--text {
-  font-family: 'Poppins', sans-serif;
-  font-size: 24px;
-  text-shadow: 0.1em 0.1em 0.2em black;
-  color: #ddd;
-  font-weight: bold;
 }
 .navbar__brand{
   position: relative;
@@ -951,7 +979,7 @@ div.welcome-section{
   max-width: 150px;
 }
 
-.navbar--dark {
+.app__navbar {
   background: $dark-blue;
   border: 0 !important;
   display: flex;
@@ -961,241 +989,151 @@ div.welcome-section{
 
 }
 
+.brand__img{
+    @extend .img-fluid;
+}
+
 .navbar__registerbutton {
   @include outbutton("inherit");
 }
 
-.signinbutton {
+.signin__button {
   @include inbutton("inherit");
 }
 
 
-//////////////////////////////////////////////////////
-/* 4.2 Footer.js */
-//////////////////////////////////////////////////////
-
-@media (min-width: 1199px){
-  .footer{
-    max-width: 100%;
-  }
-}
-
-.footer {
-  background: $dark-blue;
-  width: 100%;
-  height: 20vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  color: white;
-
-  &-end-text {
-    color: white;
-    vertical-align: middle;
-
-  }
-
-  &>div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &>div{
-      padding: 0 10px;
-    }
-
-    &>div:nth-child(2),&>div:nth-child(3){
-      border-left: 2px solid white;
-    }
-
-    @media(max-width: 767px){
-      &>div:nth-child(2),&>div:nth-child(3){
-        display: none;
-      }
-    }
-
-    p{
-      margin: 0 !important;
-    }
-
-  }
-}
-
-.social {
-  color: white;
-  font-size: 24px;
-  margin: 0 12px;
-  transition: 0.5s;
-}
-.social:hover{
-  color: $light-green;
-  cursor: pointer;
-}
-
-
-//////////////////////////////////////////////////////
-/* Pages Components */
-//////////////////////////////////////////////////////
-
-
-
-//////////////////////////////////////////////////////
-/* 5.1 Search.js */
-//////////////////////////////////////////////////////
-
-
-
-//////////////////////////////////////////////////////
-/* 5.2 UserCreate.js */
-//////////////////////////////////////////////////////
-
-input[name=collectionName]{
-  padding: 5px;
-  font-size: 14px;
-  border-radius: 5px;
-  border: 1px solid $dark-blue;
-}
-
-//////////////////////////////////////////////////////
-/* 5.3 UserHead.js */
-//////////////////////////////////////////////////////
-
-// Max-width: 100% - because of overflow-x: auto //
-
-.mainpanel__userbase{
-  max-width: 100%;
-  section{
-    max-width: 100%;
-    padding: 30px;
-    background-color: white;
-  }
-}
-
-@media (max-width: $mobile-res) {
-  .mainpanel{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .mainpanel__userbase{
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-}
-
-@media (min-width: $desktop-res) {
-  .mainpanel{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 85%;
-  }
-  .mainpanel__userbase{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 50px;
-
-    section{
-      box-shadow: 0px 6px 8px #00000029;
-      border-radius: 25px;
-      padding: 20px;
-    }
-  }
-}
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/* Search Components */
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-/* 6.1 SearchInput.js */
+/* 3.1.3 SearchInput.js */
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @media(max-width: $tablet-res){
-  .searchbuttontext{
-    display: none;
-  }
-}
-
-.searchbutton{
-  font-size: 24px;
-  color: white;
-  background: inherit;
-  border: none;
-  margin: 0 0 0 10px;
-  text-decoration: none;
-
-
-  /*for FireFox*/
-  &::-moz-focus-inner
-  {
-      border : 0;
-  }
-  /*for IE8 and below */
-  &:focus, &:focus
-  {
-      outline : none;
-  }
-
-  &:hover{
-    color: $light-green;
-    cursor: pointer;
-    outline: hidden;
-  }
-
-  &:focus{
-    outline: hidden;
-    color: $dark-green;
-    border: 0;
-    box-shadow: 0;
-    outline-offset: -4px;
-  }
-
-  &::-moz-focus-inner {
-    border: 0;
-    outline: none;
-  }
-
-}
-
-//////////////////////////////////////////////////////////////////
-/* UserBase Components */
-//////////////////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////////////////
-/* 7.0 UserMenu.js */
-//////////////////////////////////////////////////////////////////
-
-.usermenu{
-  background-color: white;
-  box-shadow: 0px 6px 8px #00000029;
-
-  // usermenu 100vh when is collapsed!!
-
-  @media(max-width: $tablet-res){
-    div.collapse, div.collapsing{
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
+    .searchbutton__text{
+      display: none;
     }
   }
 
-  & div{
-    padding: 10px 15px;
+  .search__button{
+    font-size: 24px;
+    color: white;
+    background: inherit;
+    border: none;
+    margin: 0 0 0 10px;
+    text-decoration: none;
+
+
+    /*for FireFox*/
+    &::-moz-focus-inner
+    {
+        border : 0;
+    }
+    /*for IE8 and below */
+    &:focus, &:focus
+    {
+        outline : none;
+    }
+
+    &:hover{
+      color: $light-green;
+      cursor: pointer;
+      outline: hidden;
+    }
+
+    &:focus{
+      outline: hidden;
+      color: $dark-green;
+      border: 0;
+      box-shadow: 0;
+      outline-offset: -4px;
+    }
+
+    &::-moz-focus-inner {
+      border: 0;
+      outline: none;
+    }
+
   }
 
-  & h2{
+  .searchbutton__text{
+      background: #FFFFFF 0% 0% no-repeat padding-box;
+      border: 1px solid #707070;
+      border-radius: 8px;
+      height: 40px;
+      max-width: 400px;
+      font-size: 22px;
+      padding: 0 10px;
+
+      @media(max-width: $tablet-res){
+        height: 30px !important;
+        font-size: 18px;
+      }
+
+      &:focus{
+        border: 1px solid $light-green;
+        outline: none !important;
+      }
+
+}
+
+//////////////////////////////////////////////////////////////////
+/* 4.1.3 User Menu */
+//////////////////////////////////////////////////////////////////
+
+// because od toggling I left some bootstrap styles
+
+.usermenu__container{
+    background-color: white;
+    box-shadow: 0px 6px 8px #00000029;
+
+    // usermenu 100vh when is collapsed!!
+
+    @media(max-width: $tablet-res){
+      div.collapse, div.collapsing{
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+    }
+
+    & div{
+      padding: 10px 15px;
+    }
+
+    @media(min-width:768px){
+      .navbar-toggler{
+        display:none;
+      }
+    }
+
+    @media(max-width: 767px){
+      .navbar-toggler-icon{
+        position: relative;
+        padding: 10px;
+        height: 30px;
+      }
+
+      .navbar-toggler-icon:after,.navbar-toggler-icon:before {
+        content:'';
+        position: absolute;
+        z-index: 999;
+        top: 10px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $dark-blue;
+      }
+      .navbar-toggler-icon:after{
+        top: 20px;
+      }
+    }
+}
+
+.usermenu__title{
     font-size: 28px;
     font-weight: 900;
     padding: 25px 25px 5px 25px;
-  }
+}
 
-   .category{
+.usermenu__category{
     width: 100%;
     display: flex;
     align-items: center;
@@ -1203,288 +1141,57 @@ input[name=collectionName]{
     font-size: 18px;
     border-top: 1px solid #00000029;
 
-    a{
-      font-size: 18px;
-      color: #000536;
-      white-space: nowrap;
-      margin-left: 10px;
+}
+.usermenu__link{
+    font-size: 18px;
+    color: #000536;
+    white-space: nowrap;
+    margin-left: 10px;
+    &:hover{
+        text-decoration: none;
+        color: $dark-blue;
     }
   }
-  @media(min-width:768px){
-    .navbar-toggler{
-      display:none;
-    }
-  }
-
-  @media(max-width: 767px){
-    .navbar-toggler-icon{
-      position: relative;
-      padding: 10px;
-      height: 30px;
-    }
-
-    .navbar-toggler-icon:after,.navbar-toggler-icon:before {
-      content:'';
-      position: absolute;
-      z-index: 999;
-      top: 10px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: $dark-blue;
-    }
-    .navbar-toggler-icon:after{
-      top: 20px;
-    }
-  }
-}
-
-//////////////////////////////////////////////////////////////////
-/* 7.1 UserSection.js */
-//////////////////////////////////////////////////////////////////
-
-.UserSection{
-  margin: 0px 0px 120px 0px;
-  h2{
-    color: $dark-blue;
-    font-weight: bold;
-  }
-}
-
-//////////////////////////////////////////////////////////////////
-/* 7.2 StudySetsSection.js */
-//////////////////////////////////////////////////////////////////
-// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& BOTH &&&&&&&&&&&&&&&&&//////
-//////////////////////////////////////////////////////////////////
-/* 7.3 CollectionSection.js */
-//////////////////////////////////////////////////////////////////
-
-.yourcollections, .yourstudysets{
-  padding: 50px 0;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
-
-  /* hide scrollbar */
-
-    &::-webkit-scrollbar {
-      width: 0px;  /* Remove scrollbar space */
-      background: transparent;  /* Optional: just make scrollbar invisible */
-    }
-    /* Optional: show position indicator in red */
-    &::-webkit-scrollbar-thumb {
-        background: transparent;
-    }
-}
-
-.yourcollections div.card, .yourstudysets div.card{
-  width: 150px;
-  height: 150px;
-  margin: 0 55px 0 0 ;
-  background: url('../../img/collection.svg');
-  background-size: cover;
-  border-radius: 25px;
-  border: 0;
-}
-
-.yourcollections div.card div.card-body, .yourstudysets div.card div.card-body {
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-}
-
-.yourcollections h5,.yourcollections h6, .yourstudysets h5, .yourstudysets h6{
-   color: $dark-blue;
-}
-.yourcollections h5, .yourstudysets h5{
-  font-weight: 900;
-}
-.yourcollections button, .yourstudysets button{
-  min-width: 200px;
-  max-height: 60px;
-}
-
-.plus-button{
-  background-color: $light-green;
-  color: $dark-blue;
-  border: 5px solid $dark-blue;
-  font-weight: 800;
-  font-size: 28px;
-  border-radius: 50%;
-  padding: 5px 12px;
-  transition: 0.5s;
-
-  &:focus {
-    outline: none;
-    outline-offset: -4px;
-  }
-}
-.plus-button:hover{
-  color: $dark-blue;
-  background-color: $dark-green;
-}
-
-.yourstudysets div.card{
-  background: url('../../img/studyset.png');
-}
 
 
-//////////////////////////////////////////////////////////////////
-/* 7.3 Collectionscontent.js */
-//////////////////////////////////////////////////////////////////
-
-.yourcollections2{
-  display: flex;
-  text-align: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-//////////////////////////////////////////////////////////////////
-/* layouts */
-//////////////////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////////////////
-/* 8.1 Layout.js */
-//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+/* --- --- 4.1.1  Layouts */
+//////////////////////////////////////////////////////
 
 /* App Background and Bootstrap overwrites */
-.app--background{
-  background-color: $dark-blue;
-  position: absolute;
-  width: 100%;
-  min-height: 100%;
-  left: 0;
-  top: 0;
-  z-index: -999;
+.app__background{
+    background-color: $dark-blue;
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -999;
 }
 
 main.container{
-  background-color: #F8F8F8;
-  overflow: hidden;
-  padding: 50px;
-  position: relative;
+background-color: #F8F8F8;
+overflow: hidden;
+padding: 50px;
+position: relative;
 }
-main.user--container{
-  display: flex;
-  padding: 0px !important;
+.user--container{
+display: flex;
+padding: 0px !important;
 }
 
 @media(min-width: 768px){
-  main.container{
+main.container{
     border-radius: 70px;
-  }
+}
 }
 @media(max-width:767px){
-  main.container{
+main.container{
     max-width: 100%;
-  }
+}
 }
 
 // Landpage layout
 .container.p-0>div{
-  padding: 50px;
+padding: 50px;
 }
-
-
-//////////////////////////////////////////////////////////////////
-/* 9.1 Loading.js */
-//////////////////////////////////////////////////////////////////
-
-
-.loader{
-  width: 50px;
-  height: 50px;
-  top:50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(45deg);
-  position: absolute;
-}
-.introLoader{
-  animation: animate 1s linear infinite;
-}
-.loader span{
-  position: absolute;
-  width: 25px;
-  height: 25px;
-}
-.introSpan{
-  animation: rotate 2s ease-in-out infinite;
-}
-.loader span:nth-child(1){
-  background-color: $dark-blue;
-  top: 0;
-  left: 0;
-}
-.loader span:nth-child(2){
-  background-color: $dark-green;
-  top: 0;
-  right: 0;
-}
-.loader span:nth-child(3){
-  background-color: $dark-green;
-  bottom: 0;
-  left: 0;
-}
-.loader span:nth-child(4){
-  background-color: $dark-blue;
-  bottom: 0;
-  right: 0;
-}
-
-@keyframes animate{
-  0%{
-    width: 50px;
-    height: 50px;
-  }
-   10%{
-    width: 50px;
-    height: 50px;
-  }
-   50%{
-    width: 75px;
-    height: 75px;
-  }
-  90%{
-    width: 50px;
-    height: 50px;
-  }
-   100%{
-    width: 50px;
-    height: 50px;
-  }
-}
-
-@keyframes rotate{
-  0%{
-    transform: rotate(0deg);
-  }
-  10%{
-    transform: rotate(0deg);
-  }
-  50%{
-    transform: rotate(90deg);
-  }
-  90%{
-    transform: rotate(0deg);
-  }
-  100%{
-    transform: rotate(0deg);
-  }
-}
-
-
-//////////////////////////////////////////////////////////////////
-//////// LOOOOST STYLES ////////////
-/////////////////////////////////
-
-.searchcollectioninput{
-  margin: 20px;
-}
-
-
