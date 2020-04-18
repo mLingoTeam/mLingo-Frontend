@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LayoutLandpage from '../../layouts/LayoutLandpage';
+import LayoutForms from '../../layouts/LayoutForms';
 import FormpageRegisterContainer from '../../components/landpage_/formpage_/FormpageRegister/FormpageRegisterContainer';
 
 export default class Landpage_Register extends Component {
@@ -9,9 +9,9 @@ export default class Landpage_Register extends Component {
             this.props.history.push('/head');
         }
         return (
-            <LayoutLandpage>
+            <LayoutForms>
                 <FormpageRegisterContainer />
-            </LayoutLandpage>
+            </LayoutForms>
         );
     }
 }

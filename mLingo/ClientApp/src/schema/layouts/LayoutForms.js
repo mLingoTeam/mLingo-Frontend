@@ -2,16 +2,16 @@ import React from 'react';
 import LayoutNavbar from '../components/layout_/LayoutNavbar/LayoutNavbar'
 import LayoutFooter from '../components/layout_/LayoutFooter/LayoutFooter'
 
-const LayoutLandpage = ({ children }) => {
+const LayoutForms = ({ children }) => {
 
 
     return (
         <div className="app--background">
             <LayoutNavbar />
-                <main className="container p-0">{children}</main>
+                <main className="container">{children}</main>
             <LayoutFooter />
         </div>
     )
 }
 
-export default LayoutLandpage;
+export default LayoutForms;
