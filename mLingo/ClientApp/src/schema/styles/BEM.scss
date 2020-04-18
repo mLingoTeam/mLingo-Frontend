@@ -25,6 +25,8 @@
 /* --- --- 2.1.1 Formulars Login and Register */
 // --- mainpage_
 /* --- --- 2.2.1 Newsletter */
+/* --- --- 2.2.2 Opinions & Opinion */
+
 
 
 //////////////////////////////////////////////////////
@@ -513,4 +515,30 @@ overflow-y: hidden;
             width: 150px;
         }
     }
+}
+
+
+//////////////////////////////////////////////////////
+/* --- --- 2.2.2 Opinions & Opinion */
+//////////////////////////////////////////////////////
+
+.opinions__container{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+
+      @media(max-width: $mobile-res){
+        &{
+            padding: 20px;
+        }
+      }
+}
+
+.opinions__title{
+    text-align: center;
+    margin-bottom: 10vh;
 }

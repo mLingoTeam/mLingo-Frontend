@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Opinion = ( {set, index}) => {
+const MainpageOpinion = ( {set, index}) => {
 
 
     return(
@@ -11,4 +11,4 @@ const Opinion = ( {set, index}) => {
     )
 }
 
-export default Opinion;
+export default MainpageOpinion;
