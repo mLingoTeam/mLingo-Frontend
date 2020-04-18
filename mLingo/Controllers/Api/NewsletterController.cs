@@ -5,7 +5,7 @@ using mLingo.Extensions.Api;
 using mLingo.Models.Database;
 using mLingo.Modules;
 using mLingoCore.Models.Api.Base;
-using mLingoCore.Models.Forms.Newsletter;
+using mLingoCore.Models.UserData;
 using mLingoCore.Services;
 
 namespace mLingo.Controllers.Api
@@ -42,7 +42,7 @@ namespace mLingo.Controllers.Api
         /// <response code="500">Filed to add address to mailing list, server fault. Please check <see cref="ErrorRapport"/> for details</response>
         [Route("signup")]
         [HttpPost]
-        public IActionResult SignUp([FromBody] RegisterForNewsletterForm form)
+        public IActionResult SignUp([FromBody] EmailData form)
         {
             var res = _newsletterManager.SignUp(form);
             return this.HandleManagerResponse(res);

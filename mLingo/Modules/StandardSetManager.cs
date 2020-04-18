@@ -8,13 +8,12 @@ using mLingo.Models.Database.Collections;
 using mLingo.Models.Database.JoinTables;
 using mLingo.Models.Database.Sets;
 using mLingo.Models.Database.User;
-using mLingoCore.Models.Api;
 using mLingoCore.Models.Api.Base;
-using mLingoCore.Models.Api.ResponseModels.Collections;
 using mLingoCore.Models.Api.ResponseModels.Sets;
 using mLingoCore.Models.Forms.Sets;
 using mLingoCore.Services;
 using mLingo.Controllers.Api;
+using mLingo.Extensions.Api;
 
 namespace mLingo.Modules
 {
@@ -47,25 +46,7 @@ namespace mLingo.Modules
                 try
                 {
                     var set = DbContext.Sets.Find(id);
-                    var setCollections = DbContext.SetCollectionJoinTable.Where(sc => sc.SetId.Equals(id)).ToList();
-                    var collectionsNormalized = setCollections.Select(sc => new CollectionOverviewResponse
-                    {
-                        Id = sc.Collection.Id,
-                        Name = sc.Collection.Name,
-                        OwnerId = sc.Collection.OwnerId,
-                        BaseLanguage = sc.Collection.Details.BaseLanguage,
-                        SecondLanguage = sc.Collection.Details.SecondLanguage,
-                        PlayCount = sc.Collection.Details.PlayCount,
-                        Rating = sc.Collection.Details.Rating
-                    }).ToList();
-
-                    var res = new SetFullResponse
-                    {
-                        Name = set.Name,
-                        OwnerId = set.OwnerId,
-                        Collections = collectionsNormalized
-                    };
-                    response = ApiResponse.StandardSuccessResponse(res, 200);
+                    response = ApiResponse.StandardSuccessResponse(set.AsFullResponse(), 200);
                 }
                 catch
                 {
@@ -93,12 +74,8 @@ namespace mLingo.Modules
                             .Take(10).ToList();
                     }
 
-                    var res = sets.Select(s => new SetOverviewResponse
-                    {
-                        Name = s.Name,
-                        OwnerId = s.OwnerId
-                    });
-                    response = ApiResponse.StandardSuccessResponse(res, 200);
+                    
+                    response = ApiResponse.StandardSuccessResponse(sets.Select(s => s.AsOverviewResponse()).ToList(), 200);
                 }
                 catch
                 {
@@ -122,13 +99,7 @@ namespace mLingo.Modules
             try
             {
                 var userSets = DbContext.Sets.Where(s => s.OwnerId.Equals(user.Id)).ToList();
-                setsResponse = userSets.Select(s => new SetOverviewResponse
-                {
-                    Id = s.Id,
-                    Name = s.Name,
-                    OwnerId = s.OwnerId
-                }).ToList();
-
+                setsResponse = userSets.Select(s => s.AsOverviewResponse()).ToList();
             }
             catch
             {
@@ -141,17 +112,13 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="SetsController"/>
         /// </summary>
-        public ApiResponse CreateSet(string username, CreateSetForm newSetData)
+        public async Task<ApiResponse> CreateSet(string username, CreateSetForm form)
         {
-            var set = new Set
-            {
-                Id = Guid.NewGuid().ToString(),
-                Name = newSetData.Name,
-                Collections = null
-            };
+            var user = await UserManager.FindByNameAsync(username);
+            var set = form.AsSet(user.Id);
 
             var collections = new List<Collection>();
-            newSetData.CollectionIds.ForEach(c =>
+            form.CollectionIds.ForEach(c =>
             {
                 collections.Add(DbContext.Collections.First(cc => cc.Id.Equals(c)));
             });
