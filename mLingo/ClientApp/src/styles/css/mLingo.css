@@ -302,4 +302,11 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
   text-decoration: none !important;
   outline: none;
 }
+
+.all__containers__in__user__section {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 79%;
+          flex: 0 0 79%;
+  max-width: 79%;
+}
 /*# sourceMappingURL=mLingo.css.map */

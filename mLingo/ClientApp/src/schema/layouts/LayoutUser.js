@@ -6,7 +6,7 @@ import LayoutFooter from '../components/layout_/LayoutFooter/LayoutFooter'
 const UserLayout = ({ children }) => {
 
     return (
-        <div className="app--background">
+        <div className="app__background">
             <LayoutNavbar />
                 <main className="container user--container"> <LayoutUserMenu /> {children}</main>
             <LayoutFooter />

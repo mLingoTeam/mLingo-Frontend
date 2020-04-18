@@ -6,7 +6,7 @@ const LayoutForms = ({ children }) => {
 
 
     return (
-        <div className="app--background">
+        <div className="app__background">
             <LayoutNavbar />
                 <main className="container">{children}</main>
             <LayoutFooter />

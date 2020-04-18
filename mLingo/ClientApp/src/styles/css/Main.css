@@ -623,6 +623,13 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
   outline: none;
 }
 
+.all__containers__in__user__section, .collection__container, .userhead__container {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 79%;
+          flex: 0 0 79%;
+  max-width: 79%;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -1168,7 +1175,7 @@ pre code {
   overflow-y: scroll;
 }
 
-.container {
+.container, .footer__container {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
@@ -1177,25 +1184,25 @@ pre code {
 }
 
 @media (min-width: 576px) {
-  .container {
+  .container, .footer__container {
     max-width: 540px;
   }
 }
 
 @media (min-width: 768px) {
-  .container {
+  .container, .footer__container {
     max-width: 720px;
   }
 }
 
 @media (min-width: 992px) {
-  .container {
+  .container, .footer__container {
     max-width: 960px;
   }
 }
 
 @media (min-width: 1200px) {
-  .container {
+  .container, .footer__container {
     max-width: 1140px;
   }
 }
@@ -1209,25 +1216,25 @@ pre code {
 }
 
 @media (min-width: 576px) {
-  .container, .container-sm {
+  .container, .footer__container, .container-sm {
     max-width: 540px;
   }
 }
 
 @media (min-width: 768px) {
-  .container, .container-sm, .container-md {
+  .container, .footer__container, .container-sm, .container-md {
     max-width: 720px;
   }
 }
 
 @media (min-width: 992px) {
-  .container, .container-sm, .container-md, .container-lg {
+  .container, .footer__container, .container-sm, .container-md, .container-lg {
     max-width: 960px;
   }
 }
 
 @media (min-width: 1200px) {
-  .container, .container-sm, .container-md, .container-lg, .container-xl {
+  .container, .footer__container, .container-sm, .container-md, .container-lg, .container-xl {
     max-width: 1140px;
   }
 }
@@ -5244,7 +5251,7 @@ input[type="button"].btn-block {
   padding: 0.5rem 1rem;
 }
 
-.navbar .container,
+.navbar .container, .navbar .footer__container,
 .navbar .container-fluid, .navbar .container-sm, .navbar .container-md, .navbar .container-lg, .navbar .container-xl {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5337,7 +5344,7 @@ input[type="button"].btn-block {
 }
 
 @media (max-width: 575.98px) {
-  .navbar-expand-sm > .container,
+  .navbar-expand-sm > .container, .navbar-expand-sm > .footer__container,
   .navbar-expand-sm > .container-fluid, .navbar-expand-sm > .container-sm, .navbar-expand-sm > .container-md, .navbar-expand-sm > .container-lg, .navbar-expand-sm > .container-xl {
     padding-right: 0;
     padding-left: 0;
@@ -5367,7 +5374,7 @@ input[type="button"].btn-block {
     padding-right: 0.5rem;
     padding-left: 0.5rem;
   }
-  .navbar-expand-sm > .container,
+  .navbar-expand-sm > .container, .navbar-expand-sm > .footer__container,
   .navbar-expand-sm > .container-fluid, .navbar-expand-sm > .container-sm, .navbar-expand-sm > .container-md, .navbar-expand-sm > .container-lg, .navbar-expand-sm > .container-xl {
     -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;
@@ -5385,7 +5392,7 @@ input[type="button"].btn-block {
 }
 
 @media (max-width: 767.98px) {
-  .navbar-expand-md > .container,
+  .navbar-expand-md > .container, .navbar-expand-md > .footer__container,
   .navbar-expand-md > .container-fluid, .navbar-expand-md > .container-sm, .navbar-expand-md > .container-md, .navbar-expand-md > .container-lg, .navbar-expand-md > .container-xl {
     padding-right: 0;
     padding-left: 0;
@@ -5415,7 +5422,7 @@ input[type="button"].btn-block {
     padding-right: 0.5rem;
     padding-left: 0.5rem;
   }
-  .navbar-expand-md > .container,
+  .navbar-expand-md > .container, .navbar-expand-md > .footer__container,
   .navbar-expand-md > .container-fluid, .navbar-expand-md > .container-sm, .navbar-expand-md > .container-md, .navbar-expand-md > .container-lg, .navbar-expand-md > .container-xl {
     -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;
@@ -5433,7 +5440,7 @@ input[type="button"].btn-block {
 }
 
 @media (max-width: 991.98px) {
-  .navbar-expand-lg > .container,
+  .navbar-expand-lg > .container, .navbar-expand-lg > .footer__container,
   .navbar-expand-lg > .container-fluid, .navbar-expand-lg > .container-sm, .navbar-expand-lg > .container-md, .navbar-expand-lg > .container-lg, .navbar-expand-lg > .container-xl {
     padding-right: 0;
     padding-left: 0;
@@ -5463,7 +5470,7 @@ input[type="button"].btn-block {
     padding-right: 0.5rem;
     padding-left: 0.5rem;
   }
-  .navbar-expand-lg > .container,
+  .navbar-expand-lg > .container, .navbar-expand-lg > .footer__container,
   .navbar-expand-lg > .container-fluid, .navbar-expand-lg > .container-sm, .navbar-expand-lg > .container-md, .navbar-expand-lg > .container-lg, .navbar-expand-lg > .container-xl {
     -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;
@@ -5481,7 +5488,7 @@ input[type="button"].btn-block {
 }
 
 @media (max-width: 1199.98px) {
-  .navbar-expand-xl > .container,
+  .navbar-expand-xl > .container, .navbar-expand-xl > .footer__container,
   .navbar-expand-xl > .container-fluid, .navbar-expand-xl > .container-sm, .navbar-expand-xl > .container-md, .navbar-expand-xl > .container-lg, .navbar-expand-xl > .container-xl {
     padding-right: 0;
     padding-left: 0;
@@ -5511,7 +5518,7 @@ input[type="button"].btn-block {
     padding-right: 0.5rem;
     padding-left: 0.5rem;
   }
-  .navbar-expand-xl > .container,
+  .navbar-expand-xl > .container, .navbar-expand-xl > .footer__container,
   .navbar-expand-xl > .container-fluid, .navbar-expand-xl > .container-sm, .navbar-expand-xl > .container-md, .navbar-expand-xl > .container-lg, .navbar-expand-xl > .container-xl {
     -ms-flex-wrap: nowrap;
         flex-wrap: nowrap;
@@ -5538,7 +5545,7 @@ input[type="button"].btn-block {
           justify-content: flex-start;
 }
 
-.navbar-expand > .container,
+.navbar-expand > .container, .navbar-expand > .footer__container,
 .navbar-expand > .container-fluid, .navbar-expand > .container-sm, .navbar-expand > .container-md, .navbar-expand > .container-lg, .navbar-expand > .container-xl {
   padding-right: 0;
   padding-left: 0;
@@ -5560,7 +5567,7 @@ input[type="button"].btn-block {
   padding-left: 0.5rem;
 }
 
-.navbar-expand > .container,
+.navbar-expand > .container, .navbar-expand > .footer__container,
 .navbar-expand > .container-fluid, .navbar-expand > .container-sm, .navbar-expand > .container-md, .navbar-expand > .container-lg, .navbar-expand > .container-xl {
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
@@ -11358,7 +11365,7 @@ a.text-dark:hover, a.text-dark:focus {
   body {
     min-width: 992px !important;
   }
-  .container {
+  .container, .footer__container {
     min-width: 992px !important;
   }
   .navbar {
@@ -11393,13 +11400,6 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
-.all__containers__in__user__section, .collection__container, .userhead__container {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 79%;
-          flex: 0 0 79%;
-  max-width: 79%;
-}
-
 /* --- --- 1.1.4 CollectionScreen
 // --- 1.2 set_
 /* --- --- 1.2.1 SetCard */
@@ -11410,6 +11410,11 @@ a.text-dark:hover, a.text-dark:focus {
 /* --- --- 2.2.2 Opinions & Opinion */
 /* --- --- 2.2.3 Steps & Step */
 /* --- --- 2.2.4  Mainpage Welcome */
+/* --- --- 3.1.1  Layout Footer */
+/* --- --- 3.1.2  Layout Navbar */
+/* --- --- 3.1.3  Layout User Menu */
+/* --- --- 3.1.4  Layout User Menu */
+/* --- --- 4.1.1  Layouts */
 /* --- --- 1.1.1 CollectionCard */
 /* --- --- 1.2.1 SetCard */
 .card__container {
@@ -12205,6 +12210,109 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
+/* --- --- 3.1.1  Layout Footer */
+.footer__container {
+  background: #000536;
+  width: 100%;
+  height: 20vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  color: white;
+}
+
+.footer__details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer__details > div {
+  padding: 0 10px;
+}
+
+.footer__details > div:nth-child(2), .footer__details > div:nth-child(3) {
+  border-left: 2px solid white;
+}
+
+@media (max-width: 767px) {
+  .footer__details > div:nth-child(2), .footer__details > div:nth-child(3) {
+    display: none;
+  }
+}
+
+.footer__details p {
+  margin: 0 !important;
+}
+
+.social__mlingo {
+  color: white;
+  font-size: 24px;
+  margin: 0 12px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.social__mlingo:hover {
+  color: #B6EE1A;
+  cursor: pointer;
+}
+
+/* --- --- 4.1.1  Layouts */
+/* App Background and Bootstrap overwrites */
+.app__background {
+  background-color: #000536;
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+  left: 0;
+  top: 0;
+  z-index: -999;
+}
+
+main.container, main.footer__container {
+  background-color: #F8F8F8;
+  overflow: hidden;
+  padding: 50px;
+  position: relative;
+}
+
+.user--container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0px !important;
+}
+
+@media (min-width: 768px) {
+  main.container, main.footer__container {
+    border-radius: 70px;
+  }
+}
+
+@media (max-width: 767px) {
+  main.container, main.footer__container {
+    max-width: 100%;
+  }
+}
+
+.container.p-0 > div, .p-0.footer__container > div {
+  padding: 50px;
+}
+
 * {
   font-family: 'Poppins', sans-serif;
 }
@@ -12489,6 +12597,13 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
   outline: none;
 }
 
+.all__containers__in__user__section, .collection__container, .userhead__container {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 79%;
+          flex: 0 0 79%;
+  max-width: 79%;
+}
+
 /* MENU */
 /* LandPage Components */
 /* 3.1 Formular.js */
@@ -12503,21 +12618,9 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
 /* 5.3 UserHead.js */
 /* Search Components */
 /* 6.1 SearchInput.js */
-/* UserBase Components */
-/* 7.1 UserSection.js */
-/* 7.2 StudySetsSection.js */
-/* 7.3 CollectionSection */
-/* layouts */
-/* 8.1 Layout.js */
 /* Animations */
 /* 9.1 Loading.js */
 /* LandPage Components */
-.main-page-h2 {
-  color: #000536;
-  font-size: 36px;
-  font-weight: bold;
-}
-
 /* 3.1 Formular.js */
 /* 3.2 Promo.js */
 .help-others {
@@ -12861,78 +12964,6 @@ li.media h4 {
   }
 }
 
-/* 4.2 Footer.js */
-@media (min-width: 1199px) {
-  .footer {
-    max-width: 100%;
-  }
-}
-
-.footer {
-  background: #000536;
-  width: 100%;
-  height: 20vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  position: relative;
-  color: white;
-}
-
-.footer-end-text {
-  color: white;
-  vertical-align: middle;
-}
-
-.footer > div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.footer > div > div {
-  padding: 0 10px;
-}
-
-.footer > div > div:nth-child(2), .footer > div > div:nth-child(3) {
-  border-left: 2px solid white;
-}
-
-@media (max-width: 767px) {
-  .footer > div > div:nth-child(2), .footer > div > div:nth-child(3) {
-    display: none;
-  }
-}
-
-.footer > div p {
-  margin: 0 !important;
-}
-
-.social {
-  color: white;
-  font-size: 24px;
-  margin: 0 12px;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-}
-
-.social:hover {
-  color: #B6EE1A;
-  cursor: pointer;
-}
-
 /* Pages Components */
 /* 5.3 UserHead.js */
 @media (max-width: 576px) {
@@ -13093,49 +13124,6 @@ li.media h4 {
   .usermenu .navbar-toggler-icon:after {
     top: 20px;
   }
-}
-
-/* layouts */
-/* 8.1 Layout.js */
-/* App Background and Bootstrap overwrites */
-.app--background {
-  background-color: #000536;
-  position: absolute;
-  width: 100%;
-  min-height: 100%;
-  left: 0;
-  top: 0;
-  z-index: -999;
-}
-
-main.container {
-  background-color: #F8F8F8;
-  overflow: hidden;
-  padding: 50px;
-  position: relative;
-}
-
-main.user--container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 0px !important;
-}
-
-@media (min-width: 768px) {
-  main.container {
-    border-radius: 70px;
-  }
-}
-
-@media (max-width: 767px) {
-  main.container {
-    max-width: 100%;
-  }
-}
-
-.container.p-0 > div {
-  padding: 50px;
 }
 
 /* 9.1 Loading.js */

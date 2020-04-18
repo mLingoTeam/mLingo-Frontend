@@ -17,20 +17,10 @@
 /* 4.2 Footer.js */
 
 /* Pages Components */
-/* 5.3 UserHead.js */
+/* 5.3 UserHead.js */ // mobile garbage
 
 /* Search Components */
 /* 6.1 SearchInput.js */
-
-/* UserBase Components */
-/* 7.1 UserSection.js */
-/* 7.2 StudySetsSection.js */
-/* 7.3 CollectionSection */
-
-
-/* layouts */
-/* 8.1 Layout.js */
-
 
 /* Animations */
 /* 9.1 Loading.js */
@@ -38,12 +28,6 @@
 //////////////////////////////////////////////////////
 /* LandPage Components */
 //////////////////////////////////////////////////////
-
-.main-page-h2{
-  color: $dark-blue;
-  font-size: 36px;
-  font-weight: bold;
-}
 
 //////////////////////////////////////////////////////
 /* 3.1 Formular.js */
@@ -345,70 +329,6 @@ li.media h4 {
 
 
 //////////////////////////////////////////////////////
-/* 4.2 Footer.js */
-//////////////////////////////////////////////////////
-
-@media (min-width: 1199px){
-  .footer{
-    max-width: 100%;
-  }
-}
-
-.footer {
-  background: $dark-blue;
-  width: 100%;
-  height: 20vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  color: white;
-
-  &-end-text {
-    color: white;
-    vertical-align: middle;
-
-  }
-
-  &>div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &>div{
-      padding: 0 10px;
-    }
-
-    &>div:nth-child(2),&>div:nth-child(3){
-      border-left: 2px solid white;
-    }
-
-    @media(max-width: 767px){
-      &>div:nth-child(2),&>div:nth-child(3){
-        display: none;
-      }
-    }
-
-    p{
-      margin: 0 !important;
-    }
-
-  }
-}
-
-.social {
-  color: white;
-  font-size: 24px;
-  margin: 0 12px;
-  transition: 0.5s;
-}
-.social:hover{
-  color: $light-green;
-  cursor: pointer;
-}
-
-
-//////////////////////////////////////////////////////
 /* Pages Components */
 //////////////////////////////////////////////////////
 
@@ -572,51 +492,7 @@ li.media h4 {
   }
 }
 
-//////////////////////////////////////////////////////////////////
-/* layouts */
-//////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////
-/* 8.1 Layout.js */
-//////////////////////////////////////////////////////////////////
-
-/* App Background and Bootstrap overwrites */
-.app--background{
-  background-color: $dark-blue;
-  position: absolute;
-  width: 100%;
-  min-height: 100%;
-  left: 0;
-  top: 0;
-  z-index: -999;
-}
-
-main.container{
-  background-color: #F8F8F8;
-  overflow: hidden;
-  padding: 50px;
-  position: relative;
-}
-main.user--container{
-  display: flex;
-  padding: 0px !important;
-}
-
-@media(min-width: 768px){
-  main.container{
-    border-radius: 70px;
-  }
-}
-@media(max-width:767px){
-  main.container{
-    max-width: 100%;
-  }
-}
-
-// Landpage layout
-.container.p-0>div{
-  padding: 50px;
-}
 
 
 //////////////////////////////////////////////////////////////////

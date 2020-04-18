@@ -6,7 +6,7 @@ const LayoutLandpage = ({ children }) => {
 
 
     return (
-        <div className="app--background">
+        <div className="app__background">
             <LayoutNavbar />
                 <main className="container p-0">{children}</main>
             <LayoutFooter />

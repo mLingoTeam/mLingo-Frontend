@@ -4,8 +4,8 @@ import mlingo from '../../../../img/logo-wjite.svg'
 
 const LayoutFooter = props => {
   return (
-    <div className="footer container">
-      <div>
+    <div className="footer__container">
+      <div className="footer__details">
         <div>
           <img src={mlingo} />
         </div>
@@ -16,11 +16,11 @@ const LayoutFooter = props => {
           <p>© {new Date().getFullYear()} mLingo Team </p>
         </div>
       </div>
-      <div>
-        <FaYoutube className="social" />
-        <FaPodcast className="social" />
-        <FaFacebook className="social" />
-        <FaInstagram className="social" />
+      <div className="footer__socials">
+        <FaYoutube className="social__mlingo" />
+        <FaPodcast className="social__mlingo" />
+        <FaFacebook className="social__mlingo" />
+        <FaInstagram className="social__mlingo" />
       </div>
     </div>
   );
