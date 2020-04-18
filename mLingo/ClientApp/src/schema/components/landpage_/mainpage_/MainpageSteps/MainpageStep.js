@@ -4,10 +4,10 @@ const MainpageStep = ( {props}) => {
 
 
     return(
-        <div className="Step col-lg-7 col-xl-3 my-5" key={props.title}>
-            <img src={props.img} className="img-fluid" data-aos="flip-left"  data-aos-delay="200" data-aos-duration="1000"/>
-            <div className="col-sm-12 col-md-10">
-                <h2>{props.title}</h2>
+        <div className="step__element Step" key={props.title}>
+            <img className="step__img" src={props.img}  data-aos="flip-left"  data-aos-delay="200" data-aos-duration="1000"/>
+            <div className="step__details">
+                <div className="step__title">{props.title}</div>
                 <p>{props.desc}</p>
             </div>
         </div>

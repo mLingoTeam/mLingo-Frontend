@@ -29,9 +29,9 @@ const MainpageSteps = () => {
     })
 
     return(
-        <div id="Steps" className="steps__container">
+        <div className="steps__container">
             <h2 className="steps__title mainpage--title">here's how it works!</h2>
-            <div id="Steps-container" className="mt-5">
+            <div className="steps__list">
                 {steps_set}
             </div>
         </div>
