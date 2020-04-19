@@ -58,7 +58,7 @@ namespace mLingo.Extensions.Authentication
                 audience: configuration["Jwt:JwtAudience"],
                 claims: claims,
                 signingCredentials: credentials,
-                expires: DateTime.Now.AddHours(3)
+                expires: DateTime.Now.AddMinutes(1)og
             );
 
             // Return the generated token
