@@ -12403,11 +12403,6 @@ a.text-dark:hover, a.text-dark:focus {
   margin-left: 10px;
 }
 
-.usermenu__link:hover {
-  text-decoration: none;
-  color: #000536;
-}
-
 /* --- --- 4.1.1  Layouts */
 /* App Background and Bootstrap overwrites */
 .app__background {
@@ -12449,4 +12444,4 @@ main.container, main.footer__container {
 .container.p-0 > div, .p-0.footer__container > div {
   padding: 50px;
 }
-/*# sourceMappingURL=Main.css.map */
+/*# sourceMappingURL=BEM.css.map */

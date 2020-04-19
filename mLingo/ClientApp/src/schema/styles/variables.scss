@@ -1,3 +1,5 @@
+// Basic overitements //
+
 $dark-blue: #000536;
 $light-blue: #000536;
 $light-green: #B6EE1A;
@@ -10,9 +12,15 @@ $desktop-res: 992px;
   font-family: 'Poppins', sans-serif ;
 }
 
-a:hover, a:focus, a:checked{
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus,
+a:checked {
   text-decoration: none;
 }
+
 
 @mixin mobile {
   @media (max-width: 991px) {
