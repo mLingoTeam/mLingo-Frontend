@@ -11,8 +11,8 @@ class UserHead extends React.Component {
         return (
             <div className="userhead__container">
                 <div className="section__container">
-                    <SectionSetContainer />
                     <SectionCollectionContainer />
+                    <SectionSetContainer />
                 </div>
             </div>
         );
