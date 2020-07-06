@@ -25,7 +25,7 @@ const LayoutUserMenu = props => {
     const categoriesmapped = categories.map(el => <UserMenuCategory icon={el.icon} text={el.text} link={el.link} leave={el.leave}/>)
 
     return (
-        <div className="usermenu__container">
+        <div className={"usermenu__container " + ( props.navbar ? 'usermenu--dark' : '-' )}>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
                 <div className="usermenu__title">menu</div>

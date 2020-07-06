@@ -1151,7 +1151,17 @@ cursor: pointer;
         text-decoration: none;
         color: $dark-blue;
     }
-  }
+}
+
+.usermenu--dark{
+    background-color: $dark-blue;
+    div.collapse, div.collapsing{
+        background-color: white;
+    }
+    .navbar-toggler-icon::after, .navbar-toggler-icon::before{
+        background-color: white;
+    }
+}
 
 
 //////////////////////////////////////////////////////

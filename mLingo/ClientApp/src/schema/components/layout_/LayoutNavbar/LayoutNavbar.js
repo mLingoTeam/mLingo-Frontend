@@ -2,13 +2,8 @@ import React from "react";
 import SearchInputContainer from '../SearchInput/SearchInputContainer';
 import { Link } from "react-router-dom";
 import logo from '../../../../img/Kompozycja 2.svg'
-import { authentication_service } from "../../../../services/authentication/authentication";
 import LayoutUserMenu from '../LayoutUserMenu/LayoutUserMenu';
 
-const logout = () => {
-  authentication_service.user.logout();
-  window.location.reload();
-};
 
 const LayoutNavbar = props => {
   return (
@@ -18,8 +13,8 @@ const LayoutNavbar = props => {
       </Link>
         {
           localStorage.getItem("currentUser") ? <div className="navbar__buttons">
-          <SearchInputContainer />
-            <LayoutUserMenu/>
+          <SearchInputContainer/>
+            <LayoutUserMenu navbar={true}/>
           </div> : <div className="navbar__buttons">
           <div>
             <SearchInputContainer />

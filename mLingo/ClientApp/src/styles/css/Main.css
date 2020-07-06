@@ -12408,6 +12408,18 @@ a.text-dark:hover, a.text-dark:focus {
   color: #000536;
 }
 
+.usermenu--dark {
+  background-color: #000536;
+}
+
+.usermenu--dark div.collapse, .usermenu--dark div.collapsing {
+  background-color: white;
+}
+
+.usermenu--dark .navbar-toggler-icon::after, .usermenu--dark .navbar-toggler-icon::before {
+  background-color: white;
+}
+
 /* --- --- 4.1.1  Layouts */
 /* App Background and Bootstrap overwrites */
 .app__background {
@@ -12449,4 +12461,3 @@ main.container, main.footer__container {
 .container.p-0 > div, .p-0.footer__container > div {
   padding: 50px;
 }
-/*# sourceMappingURL=Main.css.map */
