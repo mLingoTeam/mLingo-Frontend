@@ -3,10 +3,10 @@ import SearchInputContainer from '../SearchInput/SearchInputContainer';
 import { Link } from "react-router-dom";
 import logo from '../../../../img/Kompozycja 2.svg'
 import { authentication_service } from "../../../../services/authentication/authentication";
+import LayoutUserMenu from '../LayoutUserMenu/LayoutUserMenu';
 
 const logout = () => {
   authentication_service.user.logout();
-  //it works because localStorage is empty imidiately
   window.location.reload();
 };
 
@@ -19,12 +19,7 @@ const LayoutNavbar = props => {
         {
           localStorage.getItem("currentUser") ? <div className="navbar__buttons">
           <SearchInputContainer />
-            <div>
-              <Link className="signin__button" to="/head">learn</Link>
-            </div>
-            <div>
-              <button className="navbar__registerbutton" onClick={logout} >logout</button>
-            </div>
+            <LayoutUserMenu/>
           </div> : <div className="navbar__buttons">
           <div>
             <SearchInputContainer />
