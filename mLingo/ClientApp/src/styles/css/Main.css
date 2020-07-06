@@ -469,9 +469,18 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
 
 .all__containers__in__user__section, .collection__container, .userhead__container {
   -webkit-box-flex: 0;
-      -ms-flex: 0 0 100%;
-          flex: 0 0 100%;
-  max-width: 100%;
+      -ms-flex: 0 0 79%;
+          flex: 0 0 79%;
+  max-width: 79%;
+}
+
+@media (max-width: 576px) {
+  .all__containers__in__user__section, .collection__container, .userhead__container {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
 
 /*!
