@@ -1162,8 +1162,13 @@ cursor: pointer;
     @media(max-width: $tablet-res){
         display: block;
         background-color: $dark-blue;
+
         div.collapse, div.collapsing{
             background-color: white;
+            z-index: 999;
+            position: absolute;
+            left: 0;
+            top:80px;
         }
         .navbar-toggler-icon::after, .navbar-toggler-icon::before{
             background-color: white;

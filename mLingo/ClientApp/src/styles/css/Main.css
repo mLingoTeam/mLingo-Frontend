@@ -12426,6 +12426,10 @@ a.text-dark:hover, a.text-dark:focus {
   }
   .usermenu--dark div.collapse, .usermenu--dark div.collapsing {
     background-color: white;
+    z-index: 999;
+    position: absolute;
+    left: 0;
+    top: 80px;
   }
   .usermenu--dark .navbar-toggler-icon::after, .usermenu--dark .navbar-toggler-icon::before {
     background-color: white;
