@@ -1084,6 +1084,10 @@ cursor: pointer;
     background-color: white;
     box-shadow: 0px 6px 8px #00000029;
 
+    display: none;
+    @media(min-width: $tablet-res){
+        display: block;
+    }
     // usermenu 100vh when is collapsed!!
 
     @media(max-width: $tablet-res){
@@ -1154,12 +1158,16 @@ cursor: pointer;
 }
 
 .usermenu--dark{
-    background-color: $dark-blue;
-    div.collapse, div.collapsing{
-        background-color: white;
-    }
-    .navbar-toggler-icon::after, .navbar-toggler-icon::before{
-        background-color: white;
+    display: none;
+    @media(max-width: $tablet-res){
+        display: block;
+        background-color: $dark-blue;
+        div.collapse, div.collapsing{
+            background-color: white;
+        }
+        .navbar-toggler-icon::after, .navbar-toggler-icon::before{
+            background-color: white;
+        }
     }
 }
 

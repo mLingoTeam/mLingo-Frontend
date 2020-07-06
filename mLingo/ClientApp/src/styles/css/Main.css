@@ -12334,6 +12334,13 @@ a.text-dark:hover, a.text-dark:focus {
   background-color: white;
   -webkit-box-shadow: 0px 6px 8px #00000029;
           box-shadow: 0px 6px 8px #00000029;
+  display: none;
+}
+
+@media (min-width: 991px) {
+  .usermenu__container {
+    display: block;
+  }
 }
 
 @media (max-width: 991px) {
@@ -12409,15 +12416,20 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .usermenu--dark {
-  background-color: #000536;
+  display: none;
 }
 
-.usermenu--dark div.collapse, .usermenu--dark div.collapsing {
-  background-color: white;
-}
-
-.usermenu--dark .navbar-toggler-icon::after, .usermenu--dark .navbar-toggler-icon::before {
-  background-color: white;
+@media (max-width: 991px) {
+  .usermenu--dark {
+    display: block;
+    background-color: #000536;
+  }
+  .usermenu--dark div.collapse, .usermenu--dark div.collapsing {
+    background-color: white;
+  }
+  .usermenu--dark .navbar-toggler-icon::after, .usermenu--dark .navbar-toggler-icon::before {
+    background-color: white;
+  }
 }
 
 /* --- --- 4.1.1  Layouts */
