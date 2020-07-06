@@ -47,6 +47,10 @@ font-size: 16px;
     text-decoration: none !important;
   }
 
+  &:active{
+    background-color: $dark-green;
+  }
+
   @media(max-width: $mobile-res){
     &{
       font-size: 12px !important;
@@ -110,6 +114,6 @@ font-size: 16px;
 // container //
 
 .all__containers__in__user__section{
-  flex: 0 0 79%;
-  max-width: 79%;
+  flex: 0 0 100%;
+  max-width: 100%;
 }
