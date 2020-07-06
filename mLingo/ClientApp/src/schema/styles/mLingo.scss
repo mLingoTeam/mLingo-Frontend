@@ -47,6 +47,10 @@ font-size: 16px;
     text-decoration: none !important;
   }
 
+  &:active{
+    background-color: $dark-green;
+  }
+
   @media(max-width: $mobile-res){
     &{
       font-size: 12px !important;
