@@ -12358,8 +12358,9 @@ a.text-dark:hover, a.text-dark:focus {
 
 @media (max-width: 991px) {
   .usermenu__container div.collapse, .usermenu__container div.collapsing {
-    width: 100vw;
-    height: 100vh;
+    width: 100vw !important;
+    margin: 0 !important;
+    height: 100vh !important;
     overflow: hidden;
   }
 }
@@ -12368,13 +12369,13 @@ a.text-dark:hover, a.text-dark:focus {
   padding: 10px 15px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 991px) {
   .usermenu__container .navbar-toggler {
     display: none;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .usermenu__container .navbar-toggler-icon {
     position: relative;
     padding: 10px;
@@ -12432,15 +12433,19 @@ a.text-dark:hover, a.text-dark:focus {
   display: none;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 990px) {
   .usermenu--dark {
     display: block;
     background-color: #000536;
   }
   .usermenu--dark div.collapse, .usermenu--dark div.collapsing {
+    display: none !important;
+  }
+  .usermenu--dark div.collapse.show, .usermenu--dark div.collapsing.show {
+    display: block !important;
     background-color: white;
     z-index: 999;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 80px;
   }
