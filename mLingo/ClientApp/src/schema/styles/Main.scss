@@ -1175,7 +1175,7 @@ cursor: pointer;
             z-index: 999;
             position: fixed;
             left: 0;
-            top:100px;
+            top: 0px;
 
             .app__background{
                 position: fixed !important;
@@ -1185,6 +1185,14 @@ cursor: pointer;
             background-color: white;
         }
 
+        .show{
+            .navbar-toggler{
+                margin-left: 80%;
+            }
+            .navbar-toggler-icon::after, .navbar-toggler-icon::before{
+                background-color: $dark-blue;
+            }
+        }
 
     }
 

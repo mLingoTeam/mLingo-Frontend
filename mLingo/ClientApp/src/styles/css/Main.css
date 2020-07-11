@@ -12456,13 +12456,19 @@ a.text-dark:hover, a.text-dark:focus {
     z-index: 999;
     position: fixed;
     left: 0;
-    top: 100px;
+    top: 0px;
   }
   .usermenu--dark div.collapse.show .app__background, .usermenu--dark div.collapsing.show .app__background {
     position: fixed !important;
   }
   .usermenu--dark .navbar-toggler-icon::after, .usermenu--dark .navbar-toggler-icon::before {
     background-color: white;
+  }
+  .usermenu--dark .show .navbar-toggler {
+    margin-left: 80%;
+  }
+  .usermenu--dark .show .navbar-toggler-icon::after, .usermenu--dark .show .navbar-toggler-icon::before {
+    background-color: #000536;
   }
 }
 
