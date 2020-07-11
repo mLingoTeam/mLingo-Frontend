@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CollectionFlashcard from '../CollectionFlashcard/CollectionFlashcard';
+import Loading from '../../../loading/Loading';
 
 const CollectionSectionView = ( { state, functions } ) => {
 
@@ -19,7 +20,7 @@ const CollectionSectionView = ( { state, functions } ) => {
                             <CollectionFlashcard set={element} index={index}/> ))
                     }
 
-                </div> : <h1>Collection removed!</h1> : <h1>loading</h1>
+                </div> : <h1>Collection removed!</h1> : <Loading/>
             }
                 <Link to='/head' className="green--button">go back</Link>
             {
