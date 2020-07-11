@@ -8,6 +8,8 @@ function find({ type , name }) {
       headers: { "Content-Type": "application/json" }
     };
 
+    console.log(`${this.host}/api/sets/${rqtype}?${type}=${name}`)
+
     return fetch(`${this.host}/api/sets/${rqtype}?${type}=${name}`, requestOptions)
       .then(result => result.json())
 }

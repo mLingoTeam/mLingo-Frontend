@@ -26,6 +26,7 @@ class Collection extends React.Component {
 
         if (set_id) {
             const set = await authentication_service.set.find({type: "id", name: set_id} );
+            console.log(set)
 
             this.setState({ ...this.state, "set": set.response });
             this.setState({ ...this.state, "loaded": true });
@@ -55,6 +56,7 @@ class Collection extends React.Component {
     }
 
     render() {
+        console.log(this.state)
         return <View state={this.state} functions={this.functions}/>
     }
 };
