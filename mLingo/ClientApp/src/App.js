@@ -13,6 +13,7 @@ import User_Create_Collection from "./schema/pages/user_/User_Create_Collection"
 import User_Collections from './schema/pages/user_/User_Collections';
 
 import Collection_Screen from "./schema/pages/user_/Collection_Screen";
+import Set_Screen from "./schema/pages/user_/Set_Screen";
 import Collection_Search from "./schema/pages/user_/Collection_Search";
 
 import './styles/css/Main.css';
@@ -34,6 +35,8 @@ export default class App extends Component {
           <PrivateRoute exact path="/head" component={User_Head} />
           <PrivateRoute exact path="/create" component={User_Create_Collection} />
           <PrivateRoute exact path="/collections" component={User_Collections} />
+
+          <PrivateRoute exact path="/studyset" component={Set_Screen} />
         </div>
       </Router>
     );
