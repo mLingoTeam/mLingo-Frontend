@@ -1,7 +1,7 @@
 import React from "react";
 import LayoutLandpage from '../../layouts/LayoutLandpage'
 import LayoutUser from '../../layouts/LayoutUser'
-import CollectionScreenContainer from '../../components/account_/set_/SetScreen/SetScreenContainer'
+import SetScreenContainer from '../../components/account_/set_/SetScreen/SetScreenContainer'
 
 class Set_Screen extends React.Component {
 

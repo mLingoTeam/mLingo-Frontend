@@ -1,6 +1,5 @@
 import Newsletter from './classes/newsletter';
 import Collection from './classes/collection';
-import Set from './classes/Set';
 import User from './classes/user';
 
 
@@ -13,7 +12,6 @@ console.log(apiUrl);
 
 const newsletter = new Newsletter( apiUrl );
 const collection = new Collection( apiUrl );
-const set = new Set( apiUrl );
 const user = new User( apiUrl );
 
 
@@ -21,5 +19,4 @@ export const authentication_service = {
   newsletter,
   collection,
   user,
-  set
 };

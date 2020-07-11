@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import CollectionFlashcard from '../CollectionFlashcard/CollectionFlashcard';
 import Loading from '../../../loading/Loading';
 
-const CollectionSectionView = ( { state, functions } ) => {
+const CollectionScreenView = ( { state, functions } ) => {
 
 
     return (
@@ -34,4 +34,4 @@ const CollectionSectionView = ( { state, functions } ) => {
     )
 }
 
-export default CollectionSectionView;
+export default CollectionScreenView;

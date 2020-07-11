@@ -1,6 +1,6 @@
 import React from 'react'
 
-import View from './CollectionScreenView'
+import View from './SetScreenView'
 import { authentication_service } from '../../../../../services/authentication/authentication';
 
 
