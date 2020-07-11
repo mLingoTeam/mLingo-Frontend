@@ -10,7 +10,7 @@ function find({ type , name }) {
 
     return fetch(`${this.host}/api/sets/${rqtype}?${type}=${name}`, requestOptions)
       .then(result => result.json())
-  }
+}
 
   function create({name, description = "No description", cards, Token}) {
 
