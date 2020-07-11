@@ -1,14 +1,14 @@
 function find({ type , name }) {
 
-    let rqtype = "usercollections";
-    type === 'name' ? rqtype = 'find' : type === 'id' ? rqtype = 'find' : rqtype = "usercollections";
+    let rqtype = "usersets";
+    type === 'name' ? rqtype = 'find' : type === 'id' ? rqtype = 'find' : rqtype = "usersets";
 
     const requestOptions = {
       method: "GET",
       headers: { "Content-Type": "application/json" }
     };
 
-    return fetch(`${this.host}/api/collections/${rqtype}?${type}=${name}`, requestOptions)
+    return fetch(`${this.host}/api/sets/${rqtype}?${type}=${name}`, requestOptions)
       .then(result => result.json())
   }
 
@@ -20,7 +20,7 @@ function find({ type , name }) {
       body: JSON.stringify({ name, description, cards })
     };
 
-    return fetch(`${this.host}/api/collections/create`, requestOptions)
+    return fetch(`${this.host}/api/sets/create`, requestOptions)
       .then(result => result.json())
       .catch(err => console.log(err))
   }
@@ -32,12 +32,13 @@ function find({ type , name }) {
       headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` }
     }
 
-    return fetch(`${this.host}/api/collections/delete?id=${id}`, requestOptions)
+    return fetch(`${this.host}/api/sets/delete?id=${id}`, requestOptions)
       .then(result => result.json())
       .catch(err => console.log(err))
   }
 
   function update({ id, token, cards, name, description }) {
+
 
     const requestOptions = {
       method: "PUT",
@@ -45,14 +46,14 @@ function find({ type , name }) {
       body: JSON.stringify({ Name: name, Cards: cards, Description: description, BaseLanguage: null, SecondLanguage: null })
     }
 
-    return fetch(`${this.host}/api/collections/update?id=${id}`, requestOptions)
+    return fetch(`${this.host}/api/sets/update?id=${id}`, requestOptions)
       .then(result => result.json())
       .catch(err => console.log(err))
 }
 
 
 
-  export default class Collection {
+  export default class Set {
 
     constructor(host){
         this.host = host;
