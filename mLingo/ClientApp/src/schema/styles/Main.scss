@@ -1255,6 +1255,14 @@ padding: 50px;
 
 // Loading
 
+:root
+{
+	--duration: 1.5s;
+	--container-size: 250px;
+	--box-size: 33px;
+	--box-border-radius: 15%;
+}
+
 .loading__body
 {
 	width: 100%;
@@ -1269,7 +1277,8 @@ padding: 50px;
 
 .loading__container
 {
-	width: var(--container-size);
+    width: var(--container-size);
+    height: 250px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -1300,8 +1309,7 @@ padding: 50px;
 
 	&:nth-child(1)
 	{
-		animation: slide var(--duration) ease-in-out infinite alternate;
-		&:after{ animation: color-change var(--duration) ease-in-out infinite alternate; }
+		display:none;
 	}
 
 	@for $i from 1 to 5
@@ -1313,16 +1321,10 @@ padding: 50px;
 		}
 	}
 
-	&:nth-child(2):after{ background-color: #1C9FFF; }
-	&:nth-child(3):after{ background-color: #1FB1FD; }
-	&:nth-child(4):after{ background-color: #22C7FB; }
-	&:nth-child(5):after{ background-color: #23D3FB; }
-}
-
-@keyframes slide
-{
-	0% { background-color: #1795FF; transform: translatex(0vw); }
-	100% { background-color: #23D3FB; transform: translatex(calc(var(--container-size) - (var(--box-size) * 1.25))); }
+	&:nth-child(2):after{ background-color: $light-blue; }
+	&:nth-child(3):after{ background-color: $dark-green; }
+	&:nth-child(4):after{ background-color: $dark-blue; }
+	&:nth-child(5):after{ background-color: $dark-green; }
 }
 
 @keyframes color-change
