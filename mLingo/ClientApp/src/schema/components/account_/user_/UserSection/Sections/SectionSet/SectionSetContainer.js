@@ -13,13 +13,13 @@ class SectionSetContainer extends React.Component {
     }
 
     async findcollection() {
-        const collectiondata = await handleResponse({ request: authentication_service.collection.find({type: this.state.type, name: this.state.request})});
+        const setdata = await handleResponse({ request: authentication_service.set.find({type: this.state.type, name: this.state.request})});
 
-        if (collectiondata == false ) {
+        if (setdata == false ) {
             this.setState({ "fields": [], "exist": false, "loading": false });
         }
         else {
-            this.setState({ "fields": collectiondata.response, "exist": true, "loading": false });
+            this.setState({ "fields": setdata.response, "exist": true, "loading": false });
         }
     }
 
