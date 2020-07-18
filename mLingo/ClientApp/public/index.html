@@ -24,6 +24,9 @@
     -->
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.svg" />
+  <!-- ios support -->
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/icons/icon96x96.png"/>
+  <meta name="apple-mobile-web-app-status-bar" content="#000536"/>
   <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -55,6 +58,14 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init();
+</script>
+<script>
+    if('serviceWorker' in navigator ) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./serviceWorker.js')
+        .then( reg => console.log('Success: ', reg.scope))
+      })
+    }
 </script>
 
 </html>

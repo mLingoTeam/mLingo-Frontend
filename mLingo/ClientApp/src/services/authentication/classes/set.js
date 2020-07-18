@@ -14,12 +14,12 @@ function find({ type , name }) {
       .then(result => result.json())
 }
 
-  function create({name, description = "No description", cards, Token}) {
+  function create({name, description = "No description", collectionIds, Token}) {
 
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json", "Authorization": `Bearer ${Token}` },
-      body: JSON.stringify({ name, description, cards })
+      body: JSON.stringify({ name, description, collectionIds })
     };
 
     return fetch(`${this.host}/api/sets/create`, requestOptions)
