@@ -1,6 +1,6 @@
 import React from 'react'
 
-import View from './CollectionScreenView'
+import View from './SetScreenView'
 import { authentication_service } from '../../../../../services/authentication/authentication';
 
 
@@ -11,7 +11,7 @@ class Collection extends React.Component {
 
         this.state = [{ "loaded": false }];
 
-        this.getCollection = this.getCollection.bind(this);
+        this.getSet = this.getSet.bind(this);
         this.removeCollection = this.removeCollection.bind(this);
         this.editCollection = this.editCollection.bind(this)
 
@@ -21,25 +21,26 @@ class Collection extends React.Component {
         }
     }
 
-    async getCollection() {
-        const collection_id = localStorage.getItem("collectionid");
+    async getSet() {
+        const set_id = localStorage.getItem("setid");
 
-        if (collection_id) {
-            const collection = await authentication_service.collection.find({type: "id", name: collection_id} );
+        if (set_id) {
+            const set = await authentication_service.set.find({type: "id", name: set_id} );
+            console.log(set)
 
-            this.setState({ ...this.state, "collection": collection.response });
+            this.setState({ ...this.state, "set": set.response });
             this.setState({ ...this.state, "loaded": true });
         }
         else {
-            this.setState({ ...this.state, "collection": false });
+            this.setState({ ...this.state, "set": false });
             this.setState({ ...this.state, "loaded": true });
         }
     }
 
     removeCollection() {
-        authentication_service.collection.remove({id: localStorage.getItem("collectionid"), token: localStorage.getItem("Token")});
-        localStorage.removeItem("collectionid");
-        this.setState({ ...this.state, "collection": false });
+        authentication_service.set.remove({id: localStorage.getItem("setid"), token: localStorage.getItem("Token")});
+        localStorage.removeItem("setid");
+        this.setState({ ...this.state, "set": false });
     }
 
     editCollection(){
@@ -47,14 +48,15 @@ class Collection extends React.Component {
     }
 
     componentWillUnmount() {
-        localStorage.removeItem("collectionid")
+        localStorage.removeItem("setid")
     }
 
     componentDidMount() {
-        this.getCollection();
+        this.getSet();
     }
 
     render() {
+        console.log(this.state)
         return <View state={this.state} functions={this.functions}/>
     }
 };

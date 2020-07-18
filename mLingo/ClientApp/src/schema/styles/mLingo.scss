@@ -117,6 +117,14 @@ font-size: 16px;
   flex: 0 0 79%;
   max-width: 79%;
 }
+
+@media(max-width: 991px){
+  .all__containers__in__user__section{
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
 @media(max-width: $mobile-res){
   .all__containers__in__user__section{
     flex: 0 0 100%;

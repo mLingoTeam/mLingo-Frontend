@@ -314,6 +314,15 @@ input[type='text']:hover, input[type='text']:focus, input[type='text']:active, i
   max-width: 79%;
 }
 
+@media (max-width: 991px) {
+  .all__containers__in__user__section {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 576px) {
   .all__containers__in__user__section {
     -webkit-box-flex: 0;
