@@ -1,1 +1,60 @@
-nothing here!
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mlingo Offline</title>
+    <style>
+        .app__background {
+            background-color: #000536;
+            position: absolute;
+            width: 100%;
+            min-height: 100%;
+            left: 0;
+            top: 0;
+            z-index: -999;
+            position: fixed !important;
+          }
+          .green--button {
+            font-size: 16px;
+            font-weight: 400;
+            background-color: inherit;
+            border: 0;
+            color: #000536;
+            outline: none !important;
+            background: #B6EE1A;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            width: 40%;
+            font-weight: bold;
+            margin: auto;
+            margin-top: 200px;
+            text-align: center;
+          }
+
+          .green--button:hover {
+            color: #000536;
+            text-decoration: none !important;
+          }
+
+          .green--button:active {
+            background-color: #A1D218;
+          }
+
+          @media (max-width: 576px) {
+            .green--button {
+              font-size: 12px !important;
+              padding: 5px 10px;
+              width: 90%;
+            }
+          }
+    </style>
+</head>
+<body>
+    <div class="app__background">
+        <div class="green--button">You're offline! Go Online to use mLingo</div>
+    </div>
+</body>
+</html>
