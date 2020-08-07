@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const SetScreenView = ( { state, functions } ) => {
 
+    const collections = state.collections.map( collection => <li>{collection.name || 'no name of the collection'}</li>)
 
     return (
         <div className="set__container">
@@ -20,6 +21,12 @@ const SetScreenView = ( { state, functions } ) => {
 
                 <input type="text" name="title" placeholder="search a collection" className="details__description details--set"/>
             </form>
+            <div className="set__info">
+                <h2 className="set__title">{state.name}</h2>
+                <ol>
+                    { collections }
+                </ol>
+            </div>
         </div>
 
     )
