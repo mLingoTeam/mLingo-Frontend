@@ -282,7 +282,9 @@ input[type=text].details--set{
     text-align: center;
 }
 
-
+.createset__button{
+    @extend .offset-5, .my-5;
+}
 //////////////////////////////////////////////////////
 /* --- --- 1.3.1 UserHead */
 //////////////////////////////////////////////////////

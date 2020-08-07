@@ -27,6 +27,8 @@ const SetScreenView = ( { state, functions } ) => {
                     { collections }
                 </ol>
             </div>
+
+            <button className="green--button createset__button">save</button>
         </div>
 
     )
