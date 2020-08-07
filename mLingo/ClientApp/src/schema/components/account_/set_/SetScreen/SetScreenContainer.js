@@ -1,6 +1,7 @@
 import React from 'react'
 import View from './SetScreenView'
 import { authentication_service } from '../../../../../services/authentication/authentication';
+import Loading from '../../../loading/Loading'
 
 
 class SetScreenContainer extends React.Component {
@@ -8,7 +9,7 @@ class SetScreenContainer extends React.Component {
     constructor() {
         super();
 
-        this.state = [{ "loaded": false }];
+        this.state = { "loaded": false };
 
         this.getSet = this.getSet.bind(this);
         this.removeCollection = this.removeCollection.bind(this);
@@ -56,7 +57,11 @@ class SetScreenContainer extends React.Component {
 
     render() {
         console.log(this.state)
-        return <View state={this.state} functions={this.functions}/>
+        if(this.state.loaded){
+            return <View state={this.state} functions={this.functions}/>
+        }
+        return <Loading/>
+
     }
 };
 
