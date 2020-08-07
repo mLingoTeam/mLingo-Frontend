@@ -4,16 +4,16 @@ const helper = {
 
     async getSet() {
         const collid = localStorage.getItem("editCollection");
-        const collectioni = await authentication_service.collection.find({ type: "id", name: collid });
+        const collectioni = await authentication_service.set.find({ type: "id", name: collid });
         return collectioni;
     },
 
     modifySet({ cards, name, description, id }) {
-        authentication_service.collection.update({ id, token: localStorage.getItem("Token"), cards: cards, name: name, description: description })
+        authentication_service.set.update({ id, token: localStorage.getItem("Token"), cards: cards, name: name, description: description })
     },
 
     createSet({ collectionIds , name, description }) {
-        authentication_service.collection.create({name, description, collectionIds, Token: localStorage.getItem("Token")});
+        authentication_service.set.create({name, description, collectionIds, Token: localStorage.getItem("Token")});
     }
 }
 

@@ -1,10 +1,9 @@
 import React from 'react'
-
 import View from './SetScreenView'
 import { authentication_service } from '../../../../../services/authentication/authentication';
 
 
-class Collection extends React.Component {
+class SetScreenContainer extends React.Component {
 
     constructor() {
         super();
@@ -61,4 +60,4 @@ class Collection extends React.Component {
     }
 };
 
-export default Collection;
+export default SetScreenContainer;
