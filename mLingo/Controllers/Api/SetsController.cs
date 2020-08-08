@@ -150,6 +150,11 @@ namespace mLingo.Controllers.Api
             return this.HandleManagerResponse(res);
         }
 
+        public IActionResult CollectionsData([FromQuery] string id = null, [FromQuery] string name = null)
+        {
+            var res = _setManager.CollectionsData(id, name);
+            return this.HandleManagerResponse(res);
+        }
         #endregion
     }
 }
