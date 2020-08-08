@@ -11,6 +11,8 @@ namespace mLingoCore.Services
     {
         ApiResponse Find(string id, string name, string range);
 
+        ApiResponse CollectionsData(string id, string name);
+
         Task<ApiResponse> UserSets(string username);
 
         Task<ApiResponse> CreateSet(string username, CreateSetForm newSetData);

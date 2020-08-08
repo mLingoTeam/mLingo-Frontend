@@ -86,6 +86,46 @@ namespace mLingo.Modules
             return response;
         }
 
+        public ApiResponse CollectionsData(string id, string name)
+        {
+            if (name == null && id == null)
+                return ApiResponse.StandardErrorResponse(ErrorMessages.Server.ActionFail("search for set"), 400);
+            
+            ApiResponse response;
+
+            if (id != null)
+            {
+                try
+                {
+                    var collections = DbContext.Sets.Find(id).Collections
+                        .Select(e => e.Collection.AsOverviewResponse())
+                        .ToList();
+
+                    response = ApiResponse.StandardSuccessResponse(collections, 200);
+                }
+                catch
+                {
+                    response = ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.SetNotFound(id), 404);
+                }
+            }
+            else
+            {
+                try
+                {
+                    var collections = DbContext.Sets.First(e => e.Name.ToUpper().Equals(name.ToUpper()))
+                        .Collections.Select(e => e.Collection.AsOverviewResponse())
+                        .ToList();
+                    response = ApiResponse.StandardSuccessResponse(collections, 200);
+                }
+                catch
+                {
+                    response = ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.SetNotFound(name), 404);
+                }
+            }
+
+            return response;
+        }
+
         /// <summary>
         /// For documentation <see cref="SetsController"/>
         /// </summary>
