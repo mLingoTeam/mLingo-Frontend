@@ -1,11 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Formik } from "formik";
+import * as Yup from 'yup';
 
 const SetScreenView = ( { state, functions, searched } ) => {
 
-    console.log("------------------------------------------")
-    console.log(state.collections)
-    console.log("------------------------------------------")
     const collections = state.collections.map( collection => <li>{collection.name || 'no name of the collection'}</li>)
 
     let renderedSearched =  searched.length > 0  ? searched.map( item => <div className="searched__item">
