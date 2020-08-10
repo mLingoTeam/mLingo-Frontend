@@ -5,7 +5,7 @@ const SetScreenView = ( { state, functions, searched } ) => {
 
     const collections = state.collections.map( collection => <li>{collection.name || 'no name of the collection'}</li>)
 
-    let renderedSearched =  searched.length > 0  ? searched.map( item => <div className="searched__item"><div className="flex--complet"><h3 className="mx-5">{item.name}</h3><p>{item.description}</p></div> <button className="green--button">add</button></div>)  : 'no matching collections'
+    let renderedSearched =  searched.length > 0  ? searched.map( item => <div className="searched__item"><div className="flex--complet"><h3 className="mx-5">{item.name}</h3><p className="m-5">{item.description}</p></div> <button className="green--button">add</button></div>)  : 'no matching collections'
 
     return (
         <div className="set__container">
@@ -31,7 +31,7 @@ const SetScreenView = ( { state, functions, searched } ) => {
             </div>
 
             <div className="searched__collections">
-                <h2 className="set__title">{state.name}</h2>
+                <h2 className="set__title">add collections to the set</h2>
                 <ol>
                     {renderedSearched}
                 </ol>
