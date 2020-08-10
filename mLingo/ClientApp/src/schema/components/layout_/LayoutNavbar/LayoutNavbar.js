@@ -3,7 +3,7 @@ import SearchInputContainer from '../SearchInput/SearchInputContainer';
 import { Link } from "react-router-dom";
 import logo from '../../../../img/Kompozycja 2.svg'
 import LayoutUserMenu from '../LayoutUserMenu/LayoutUserMenu';
-import { ReactComponent as Profile } from '../../../../img/icon-profile.svg'
+import ProfileAnimation from '../../animation_/iconProfile'
 import {authentication_service} from '../../../../services/authentication/authentication'
 
 const logout = () => {
@@ -21,7 +21,7 @@ const LayoutNavbar = props => {
         {
           localStorage.getItem("currentUser") ? <div className="navbar__buttons">
           <SearchInputContainer/>
-          <Link to="/UserDashboard"><Profile className="ml-5"/></Link>
+          <Link to="/UserDashboard"><ProfileAnimation/></Link>
           <div>
             <button className="navbar__logoutbutton" onClick={logout}>log out</button>
           </div>
