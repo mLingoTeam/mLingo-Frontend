@@ -9,15 +9,17 @@ class SetScreenContainer extends React.Component {
     constructor() {
         super();
 
-        this.state = { "loaded": false, searchedValue: [ ], set: { collections: [] } };
+        this.state = { "loaded": false, searchedValue: [ ], set: { collections: [] }, edit: false };
 
         this.getSet = this.getSet.bind(this);
         this.searchCollection = this.searchCollection.bind(this);
         this.addCollectionToSet = this.addCollectionToSet.bind(this);
+        this.submitSetForm = this.submitSetForm.bind(this);
 
         this.functions = {
             searchCollection: this.searchCollection,
-            addCollectionToSet :this.addCollectionToSet
+            addCollectionToSet :this.addCollectionToSet,
+            submitSetForm: this.submitSetForm
         }
     }
 
@@ -33,11 +35,11 @@ class SetScreenContainer extends React.Component {
             const set = await authentication_service.set.find({type: "id", name: set_id} );
 
             this.setState({ ...this.state, "set": set.response });
-            this.setState({ ...this.state, "loaded": true });
+            this.setState({ ...this.state, "loaded": true, edit: true });
         }
         else {
             this.setState({ ...this.state, "set": false });
-            this.setState({ ...this.state, "loaded": true });
+            this.setState({ ...this.state, "loaded": true, edit: false });
         }
     }
 
@@ -52,6 +54,24 @@ class SetScreenContainer extends React.Component {
 
     componentDidMount() {
         this.getSet();
+    }
+
+    submitSetForm(){
+
+        this.state.edit ? authentication_service.set.update( {
+            id: this.state.set.id,
+            cards: this.state.set.collections,
+            token: localStorage.getItem("Token"),
+            description: this.state.set.description,
+            name: this.state.set.name
+        } )
+        : authentication_service.set.create( {
+            id: this.state.set.id,
+            cards: this.state.set.collections,
+            token: localStorage.getItem("Token"),
+            description: this.state.set.description,
+            name: this.state.set.name
+        } );
     }
 
     render() {

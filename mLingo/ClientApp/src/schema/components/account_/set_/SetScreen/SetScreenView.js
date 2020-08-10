@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Field, ErrorMessage, Form } from "formik";
+//import { Formik, Field, ErrorMessage, Form } from "formik";
 import * as Yup from 'yup';
 
 
@@ -10,7 +10,6 @@ const SetSchema = Yup.object().shape( {
 
 const SetScreenView = ( { state, functions, searched } ) => {
 
-    const handleSubmit = () => {};
 
     const collections = state.collections.map( collection => <li>{collection.name || 'no name of the collection'}</li>)
 
@@ -25,31 +24,21 @@ const SetScreenView = ( { state, functions, searched } ) => {
     return (
         <div className="set__container">
             <h2 className="set__title">{state.name}</h2>
-            <Formik
-                initialValues={ { name: '', description: ''} }
-                onSubmit={handleSubmit}
-                validationSchema={SetSchema}
-            >
-                { (props) => {
-                    return (
-                        <Form className="set__form">
-                            <div className="card__container card--set card--setscreen"></div>
+            <form className="set__form">
+                <div className="card__container card--set card--setscreen"></div>
 
-                            <div className="form__group">
-                                <label htmlFor="name" className="details__title" size="46">title</label>
-                                <Field type="text" name="name" className="details__description details--set"/>
+                <div className="form__group">
+                    <label htmlFor="name" className="details__title" size="46">title</label>
+                    <input type="text" name="name" className="details__description details--set"/>
 
-                                <label htmlFor="description" className="details__title">description</label>
-                                <Field as="textarea" type="description" name="title" className="details__description details--set" rows="5" col="45">{state.description}</Field>
-                            </div>
+                    <label htmlFor="description" className="details__title">description</label>
+                    <textarea as="textarea" type="description" name="title" className="details__description details--set" rows="5" col="45">{state.description}</textarea>
+                </div>
 
-                            <input type="text" name="title" placeholder="search a collection" className="details__description details--set" onChange={(e)=>{ functions.searchCollection(e.target.value) }}/>
-                        </Form>
-                    )
-                }}
-            </Formik>
-            <div className="set__info">
-                <h2 className="set__title">{state.name}</h2>
+                <input type="text" name="title" placeholder="search for a collection" className="details__description details--set" onChange={(e)=>{ functions.searchCollection(e.target.value) }}/>
+            </form>
+                <div className="set__info">
+                <h2 className="set__title">{state.name || 'collections'}</h2>
                 <ol>
                     { collections }
                 </ol>
@@ -71,5 +60,7 @@ const SetScreenView = ( { state, functions, searched } ) => {
 
     )
 }
+
+// onClick={functions.submitSetForm}
 
 export default SetScreenView;
