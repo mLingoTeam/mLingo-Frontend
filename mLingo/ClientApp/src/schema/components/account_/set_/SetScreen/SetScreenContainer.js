@@ -2,23 +2,30 @@ import React from 'react'
 import View from './SetScreenView'
 import { authentication_service } from '../../../../../services/authentication/authentication';
 import Loading from '../../../loading/Loading'
-
+import setCreateHelper from '../SetCreate/SetCreateHelper'
 
 class SetScreenContainer extends React.Component {
 
     constructor() {
         super();
 
-        this.state = { "loaded": false };
+        this.state = { "loaded": false, searchedValue: [ {name: 'default'} ], set: { collections: [] } };
 
         this.getSet = this.getSet.bind(this);
+        this.searchCollection = this.searchCollection.bind(this);
         this.removeCollection = this.removeCollection.bind(this);
         this.editCollection = this.editCollection.bind(this)
 
         this.functions = {
             removeCollection: this.removeCollection,
-            editCollection: this.editCollection
+            editCollection: this.editCollection,
+            searchCollection: this.searchCollection
         }
+    }
+
+    async searchCollection(value){
+        let searchedValue = setCreateHelper.searchCollection(value);
+        searchedValue.then( resolved => this.setState( state => { return { ...state, searchedValue: resolved.response }}) )
     }
 
     async getSet() {
@@ -58,7 +65,7 @@ class SetScreenContainer extends React.Component {
     render() {
         console.log(this.state)
         if(this.state.loaded){
-            return <View state={this.state.set} functions={this.functions}/>
+            return <View state={this.state.set} functions={this.functions} searched={this.state.searchedValue}/>
         }
         return <Loading/>
 

@@ -8,6 +8,11 @@ const helper = {
         return collectioni;
     },
 
+    async searchCollection(searchPhrase){
+        const searchedCollection = authentication_service.collection.find({ type: 'name', name: searchPhrase})
+        return searchedCollection;
+    },
+
     modifySet({ cards, name, description, id }) {
         authentication_service.set.update({ id, token: localStorage.getItem("Token"), cards: cards, name: name, description: description })
     },

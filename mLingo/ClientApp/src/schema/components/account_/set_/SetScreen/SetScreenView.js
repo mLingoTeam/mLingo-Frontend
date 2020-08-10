@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SetScreenView = ( { state, functions } ) => {
+const SetScreenView = ( { state, functions, searched } ) => {
 
     const collections = state.collections.map( collection => <li>{collection.name || 'no name of the collection'}</li>)
+
+    let renderedSearched =  searched.length > 0  ? searched.map( item => <div className="searched__item"><div className="flex--complet"><h3 className="mx-5">{item.name}</h3><p>{item.description}</p></div> <button className="green--button">add</button></div>)  : 'no matching collections'
 
     return (
         <div className="set__container">
@@ -16,10 +18,10 @@ const SetScreenView = ( { state, functions } ) => {
                     <input type="text" name="title" className="details__description details--set"/>
 
                     <label htmlFor="description" className="details__title">description</label>
-                    <textarea type="text" name="title" className="details__description details--set" rows="5" col="45"></textarea>
+                    <textarea type="text" name="title" className="details__description details--set" rows="5" col="45">{state.description}</textarea>
                 </div>
 
-                <input type="text" name="title" placeholder="search a collection" className="details__description details--set"/>
+                <input type="text" name="title" placeholder="search a collection" className="details__description details--set" onChange={(e)=>{ functions.searchCollection(e.target.value) }}/>
             </form>
             <div className="set__info">
                 <h2 className="set__title">{state.name}</h2>
@@ -28,7 +30,18 @@ const SetScreenView = ( { state, functions } ) => {
                 </ol>
             </div>
 
+            <div className="searched__collections">
+                <h2 className="set__title">{state.name}</h2>
+                <ol>
+                    {renderedSearched}
+                </ol>
+            </div>
+
             <button className="green--button createset__button">save</button>
+
+
+
+
         </div>
 
     )
