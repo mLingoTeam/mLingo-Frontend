@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 import logo from '../../../../img/Kompozycja 2.svg'
 import LayoutUserMenu from '../LayoutUserMenu/LayoutUserMenu';
 import { ReactComponent as Profile } from '../../../../img/icon-profile.svg'
+import {authentication_service} from '../../../../services/authentication/authentication'
 
+const logout = () => {
+  authentication_service.user.logout();
+  //it works because localStorage is empty imidiately
+  window.location.reload();
+};
 
 const LayoutNavbar = props => {
   return (
@@ -17,7 +23,7 @@ const LayoutNavbar = props => {
           <SearchInputContainer/>
           <Link to="/UserDashboard"><Profile className="ml-5"/></Link>
           <div>
-            <button className="navbar__logoutbutton">log out</button>
+            <button className="navbar__logoutbutton" onClick={logout}>log out</button>
           </div>
             <LayoutUserMenu navbar={true}/>
           </div> : <div className="navbar__buttons">
