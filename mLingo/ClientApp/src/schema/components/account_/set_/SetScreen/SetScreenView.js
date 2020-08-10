@@ -29,10 +29,10 @@ const SetScreenView = ( { state, functions, searched } ) => {
 
                 <div className="form__group">
                     <label htmlFor="name" className="details__title" size="46">title</label>
-                    <input type="text" name="name" className="details__description details--set"/>
+                    <input type="text" name="name" className="details__description details--set" onChange={(e) => { functions.handleSetChange(e.target.name, e.target.value) }} value={state.name}/>
 
                     <label htmlFor="description" className="details__title">description</label>
-                    <textarea as="textarea" type="description" name="title" className="details__description details--set" rows="5" col="45">{state.description}</textarea>
+                    <textarea as="textarea" type="description" name="title" className="details__description details--set" rows="5" col="45" onChange={(e) => { functions.handleSetChange(e.target.name, e.target.value) }}   value={state.description} ></textarea>
                 </div>
 
                 <input type="text" name="title" placeholder="search for a collection" className="details__description details--set" onChange={(e)=>{ functions.searchCollection(e.target.value) }}/>
@@ -51,7 +51,7 @@ const SetScreenView = ( { state, functions, searched } ) => {
                 </ol>
             </div>
 
-            <button className="green--button createset__button">save</button>
+            <button className="green--button createset__button" onClick={functions.submitSetForm}>save</button>
 
 
 
@@ -60,7 +60,5 @@ const SetScreenView = ( { state, functions, searched } ) => {
 
     )
 }
-
-// onClick={functions.submitSetForm}
 
 export default SetScreenView;

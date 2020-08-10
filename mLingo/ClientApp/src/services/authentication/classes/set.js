@@ -22,6 +22,8 @@ function find({ type , name }) {
       body: JSON.stringify({ name, description, collectionIds })
     };
 
+    console.log(requestOptions);
+
     return fetch(`${this.host}/api/sets/create`, requestOptions)
       .then(result => result.json())
       .catch(err => console.log(err))

@@ -15,12 +15,18 @@ class SetScreenContainer extends React.Component {
         this.searchCollection = this.searchCollection.bind(this);
         this.addCollectionToSet = this.addCollectionToSet.bind(this);
         this.submitSetForm = this.submitSetForm.bind(this);
+        this.handleSetChange = this.handleSetChange.bind(this)
 
         this.functions = {
             searchCollection: this.searchCollection,
             addCollectionToSet :this.addCollectionToSet,
-            submitSetForm: this.submitSetForm
+            submitSetForm: this.submitSetForm,
+            handleSetChange: this.handleSetChange,
         }
+    }
+
+    handleSetChange(name, value) {
+        this.setState( state => { return { ...state, set: { ...state.set, [name]: value }} })
     }
 
     async searchCollection(value){
@@ -58,17 +64,18 @@ class SetScreenContainer extends React.Component {
 
     submitSetForm(){
 
+        const collectionIdArr = this.state.set.collections.map( collection => collection.id)
+
         this.state.edit ? authentication_service.set.update( {
             id: this.state.set.id,
-            cards: this.state.set.collections,
-            token: localStorage.getItem("Token"),
+            collectionIds: collectionIdArr,
+            Token: localStorage.getItem("Token"),
             description: this.state.set.description,
             name: this.state.set.name
         } )
         : authentication_service.set.create( {
-            id: this.state.set.id,
-            cards: this.state.set.collections,
-            token: localStorage.getItem("Token"),
+            collectionIds: collectionIdArr,
+            Token: localStorage.getItem("Token"),
             description: this.state.set.description,
             name: this.state.set.name
         } );
