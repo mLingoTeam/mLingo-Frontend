@@ -13,6 +13,7 @@
 /* --- --- 1.1.4 CollectionScreen
 // --- 1.2 set_
 /* --- --- 1.2.1 SetCard */
+/* --- --- 1.2.2 SetScreen */
 // --- 1.3 user_
 /* --- --- 1.3.1 UserHead */
 /* --- --- 1.3.2 UserHead Section */
@@ -228,6 +229,80 @@
 .search__title, .search__nofound{
     font-size: 1.5em;
     color: $dark-blue;
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 1.2.2 SetScreen */
+//////////////////////////////////////////////////////
+
+.set__container{
+    @extend .all__containers__in__user__section;
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.set__title{
+    @extend .col-12;
+    color: $dark-blue;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.card--setscreen{
+    margin: 40px 0;
+    width: 200px;
+    height: 200px;
+}
+
+.set__form{
+    @extend .col-12, .col-lg-8;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+input[type=text].details--set{
+    height: 40px;
+    width: 100%;
+}
+
+.form__group{
+    width: 56%;
+    margin: 20px 0px 20px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.set__info{
+    @extend .col-12, .col-lg-4;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0px 6px 8px #00000029;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.createset__button{
+    @extend .offset-5, .my-5;
+}
+
+
+.searched__collections{
+    @extend .col-12;
+    padding: 30px;
+    margin: 25px 0;
+    background-color: white;
+    box-shadow: 0px 6px 8px #00000029;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.searched__item{
+    border-bottom: 1px solid $dark-blue;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
 }
 
 //////////////////////////////////////////////////////
