@@ -3,6 +3,7 @@ import SearchInputContainer from '../SearchInput/SearchInputContainer';
 import { Link } from "react-router-dom";
 import logo from '../../../../img/Kompozycja 2.svg'
 import LayoutUserMenu from '../LayoutUserMenu/LayoutUserMenu';
+import { ReactComponent as Profile } from '../../../../img/icon-profile.svg'
 
 
 const LayoutNavbar = props => {
@@ -14,6 +15,10 @@ const LayoutNavbar = props => {
         {
           localStorage.getItem("currentUser") ? <div className="navbar__buttons">
           <SearchInputContainer/>
+          <Link to="/UserDashboard"><Profile className="ml-5"/></Link>
+          <div>
+            <button className="navbar__logoutbutton">log out</button>
+          </div>
             <LayoutUserMenu navbar={true}/>
           </div> : <div className="navbar__buttons">
           <div>
