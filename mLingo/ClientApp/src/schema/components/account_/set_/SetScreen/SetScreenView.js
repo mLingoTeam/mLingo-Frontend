@@ -3,9 +3,18 @@ import { Link } from 'react-router-dom';
 
 const SetScreenView = ( { state, functions, searched } ) => {
 
+    console.log("------------------------------------------")
+    console.log(state.collections)
+    console.log("------------------------------------------")
     const collections = state.collections.map( collection => <li>{collection.name || 'no name of the collection'}</li>)
 
-    let renderedSearched =  searched.length > 0  ? searched.map( item => <div className="searched__item"><div className="flex--complet"><h3 className="mx-5">{item.name}</h3><p className="m-5">{item.description}</p></div> <button className="green--button">add</button></div>)  : 'no matching collections'
+    let renderedSearched =  searched.length > 0  ? searched.map( item => <div className="searched__item">
+        <div className="flex--complet">
+            <h3 className="mx-5">{item.name}</h3>
+            <p className="m-5">{item.description}</p>
+        </div>
+        <button name={item.id} className="green--button" onClick={(e) => { functions.addCollectionToSet(e.target.name) }}>add</button>
+    </div>)  : 'no matching collections'
 
     return (
         <div className="set__container">

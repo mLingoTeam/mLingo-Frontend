@@ -9,17 +9,19 @@ class SetScreenContainer extends React.Component {
     constructor() {
         super();
 
-        this.state = { "loaded": false, searchedValue: [ {name: 'default'} ], set: { collections: [] } };
+        this.state = { "loaded": false, searchedValue: [ ], set: { collections: [] } };
 
         this.getSet = this.getSet.bind(this);
         this.searchCollection = this.searchCollection.bind(this);
         this.removeCollection = this.removeCollection.bind(this);
-        this.editCollection = this.editCollection.bind(this)
+        this.editCollection = this.editCollection.bind(this);
+        this.addCollectionToSet = this.addCollectionToSet.bind(this);
 
         this.functions = {
             removeCollection: this.removeCollection,
             editCollection: this.editCollection,
-            searchCollection: this.searchCollection
+            searchCollection: this.searchCollection,
+            addCollectionToSet :this.addCollectionToSet
         }
     }
 
@@ -42,6 +44,13 @@ class SetScreenContainer extends React.Component {
             this.setState({ ...this.state, "set": false });
             this.setState({ ...this.state, "loaded": true });
         }
+    }
+
+    addCollectionToSet(name){
+        const finder = this.state.searchedValue.find( item => item.id === name)
+        console.log(finder)
+        this.setState( state => { return { ...state, set: { ...state.set, collections: [...state.set.collections, finder]}}}, console.log(this.state))
+        console.log(this.state)
     }
 
     removeCollection() {
