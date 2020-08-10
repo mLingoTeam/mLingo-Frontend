@@ -13,13 +13,9 @@ class SetScreenContainer extends React.Component {
 
         this.getSet = this.getSet.bind(this);
         this.searchCollection = this.searchCollection.bind(this);
-        this.removeCollection = this.removeCollection.bind(this);
-        this.editCollection = this.editCollection.bind(this);
         this.addCollectionToSet = this.addCollectionToSet.bind(this);
 
         this.functions = {
-            removeCollection: this.removeCollection,
-            editCollection: this.editCollection,
             searchCollection: this.searchCollection,
             addCollectionToSet :this.addCollectionToSet
         }
@@ -35,7 +31,6 @@ class SetScreenContainer extends React.Component {
 
         if (set_id) {
             const set = await authentication_service.set.find({type: "id", name: set_id} );
-            console.log(set)
 
             this.setState({ ...this.state, "set": set.response });
             this.setState({ ...this.state, "loaded": true });
@@ -48,19 +43,7 @@ class SetScreenContainer extends React.Component {
 
     addCollectionToSet(name){
         const finder = this.state.searchedValue.find( item => item.id === name)
-        console.log(finder)
-        this.setState( state => { return { ...state, set: { ...state.set, collections: [...state.set.collections, finder]}}}, console.log(this.state))
-        console.log(this.state)
-    }
-
-    removeCollection() {
-        authentication_service.set.remove({id: localStorage.getItem("setid"), token: localStorage.getItem("Token")});
-        localStorage.removeItem("setid");
-        this.setState({ ...this.state, "set": false });
-    }
-
-    editCollection(){
-        localStorage.setItem("editCollection", localStorage.getItem("collectionid"))
+        this.setState( state => { return { ...state, set: { ...state.set, collections: [...state.set.collections, finder]}}})
     }
 
     componentWillUnmount() {
@@ -72,7 +55,6 @@ class SetScreenContainer extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         if(this.state.loaded){
             return <View state={this.state.set} functions={this.functions} searched={this.state.searchedValue}/>
         }
