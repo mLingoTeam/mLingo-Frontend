@@ -1,11 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Formik, Field, ErrorMessage, Form } from "formik";
+import * as Yup from 'yup';
+
+
+const SetSchema = Yup.object().shape( {
+    name: Yup.string().required("This field is required").min(3, "Minimum length is 3"),
+    description: Yup.string(),
+} )
 
 const SetScreenView = ( { state, functions, searched } ) => {
 
-    console.log("------------------------------------------")
-    console.log(state.collections)
-    console.log("------------------------------------------")
+    const handleSubmit = () => {};
+
     const collections = state.collections.map( collection => <li>{collection.name || 'no name of the collection'}</li>)
 
     let renderedSearched =  searched.length > 0  ? searched.map( item => <div className="searched__item">
@@ -19,19 +25,29 @@ const SetScreenView = ( { state, functions, searched } ) => {
     return (
         <div className="set__container">
             <h2 className="set__title">{state.name}</h2>
-            <form className="set__form">
-                <div className="card__container card--set card--setscreen"></div>
+            <Formik
+                initialValues={ { name: '', description: ''} }
+                onSubmit={handleSubmit}
+                validationSchema={SetSchema}
+            >
+                { (props) => {
+                    return (
+                        <Form className="set__form">
+                            <div className="card__container card--set card--setscreen"></div>
 
-                <div className="form__group">
-                    <label htmlFor="title" className="details__title" size="46">title</label>
-                    <input type="text" name="title" className="details__description details--set"/>
+                            <div className="form__group">
+                                <label htmlFor="name" className="details__title" size="46">title</label>
+                                <Field type="text" name="name" className="details__description details--set"/>
 
-                    <label htmlFor="description" className="details__title">description</label>
-                    <textarea type="text" name="title" className="details__description details--set" rows="5" col="45">{state.description}</textarea>
-                </div>
+                                <label htmlFor="description" className="details__title">description</label>
+                                <Field as="textarea" type="description" name="title" className="details__description details--set" rows="5" col="45">{state.description}</Field>
+                            </div>
 
-                <input type="text" name="title" placeholder="search a collection" className="details__description details--set" onChange={(e)=>{ functions.searchCollection(e.target.value) }}/>
-            </form>
+                            <input type="text" name="title" placeholder="search a collection" className="details__description details--set" onChange={(e)=>{ functions.searchCollection(e.target.value) }}/>
+                        </Form>
+                    )
+                }}
+            </Formik>
             <div className="set__info">
                 <h2 className="set__title">{state.name}</h2>
                 <ol>
