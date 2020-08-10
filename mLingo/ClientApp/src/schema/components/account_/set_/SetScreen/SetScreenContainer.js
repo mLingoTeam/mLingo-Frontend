@@ -82,6 +82,7 @@ class SetScreenContainer extends React.Component {
     }
 
     render() {
+        console.log(this.state)
         if(this.state.loaded){
             return <View state={this.state.set} functions={this.functions} searched={this.state.searchedValue}/>
         }

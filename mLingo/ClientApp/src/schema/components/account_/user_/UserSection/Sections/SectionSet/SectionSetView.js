@@ -28,7 +28,7 @@ const SectionSetView = ( { state } ) => {
                         }
                     </div>
                     <div className="element--center">
-                        <Link to="/create" className="plus--button"><FaPlus /></Link>
+                        <Link to="/studyset" className="plus--button"><FaPlus /></Link>
                     </div>
                 </div>
             }

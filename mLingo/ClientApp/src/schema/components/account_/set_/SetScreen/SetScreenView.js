@@ -32,7 +32,7 @@ const SetScreenView = ( { state, functions, searched } ) => {
                     <input type="text" name="name" className="details__description details--set" onChange={(e) => { functions.handleSetChange(e.target.name, e.target.value) }} value={state.name}/>
 
                     <label htmlFor="description" className="details__title">description</label>
-                    <textarea as="textarea" type="description" name="title" className="details__description details--set" rows="5" col="45" onChange={(e) => { functions.handleSetChange(e.target.name, e.target.value) }}   value={state.description} ></textarea>
+                    <textarea as="textarea" type="description" name="description" className="details__description details--set" rows="5" col="45" onChange={(e) => { functions.handleSetChange(e.target.name, e.target.value) }}   value={state.description} ></textarea>
                 </div>
 
                 <input type="text" name="title" placeholder="search for a collection" className="details__description details--set" onChange={(e)=>{ functions.searchCollection(e.target.value) }}/>
