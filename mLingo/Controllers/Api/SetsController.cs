@@ -150,6 +150,17 @@ namespace mLingo.Controllers.Api
             return this.HandleManagerResponse(res);
         }
 
+        /// <summary>
+        /// Returns overview of all collections which belong to specified set
+        /// </summary>
+        /// <param name="id">set id</param>
+        /// <param name="name">set name</param>
+        /// <response code="200">Successful, returns array of collections</response>
+        /// <response code="404">Failed, set of given name/id does not exist</response>
+        /// <response code="400">Failed, id or name not specified</response>
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("collectionsdata")]
         public IActionResult CollectionsData([FromQuery] string id = null, [FromQuery] string name = null)
         {
             var res = _setManager.CollectionsData(id, name);
