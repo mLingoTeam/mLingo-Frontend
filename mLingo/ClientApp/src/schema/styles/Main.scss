@@ -386,6 +386,34 @@ overflow-y: hidden;
     }
 }
 
+.passwordinput__input{
+    @extend .col-12;
+    height: 40px;
+    font-size: 18px;
+    border: 1px solid #707070;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    input {
+        @extend .col-11;
+        border: 0;
+        background-color: inherit;
+
+        &:focus{
+            outline: none !important;
+        }
+    }
+
+    .form__eye{
+        @extend .col-1;
+    }
+
+    .form__eye--clicked{
+        color: $dark-green;
+    }
+}
+
 .form__checkbox{
     display: none;
 
@@ -1074,6 +1102,11 @@ cursor: pointer;
 
 .signin__button {
   @include inbutton("inherit");
+}
+
+.navbar__logoutbutton {
+    @include outbutton("inherit");
+    font-weight: 600;
 }
 
 

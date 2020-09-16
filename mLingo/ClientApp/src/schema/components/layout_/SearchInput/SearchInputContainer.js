@@ -1,4 +1,5 @@
 import React from "react";
+import { FaWindowMinimize } from "react-icons/fa";
 
 import View from './SearchInputView'
 
@@ -23,7 +24,8 @@ class SearchInputContainer extends React.Component {
     }
 
     findcollection() {
-        localStorage.setItem( 'request', this.state.request )
+        localStorage.setItem( 'request', this.state.request );
+        window.location.reload();
     }
 
     render() {

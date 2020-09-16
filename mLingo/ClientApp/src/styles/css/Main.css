@@ -1123,7 +1123,7 @@ pre code {
   padding-left: 0;
 }
 
-.col-1, .col-2, .col-3, .col-4, .col-5, .flashcard__card, .col-6, .leftcircle__container, .rightcircle__container, .col-7, .col-8, .col-9, .col-10, .newsletter__thanks, .col-11, .col-12, .create__details, .flashcard__container, .set__title, .set__form, .set__info, .searched__collections, .forminput__container, .forminput__input, .form__title, .form__form, .form__alreadyaccount, .form__getstarted, .form__remember, .formsocials__container, .fbconnect__button, .ggconnect__button, .newsletter__section, .col,
+.col-1, .passwordinput__input .form__eye, .col-2, .col-3, .col-4, .col-5, .flashcard__card, .col-6, .leftcircle__container, .rightcircle__container, .col-7, .col-8, .col-9, .col-10, .newsletter__thanks, .col-11, .passwordinput__input input, .col-12, .create__details, .flashcard__container, .set__title, .set__form, .set__info, .searched__collections, .forminput__container, .forminput__input, .passwordinput__input, .form__title, .form__form, .form__alreadyaccount, .form__getstarted, .form__remember, .formsocials__container, .fbconnect__button, .ggconnect__button, .newsletter__section, .col,
 .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .newsletter__subscribe, .col-sm-11, .col-sm-12, .create__container, .create--collection, .step__details, .col-sm,
 .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .opinion__description, .col-md-8, .opinion__container, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md,
 .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .step__element, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg,
@@ -1194,7 +1194,7 @@ pre code {
   max-width: 100%;
 }
 
-.col-1 {
+.col-1, .passwordinput__input .form__eye {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 8.33333%;
           flex: 0 0 8.33333%;
@@ -1264,14 +1264,14 @@ pre code {
   max-width: 83.33333%;
 }
 
-.col-11 {
+.col-11, .passwordinput__input input {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 91.66667%;
           flex: 0 0 91.66667%;
   max-width: 91.66667%;
 }
 
-.col-12, .create__details, .flashcard__container, .set__title, .set__form, .set__info, .searched__collections, .forminput__container, .forminput__input, .form__title, .form__form, .form__alreadyaccount, .form__getstarted, .form__remember, .formsocials__container, .fbconnect__button, .ggconnect__button, .newsletter__section {
+.col-12, .create__details, .flashcard__container, .set__title, .set__form, .set__info, .searched__collections, .forminput__container, .forminput__input, .passwordinput__input, .form__title, .form__form, .form__alreadyaccount, .form__getstarted, .form__remember, .formsocials__container, .fbconnect__button, .ggconnect__button, .newsletter__section {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 100%;
           flex: 0 0 100%;
@@ -11619,6 +11619,35 @@ input[type=text].details--set {
   outline: none !important;
 }
 
+.passwordinput__input {
+  height: 40px;
+  font-size: 18px;
+  border: 1px solid #707070;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.passwordinput__input input {
+  border: 0;
+  background-color: inherit;
+}
+
+.passwordinput__input input:focus {
+  outline: none !important;
+}
+
+.passwordinput__input .form__eye--clicked {
+  color: #A1D218;
+}
+
 .form__checkbox {
   display: none;
 }
@@ -12363,6 +12392,34 @@ input[type=text].details--set {
 
 @media (max-width: 576px) {
   .signin__button {
+    font-size: 16px !important;
+  }
+}
+
+.navbar__logoutbutton {
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: #B6EE1A;
+  outline: none !important;
+  background: "inherit";
+  height: 60px;
+  border-radius: 5px;
+  text-decoration: none;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  font-weight: 600;
+}
+
+.navbar__logoutbutton:hover, .navbar__logoutbutton:focus, .navbar__logoutbutton:active, .navbar__logoutbutton:checked {
+  color: white;
+  text-decoration: none !important;
+}
+
+@media (max-width: 576px) {
+  .navbar__logoutbutton {
     font-size: 16px !important;
   }
 }

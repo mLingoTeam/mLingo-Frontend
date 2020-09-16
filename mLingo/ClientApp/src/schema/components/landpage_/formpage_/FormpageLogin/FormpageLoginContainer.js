@@ -15,35 +15,49 @@ class FormpageLoginContainer extends React.Component {
       email: "",
       password: "",
       isLoading: false,
-      err: false
+      err: false,
+      hidden: true,
+      fields: [
+        {
+          type: "text",
+          name: "username",
+          label: "username/email",
+          function: this.handleChange.bind(this),
+          placeholder: "Jake the dog",
+          id: "Username"
+        },
+        {
+          type: this.isHidden(),
+          name: "password",
+          label: "password",
+          function: this.handleChange.bind(this),
+          placeholder: "admin",
+          id: "Password"
+        }
+      ]
     };
 
-    this.fields = [
-      {
-        type: "text",
-        name: "username",
-        label: "username/email",
-        function: this.handleChange.bind(this),
-        placeholder: "Jake the dog",
-        id: "Username"
-      },
-      {
-        type: "password",
-        name: "password",
-        label: "password",
-        function: this.handleChange.bind(this),
-        placeholder: "admin",
-        id: "Password"
-      }
-    ];
+
 
     this.handleChange = this.handleChange.bind(this);
     this.account_login = this.account_login.bind(this);
+    this.isHidden = this.isHidden.bind(this);
+
 
     this.functions = {
       account_login: this.account_login,
       handleChange: this.handleChange
     }
+  }
+
+  isHidden() {
+    if(this.state){
+      if(this.state.hidden){
+        return "password"
+      }
+      return "text"
+    }
+    return "password"
   }
 
 
@@ -87,7 +101,7 @@ class FormpageLoginContainer extends React.Component {
       this.props.history.push('/head');
     }
 
-    return  <View state={this.state} fields={this.fields} functions={this.functions}/>
+    return  <View state={this.state} fields={this.state.fields} functions={this.functions}/>
   }
 }
 
