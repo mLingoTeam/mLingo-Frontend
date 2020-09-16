@@ -13,7 +13,7 @@ export default function IconProfile() {
         const tl = gsap.timeline({defaults: { ease: 'power3.inOut'}});
 
         gsap.set([that.children, circle], { autoAlpha: 0 })
-        tl.fromTo(circle, { scale: 0.2 }, {scale: 1, duration: 0.6, autoAlpha:1})
+        tl.fromTo(circle, { scale: 0 }, {scale: 1, duration: 0.4, autoAlpha:1})
         .fromTo(that.children ,{x: "+=100", scale: 10}, {duration: 1, x: "-=100", scale:1, autoAlpha: 1, stagger: 0.2})
      }, [])
 
