@@ -1,0 +1,204 @@
+// Basic overitements //
+
+$dark-blue: #000536;
+$light-blue: #000536;
+$light-green: #B6EE1A;
+$dark-green: #A1D218;
+$mobile-res: 576px;
+$tablet-res: 991px;
+$desktop-res: 992px;
+
+*{
+  font-family: 'Poppins', sans-serif ;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus,
+a:checked {
+  text-decoration: none;
+}
+
+
+@mixin mobile {
+  @media (max-width: 991px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin inbutton($color) {
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: white;
+  outline: none !important;
+  background: $color;
+  height: 60px;
+  border-radius: 5px;
+  transition: 0.5s;
+
+  &:hover, &:focus, &:active, &:checked {
+    color: $light-green;
+    text-decoration: none !important;
+  }
+
+  @media(max-width: $mobile-res){
+    &{
+      font-size: 16px !important;
+    }
+  }
+}
+
+@mixin outbutton($color) {
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  background-color: inherit;
+  border: 0;
+  color: $light-green;
+  outline: none !important;
+  background: $color;
+  height: 60px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: 0.5s;
+
+  &:hover, &:focus, &:active, &:checked  {
+    color: white;
+    text-decoration: none !important;
+  }
+
+  @media(max-width: $mobile-res){
+    &{
+      font-size: 16px !important;
+    }
+  }
+}
+
+@mixin darkbutton($color) {
+  font-size: 16px;
+  font-weight: 400;
+  background-color: inherit;
+  border: 0;
+  color: $dark-blue;
+  outline: none !important;
+  background: $color;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.5s;
+
+  &:hover {
+    color: $dark-blue;
+    text-decoration: none !important;
+  }
+
+  @media(max-width: $mobile-res){
+    &{
+      font-size: 12px !important;
+      padding: 5px 3px;
+    }
+  }
+}
+
+@mixin greenbutton{
+  @include darkbutton($light-green);
+
+  &:active{
+    background: linear-gradient($dark-green, $light-green);
+  }
+}
+
+@mixin bluebutton {
+  @include inbutton($light-blue);
+}
+
+.green-button{
+  @include greenbutton;
+}
+
+.blue-button {
+  @include bluebutton;
+}
+
+.in-button {
+  @include inbutton(inherit);
+}
+
+input.text{
+  border: 1px solid #B2B2B2;
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 10px 10px;
+
+  &:hover, &:focus, &:active, &:checked {
+    text-decoration: none !important;
+    outline: none;
+  }
+}
+
+input[type='text'],textarea{
+  &:hover, &:focus, &:active, &:checked {
+    text-decoration: none !important;
+    outline: none;
+  }
+}
+
+.color-dark-blue{
+  color: $dark-blue !important;
+}
+
+
+@keyframes navbar-monkey-bounce {
+  0% {
+    bottom: 10%;
+  }
+  25% {
+    bottom: 7%;
+  }
+  65% {
+    bottom: 26%;
+  }
+  70% {
+    bottom: 26%;
+  }
+  90% {
+    bottom: 7%;
+  }
+  100% {
+    bottom: 10%;
+  }
+}
+
+
+
+.remove-button{
+  font-size: 24px;
+  color: $dark-blue;
+  background-color: #F8F8F8;
+  border: 0;
+
+  &:hover,
+  &:focus {
+    background: #F8F8F8;
+  }
+
+  &:focus {
+    outline: 1px solid #F8F8F8;
+    outline-offset: -4px;
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+}

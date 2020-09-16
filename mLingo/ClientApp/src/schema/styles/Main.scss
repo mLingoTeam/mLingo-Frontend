@@ -1,0 +1,1459 @@
+@import './variables.scss';
+@import './mLingo.scss';
+@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+
+
+//////////// Rebuild SCSS ////////////
+//////////// components ////////////
+// 1. account_
+// --- 1.1 collection_
+// --- --- 1.1.1 CollectionCard
+// --- --- 1.1.2 CollectionCreate
+// --- --- 1.1.3 CollectionFlashcard
+/* --- --- 1.1.4 CollectionScreen
+// --- 1.2 set_
+/* --- --- 1.2.1 SetCard */
+/* --- --- 1.2.2 SetScreen */
+// --- 1.3 user_
+/* --- --- 1.3.1 UserHead */
+/* --- --- 1.3.2 UserHead Section */
+// 2. landpage
+// --- formpage_
+/* --- --- 2.1.1 Formulars Login and Register */
+// --- mainpage_
+/* --- --- 2.2.1 Newsletter */
+/* --- --- 2.2.2 Opinions & Opinion */
+/* --- --- 2.2.3 Steps & Step */
+/* --- --- 2.2.4  Mainpage Welcome */
+// 3. layout
+/* --- --- 3.1.1  Layout Footer */
+/* --- --- 3.1.2  Layout Navbar */
+/* --- --- 3.1.3  Layout SearchInput */
+/* --- --- 3.1.4  Layout User Menu */
+// 4. layouts
+/* --- --- 4.1.1  Layouts */
+
+
+
+//////////////////////////////////////////////////////
+/* --- --- 1.1.1 CollectionCard */
+/* --- --- 1.2.1 SetCard */
+//////////////////////////////////////////////////////
+
+.card__container{
+    width: 150px;
+    height: 150px;
+    margin: 0 55px 0 0 ;
+    border-radius: 25px;
+    border: 0;
+
+    display:flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.card__body{
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.card--collection{
+    background: url('../../img/collection.svg');
+    background-size: cover;
+}
+
+.card--set{
+    background: url('../../img/studyset.png');
+    background-size: cover;
+}
+
+.card__title, .card__subtitle {
+    color: $dark-blue;
+}
+
+.card__title{
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+.card__link{
+    &:hover{
+        text-decoration: none !important;
+    }
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 1.1.2 CollectionCreate */
+//////////////////////////////////////////////////////
+
+.create__container, .create--collection{
+    @extend .col-sm-12;
+    padding: 1rem;
+
+    @media(min-width: $tablet-res){
+        &{
+            flex: 0 0 79%;
+            max-width: 79%;
+        }
+
+    }
+}
+
+.create__details{
+    @extend .flex--start;
+    @extend .col-12;
+}
+
+.details__img{
+    @extend .img-fluid;
+    margin: 0 25px;
+}
+
+.details__description{
+    font-size: 14px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid $dark-blue;
+    border: 1px solid #B2B2B2;
+    border-radius: 10px;
+}
+
+.details__title{
+    color: $dark-blue;
+    font-size: 14px;
+}
+
+.details__buttons{
+    @extend .flex--between;
+}
+
+.create__more{
+    @extend  .flex--complet;
+    margin: 1rem;
+}
+
+.action__description{
+    margin-left: 15px;
+    color: $dark-blue;
+    font-size: 1.75em;
+}
+
+.create__button{
+    margin: 20px 0;
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 1.1.3 CollectionFlashcard */
+//////////////////////////////////////////////////////
+
+.flashcard__container{
+    @extend .col-12;
+    display: flex;
+}
+
+.flashcard__card{
+  @extend .col-5;
+  height: 200px;
+  padding: 20px;
+  background: white;
+  border-radius: 25px;
+  box-shadow: 0px 6px 8px #00000029;
+  margin: 20px;
+}
+
+.flashcard__info{
+    @extend .flex--between;
+    align-items: center;
+}
+
+
+.flashcard__number{
+    color: $dark-blue;
+    font-size: 16px;
+    font-weight: bold;
+}
+.flashcard__side{
+    color: $light-green;
+    font-size:12px;
+}
+
+.flashcard__definition{
+    color: #B2B2B2;
+    font-size: 16px;
+    border: 0;
+    border-bottom: 1px solid #B2B2B2;
+
+    &:focus{
+        outline: none;
+    }
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 1.1.4 CollectionScreen */
+//////////////////////////////////////////////////////
+
+.collection__container{
+  @extend .all__containers__in__user__section;
+  padding: 20px;
+}
+
+.collection__info{
+    @extend .flex--around;
+    flex-wrap: wrap;
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 25px;
+}
+
+.collection__title, .collection__description{
+    font-size: 1.5em;
+    color: $dark-blue;
+}
+
+.collection__title{
+    font-weight: bold;
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 1.1.5 CollectionSearch */
+//////////////////////////////////////////////////////
+
+.search__container{
+    //
+}
+.search__title, .search__nofound{
+    font-size: 1.5em;
+    color: $dark-blue;
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 1.2.2 SetScreen */
+//////////////////////////////////////////////////////
+
+.set__container{
+    @extend .all__containers__in__user__section;
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.set__title{
+    @extend .col-12;
+    color: $dark-blue;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.card--setscreen{
+    margin: 40px 0;
+    width: 200px;
+    height: 200px;
+}
+
+.set__form{
+    @extend .col-12, .col-lg-8;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+input[type=text].details--set{
+    height: 40px;
+    width: 100%;
+}
+
+.form__group{
+    width: 56%;
+    margin: 20px 0px 20px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.set__info{
+    @extend .col-12, .col-lg-4;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0px 6px 8px #00000029;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.createset__button{
+    @extend .offset-5, .my-5;
+}
+
+
+.searched__collections{
+    @extend .col-12;
+    padding: 30px;
+    margin: 25px 0;
+    background-color: white;
+    box-shadow: 0px 6px 8px #00000029;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.searched__item{
+    border-bottom: 1px solid $dark-blue;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 1.3.1 UserHead */
+//////////////////////////////////////////////////////
+
+.userhead__container{
+    @extend .all__containers__in__user__section, .flex--complet;
+}
+
+.section__container{
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 50px;
+}
+
+.userhead__section{
+    max-width: 100%;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0px 6px 8px #00000029;
+    border-radius: 25px;
+    margin: 20px;
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 1.3.2 UserHead Section */
+//////////////////////////////////////////////////////
+
+.section__title{
+    color:$dark-blue;
+    font-weight: 900;
+    font-size: 2em;
+}
+
+.section__description{
+    //
+}
+
+// sections
+.cards__container{
+padding: 50px 0;
+display: flex;
+text-align: center;
+align-items: center;
+flex-wrap: nowrap;
+overflow-x: auto;
+overflow-y: hidden;
+
+/* hide scrollbar */
+
+&::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+&::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 2.1.1 Formulars Login and Register */
+//////////////////////////////////////////////////////
+
+.forminput__container{
+    @extend .col-12, .mb-3;
+    margin: 9px 0;
+}
+.forminput__input{
+    @extend .col-12;
+    height: 40px;
+    font-size: 18px;
+    border: 1px solid #707070;
+    border-radius: 10px;
+    &:focus{
+        outline: none !important;
+    }
+}
+
+.passwordinput__input{
+    @extend .col-12;
+    height: 40px;
+    font-size: 18px;
+    border: 1px solid #707070;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    input {
+        @extend .col-11;
+        border: 0;
+        background-color: inherit;
+
+        &:focus{
+            outline: none !important;
+        }
+    }
+
+    .form__eye{
+        @extend .col-1;
+    }
+
+    .form__eye--clicked{
+        color: $dark-green;
+    }
+}
+
+.form__checkbox{
+    display: none;
+
+    & + label {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 20px;
+    font: 14px/20px 'Open Sans', Arial, sans-serif;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  & + label:last-child { margin-bottom: 0; }
+
+  & + label:before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid $dark-blue;
+    border-radius: 5px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: .6;
+    -webkit-transition: all .12s, border-color .08s;
+    transition: all .12s, border-color .08s;
+  }
+
+  &:checked + label:before {
+    width: 10px;
+    top: -5px;
+    left: 5px;
+    border-radius: 0;
+    opacity: 1;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+}
+
+.form__title{
+    @extend .col-12, .mb-5;
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.form__form{
+    @extend .col-12, .offset-lg-3, .col-lg-6;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10vh 0;
+}
+
+.form__alreadyaccount{
+    font-size: 14px;
+    margin-top: 28px !important;
+    @extend .col-12, .flex--complet ;
+
+  a{
+    color: $dark-blue;
+    text-decoration: underline $dark-blue;
+    font-weight: bold;
+  }
+}
+
+.form__getstarted{
+    @extend .col-12, .col-lg-4, .mt-5;
+}
+
+.form__remember{
+    @extend .col-12, .flex--between, .mb-5;
+    align-items: center;
+    color: $dark-green;
+}
+
+.remember__forgotpassword{
+    color: $dark-green;
+    font-size: 13px;
+
+    &:hover{
+        text-decoration: none;
+        color: $dark-green;
+    }
+}
+
+.remember__label{
+    font-weight: 400 !important;
+}
+
+.register--button{
+    margin: 48px 0 85px 0;
+}
+
+.formsocials__container{
+    @extend .col-12;
+}
+.fbconnect__button,.ggconnect__button{
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 5px 0;
+    margin: 5px 0;
+    @extend .col-12;
+}
+
+.fbconnect__button{
+    background-color: #3b5998;
+}
+
+.ggconnect__button{
+    background-color:#DB4437;
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 2.2.1 Newsletter */
+//////////////////////////////////////////////////////
+
+.newsletter__section{
+    @extend .col-12, .flex--complet;
+    position: relative;
+    color: $dark-blue;
+}
+
+.leftcircle__container, .rightcircle__container{
+    @extend .col-6;
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    width: auto;
+}
+
+.leftcircle__container{
+    position: absolute;
+    left: -20%;
+}
+.rightcircle__container{
+    position: absolute;
+    right: -20%;
+}
+
+@media(max-width: $mobile-res){
+    .rightcircle__container{
+      right: -100px;
+    }
+    .leftcircle__container{
+      left: -100px;
+    }
+}
+
+.left__circle{
+    @extend .img-fluid;
+}
+.right__circle{
+    @extend .img-fluid;
+}
+
+.newsletter__thanks{
+    @extend .col-10, .col-sm-4;
+    padding: 20vh 0;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 900;
+}
+
+.newsletter__subscribe{
+    @extend .col-sm-10, .col-md-4;
+    padding: 200px 0;
+    text-align:center;
+
+    @media(max-width: $mobile-res){
+      padding: 150px 0;
+    }
+}
+
+.newsletter__title{
+    @extend .mb-5;
+
+    @media(max-width: $mobile-res){
+        font-size: 20px;
+    }
+}
+
+.newsletter__description{
+    font-size: 18px;
+    margin: 0 !important;
+
+    @media(max-width: $mobile-res){
+        font-size: 12px;
+        margin: 0 !important;
+    }
+}
+
+.newsletter__email{
+    @extend .my-5;
+    width: 200px;
+
+    @media(max-width: $mobile-res){
+        &{
+            margin: 10px 0 !important;
+            font-size: 12px;
+            width: 150px;
+        }
+    }
+}
+
+
+//////////////////////////////////////////////////////
+/* --- --- 2.2.2 Opinions & Opinion */
+//////////////////////////////////////////////////////
+
+.opinions__container{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+
+      @media(max-width: $mobile-res){
+        &{
+            padding: 20px;
+        }
+      }
+}
+
+.opinions__title{
+    text-align: center;
+    margin-bottom: 10vh;
+}
+
+
+.opinion__container{
+    @extend .offset-md-3,  .col-md-8;
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+
+    &::before{
+      content: url("../../img/bubbles-newsletter-01.svg");
+      transform: scale(0.8);
+      position: absolute;
+      top:-70px;
+      left:-70px;
+    }
+    &::after{
+      content: url("../../img/bubbles-newsletter-02.svg");
+      transform: scale(0.8);
+      position: absolute;
+      bottom:-70px;
+      left:0;
+    }
+
+    @media(max-width: $tablet-res){
+      &{
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+
+        &::before{
+          transform: scale(0.5);
+          top:-50px;
+          left:-10px;
+        }
+        &::after{
+          transform: scale(0.5);
+          bottom:-60px;
+          right: -50px;
+        }
+      }
+    }
+}
+
+.opinion__img{
+    width: 130px;
+    height: 130px;
+    border-radius: 100%;
+}
+
+.opinion__description{
+   @extend .col-md-7;
+
+
+   font-size: 16px;
+   color: $dark-blue;
+   word-spacing: 2px;
+
+   @media(max-width: $tablet-res){
+        margin-top: 20px;
+        font-size: 12px;
+   }
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 2.2.3 Steps & Step */
+//////////////////////////////////////////////////////
+
+.steps__container{
+    @extend .flex--center;
+    flex-direction: column;
+    color: $dark-blue;
+    padding-top: 0px !important;
+
+    @media(max-width: $mobile-res){
+        &{
+          padding: 0 !important;
+        }
+    }
+}
+
+.steps__title{
+    @extend .mt-5;
+
+    &::before{
+        content: url("../../img/bubbles-L.svg");
+        margin-right: 10px;
+    }
+    &::after{
+        content: url("../../img/bubbles-R.svg");
+        margin-left: 10px;
+    }
+
+    @media(max-width: $mobile-res){
+        &{
+            font-size: 20px !important;
+        }
+    }
+    @media( min-width:$mobile-res) and (max-width: $tablet-res){
+        &{
+          font-size: 26px !important;
+        }
+    }
+}
+
+.steps__list{
+    @extend .mt-5;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
+    @media(max-width: 1200px){
+        &{
+        flex-wrap: wrap;
+        }
+    }
+}
+
+.step__element{
+    @extend .col-lg-7, .col-xl-4, .my-5, .flex--around;
+
+    flex-wrap: nowrap;
+    align-items: center;
+
+
+    @media(max-width: 1200px){
+        &{
+            justify-content: space-around;
+        }
+    }
+    @media(max-width: $tablet-res){
+        &{
+          flex-wrap: wrap;
+          text-align: center;
+        }
+    }
+}
+
+.step__img{
+    @extend .img-fluid;
+    transform: scale(0.8);
+
+    @media(max-width: $tablet-res){
+        &{
+            margin-bottom: 20px;
+        }
+      }
+}
+
+.step__details{
+    @extend .col-sm-12, .col-md-8;
+    margin:  0 20px;
+
+    @media(min-width: 1200px){
+        &{
+          margin: 0 0px;
+        }
+      }
+}
+
+.step__title{
+    font-weight: bold;
+    font-size: 1.5em;
+
+    @media(min-width: 1200px){
+    &{
+        font-size: 14px;
+
+    }
+    }
+}
+
+
+//////////////////////////////////////////////////////
+/* --- --- 2.2.4  Mainpage Welcome */
+//////////////////////////////////////////////////////
+
+.welcome__container{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+
+    @media(min-width: $tablet-res){
+        &{
+        min-height: 494px;
+        }
+    }
+
+    @media(min-width: 1200px){
+        &{
+        min-height: 618px;
+        }
+    }
+
+    @media(max-width:$tablet-res){
+        &{
+        height: 371px;
+        }
+    }
+
+
+
+
+    @media(max-width: $mobile-res){
+        &{
+        height: 297px;
+        }
+
+    }
+
+    // Iphone number Plus models and lower
+    @media(max-width:415px){
+        &{
+        height: 214px;
+        }
+    }
+}
+.welcome__img{
+    @extend .img-fluid;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 0;
+    object-fit: cover;
+}
+
+.welcome__details{
+    z-index: 1;
+    max-width:50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-right: 80px;
+
+    @media(max-width: $mobile-res){
+        &{
+            padding-right: 0px;
+        }
+    }
+}
+
+.welcome__title{
+    text-align: left;
+    color: $dark-blue;
+    font-size: 36px;
+    font-weight: 700;
+
+    @media(max-width:$tablet-res){
+        &{
+            font-size: 22px;
+        }
+    }
+
+    @media(max-width: $mobile-res){
+        &{
+        font-size: 18px;
+        }
+    }
+    @media(max-width:415px){
+        &{
+        font-size: 16px;
+        }
+    }
+}
+
+.welcome__description{
+    font-size: 16px;
+    max-width: 350px;
+    color: $light-blue;
+
+    @media(max-width:$tablet-res){
+            &{
+            font-size: 12px;
+            }
+        }
+
+
+    @media(max-width: $mobile-res){
+        &{
+        font-size: 10px;
+        }
+    }
+
+
+    // Iphone number Plus models and lower
+    @media(max-width:415px){
+        &{
+        font-size: 10px;
+        }
+    }
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 3.1.1  Layout Footer */
+//////////////////////////////////////////////////////
+
+.footer__container {
+    @extend .container;
+    background: $dark-blue;
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    color: white;
+}
+.footer__details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>div{
+    padding: 0 10px;
+    }
+
+    &>div:nth-child(2),&>div:nth-child(3){
+    border-left: 2px solid white;
+    }
+
+    @media(max-width: 767px){
+    &>div:nth-child(2),&>div:nth-child(3){
+        display: none;
+    }
+    }
+
+    p{
+    margin: 0 !important;
+    }
+}
+
+.social__mlingo {
+color: white;
+font-size: 24px;
+margin: 0 12px;
+transition: 0.5s;
+}
+.social__mlingo:hover{
+color: $light-green;
+cursor: pointer;
+}
+
+//////////////////////////////////////////////////////
+/* --- --- 3.1.2  Layout Footer */
+//////////////////////////////////////////////////////
+
+// NAVBAR CONTAINER SIZES //
+
+@media (min-width: 576px)
+{
+  .app__navbar {
+    max-width: 540px;
+
+  }
+}
+
+@media (min-width: 577px)
+{
+  .app__navbar {
+    max-width: 480px;
+    height: 80px;
+  }
+}
+
+@media (min-width: 768px)
+{
+  .app__navbar {
+    max-width: 600px;
+    height: 100px;
+  }
+}
+
+@media (min-width: 992px)
+{
+  .app__navbar {
+    max-width: 720px;
+    height: 100px;
+  }
+}
+@media (min-width: 1199px)
+{
+  .app__navbar{
+    max-width: 1000px;
+    height: 100px;
+  }
+}
+
+@media (max-width: $mobile-res) {
+
+  .app__navbar {
+    padding: 10px 5px;
+  }
+
+  .navbar__buttons {
+    width: 70%;
+  }
+
+  .navbar__brand{
+    transform: scale(0.8);
+  }
+
+}
+
+.navbar__buttons {
+  display: flex !important;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+
+
+  @media(min-width: $mobile-res){
+    & div{
+      margin: 0 0 0 18px ;
+    }
+  }
+}
+.navbar__brand{
+  position: relative;
+  height: 100%;
+  vertical-align: middle;
+  height: auto !important;
+  padding: 0 10px !important;
+  display: flex;
+  align-items: center;
+  max-width: 150px;
+}
+
+.app__navbar {
+  background: $dark-blue;
+  border: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+
+}
+
+.brand__img{
+    @extend .img-fluid;
+}
+
+.navbar__registerbutton {
+  @include outbutton("inherit");
+}
+
+.signin__button {
+  @include inbutton("inherit");
+}
+
+.navbar__logoutbutton {
+    @include outbutton("inherit");
+    font-weight: 600;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/* 3.1.3 SearchInput.js */
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+@media(max-width: $tablet-res){
+    .searchbutton__text{
+      display: none;
+    }
+  }
+
+  .search__button{
+    font-size: 24px;
+    color: white;
+    background: inherit;
+    border: none;
+    margin: 0 0 0 10px;
+    text-decoration: none;
+
+
+    /*for FireFox*/
+    &::-moz-focus-inner
+    {
+        border : 0;
+    }
+    /*for IE8 and below */
+    &:focus, &:focus
+    {
+        outline : none;
+    }
+
+    &:hover{
+      color: $light-green;
+      cursor: pointer;
+      outline: hidden;
+    }
+
+    &:focus{
+      outline: hidden;
+      color: $dark-green;
+      border: 0;
+      box-shadow: 0;
+      outline-offset: -4px;
+    }
+
+    &::-moz-focus-inner {
+      border: 0;
+      outline: none;
+    }
+
+  }
+
+  .searchbutton__text{
+      background: #FFFFFF 0% 0% no-repeat padding-box;
+      border: 1px solid #707070;
+      border-radius: 8px;
+      height: 40px;
+      max-width: 400px;
+      font-size: 22px;
+      padding: 0 10px;
+
+      @media(max-width: $tablet-res){
+        height: 30px !important;
+        font-size: 18px;
+      }
+
+      &:focus{
+        border: 1px solid $light-green;
+        outline: none !important;
+      }
+
+}
+
+//////////////////////////////////////////////////////////////////
+/* 4.1.3 User Menu */
+//////////////////////////////////////////////////////////////////
+
+// because od toggling I left some bootstrap styles
+
+.usermenu__container{
+    background-color: white;
+    box-shadow: 0px 6px 8px #00000029;
+
+    display: none;
+    @media(min-width: 992px){
+        display: block;
+    }
+    // usermenu 100vh when is collapsed!!
+
+    @media(max-width: 991px){
+      div.collapse, div.collapsing{
+        width: 100vw !important;
+        margin: 0 !important;
+        height: 100vh !important;
+        overflow: hidden;
+      }
+    }
+
+    & div{
+      padding: 10px 15px;
+    }
+
+    @media(min-width:992px){
+      .navbar-toggler{
+        display:none;
+      }
+    }
+
+    @media(max-width: 991px){
+      .navbar-toggler-icon{
+        position: relative;
+        padding: 10px;
+        height: 30px;
+      }
+
+      .navbar-toggler-icon:after,.navbar-toggler-icon:before {
+        content:'';
+        position: absolute;
+        z-index: 999;
+        top: 10px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $dark-blue;
+      }
+      .navbar-toggler-icon:after{
+        top: 20px;
+      }
+    }
+}
+
+.usermenu__title{
+    font-size: 28px;
+    font-weight: 900;
+    padding: 25px 25px 5px 25px;
+}
+
+.usermenu__category{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 18px;
+    border-top: 1px solid #00000029;
+
+}
+.usermenu__link{
+    font-size: 18px;
+    color: #000536;
+    white-space: nowrap;
+    margin-left: 10px;
+    &:hover{
+        text-decoration: none;
+        color: $dark-blue;
+    }
+}
+
+.usermenu--dark{
+    display: none;
+    @media(max-width: 991px){
+        display: block;
+        background-color: $dark-blue;
+
+
+        div.collapse, div.collapsing{
+            display: none !important;
+        }
+
+        div.collapse.show, div.collapsing.show{
+            display: block !important;
+            background-color: white;
+            z-index: 999;
+            position: fixed;
+            left: 0;
+            top: 0px;
+
+            .app__background{
+                position: fixed !important;
+            }
+        }
+        .navbar-toggler-icon::after, .navbar-toggler-icon::before{
+            background-color: white;
+        }
+
+        .show{
+            .navbar-toggler{
+                margin-left: 80%;
+            }
+            .navbar-toggler-icon::after, .navbar-toggler-icon::before{
+                background-color: $dark-blue;
+            }
+        }
+
+    }
+
+    @media(max-width: $tablet-res){
+        top:80px;
+    }
+}
+
+
+.navbar-toggler:focus{
+    outline: none;
+    border: 0;
+    box-shadow: none;
+}
+
+
+//////////////////////////////////////////////////////
+/* --- --- 4.1.1  Layouts */
+//////////////////////////////////////////////////////
+
+/* App Background and Bootstrap overwrites */
+.app__background{
+    background-color: $dark-blue;
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -999;
+}
+
+main.container{
+background-color: #F8F8F8;
+overflow: hidden;
+padding: 50px;
+position: relative;
+}
+.user--container{
+display: flex;
+padding: 0px !important;
+}
+
+@media(min-width: 768px){
+main.container{
+    border-radius: 70px;
+}
+}
+@media(max-width:767px){
+main.container{
+    max-width: 100%;
+}
+}
+
+// Landpage layout
+.container.p-0>div{
+padding: 50px;
+}
+
+
+
+// Loading
+
+:root
+{
+	--duration: 1.5s;
+	--container-size: 250px;
+	--box-size: 33px;
+	--box-border-radius: 15%;
+}
+
+.loading__body
+{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.loading__container
+{
+    width: var(--container-size);
+    height: 250px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+}
+
+.📦
+{
+	width: var(--box-size);
+	height: var(--box-size);
+	position: relative;
+	display: block;
+	transform-origin: -50% center;
+	border-radius: var(--box-border-radius);
+
+	&:after
+	{
+		content: '';
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		background-color: lightblue;
+		border-radius: var(--box-border-radius);
+		box-shadow: 0px 0px 10px 0px rgba(#1C9FFF, 0.4);
+	}
+
+	&:nth-child(1)
+	{
+		display:none;
+	}
+
+	@for $i from 1 to 5
+	{
+		&:nth-child(#{$i + 1})
+		{
+			animation: flip-#{$i} var(--duration) ease-in-out infinite alternate;
+			&:after{ animation: squidge-#{$i} var(--duration) ease-in-out infinite alternate; }
+		}
+	}
+
+	&:nth-child(2):after{ background-color: $light-blue; }
+	&:nth-child(3):after{ background-color: $dark-green; }
+	&:nth-child(4):after{ background-color: $dark-blue; }
+	&:nth-child(5):after{ background-color: $dark-green; }
+}
+
+@keyframes color-change
+{
+	0% { background-color: #1795FF; }
+	100% { background-color: #23D3FB; }
+}
+
+@for $i from 1 to 5
+{
+    @keyframes flip-#{$i} {
+      0%, #{$i * 15}% { transform: rotate(0); }
+      #{$i * 15 + 20}%, 100% { transform: rotate(-180deg); }
+    }
+
+	@keyframes squidge-#{$i}
+	{
+		#{$i * 15 - 10}% { transform-origin: center bottom; transform: scalex(1) scaley(1);}
+		#{$i * 15}% { transform-origin: center bottom; transform: scalex(1.3) scaley(0.7);}
+		#{$i * 15 + 10}%, #{$i * 15 + 5}% { transform-origin: center bottom; transform: scalex(0.8) scaley(1.4);}
+		#{$i * 15 + 40}%, 100% { transform-origin: center top; transform: scalex(1) scaley(1);}
+		#{$i * 15 + 25}% { transform-origin: center top; transform: scalex(1.3) scaley(0.7);}
+	}
+}

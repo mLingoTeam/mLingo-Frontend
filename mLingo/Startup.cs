@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +13,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using mLingo.Extensions.App;
 using mLingo.Models.Database;
+using mLingo.Models.Database.User;
+using mLingo.Modules;
+using mLingoCore.Services;
 
 namespace mLingo
 {
@@ -27,6 +32,8 @@ namespace mLingo
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             services.AddRouting(options => options.LowercaseUrls = true);
 
             services.AddLogging(options => { options.AddConsole(); });
@@ -99,6 +106,14 @@ namespace mLingo
             });
 
             services.AddControllersWithViews();
+
+            services.AddTransient<IAccountManager, StandardAccountManager>();
+            services.AddTransient<ICollectionManager, StandardCollectionManager>();
+            services.AddTransient<ILanguageDetector, LanguageDetector>();
+            services.AddTransient<ISetManager, StandardSetManager>();
+            services.AddTransient<INewsletterManager, StandardNewsletterManager>();
+
+            services.AddSwaggerDocs();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
@@ -111,6 +126,19 @@ namespace mLingo
             {
                 app.UseExceptionHandler("/Error");
             }
+
+            app.UseCors(options =>
+            {
+                options.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "mLingoAPI");
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -142,6 +170,14 @@ namespace mLingo
 
             // Make sure we have the database
             serviceProvider.GetService<AppDbContext>().Database.EnsureCreated();
+            serviceProvider.GetService<AppDbContext>().Database.Migrate();
+
+            // add default roles and superuser
+            app.UseDefaultMlingoRoles(serviceProvider)
+                .Wait();
+
+            app.UseMlingoSuperUser(serviceProvider, Configuration)
+                .Wait();
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using mLingo.Models.Database;
-using mLingoCore.Models.Api;
+﻿using mLingo.Models.Database.User;
+using mLingoCore.Models.Api.ResponseModels;
 
 namespace mLingo.Extensions.Authentication
 {
@@ -9,7 +9,7 @@ namespace mLingo.Extensions.Authentication
         {
             return new CredentialsResponse
             {
-                Id = user.UserInformation.Id,
+                Id = user.Id,
                 Username = user.UserName,
                 FirstName = user.UserInformation.FirstName,
                 LastName = user.UserInformation.LastName,
@@ -23,7 +23,7 @@ namespace mLingo.Extensions.Authentication
         {
             return new CredentialsResponse
             {
-                Id = user.UserInformation.Id,
+                Id = user.Id,
                 Username = user.UserName,
                 FirstName = user.UserInformation.FirstName,
                 LastName = user.UserInformation.LastName,
