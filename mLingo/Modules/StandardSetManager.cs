@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IvanAkcheurov.Commons;
 using Microsoft.AspNetCore.Identity;
 using mLingo.Models.Database;
 using mLingo.Models.Database.Collections;
@@ -208,62 +209,44 @@ namespace mLingo.Modules
         /// <summary>
         /// For documentation <see cref="SetsController"/>
         /// </summary>
-        public ApiResponse EditSet(string id, object editedData)
+        public async Task<ApiResponse> EditSet(string id, string username, UpdateSetForm editedData)
         {
-            throw new System.NotImplementedException();
-        }
+            var set = DbContext.Sets.Find(id);
+            if(set == null) return ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.SetNotFound(id), 404);
+            var user = await UserManager.FindByNameAsync(username);
+            if(set.OwnerId != user.Id) return ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.ActionFail("edit set"), 400);
 
-        /// <summary>
-        /// For documentation <see cref="SetsController"/>
-        /// </summary>
-        public ApiResponse Add(string setId, string collectionId)
-        {
+            // update name
+            set.Name = editedData.Name;
+
             try
             {
-                var set = DbContext.Sets.Find(setId);
-                var collection = DbContext.Collections.Find(collectionId);
-                if (set == null || collection == null)
-                    return ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.ActionFail("add"), 400);
-                
-
-                var setCollection = new SetCollection
+                // update set-collections
+                var setCollections = DbContext.SetCollectionJoinTable.Where(sc => sc.SetId.Equals(id));
+                var updatedSetCollections = editedData.CollectionIds.Select(cId => new SetCollection
                 {
-                    Set = set,
-                    Collection = collection,
-                    SetId = set.Id,
-                    CollectionId = collection.Id
-                };
-                DbContext.SetCollectionJoinTable.Add(setCollection);
+                    SetId = id,
+                    CollectionId = cId
+                });
+
+                var toRemove = setCollections
+                    .Where(setCollection =>
+                        !updatedSetCollections.Any(sc => sc.CollectionId.Equals(setCollection.CollectionId)));
+
+                var toAdd = updatedSetCollections
+                    .Where(setCollection =>
+                        !setCollections.Any(sc => sc.CollectionId.Equals(setCollection.CollectionId)));
+
+                DbContext.SetCollectionJoinTable.RemoveRange(toRemove);
+                DbContext.SetCollectionJoinTable.AddRange(toAdd);
                 DbContext.SaveChanges();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("add collection to set"), e.StackTrace, 500);
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("update set"), e.StackTrace, 503);
             }
 
             return ApiResponse.StatusCodeResponse(200);
-        }
-
-        /// <summary>
-        /// For documentation <see cref="SetsController"/>
-        /// </summary>
-        public ApiResponse Remove(string setId, string collectionId)
-        {
-            var key = new { setId, collectionId };
-            try
-            {
-                var sc = DbContext.SetCollectionJoinTable.Find(key);
-                if(sc == null) 
-                    return ApiResponse.StandardErrorResponse(ErrorMessages.SetsManager.ActionFail("delete"), 400);
-                DbContext.SetCollectionJoinTable.Remove(sc);
-                DbContext.SaveChanges();
-            }
-            catch(Exception e)
-            {
-                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("remove collection from set"), e.StackTrace, 500);
-            }
-
-            return ApiResponse.StatusCodeResponse(202);
         }
 
         #endregion

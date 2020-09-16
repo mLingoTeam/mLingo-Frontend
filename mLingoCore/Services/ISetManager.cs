@@ -19,10 +19,6 @@ namespace mLingoCore.Services
 
         ApiResponse DeleteSet(string id);
 
-        ApiResponse EditSet(string id, object editedData);
-
-        ApiResponse Add(string setId, string collectionId);
-
-        ApiResponse Remove(string setId, string collectionId);
+        Task<ApiResponse> EditSet(string id, string username, UpdateSetForm editedData);
     }
 }

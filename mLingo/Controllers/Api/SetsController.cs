@@ -80,34 +80,15 @@ namespace mLingo.Controllers.Api
         }
 
         /// <summary>
-        /// Adds existing collection to existing set
+        /// Edits set
         /// </summary>
-        /// <param name="setId">Target set id</param>
-        /// <param name="collectionId">Target collection id</param>
-        /// <response code="200">Successful, collection added to the set</response>
-        /// <response code="400">Failed to add collection to set (collection or set is null)</response>
-        /// <response code="500">Failed to add collection to set, server fault. Please check <see cref="ErrorRapport"/> for details.</response>
-        [HttpPut]
-        [Route("add")]
-        public IActionResult Add([FromQuery] string setId, [FromQuery] string collectionId)
+        /// <param name="id">Id of set to edit</param>
+        /// <param name="form">New set data</param>
+        /// <response code="200">Set edited successfully</response>
+        /// <response code="503">Set edit failed, server fault. See <see cref="ErrorRapport"/> for details.</response>
+        public async Task<IActionResult> Edit([FromQuery]string id, [FromBody] UpdateSetForm form)
         {
-            var res = _setManager.Add(setId, collectionId);
-            return this.HandleManagerResponse(res);
-        }
-
-        /// <summary>
-        /// Removes existing collection from existing set
-        /// </summary>
-        /// <param name="setId">Target set id</param>
-        /// <param name="collectionId">Target collection id</param>
-        /// <response code="200">Successful, collection removed from set</response>
-        /// <response code="400">Failed to remove collection from set (there is no such collection in the set)</response>
-        /// <response code="500">Failed to remove collection from set, server fault. Please check <see cref="ErrorRapport"/> for details.</response>
-        [HttpDelete]
-        [Route("remove")]
-        public IActionResult Remove([FromQuery] string setId, [FromQuery] string collectionId)
-        {
-            var res = _setManager.Remove(setId, collectionId);
+            var res = await _setManager.EditSet(id, HttpContext.User.Identity.Name, form);
             return this.HandleManagerResponse(res);
         }
 
