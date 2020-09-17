@@ -156,6 +156,14 @@ namespace mLingo.Controllers.Api
             return this.HandleManagerResponse(res);
         }
 
+        [HttpPut]
+        [Route("import")]
+        public async Task<IActionResult> Import([FromQuery] string importId, [FromQuery] string targetId)
+        {
+            var res = await _collectionManager.Import(importId, targetId, HttpContext.User.Identity.Name);
+            return this.HandleManagerResponse(res);
+        }
+
         #endregion
     }
 }
