@@ -51,7 +51,11 @@ class SetScreenContainer extends React.Component {
 
     addCollectionToSet(name){
         const finder = this.state.searchedValue.find( item => item.id === name)
-        this.setState( state => { return { ...state, set: { ...state.set, collections: [...state.set.collections, finder]}}})
+        this.setState(state => {
+            return {
+                ...state,
+                 searchedValue: state.searchedValue.filter( value => value.id  !== name )}})
+        this.setState( state => { return { ...state, set: { ...state.set, collections: [...state.set.collections, finder]}}}, console.log(this.state))
     }
 
     componentWillUnmount() {
@@ -82,7 +86,6 @@ class SetScreenContainer extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         if(this.state.loaded){
             return <View state={this.state.set} functions={this.functions} searched={this.state.searchedValue}/>
         }
