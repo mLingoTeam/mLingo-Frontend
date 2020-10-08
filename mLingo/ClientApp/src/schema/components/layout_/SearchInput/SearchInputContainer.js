@@ -1,5 +1,6 @@
 import React from "react";
 import { FaWindowMinimize } from "react-icons/fa";
+import { withRouter } from 'react-router-dom'
 
 import View from './SearchInputView'
 
@@ -24,8 +25,9 @@ class SearchInputContainer extends React.Component {
     }
 
     findcollection() {
-        localStorage.setItem( 'request', this.state.request );
+        this.props.history.push('/search');
         window.location.reload();
+        localStorage.setItem( 'request', this.state.request );
     }
 
     render() {
@@ -33,4 +35,4 @@ class SearchInputContainer extends React.Component {
     }
 };
 
-export default SearchInputContainer;
+export default withRouter(SearchInputContainer);
