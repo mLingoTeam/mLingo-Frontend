@@ -11,16 +11,14 @@ namespace mLingoCore.Services
     {
         ApiResponse Find(string id, string name, string range);
 
+        ApiResponse CollectionsData(string id, string name);
+
         Task<ApiResponse> UserSets(string username);
 
         Task<ApiResponse> CreateSet(string username, CreateSetForm newSetData);
 
         ApiResponse DeleteSet(string id);
 
-        ApiResponse EditSet(string id, object editedData);
-
-        ApiResponse Add(string setId, string collectionId);
-
-        ApiResponse Remove(string setId, string collectionId);
+        Task<ApiResponse> EditSet(string id, string username, UpdateSetForm editedData);
     }
 }
