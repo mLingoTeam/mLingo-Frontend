@@ -2,7 +2,7 @@ import React from 'react'
 import View from './SetScreenView'
 import { authentication_service } from '../../../../../services/authentication/authentication';
 import Loading from '../../../loading/Loading'
-import setCreateHelper from '../SetCreate/SetCreateHelper'
+import setCreateHelper from '../SetScreen/SetCreateHelper'
 
 class SetScreenContainer extends React.Component {
 
@@ -29,9 +29,14 @@ class SetScreenContainer extends React.Component {
         this.setState( state => { return { ...state, set: { ...state.set, [name]: value }} })
     }
 
+    // HERE IS THE WORK
     async searchCollection(value){
         let searchedValue = setCreateHelper.searchCollection(value);
-        searchedValue.then( resolved => this.setState( state => { return { ...state, searchedValue: resolved.response }}) )
+        searchedValue.then( resolved => this.setState( state => { return { ...state, searchedValue: resolved.response.filter( value => {
+            console.log(state.set.collections);
+            console.log(state);
+            return state.set.collections.forEach( item => value.id !== item.id)
+        }) }}) )
     }
 
     async getSet() {
@@ -55,7 +60,7 @@ class SetScreenContainer extends React.Component {
             return {
                 ...state,
                  searchedValue: state.searchedValue.filter( value => value.id  !== name )}})
-        this.setState( state => { return { ...state, set: { ...state.set, collections: [...state.set.collections, finder]}}}, console.log(this.state))
+        this.setState( state => { return { ...state, set: { ...state.set, collections: [...state.set.collections, finder]}}})
     }
 
     componentWillUnmount() {

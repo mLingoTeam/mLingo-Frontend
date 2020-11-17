@@ -1,6 +1,7 @@
 import React from 'react';
 //import { Formik, Field, ErrorMessage, Form } from "formik";
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
 
 const SetSchema = Yup.object().shape( {
@@ -51,7 +52,7 @@ const SetScreenView = ( { state, functions, searched } ) => {
                 </ol>
             </div>
 
-            <button className="green--button createset__button" onClick={functions.submitSetForm}>save</button>
+            <Link to="/head" className="createset__button"><button className="green--button createset__button" onClick={functions.submitSetForm}>save</button></Link>
 
 
 
