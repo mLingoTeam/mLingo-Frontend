@@ -5,6 +5,7 @@ using mLingo.Models.Database.JoinTables;
 using mLingo.Models.Database.Newsletter;
 using mLingo.Models.Database.Sets;
 using mLingo.Models.Database.User;
+using mLingo.Models.Database.Sessions;
 
 namespace mLingo.Models.Database
 {
@@ -91,6 +92,12 @@ namespace mLingo.Models.Database
                 .WithOne(t => t.Collection)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // Collection 1:many relation with Session
+            builder.Entity<Collection>()
+                .HasMany<Session>()
+                .WithOne(t => t.Collection)
+                .OnDelete(DeleteBehavior.Cascade);
+
             // Card 1:many relation with Collection
             builder.Entity<Card>().HasKey(t => t.Id);
             builder.Entity<Card>()
@@ -116,6 +123,10 @@ namespace mLingo.Models.Database
             // Configure mailing list
             builder.Entity<MailingInformation>().HasKey(t => t.Id);
 
+            // Session primary key
+            builder.Entity<Session>().HasKey(t => t.Id);
+   
+
             // Create tables
             builder.Entity<UserInformation>().ToTable("UserInformation");
             builder.Entity<Collection>().ToTable("Collections");
@@ -124,6 +135,7 @@ namespace mLingo.Models.Database
             builder.Entity<Set>().ToTable("Sets");
             builder.Entity<SetCollection>().ToTable("SetCollectionJoinTable");
             builder.Entity<MailingInformation>().ToTable("MailingList");
+            builder.Entity<Session>().ToTable("Sessions");
         }
 
         #endregion

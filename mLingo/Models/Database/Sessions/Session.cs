@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace mLingo.Models.Database.Session
+namespace mLingo.Models.Database.Sessions
 {
     public class Session : SessionBase
     {
