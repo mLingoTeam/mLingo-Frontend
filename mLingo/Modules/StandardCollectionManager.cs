@@ -275,6 +275,41 @@ namespace mLingo.Modules
             return ApiResponse.StatusCodeResponse(200);
         }
 
+        /// <summary>
+        /// For documentation <see cref="CollectionsController"/>
+        /// </summary>
+        public async Task<ApiResponse> Import(string importId, string targetId, string username)
+        {
+            var import = DbContext.Collections.Find(importId);
+            var target = DbContext.Collections.Find(targetId);
+
+            if(import == null) return ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.CollectionNotFound(importId), 404);
+            if(target == null) return ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.CollectionNotFound(targetId), 404);
+
+
+            var user = await UserManager.FindByNameAsync(username);
+            if(user.Id != target.OwnerId) return ApiResponse.StandardErrorResponse(ErrorMessages.CollectionsManager.ActionFail("import"), 401);
+
+            try
+            {
+                DbContext.Cards.AddRange(
+                    import.Cards.Select(card => new Card
+                    {
+                        CollectionId = targetId,
+                        Term = card.Term,
+                        Definition = card.Definition,
+                        Id = Guid.NewGuid().ToString()
+                    }).ToList()
+                );
+            }
+            catch (Exception e)
+            {
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("delete collection"), e.StackTrace, 500);
+            }
+
+            return ApiResponse.StatusCodeResponse(200);
+        }
+
         #endregion
     }
 }

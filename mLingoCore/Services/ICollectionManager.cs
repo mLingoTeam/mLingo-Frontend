@@ -21,5 +21,7 @@ namespace mLingoCore.Services
         Task<ApiResponse> DetectLanguage(string collectionId, string username);
 
         ApiResponse Delete(string id);
+
+        Task<ApiResponse> Import(string importId, string targetId, string username);
     }
 }

@@ -156,6 +156,22 @@ namespace mLingo.Controllers.Api
             return this.HandleManagerResponse(res);
         }
 
+        /// <summary>
+        /// Imports cards from one existing collection to another. All cards are copied and given new ids.
+        /// </summary>
+        /// <param name="importId">Collection to import cards from</param>
+        /// <param name="targetId">Collection to import cards into</param>
+        /// <response code="200">Ok, cards imported into target collection</response>
+        /// <response code="404">Either target or import collection does not exist</response>
+        /// <response code="401">Unauthorized attempt, should not happen ever</response>
+        [HttpPut]
+        [Route("import")]
+        public async Task<IActionResult> Import([FromQuery] string importId, [FromQuery] string targetId)
+        {
+            var res = await _collectionManager.Import(importId, targetId, HttpContext.User.Identity.Name);
+            return this.HandleManagerResponse(res);
+        }
+
         #endregion
     }
 }
