@@ -17,7 +17,7 @@ export default function View({state}) {
                     </div>
 
                     <div className="learn__body">
-                            <Slider/>
+                            <Slider flashcards={state.collection.cards}/>
 
                         <button className="learn__button"> start learning </button>
 
