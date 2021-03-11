@@ -1,6 +1,6 @@
 @import './variables.scss';
 @import './mLingo.scss';
-@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
 
 //////////// Rebuild SCSS ////////////
@@ -61,12 +61,12 @@
 }
 
 .card--collection{
-    background: url('../../img/collection.svg');
+    background: url('../img/collection.svg');
     background-size: cover;
 }
 
 .card--set{
-    background: url('../../img/studyset.png');
+    background: url('../img/studyset.png');
     background-size: cover;
 }
 
@@ -343,6 +343,11 @@ input[type=text].details--set{
 
 .section__description{
     //
+}
+
+.collection--page{
+    display: flex;
+    height: 100vh;
 }
 
 // sections
@@ -659,14 +664,14 @@ overflow-y: hidden;
     flex-wrap: nowrap;
 
     &::before{
-      content: url("../../img/bubbles-newsletter-01.svg");
+      content: url("../img/bubbles-newsletter-01.svg");
       transform: scale(0.8);
       position: absolute;
       top:-70px;
       left:-70px;
     }
     &::after{
-      content: url("../../img/bubbles-newsletter-02.svg");
+      content: url("../img/bubbles-newsletter-02.svg");
       transform: scale(0.8);
       position: absolute;
       bottom:-70px;
@@ -734,11 +739,11 @@ overflow-y: hidden;
     @extend .mt-5;
 
     &::before{
-        content: url("../../img/bubbles-L.svg");
+        content: url("../img/bubbles-L.svg");
         margin-right: 10px;
     }
     &::after{
-        content: url("../../img/bubbles-R.svg");
+        content: url("../img/bubbles-R.svg");
         margin-left: 10px;
     }
 

@@ -15,7 +15,7 @@ import User_Collections from './schema/pages/user_/User_Collections';
 import Collection_Screen from "./schema/pages/user_/Collection_Screen";
 import Set_Screen from "./schema/pages/user_/Set_Screen";
 import Collection_Search from "./schema/pages/user_/Collection_Search";
-import './styles/css/Main.css';
+import "./styles/Main.scss";
 
 export const history = createBrowserHistory();
 

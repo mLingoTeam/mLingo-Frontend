@@ -15,7 +15,7 @@ const SectionCollectionView = ( { state } ) => {
     return (
         <UserSectionView title={title} description={description}>    {
                 state.loading ? <div><Loading/></div>  : <div>
-                    <div className="cards__container">
+                    <div className={state.collection_page ? "cards__container collection--page " : "cards__container"}>
                         {
                             !state.fields.errorMessage ? state.fields.map(element => (
                                 <CollectionCard set={element} />

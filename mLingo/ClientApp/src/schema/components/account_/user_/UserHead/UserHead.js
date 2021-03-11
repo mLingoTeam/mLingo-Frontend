@@ -12,11 +12,17 @@ class UserHead extends React.Component {
             <div className="userhead__container">
                 <div className="section__container">
                     <SectionCollectionContainer />
-                    <SectionSetContainer />
+
                 </div>
             </div>
         );
     }
 }
+
+/*
+
+    <SectionSetContainer />
+
+*/
 
 export default UserHead;

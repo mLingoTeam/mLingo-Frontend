@@ -8,7 +8,7 @@ class SectionCollectionContainer extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { fields: [], exist: null, loading: true, type: 'username', request: localStorage.getItem("currentUser") }
+        this.state = { fields: [], exist: null, loading: true, type: 'username', request: localStorage.getItem("currentUser"), collection_page: this.props.collection_page }
         this.findcollection = this.findcollection.bind(this);
     }
 

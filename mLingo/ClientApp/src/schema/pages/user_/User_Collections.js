@@ -12,9 +12,7 @@ class User_Collection extends React.Component {
         return (
 
                 <LayoutUser>
-                    <UserSectionContainer>
-                        <SectionCollectionContainer/>
-                    </UserSectionContainer>
+                        <SectionCollectionContainer collection_page={true}/>
                 </LayoutUser>
 
         )
