@@ -125,7 +125,14 @@ namespace mLingo.Models.Database
 
             // Session primary key
             builder.Entity<Session>().HasKey(t => t.Id);
-   
+            
+
+            // Session 1:1 relation with SessionData
+            builder.Entity<SessionData>().HasKey(t => t.Id);
+            builder.Entity<Session>()
+                .HasOne(t => t.SessionData)
+                .WithOne(t => t.Session)
+                .OnDelete(DeleteBehavior.Cascade);
 
             // Create tables
             builder.Entity<UserInformation>().ToTable("UserInformation");
@@ -136,6 +143,7 @@ namespace mLingo.Models.Database
             builder.Entity<SetCollection>().ToTable("SetCollectionJoinTable");
             builder.Entity<MailingInformation>().ToTable("MailingList");
             builder.Entity<Session>().ToTable("Sessions");
+            builder.Entity<SessionData>().ToTable("SessionData");
         }
 
         #endregion
