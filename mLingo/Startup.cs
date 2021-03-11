@@ -114,6 +114,7 @@ namespace mLingo
             services.AddTransient<ILanguageDetector, LanguageDetector>();
             services.AddTransient<ISetManager, StandardSetManager>();
             services.AddTransient<INewsletterManager, StandardNewsletterManager>();
+            services.AddTransient<ISessionManager, StandardSessionManager>();
 
             services.AddSwaggerDocs();
         }
