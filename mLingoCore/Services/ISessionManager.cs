@@ -4,10 +4,10 @@ using mLingoCore.Models.Forms.Session;
 
 namespace mLingoCore.Services
 {
-    interface ISessionManager
+    public interface ISessionManager
     {
         Task<ApiResponse> Create(string username, string collectionId);
         
-        Task<ApiResponse> Submit(SubmitSessionForm form);
+        Task<ApiResponse> Submit(string username, SubmitSessionForm form);
     }
 }

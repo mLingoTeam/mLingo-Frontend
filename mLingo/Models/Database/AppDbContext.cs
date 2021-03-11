@@ -42,6 +42,10 @@ namespace mLingo.Models.Database
 
         public virtual DbSet<MailingInformation> MailingList { get; set; }
 
+        public virtual DbSet<Session> Sessions { get; set; }
+
+        public virtual DbSet<SessionData> SessionData { get; set; }
+
         #endregion
 
         #region Configuration

@@ -11,6 +11,11 @@ namespace mLingo.Models.Database.Sessions
 {
     public class Session : SessionBase
     {
+
+        public Session()
+        {
+        }
+
         public string Id { get; set; }
 
         public string DetailsId { get; set; }

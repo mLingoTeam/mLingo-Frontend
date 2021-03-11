@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using mLingo.Models.Database.Collections;
+using mLingo.Models.Database.Sessions;
 using mLingo.Models.Database.Sets;
+using mLingoCore.Models.Api.ResponseModels;
 using mLingoCore.Models.Api.ResponseModels.Collections;
 using mLingoCore.Models.Api.ResponseModels.Sets;
 
@@ -68,6 +70,22 @@ namespace mLingo.Extensions.Api
                 Name = set.Name,
                 OwnerId = set.OwnerId,
                 Collections = set.Collections.Select(sc => sc.Collection.AsOverviewResponse()).ToList()
+            };
+        }
+
+        public static SessionOverviewResponse AsOverviewResponse(this Session session)
+        {
+            return new SessionOverviewResponse {
+                SessionId = session.Id
+            };
+        }
+
+        public static SessionDataResponse AsResponse(this SessionData sessionData)
+        {
+            return new SessionDataResponse
+            {
+                TotalCorrect = sessionData.TotalCorrect,
+                TotalMistakes = sessionData.TotalMistakes
             };
         }
     }
