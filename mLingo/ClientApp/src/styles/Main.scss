@@ -280,6 +280,36 @@
 /* --- --- 1.1.6 CollectionLearn */
 //////////////////////////////////////////////////////
 
+.learn__carousel{
+ width: 400px;
+ height: 250px;
+ border-radius: 25px !important;
+ box-shadow: 0px 6px 8px #00000029;
+ margin-top: 100px;
+}
+
+.carousel-inner{
+    border-radius: 25px !important;
+}
+
+
+.control--left, .control--right{
+    background: $dark-blue;
+    width: 50px;
+    height: 50px;
+    opacity: 1;
+    border-radius: 100%;
+    top: 100px;
+}
+
+.control--left{
+    left: -60px;
+}
+
+.control--right{
+    right: -60px;
+}
+
 .learn__dashbord{
     @extend .flex--complet, .col-9;
     margin: 0px 50px 50px 0;
@@ -295,13 +325,11 @@
 }
 
 .learn__slider{
-    margin-top:100px;
     width: 400px;
     height: 250px;
     text-align: center;
     background: white;
     border-radius: 25px;
-    box-shadow: 0px 6px 8px #00000029;
 }
 
 .learn__title{

@@ -1,6 +1,7 @@
 import React from 'react'
 import Square from '../../../../../img/collection.svg';
 import Loading from '../../../loading/Loading';
+import Slider from './slider/Slider.jsx';
 
 export default function View({state}) {
     console.log(state)
@@ -16,7 +17,7 @@ export default function View({state}) {
                     </div>
 
                     <div className="learn__body">
-                        <div className="learn__slider">S L I D E R</div>
+                            <Slider/>
 
                         <button className="learn__button"> start learning </button>
 
