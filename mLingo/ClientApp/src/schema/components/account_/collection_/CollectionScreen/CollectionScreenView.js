@@ -16,9 +16,9 @@ const CollectionScreenView = ( { state, functions } ) => {
                     <div className="collection__center">
                     {
                         state.collection ? <div className="flex--around collection__options">
-                            <button className="collection__button"> <FaBook/> Learn</button>
-                            <Link className="collection__button" onClick={functions.editCollection} to="/create" > <FaPencilAlt/> Edit</Link>
-                            <button className="collection__button" onClick={functions.removeCollection}><FaTrashAlt/>Remove</button>
+                            <Link className="collection__button" onClick={functions.learn} to="/learn"> <FaBook/> Learn</Link>
+                            <Link className="collection__button" onClick={functions.edit} to="/create" > <FaPencilAlt/> Edit</Link>
+                            <button className="collection__button" onClick={functions.remove}><FaTrashAlt/>Remove</button>
                             <button className="collection__button"><FaRegFolderOpen/>Add to set</button>
                         </div> : null
                     }
@@ -44,7 +44,7 @@ const CollectionScreenView = ( { state, functions } ) => {
 
                 </div> : <h1>Collection removed!</h1> : <Loading/>
             }
-                <Link to='/head' className="green--button">go back</Link>
+                <Link to='/head' className="green--button m-5">go back</Link>
 
         </div>
 

@@ -11,17 +11,19 @@ class Collection extends React.Component {
 
         this.state = [{ "loaded": false }];
 
-        this.getCollection = this.getCollection.bind(this);
-        this.removeCollection = this.removeCollection.bind(this);
-        this.editCollection = this.editCollection.bind(this)
+        this.get = this.get.bind(this);
+        this.remove = this.remove.bind(this);
+        this.edit = this.edit.bind(this);
+        this.learn = this.learn.bind(this);
 
         this.functions = {
-            removeCollection: this.removeCollection,
-            editCollection: this.editCollection
+            remove: this.remove,
+            edit: this.edit,
+            learn: this.learn
         }
     }
 
-    async getCollection() {
+    async get() {
         const collection_id = localStorage.getItem("collectionid");
 
         if (collection_id) {
@@ -36,14 +38,18 @@ class Collection extends React.Component {
         }
     }
 
-    removeCollection() {
+    remove() {
         authentication_service.collection.remove({id: localStorage.getItem("collectionid"), token: localStorage.getItem("Token")});
         localStorage.removeItem("collectionid");
         this.setState({ ...this.state, "collection": false });
     }
 
-    editCollection(){
+    edit(){
         localStorage.setItem("editCollection", localStorage.getItem("collectionid"))
+    }
+
+    learn(){
+        localStorage.setItem("learnCollection", localStorage.getItem("collectionid"))
     }
 
     componentWillUnmount() {
@@ -51,7 +57,7 @@ class Collection extends React.Component {
     }
 
     componentDidMount() {
-        this.getCollection();
+        this.get();
     }
 
     render() {
