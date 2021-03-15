@@ -8,6 +8,7 @@ using mLingoCore.Models.Api.Base;
 using mLingoCore.Models.Forms.Session;
 using mLingoCore.Services;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace mLingo.Modules
@@ -38,6 +39,16 @@ namespace mLingo.Modules
                 OwnerId = user.Id,
                 CollectionId = collectionId,
             };
+
+            try
+            {
+                var existingSession = DbContext.Sessions.First(s => s.OwnerId == user.Id && s.CollectionId == collectionId);
+                if (existingSession != null) return ApiResponse.StatusCodeResponse(409);
+            }
+            catch(Exception e)
+            {
+                return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("connect to mLingo database"), e.StackTrace, 500);
+            }
 
             try
             {

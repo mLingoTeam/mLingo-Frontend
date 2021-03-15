@@ -42,6 +42,7 @@ namespace mLingo.Controllers.Api
         /// </summary>
         /// <param name="collectionId">Id of collection to learn from passed as query param</param>
         /// <response code="200">Session successfully created - returns session overview containing its ID</response>
+        /// <response code="409">Session with this user and collection already exist - user should continue it</response>
         /// <response code="503">Failed to create session due to db error</response>
         [HttpPost]
         [Route("create")]
