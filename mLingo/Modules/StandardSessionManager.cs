@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using mLingo.Controllers.Api;
 using mLingo.Extensions.Api;
 using mLingo.Models.Database;
 using mLingo.Models.Database.Sessions;
@@ -7,19 +8,25 @@ using mLingoCore.Models.Api.Base;
 using mLingoCore.Models.Forms.Session;
 using mLingoCore.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace mLingo.Modules
 {
+    /// <summary>
+    /// Standard implementation of <see cref="ISessionManager"/> used to manage learning sessions
+    /// </summary>
     public class StandardSessionManager : ISessionManager
     {
+        #region PublicFields
         public UserManager<AppUser> UserManager { get; set; }
 
         public AppDbContext DbContext { get; set; }
+        #endregion
 
-
+        #region Implementation
+        /// <summary>
+        /// For documentation <see cref="SessionController"/>
+        /// </summary>
         public async Task<ApiResponse> Create(string username, string collectionId)
         {
             var user = await UserManager.FindByNameAsync(username);
@@ -44,6 +51,10 @@ namespace mLingo.Modules
             return ApiResponse.StandardSuccessResponse(session.AsOverviewResponse(), 200);
         }
 
+
+        /// <summary>
+        /// For documentation <see cref="SessionController"/>
+        /// </summary>
         public async Task<ApiResponse> Submit(string username, SubmitSessionForm form)
         {
             var user = await UserManager.FindByNameAsync(username);
@@ -76,5 +87,6 @@ namespace mLingo.Modules
 
             return ApiResponse.StandardSuccessResponse(sessionData.AsResponse(), 200);
         }
+        #endregion
     }
 }
