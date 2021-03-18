@@ -38,12 +38,13 @@ namespace mLingo.Modules
                 Id = Guid.NewGuid().ToString(),
                 OwnerId = user.Id,
                 CollectionId = collectionId,
+                InProgress = true,
             };
 
             try
             {
-                var existingSession = DbContext.Sessions.FirstOrDefault(s => s.OwnerId == user.Id && s.CollectionId == collectionId);
-                if (existingSession != null) return ApiResponse.StatusCodeResponse(409);
+                var existingSession = DbContext.Sessions.First(s => s.OwnerId == user.Id && s.CollectionId == collectionId);
+                if (existingSession.InProgress) return ApiResponse.StatusCodeResponse(409);
             }
             catch(Exception e)
             {
@@ -53,7 +54,6 @@ namespace mLingo.Modules
             try
             {
                 DbContext.Sessions.Add(session);
-                DbContext.SaveChanges();
             }
             catch (Exception e)
             {
@@ -90,8 +90,11 @@ namespace mLingo.Modules
 
             try
             {
+                // mark session as done
+                var session = DbContext.Sessions.Find(form.SessionId);
+                session.InProgress = false;
+                
                 DbContext.SessionData.Add(sessionData);
-                DbContext.SaveChanges();
             }
             catch(Exception e)
             {
