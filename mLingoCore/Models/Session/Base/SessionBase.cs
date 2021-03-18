@@ -12,6 +12,8 @@ namespace mLingoCore.Models.Session.Base
         [Required]
         public string CollectionId { get; set; }
 
+        public bool InProgress { get; set; }
+
         #endregion
     }
 }
