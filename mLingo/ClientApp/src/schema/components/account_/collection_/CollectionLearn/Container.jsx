@@ -11,6 +11,7 @@ export default class Container extends Component {
         this.state = [{ "loaded": false }];
 
         this.get = this.get.bind(this);
+        this.startSession = this.startSession.bind(this);
     }
     async get() {
         const collection_id = localStorage.getItem("learnCollection");
@@ -27,11 +28,16 @@ export default class Container extends Component {
         }
     }
 
+    async startSession(){
+        const temp = await authentication_service.session.create({collectionId: this.state.collection.id, Token: localStorage.getItem("Token")})
+        console.log(temp);
+    }
+
     componentDidMount() {
         this.get();
     }
 
     render() {
-        return <View state={this.state}/>
+        return <View state={this.state} startSession={this.startSession}/>
     }
 }
