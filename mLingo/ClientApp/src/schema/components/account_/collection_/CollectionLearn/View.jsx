@@ -2,6 +2,8 @@ import React from 'react'
 import Square from '../../../../../img/collection.svg';
 import Loading from '../../../loading/Loading';
 import Slider from './slider/Slider.jsx';
+import { Link } from 'react-router-dom'
+import Chart from './charts/Chart.jsx';
 
 export default function View({state, startSession}) {
     return (
@@ -18,9 +20,11 @@ export default function View({state, startSession}) {
                     <div className="learn__body">
                             <Slider flashcards={state.collection.cards}/>
 
-                        <button className="learn__button" onClick={startSession}> start learning </button>
+                        <Link className="learn__button" onClick={startSession} to="/session/"> start learning </Link>
 
                     </div>
+
+                    <Chart/>
                 </div>) : <Loading/>
     )
 }

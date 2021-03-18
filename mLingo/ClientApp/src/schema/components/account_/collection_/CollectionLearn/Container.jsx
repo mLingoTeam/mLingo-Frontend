@@ -8,7 +8,7 @@ export default class Container extends Component {
     constructor(){
         super();
 
-        this.state = [{ "loaded": false }];
+        this.state = { "loaded": false };
 
         this.get = this.get.bind(this);
         this.startSession = this.startSession.bind(this);
@@ -29,8 +29,8 @@ export default class Container extends Component {
     }
 
     async startSession(){
-        const temp = await authentication_service.session.create({collectionId: this.state.collection.id, Token: localStorage.getItem("Token")})
-        console.log(temp);
+        const session = await authentication_service.session.create({collectionId: this.state.collection.id, Token: localStorage.getItem("Token")})
+        localStorage.setItem("Session", session.response.sessionId)
     }
 
     componentDidMount() {
