@@ -42,7 +42,7 @@ namespace mLingo.Modules
 
             try
             {
-                var existingSession = DbContext.Sessions.First(s => s.OwnerId == user.Id && s.CollectionId == collectionId);
+                var existingSession = DbContext.Sessions.FirstOrDefault(s => s.OwnerId == user.Id && s.CollectionId == collectionId);
                 if (existingSession != null) return ApiResponse.StatusCodeResponse(409);
             }
             catch(Exception e)
@@ -53,6 +53,7 @@ namespace mLingo.Modules
             try
             {
                 DbContext.Sessions.Add(session);
+                DbContext.SaveChanges();
             }
             catch (Exception e)
             {
@@ -90,6 +91,7 @@ namespace mLingo.Modules
             try
             {
                 DbContext.SessionData.Add(sessionData);
+                DbContext.SaveChanges();
             }
             catch(Exception e)
             {
