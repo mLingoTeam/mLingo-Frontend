@@ -20,8 +20,8 @@ export default function Slider({flashcards}) {
     const slides = flashcards.map((item) => {
         return (
           <CarouselItem className="learn__slide"
-            onExiting={() => setAnimating(true)}
-            onExited={() => setAnimating(false)}
+            onExiting={() => { setAnimating(true); activateDefinition(false); }}
+            onExited={() => { setAnimating(false);}}
             key={item.id}
             onClick={()=> activateDefinition(!definition)}
           >
@@ -43,7 +43,6 @@ export default function Slider({flashcards}) {
         const nextIndex = activeIndex === 0 ? flashcards.length - 1 : activeIndex - 1;
         setActiveIndex(nextIndex);
     }
-    console.log(definition);
     return (
         <Carousel
             className="learn__carousel"

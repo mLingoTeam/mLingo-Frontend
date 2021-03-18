@@ -12,6 +12,7 @@ import User_Head from "./schema/pages/user_/User_Head";
 import User_Create_Collection from "./schema/pages/user_/User_Create_Collection";
 import User_Collections from './schema/pages/user_/User_Collections';
 import User_Collection_Learn from './schema/pages/user_/User_Collection_Learn';
+import User_Collection_Session from './schema/pages/user_/User_Collection_Session';
 
 import Collection_Screen from "./schema/pages/user_/Collection_Screen";
 import Set_Screen from "./schema/pages/user_/Set_Screen";
@@ -36,6 +37,7 @@ export default class App extends Component {
           <PrivateRoute exact path="/create" component={User_Create_Collection} />
           <PrivateRoute exact path="/collections" component={User_Collections} />
           <PrivateRoute exact path="/learn" component={User_Collection_Learn} />
+          <PrivateRoute exact path="/session" component={User_Collection_Session} />
 
           <PrivateRoute exact path="/studyset" component={Set_Screen} />
         </div>

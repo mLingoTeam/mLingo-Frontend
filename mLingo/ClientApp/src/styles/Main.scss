@@ -324,7 +324,7 @@
     margin: 20px  0;
 }
 
-.learn__slide{
+.learn__slide, .learn__flashcard{
     width: 400px;
     height: 250px;
     text-align: center;
@@ -334,6 +334,11 @@
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.learn__flashcard{
+margin: 80px 40px 40px 40px;
+ box-shadow: 0px 6px 8px #00000029;
 }
 
 .learnslide__caption{
