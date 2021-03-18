@@ -5,6 +5,7 @@ using mLingo.Models.Database.JoinTables;
 using mLingo.Models.Database.Newsletter;
 using mLingo.Models.Database.Sets;
 using mLingo.Models.Database.User;
+using mLingo.Models.Database.Sessions;
 
 namespace mLingo.Models.Database
 {
@@ -40,6 +41,10 @@ namespace mLingo.Models.Database
         public virtual DbSet<SetCollection> SetCollectionJoinTable { get; set; }
 
         public virtual DbSet<MailingInformation> MailingList { get; set; }
+
+        public virtual DbSet<Session> Sessions { get; set; }
+
+        public virtual DbSet<SessionData> SessionData { get; set; }
 
         #endregion
 
@@ -91,6 +96,12 @@ namespace mLingo.Models.Database
                 .WithOne(t => t.Collection)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            // Collection 1:many relation with Session
+            builder.Entity<Collection>()
+                .HasMany<Session>()
+                .WithOne(t => t.Collection)
+                .OnDelete(DeleteBehavior.Cascade);
+
             // Card 1:many relation with Collection
             builder.Entity<Card>().HasKey(t => t.Id);
             builder.Entity<Card>()
@@ -116,6 +127,17 @@ namespace mLingo.Models.Database
             // Configure mailing list
             builder.Entity<MailingInformation>().HasKey(t => t.Id);
 
+            // Session primary key
+            builder.Entity<Session>().HasKey(t => t.Id);
+            
+
+            // Session 1:1 relation with SessionData
+            builder.Entity<SessionData>().HasKey(t => t.Id);
+            builder.Entity<Session>()
+                .HasOne(t => t.SessionData)
+                .WithOne(t => t.Session)
+                .OnDelete(DeleteBehavior.Cascade);
+
             // Create tables
             builder.Entity<UserInformation>().ToTable("UserInformation");
             builder.Entity<Collection>().ToTable("Collections");
@@ -124,6 +146,8 @@ namespace mLingo.Models.Database
             builder.Entity<Set>().ToTable("Sets");
             builder.Entity<SetCollection>().ToTable("SetCollectionJoinTable");
             builder.Entity<MailingInformation>().ToTable("MailingList");
+            builder.Entity<Session>().ToTable("Sessions");
+            builder.Entity<SessionData>().ToTable("SessionData");
         }
 
         #endregion
