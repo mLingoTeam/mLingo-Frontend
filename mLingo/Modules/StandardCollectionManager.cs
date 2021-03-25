@@ -136,7 +136,7 @@ namespace mLingo.Modules
                 return ApiResponse.ServerExceptionResponse(ErrorMessages.Server.ActionFail("create collection"), e.StackTrace, 503);
             }
 
-            return ApiResponse.StandardSuccessResponse(new { collectionId = collection.Id }, 200);
+            return ApiResponse.StandardSuccessResponse(collection.AsOverviewResponse(), 200);
         }
 
         /// <summary>
