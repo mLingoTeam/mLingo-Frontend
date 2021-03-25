@@ -7,7 +7,7 @@ import CollectionCard from '../../../../collection_/CollectionCard/CollectionCar
 import Loading from '../../../../../loading/Loading'
 
 const title = "collections";
-const description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.";
+const description=" Your collections of flashcards";
 
 
 const SectionCollectionView = ( { state } ) => {

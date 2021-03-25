@@ -3,16 +3,21 @@ import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 
 
 const collectionData = JSON.parse(localStorage.getItem("currentSessionStatictics"));
-console.log(collectionData);
-const data = [];
+
+
+
+let data = [];
+
 for( let key in collectionData ){
   data.push({name: key, value: collectionData[key]})
 }
 
 console.log(data)
 
+if(!data.length ) data = [{name: "Have to load stats", value: 1}]
 
-const COLORS = ["#e84118", '#4cd137'];
+
+const COLORS = [ '#4cd137', "#e81818",];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {

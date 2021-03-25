@@ -8,7 +8,7 @@ import { FaPlus } from 'react-icons/fa';
 import Loading from '../../../../../loading/Loading'
 
 const title = "study sets";
-const description=" Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY. Lorem ipsum dolor amet helvetica mumblecore venmo pop-up green juice tousled try-hard, brunch poke. Activated charcoal neutra chambray schlitz, meh succulents DIY.";
+const description="Your sets of collections";
 
 const SectionSetView = ( { state } ) => {
 

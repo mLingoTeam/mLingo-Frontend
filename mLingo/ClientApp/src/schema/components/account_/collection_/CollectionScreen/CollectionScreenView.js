@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import CollectionFlashcard from '../CollectionFlashcard/CollectionFlashcard';
 import Loading from '../../../loading/Loading';
 import { FaBook, FaTrashAlt, FaPencilAlt, FaRegFolderOpen, FaRegClone} from 'react-icons/fa';
-import Chart from "./charts/Chart.jsx";
+import Chart from "../CollectionLearn/charts/Chart.jsx";
 
 const CollectionScreenView = ( { state, functions } ) => {
 
@@ -42,9 +42,11 @@ const CollectionScreenView = ( { state, functions } ) => {
                             <CollectionFlashcard set={element} index={index}/> ))
                     }
 
+
+                <Link to='/head' className="green--button button--back">go back</Link>
+
                 </div> : <h1>Collection removed!</h1> : <Loading/>
             }
-                <Link to='/head' className="green--button m-5">go back</Link>
 
         </div>
 

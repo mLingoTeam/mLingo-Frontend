@@ -96,10 +96,13 @@ class CollectionCreateContainer extends React.Component {
         else{
             if(this.handleCreate()){
                 const cards = this.state.cards.filter(el => (el.term.trim() != '' && el.definition.trim() != ''));
-                helper.createCollection({cards: cards, name: this.state.collectionTitle, description: this.state.collectionDescription});
+                const created = helper.createCollection({cards: cards, name: this.state.collectionTitle, description: this.state.collectionDescription});
+                console.log(created);
                 this.setState({ collectionTitle: "", collectionDescription: "" , cards: [ { term: "", definition: "" } ] });
             }
         }
+
+        //localStorage.setItem("current_collection", )
     }
 
     componentWillUnmount(){
