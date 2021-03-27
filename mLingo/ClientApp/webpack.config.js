@@ -28,7 +28,8 @@ module.exports = {
   entry: './/public/index.html.js',
 
   output: {
-    path: path.resolve(__dirname, '/public/')
+    path: path.resolve(__dirname, 'public'),
+    publicPath: path.resolve(__dirname, 'public')
   },
 
   plugins: [
