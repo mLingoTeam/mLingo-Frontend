@@ -199,6 +199,12 @@
     }
 }
 
+.definition--details{
+    border: unset;
+    overflow: scroll;
+    max-height: 200px;
+}
+
 //////////////////////////////////////////////////////
 /* --- --- 1.1.4 CollectionScreen */
 //////////////////////////////////////////////////////
@@ -221,7 +227,7 @@
 }
 
 .collection__options{
-    @extend .col-3;
+    @extend .col-12, .col-md-3;
     flex-wrap: wrap;
 }
 
@@ -247,6 +253,8 @@
     margin: 20px;
     border-radius: 25px;
     box-shadow: 0px 6px 8px #00000029;
+
+
 }
 
 .collection__info{
@@ -261,6 +269,13 @@
 
 .collection__title{
     font-weight: bold;
+}
+
+
+@media(max-width: $tablet-res){
+    .collection__center{
+
+    }
 }
 
 //////////////////////////////////////////////////////
@@ -311,14 +326,17 @@
 }
 
 .learn__dashboard{
-    @extend .flex--complet, .col-9;
-    margin: 0px 50px 50px 0;
+    @extend .flex--complet,.col-12, .col-lg-9;
+    margin: 0px auto 50px auto;
 }
 
 .learn__details{
     @extend .col-12, .flex--complet;
     justify-content: space-between;
     margin: 20px 40px 0px 40px;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0px 6px 8px #00000029;
 }
 
 .learn__img{

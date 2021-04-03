@@ -4,20 +4,26 @@ import Loading from '../../../loading/Loading';
 import Slider from './slider/Slider.jsx';
 import { Link } from 'react-router-dom'
 import Chart from './charts/Chart.jsx';
+import {FaRegClone} from 'react-icons/fa';
 
 export default function View({state, startSession}) {
     return (
             state.loaded ? (
                 <div className="learn__dashboard">
-                    <div className="learn__details">
+                    <div className="learn__details col-12">
 
-                        <span>
+                        <span className="col-12 col-md-4">
                             <div className="learn__title">{state.collection.name}</div>
                             <img className="learn__img" src={Square} />
-                            <div className="collection__description">{state.collection.description}</div>
                         </span>
 
-                        <Chart/>
+                        <div className="collection__total col-12 col-md-4">
+                                <FaRegClone/>
+                                <div className="collection__revised">598 revised</div>
+                        </div>
+                        <span className="col-12 col-md-4">
+                            <Chart/>
+                        </span>
 
                     </div>
 

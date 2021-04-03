@@ -5,7 +5,7 @@ import User from './classes/user';
 import Session from './classes/session';
 
 
-const apiUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
+const apiUrl = "https://mlingo-dev.azurewebsites.net";  //process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
 
 //const host = 'http://localhost:5000';
 //const newsletter_host = "https://mlingo.azurewebsites.net";

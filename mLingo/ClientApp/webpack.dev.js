@@ -1,53 +1,59 @@
 const path = require('path');
+const common = require('./webpack.common');
+const { merge } = require('webpack-merge')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 
-
-
-
 /*
- * We've enabled MiniCssExtractPlugin for you. This allows your app to
- * use css modules that will be moved into a separate CSS file instead of inside
- * one of your module entries!
- *
- * https://github.com/webpack-contrib/mini-css-extract-plugin
- *
- */
-
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-
-
 
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+new WorkboxWebpackPlugin.GenerateSW({
+            swDest: 'sw.js',
+            clientsClaim: true,
+            skipWaiting: false,
+          })
+
+*/
 
 
 
-
-module.exports = {
+module.exports = merge(common, {
   mode: 'development',
-  entry: './/public/index.html.js',
-
   output: {
+    filename: 'main.js',
     path: path.resolve(__dirname, 'public'),
     publicPath: path.resolve(__dirname, 'public')
   },
 
   plugins: [
     new webpack.ProgressPlugin(),
-    new MiniCssExtractPlugin({ filename:'main.[contenthash].css' }),
-    new WorkboxWebpackPlugin.GenerateSW({
-            swDest: 'sw.js',
-            clientsClaim: true,
-            skipWaiting: false,
-          })
+    new MiniCssExtractPlugin({ filename:'main.[contentHash].css' }),
   ],
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
 
   module: {
-    rules: [{
+    rules: [
+    {
+        test: /\.(ttf|eot|svg|png|jpg|gif|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader'
+    },
+    {
+        test: /\.jsx?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        query: {
+          cacheDirectory: true,
+          presets: ["@babel/preset-env","@babel/preset-react"]
+        }
+      },
+      {
       test: /\.(js|jsx)$/,
       include: [path.resolve(__dirname, '/public')],
       loader: 'babel-loader'
-    }, {
+    },
+    {
       test: /.(sa|sc|c)ss$/,
 
       use: [{
@@ -67,4 +73,19 @@ module.exports = {
       }]
     }]
   }
-}
+});
+  /*
+
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const webpack = require('webpack');
+
+  plugins: [
+    new webpack.ProgressPlugin(),
+    new MiniCssExtractPlugin({ filename:'main.[contenthash].css' }),
+    new WorkboxWebpackPlugin.GenerateSW({
+            swDest: 'sw.js',
+            clientsClaim: true,
+            skipWaiting: false,
+          })
+  ],*/
