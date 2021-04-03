@@ -27,6 +27,11 @@ module.exports = merge(common, {
     publicPath: path.resolve(__dirname, 'build')
   },
 
+  devServer: {
+    contentBase: path.join(__dirname, "build"),
+    compress: true,
+  },
+
   plugins: [
     new webpack.ProgressPlugin(),
     new MiniCssExtractPlugin({ filename:'main.[contentHash].css' }),

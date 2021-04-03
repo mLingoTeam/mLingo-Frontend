@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="theme-color" content="#000000" />
-  <base href="/"/>
+  <base href="%PUBLIC_URL%/" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <!-- Bootstrap CDN-->
   <!-- Latest compiled and minified CSS -->
@@ -21,10 +21,11 @@
   <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
-  -->
-  <link rel="manifest" href="./manifest.json" />
-  <link rel="shortcut icon" href="./favicon.svg" />
-  <link rel="apple-touch-icon" href="./icons/icon96x96.png"/>
+    -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.svg" />
+  <!-- ios support -->
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/icons/icon96x96.png"/>
   <meta name="apple-mobile-web-app-status-bar" content="#000536"/>
   <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -54,6 +55,14 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init();
+</script>
+<script>
+    if('serviceWorker' in navigator ) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./serviceWorker.js')
+        .then( reg => console.log('Success: ', reg.scope))
+      })
+    }
 </script>
 
 </html>
