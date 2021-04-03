@@ -20,10 +20,10 @@ export default function View({state, answer, nextFlashcard, submitSession}) {
                             </div>
 
                         {
-                           state.currentFront ? (<span>
+                           state.currentFront ? (<span className="col-12 flex--complet">
                                <button className="learn__button" onClick={() => { setActive(state => !state); answer(true); }}> I know</button>
                                 <button className="learn__button" onClick={() => {  setActive(state => !state); answer(false);}}> I don't know </button>
-                           </span>) : ( <button className="learn__button" onClick={() => {setActive(state => !state); nextFlashcard()}}> Next </button>)}
+                           </span>) : (<span className="col-12 flex--complet"> <button className="learn__button" onClick={() => {setActive(state => !state); nextFlashcard()}}> Next </button></span>)}
 
                     </div> ) : (<div className="session--finished">
                         <FaMedal/>

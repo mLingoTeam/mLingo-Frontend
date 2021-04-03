@@ -30,6 +30,7 @@ export default class Container extends Component {
 
     async startSession(){
         const session = await authentication_service.session.create({collectionId: this.state.collection.id, Token: localStorage.getItem("Token")})
+        console.log(session);
         localStorage.setItem("Session", session.response.sessionId)
     }
 
