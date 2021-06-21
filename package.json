@@ -1,6 +1,6 @@
 {
   "name": "mLingo",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@babel/preset-react": "^7.12.13",
@@ -9,11 +9,10 @@
     "babel-loader": "^8.1.0",
     "bootstrap": "^4.6.0",
     "formik": "^2.2.6",
-    "gsap": "^3.6.0",
-    "jquery": "^3.6.0",
+    "gsap": "^3.7.0",
     "merge": "^1.2.1",
     "oidc-client": "^1.11.5",
-    "react": "^16.14.0",
+    "react": "^17.0.2",
     "react-dom": "^16.14.0",
     "react-icons": "^3.11.0",
     "react-router-bootstrap": "^0.24.4",
@@ -23,10 +22,10 @@
     "recharts": "^2.0.8",
     "regenerator-runtime": "^0.13.7",
     "rimraf": "^2.6.2",
-    "sass": "^1.32.8",
+    "sass": "^1.35.1",
     "webpack": "^4.42.0",
     "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^5.7.3",
+    "webpack-merge": "^5.8.0",
     "yup": "^0.29.3"
   },
   "devDependencies": {
