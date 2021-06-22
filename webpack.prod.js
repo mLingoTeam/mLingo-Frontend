@@ -20,7 +20,7 @@ new WorkboxWebpackPlugin.GenerateSW({
 module.exports = merge(common, {
 
   mode: 'production',
-  entry: "./src/index.js",
+  entry: "./src/index.ts",
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'build'),
@@ -34,7 +34,7 @@ module.exports = merge(common, {
 
   plugins: [
     new webpack.ProgressPlugin(),
-    new MiniCssExtractPlugin({ filename:'main.[contentHash].css' }),
+    new MiniCssExtractPlugin({ filename: 'main.[contentHash].css' }),
   ],
   resolve: {
     extensions: ['.js', '.jsx']
@@ -43,42 +43,42 @@ module.exports = merge(common, {
 
   module: {
     rules: [
-    {
+      {
         test: /\.(ttf|eot|svg|png|jpg|gif|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         loader: 'file-loader'
-    },
-    {
+      },
+      {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
           cacheDirectory: true,
-          presets: ["@babel/preset-env","@babel/preset-react"]
+          presets: ["@babel/preset-env", "@babel/preset-react"]
         }
       },
       {
-      test: /\.(js|jsx)$/,
-      include: [path.resolve(__dirname, '/public')],
-      loader: 'babel-loader'
-    },
-    {
-      test: /.(sa|sc|c)ss$/,
+        test: /\.(js|jsx)$/,
+        include: [path.resolve(__dirname, '/public')],
+        loader: 'babel-loader'
+      },
+      {
+        test: /.(sa|sc|c)ss$/,
 
-      use: [{
-        loader: MiniCssExtractPlugin.loader
-      }, {
-        loader: "css-loader",
+        use: [{
+          loader: MiniCssExtractPlugin.loader
+        }, {
+          loader: "css-loader",
 
-        options: {
-          sourceMap: true
-        }
-      }, {
-        loader: "sass-loader",
+          options: {
+            sourceMap: true
+          }
+        }, {
+          loader: "sass-loader",
 
-        options: {
-          sourceMap: true
-        }
+          options: {
+            sourceMap: true
+          }
+        }]
       }]
-    }]
   }
 });
