@@ -70,29 +70,27 @@ class FormpageLoginContainer extends React.Component {
   /////////////////////////////////////////
   async account_login() {
 
-    const resolved = await handleResponse({ request: authentication_service.user.login({ username: this.state.username, password: this.state.password }), error_message: 'ooops something went wrong...' })
 
-    if (resolved !== false) {
-
-      localStorage.setItem(CURRENT_LOGGED_USER, resolved.response.username);
-      localStorage.setItem("ID", resolved.response.id);
-      localStorage.setItem("Token", resolved.response.token);
+    this.setState({
+      ...this.state,
+      isLoading: true
+    })
 
 
-      // TO RERENDER WHEN THE ITEM IS SET IN THE LOCALSTORAGE
-      this.setState({
-        ...this.state,
-        isLoading: true
-      })
-      setTimeout(() => {
+    handleResponse({ request: authentication_service.user.login(this.state.username, this.state.password), error_message: 'ooops something went wrong...' })
+      .then(resolved => {
+        console.log(resolved)
+        console.log(resolved.response)
+        if (resolved.statusCode === 200) {
+          localStorage.setItem(CURRENT_LOGGED_USER, resolved.response.username);
+          localStorage.setItem("ID", resolved.response.id);
+          localStorage.setItem("Token", resolved.response.token);
+        }
         this.setState({
           ...this.state,
           isLoading: false
         })
-      }, 1000);
-
-    }
-
+      })
 
   }
   /////////////////////////////////////////
