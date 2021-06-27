@@ -1,4 +1,16 @@
-function find({ type , name }) {
+import { Host } from '../../../config/types/services/types_common';
+import { Token } from '../../../config/types/types_user';
+import { RequestType, SearchedName } from '../../../config/types/services/types_common';
+import { CardType, CollectionID, CollectionType } from '../../../config/types/services/types_collection';
+
+export default class Collection {
+  host: Host;
+
+  constructor(host: Host) {
+    this.host = host;
+  }
+
+  find(type: RequestType, searchedName: SearchedName): Promise<CollectionType> {
 
     let rqtype = "usercollections";
     type === 'name' ? rqtype = 'find' : type === 'id' ? rqtype = 'find' : rqtype = "usercollections";
@@ -8,15 +20,15 @@ function find({ type , name }) {
       headers: { "Content-Type": "application/json" }
     };
 
-    return fetch(`${this.host}/api/collections/${rqtype}?${type}=${name}`, requestOptions)
+    return fetch(`${this.host}/api/collections/${rqtype}?${type}=${searchedName}`, requestOptions)
       .then(result => result.json())
   }
 
-  function create({name, description = "No description", cards, Token}) {
+  create(name: string, description = "No description", cards: CardType[], token: Token): Promise<CollectionType> {
 
     const requestOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${Token}` },
+      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
       body: JSON.stringify({ name, description, cards })
     };
 
@@ -25,7 +37,7 @@ function find({ type , name }) {
       .catch(err => console.log(err))
   }
 
-  function remove({id, token}) {
+  remove(id: CollectionID, token: Token): Promise<CollectionType> {
 
     const requestOptions = {
       method: "DELETE",
@@ -37,7 +49,7 @@ function find({ type , name }) {
       .catch(err => console.log(err))
   }
 
-  function update({ id, token, cards, name, description }) {
+  update(id: CollectionID, token: Token, cards: CardType[], name: string, description: string): Promise<CollectionType> {
 
     const requestOptions = {
       method: "PUT",
@@ -48,19 +60,7 @@ function find({ type , name }) {
     return fetch(`${this.host}/api/collections/update?id=${id}`, requestOptions)
       .then(result => result.json())
       .catch(err => console.log(err))
-}
-
-
-
-  export default class Collection {
-
-    constructor(host){
-        this.host = host;
-
-        this.create = create;
-        this.update = update;
-        this.find = find;
-        this.remove = remove;
-    }
-
   }
+
+
+}

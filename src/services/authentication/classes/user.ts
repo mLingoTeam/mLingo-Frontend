@@ -1,7 +1,7 @@
 import handleRaw from '../handleRaw';
 import { CURRENT_LOGGED_USER, CURRENT_TOKEN } from "../../../config/constants/localStorageConstants";
-import { Username, Password, Email } from '../../../config/types/omnipresent';
-import { Host } from '../../../config/types/services/user';
+import { Username, Password, Email } from '../../../config/types/types_user';
+import { Host } from '../../../config/types/services/types_common';
 
 export default class User {
   host: Host;
